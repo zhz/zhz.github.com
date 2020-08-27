@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>修改本地路由限制 VPN 应用范围 | LittlePig.CN | someone&#39;s Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content>
+    <meta name="description" content="这是一个应该说还算常见的应用场景，家里的宽带是网通，学校里为了方便教师们在家访问学校资源方便，给开通了 VPN ，可是，一旦我连上了 VPN ，访问学校是快了，可是访问公网又慢了，一直傻傻以为 VPN 开启后会替换掉原来网络数据通道，所以怎么着也不能两全，其实根本不是那么回事，VPN 只不过建立了一条新通道，然后把默认路由给替换到了这条通道而已，原来的通道并没有被删掉，仍然可以使用，只不过不再">
+<meta property="og:type" content="article">
+<meta property="og:title" content="修改本地路由限制 VPN 应用范围">
+<meta property="og:url" content="http://littlepig.cn/posts/2009/09/25/route-to-limit-vpn/index.html">
+<meta property="og:site_name" content="LittlePig.CN">
+<meta property="og:description" content="这是一个应该说还算常见的应用场景，家里的宽带是网通，学校里为了方便教师们在家访问学校资源方便，给开通了 VPN ，可是，一旦我连上了 VPN ，访问学校是快了，可是访问公网又慢了，一直傻傻以为 VPN 开启后会替换掉原来网络数据通道，所以怎么着也不能两全，其实根本不是那么回事，VPN 只不过建立了一条新通道，然后把默认路由给替换到了这条通道而已，原来的通道并没有被删掉，仍然可以使用，只不过不再">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2016-11-05T01:33:11.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="修改本地路由限制 VPN 应用范围">
+<meta name="twitter:description" content="这是一个应该说还算常见的应用场景，家里的宽带是网通，学校里为了方便教师们在家访问学校资源方便，给开通了 VPN ，可是，一旦我连上了 VPN ，访问学校是快了，可是访问公网又慢了，一直傻傻以为 VPN 开启后会替换掉原来网络数据通道，所以怎么着也不能两全，其实根本不是那么回事，VPN 只不过建立了一条新通道，然后把默认路由给替换到了这条通道而已，原来的通道并没有被删掉，仍然可以使用，只不过不再">
+    
+        <link rel="alternate" type="application/atom+xml" title="LittlePig.CN" href="../../../../../atom.xml">
+    
+    <link rel="shortcut icon" href="../../../../../favicon.ico">
+    <link rel="stylesheet" href="../../../../../css/style.css?v=1.7.2">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(../../../../../img/brand.jpg)">
+      <div class="brand">
+        <a href="../../../../../index.html" class="avatar waves-effect waves-circle waves-light">
+          <img src="../../../../../img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">ZHZ</h5>
+          <a href="mailto:zhz@hebut.edu.cn" title="zhz@hebut.edu.cn" class="mail">zhz@hebut.edu.cn</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="../../../../../index.html"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="../../../../../archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="../../../../../tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="../../../../../categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="../../../../../about"  >
+                <i class="icon icon-lg icon-link"></i>
+                关于
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">修改本地路由限制 VPN 应用范围</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">修改本地路由限制 VPN 应用范围</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2009-09-25T13:10:00.000Z" itemprop="datePublished" class="page-time">
+  2009-09-25
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+
+<article id="post-route-to-limit-vpn"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">修改本地路由限制 VPN 应用范围</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2009-09-25 21:10:00" datetime="2009-09-25T13:10:00.000Z"  itemprop="datePublished">2009-09-25</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>　　这是一个应该说还算常见的应用场景，家里的宽带是网通，学校里为了方便教师们在家访问学校资源方便，给开通了 VPN ，可是，一旦我连上了 VPN ，访问学校是快了，可是访问公网又慢了，一直傻傻以为 VPN 开启后会替换掉原来网络数据通道，所以怎么着也不能两全，其实根本不是那么回事，VPN 只不过建立了一条新通道，然后把默认路由给替换到了这条通道而已，原来的通道并没有被删掉，仍然可以使用，只不过不再是默认通道。</p>
+<a id="more"></a>
+
+<p>　　解决办法很简单，就是自己设置一下路由表而已，我是网通，使用的无线路由。</p>
+<p>　　首先在　VPN　未连接状态下在命令行窗口打入　route print 指令，查看当前的默认路由，及默认网关 Default GateWay ，记下来，比如我的是 192.168.1.1<br>　　然后连接　VPN ，再使用 route print 指令将 VPN 的默认路由记下来，比如 10.6.0.13<br>　　接下来，使用 route add 指令设置默认路由为原来的 192.168.1.1</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">　　　　route add 0.0.0.0 mask 0.0.0.0 192.168.1.1</span><br></pre></td></tr></table></figure>
+
+<p>　　然后确定一下学校里网站的大体 IP 范围，将其路由指向 VPN 的 10.6.0.13 即可，比如我的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">　　　　route add 202.113.0.0 mask 255.255.0.0 10.6.0.13</span><br><span class="line">　　　　route add 219.243.0.0 mask 255.255.0.0 10.6.0.13</span><br><span class="line">　　　　route add 10.0.0.0 mask 255.255.255.0 10.6.0.13</span><br></pre></td></tr></table></figure>
+
+<p>　　这样的话，访问学校内部的 202.113.* 219.243.* 10.* 等都会走 VPN ，而访问公网等都会走网通，实现了两种区域的快速访问。</p>
+<p>　　上述指令可以做成一个批处理文件，在连接 VPN  之后点击一下即可，注意不要把批处理名字也写成 route ，那样就死循环了。</p>
+<p>　　10月10日补：</p>
+<p>　　经过几次试验之后发现每次登陆学校的 VPN 获取的缺省网关是变化的，这就导致批处理的效率大打折扣，不过 bat 指令可不是想象的那么简单，强大的很，下面的批处理从 route print 的输出里获取 Default Gateway 并传递给下面的 route add 指令。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">echo off</span><br><span class="line">for /f &quot;delims=: tokens=2&quot; %%i in (&apos;route print^|findstr /i /c:Default&apos;) do set gw=%%i</span><br><span class="line">echo &quot;VPN Gateway Found:&quot; %gw%</span><br><span class="line">route add 0.0.0.0 mask 0.0.0.0 192.168.1.1</span><br><span class="line">route add 202.113.0.0 mask 255.255.0.0 %gw%</span><br><span class="line">route add 219.243.0.0 mask 255.255.0.0 %gw%</span><br><span class="line">route add 10.0.0.0 mask 255.255.255.0 %gw%</span><br><span class="line">echo &quot;Done&quot;</span><br></pre></td></tr></table></figure>
+
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2016-11-05T01:33:11.000Z" itemprop="dateUpdated">2016-11-05 09:33:11</time>
+</span><br>
+
+
+        
+        本文地址：<a href="" target="_blank" rel="external">http://littlepig.cn/posts/2009/09/25/route-to-limit-vpn/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="http://littlepig.cn">
+            <img src="../../../../../img/avatar.jpg" alt="ZHZ">
+            ZHZ
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赞</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://littlepig.cn/posts/2009/09/25/route-to-limit-vpn/&title=《修改本地路由限制 VPN 应用范围》 — LittlePig.CN&pic=http://littlepig.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://littlepig.cn/posts/2009/09/25/route-to-limit-vpn/&title=《修改本地路由限制 VPN 应用范围》 — LittlePig.CN&source=　　这是一个应该说还算常见的应用场景，家里的宽带是网通，学校里为了方便教师们在家访问学校资源方便，给开通了 VPN ，可是，一旦我连上了 VPN ，访问学..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://littlepig.cn/posts/2009/09/25/route-to-limit-vpn/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《修改本地路由限制 VPN 应用范围》 — LittlePig.CN&url=http://littlepig.cn/posts/2009/09/25/route-to-limit-vpn/&via=http://littlepig.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://littlepig.cn/posts/2009/09/25/route-to-limit-vpn/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="../../27/sprain-my-foot/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">把脚给崴了</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="../../../03/27/issue-bug-tracking-system/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">问题跟踪及Bug处理系统的比较 - Issue &amp; Bug Tracking System</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="../../../../../img/wechat.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="../../../../../img/wechat.png" data-alipay="../../../../../img/alipay.png">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="../../../../../atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>ZHZ &copy; 2003 - 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://littlepig.cn/posts/2009/09/25/route-to-limit-vpn/&title=《修改本地路由限制 VPN 应用范围》 — LittlePig.CN&pic=http://littlepig.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://littlepig.cn/posts/2009/09/25/route-to-limit-vpn/&title=《修改本地路由限制 VPN 应用范围》 — LittlePig.CN&source=　　这是一个应该说还算常见的应用场景，家里的宽带是网通，学校里为了方便教师们在家访问学校资源方便，给开通了 VPN ，可是，一旦我连上了 VPN ，访问学..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://littlepig.cn/posts/2009/09/25/route-to-limit-vpn/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《修改本地路由限制 VPN 应用范围》 — LittlePig.CN&url=http://littlepig.cn/posts/2009/09/25/route-to-limit-vpn/&via=http://littlepig.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://littlepig.cn/posts/2009/09/25/route-to-limit-vpn/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACJklEQVR42u3aQW7DMAwEwPz/0+61QOB0V0yLRhqdiiKONTkQFLWPR7yup/X9//nnnz9z99TjNxYGBsbHMq6XK2EkG51//w8/DQYGxgGMZBP5hu6Qd5tYK+gYGBgYr78uL7sJ6fUPgYGBgTFhJLz2LRgYGBiTQ2z7VM5u21AMDIzTGPnU/e///pX7DQwMjI9iXOVqryqT77nGCwMDY29GXuDyoVgbrVgruBgYGKcx8pe1h8y81K5deUadLAYGxocz1iIOeURsNOiPAx8YGBh7MyaTq/YQu9bqJQEODAyMvRltVGut4Oblsi36i4kzDAyMj2XMR//twbiNdBSBMAwMjO0Y7Ysnn2+by+hYi4GBcQyjbQSTpyZlvRjkYWBgHMNYG36tjd7WGso6LYKBgbEFY/GBuPnLC/ooIYKBgbE1ow1GTG5K8xYzv2a47XAxMDA2ZUzCWJMhWlt8MTAwTmbkL6uvGPMR/1rriYGBsTWjbe/yy8tJFGMtloGBgXEyYzKSe9cALiruGBgYxzCKiEN5bTk5BkelHAMD40hGUl7XwhNt8KIOW2BgYGzEuMrVvua9A7XbPWBgYGzNyNdaFCPfdH6Bmh+eMTAwdmIkRbYdqLWBszcUXAwMjAMYeRgi33R+6F2LaGBgYGBMGO31Z9toYmBgYLSHybXNTYpsEWDFwMDYiNEeRPNhXB7IyAs3BgbGaYzR0TEeukW5j/hq883tIwYGxv9lfAHRePoI2Jr4rgAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+lazyScripts.push('//s95.cnzz.com/z_stat.php?id=1235250&web_id=1235250')
+
+</script>
+
+<script src="../../../../../js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="../../../../../js/search.min.js?v=1.7.2" async></script>
+
+
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>LittlePig.CN | someone&#39;s Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="undefined">
+    <meta name="description" content="记录 / 回忆 / 分享">
+<meta property="og:type" content="website">
+<meta property="og:title" content="LittlePig.CN">
+<meta property="og:url" content="http://littlepig.cn/page/9/index.html">
+<meta property="og:site_name" content="LittlePig.CN">
+<meta property="og:description" content="记录 / 回忆 / 分享">
+<meta property="og:locale" content="zh-CN">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="LittlePig.CN">
+<meta name="twitter:description" content="记录 / 回忆 / 分享">
+    
+        <link rel="alternate" type="application/atom+xml" title="LittlePig.CN" href="../../atom.xml">
+    
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../css/style.css?v=1.7.2">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu"  >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(../../img/brand.jpg)">
+      <div class="brand">
+        <a href="../../index.html" class="avatar waves-effect waves-circle waves-light">
+          <img src="../../img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">ZHZ</h5>
+          <a href="mailto:zhz@hebut.edu.cn" title="zhz@hebut.edu.cn" class="mail">zhz@hebut.edu.cn</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="../../index.html"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="../../archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="../../tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="../../categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="../../about"  >
+                <i class="icon icon-lg icon-link"></i>
+                关于
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">LittlePig.CN</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header index-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">LittlePig.CN</h1>
+        <h5 class="subtitle">
+            
+                someone's Blog
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+<div class="container body-wrap">
+
+    <ul class="post-list">
+    
+        <li class="post-list-item fade">
+            <article id="post-install-vsftpd-in-debian"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2012-12-17 14:44:42" datetime="2012-12-17T06:44:42.000Z"  itemprop="datePublished">2012-12-17</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="../../posts/2012/12/17/install-vsftpd-in-debian/">Debian 下 vsftpd 的安装配置</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        一直使用 samba 来更新 debian 服务器上的 web 内容，主要是方便，尤其是拷贝和更新大容量内容的时候，但是在家里的时候连接教育网的服务器很慢，samba 操作起来停顿很多，影响效率，于是安装了个可以使用虚拟用户的 vsftpd 。
+    
+
+        <a href="../../posts/2012/12/17/install-vsftpd-in-debian/" class="post-more waves-effect waves-button">
+            阅读全文…
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/debian/">debian</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/vsftpd/">vsftpd</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/www/">www</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-install-hp-printer-driver-on-server-series"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2012-11-13 19:27:11" datetime="2012-11-13T11:27:11.000Z"  itemprop="datePublished">2012-11-13</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="../../posts/2012/11/13/install-hp-printer-driver-on-server-series/">Server 系统上 HP 打印机驱动的安装</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        　　很多打印服务器都是 Server 系列操作系统，但 HP 的打印机很多驱动官方都是不支持 Server 系列的，从 Server 2003 一直到 2012 都会提示 “产品类型与支持的产品类型列表不符” ，但其实就打印机驱动来说，这玩意应该没有多少和系统关联紧密的东西，理论上不应该不支持，把驱动文件从安装包中提取然后直接更新驱动应该就可以，不过国外的大神们给出了更简单的办法　　　　当安...
+    
+
+        <a href="../../posts/2012/11/13/install-hp-printer-driver-on-server-series/" class="post-more waves-effect waves-button">
+            阅读全文…
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/driver/">driver</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/hp/">hp</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/printer/">printer</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/server/">server</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-d400-segate-3t"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2012-11-13 19:19:51" datetime="2012-11-13T11:19:51.000Z"  itemprop="datePublished">2012-11-13</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="../../posts/2012/11/13/d400-segate-3t/">D400 W130S 3T 硬盘的添加</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        W130S 上的 2T 硬盘快满了，于是购买了个希捷的 3T 盘，想扩容顺便把 Home Server 2003 升级成 Server 2012，没想到挂载过程费了些周折。
+    
+
+        <a href="../../posts/2012/11/13/d400-segate-3t/" class="post-more waves-effect waves-button">
+            阅读全文…
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/2012/">2012</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/3T/">3T</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/d400/">d400</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/server/">server</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/w130s/">w130s</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-xp-rollback-to-media-player-10"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2011-02-12 18:35:19" datetime="2011-02-12T10:35:19.000Z"  itemprop="datePublished">2011-02-12</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="../../posts/2011/02/12/xp-rollback-to-media-player-10/">XP 下安装 Media Player 10</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        　　系统用的深度的精简 XP SP3，本来带的是 Windows Media Player 10，一不小心给升级成了 11，实在看不惯 11 那副黑面孔，决定退回到 10 ，破费周折。
+直接安装 Media Player 10 ，提示不兼容，无法安装，进程里结束掉 auhl.exe ，提示已经安装了高版本，仍旧无法安装。
+用 360 软件管理卸载 media player 11 及其 run...
+    
+
+        <a href="../../posts/2011/02/12/xp-rollback-to-media-player-10/" class="post-more waves-effect waves-button">
+            阅读全文…
+        </a>
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-thinkpad-win7-xp-multi-os"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2011-02-12 18:32:11" datetime="2011-02-12T10:32:11.000Z"  itemprop="datePublished">2011-02-12</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="../../posts/2011/02/12/thinkpad-win7-xp-multi-os/">Thinkpad 安装双系统过程</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        Thinkpad 新机器目前随机配的都是 Win7 系统了，可是很多时候都需要到 XP 下去工作，安装个双系统很有必要，正好最近同事有台 T410S 要这样做，于是做了下试验，成功实现了双系统，而且没有破坏原有系统和恢复分区！
+原机情况如下：
+硬盘被分了 C D E F 四个用户分区，还有一个系统启动区 SYSTEM_DRV ，以及著名的恢复分区 Lenovo_Recovery 。四个分区中...
+    
+
+        <a href="../../posts/2011/02/12/thinkpad-win7-xp-multi-os/" class="post-more waves-effect waves-button">
+            阅读全文…
+        </a>
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-skyword-factory-mode"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2010-06-10 20:37:58" datetime="2010-06-10T12:37:58.000Z"  itemprop="datePublished">2010-06-10</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="../../posts/2010/06/10/skyword-factory-mode/">创维酷开电视进入工厂模式的尝试</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        　　家里的创维酷开电视突然间怎么也没有信号了，而且怪异的是遥控器除了“菜单”键之外都不起作用，机器面板上的“菜单”键也是如此，其余的键倒还正常，颜色也怪怪的，貌似是亮度被调到了最大。自己折腾了半天确认无法修复，只好电话创维的维修中心上门检测，网上搜了搜，还挺贵，开机费就百十来块钱，不过没办法，虽说自己当年也是学电视、修电视的，可是这年代技术和器件更新太快，十几年不动的东西也早已经忘光了。
+    
+
+        <a href="../../posts/2010/06/10/skyword-factory-mode/" class="post-more waves-effect waves-button">
+            阅读全文…
+        </a>
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-stupid-route-bat"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2009-10-10 18:51:12" datetime="2009-10-10T10:51:12.000Z"  itemprop="datePublished">2009-10-10</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="../../posts/2009/10/10/stupid-route-bat/">愚蠢的 route 批处理</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        　　在前几日的一片日志中，我提及了使用 route 指令修改路由表实现双线访问，参见 http://littlepig.cn/others/software/route-to-limit-vpn/ ，然而当我将其中的 route 指令放入批处理文件里，执行时却发现了莫名其妙的循环，即总是执行第一条指令，百思不得其解，因为单条指令执行是没有问题的啊，难道指令执行需要延时？也不至于啊，批处理不是多线程执行的，这其中到底有什么蹊跷呢？
+    
+
+        <a href="../../posts/2009/10/10/stupid-route-bat/" class="post-more waves-effect waves-button">
+            阅读全文…
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/vpn/">vpn</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-zhuziqing-congcon"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2009-10-07 17:10:52" datetime="2009-10-07T09:10:52.000Z"  itemprop="datePublished">2009-10-07</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="../../posts/2009/10/07/zhuziqing-congcon/">再读 朱自清 匆匆</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        　　小时候课堂上老师点名背诵朱自清的《匆匆》，因准备许久，语调高昂，抑扬顿挫，一气呵成，不成想老师只是淡淡的一句：不错，坐下吧。没有夸奖，自然心中惆怅，回家闷闷不乐，母亲给做了爱吃的汤面，自然也就喜笑颜开，早已把课堂上的不快抛之脑后，屁颠屁颠的跟玩伴们玩弹弓，捕知了去了。。
+　　时隔二十年之久，再读《匆匆》确是在如厕的时候，从书橱拿起了买了许久却从未翻开的《朱自清散文》，随手一翻，却正是此篇，匆匆过目之后却又几次翻回去反复斟酌，感慨时光如流水，字字皆能打动人心，方知当年老师只感叹却并不赞赏，莽撞少年，又何知青春不回，时光不再，眼见岁月扑面而来却又疾驰而去的苦恼与无奈呢，此时此刻，却又如何读得出抑扬顿挫，慷慨激昂？
+    
+
+        <a href="../../posts/2009/10/07/zhuziqing-congcon/" class="post-more waves-effect waves-button">
+            阅读全文…
+        </a>
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-happy-moment-in-life"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2009-09-29 20:36:31" datetime="2009-09-29T12:36:31.000Z"  itemprop="datePublished">2009-09-29</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="../../posts/2009/09/29/happy-moment-in-life/">生命中的美好时刻</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        　　无论你多么与众不同，生活中总有一些美好时刻能够打动你，看到下面这些文字，你是否也会微笑着从记忆中找出它们的影子呢
+    
+
+        <a href="../../posts/2009/09/29/happy-moment-in-life/" class="post-more waves-effect waves-button">
+            阅读全文…
+        </a>
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-sprain-my-foot"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2009-09-27 00:10:18" datetime="2009-09-26T16:10:18.000Z"  itemprop="datePublished">2009-09-27</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="../../posts/2009/09/27/sprain-my-foot/">把脚给崴了</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        　　其实是上周末的事，只是现在越发的感觉疼，貌似不是我原来想象的那么容易恢复，其实按照自己的想法早就想多多活动了，只是又怕恢复不好容易复发，现在整个脚肿的让人不知所措，而且第一次知道原来不涂抹颜色也可以让自己的皮肉这么紫，真是悲凉！刚刚步入正轨的锻炼计划就此搁置，甚是无奈！
+    
+
+        <a href="../../posts/2009/09/27/sprain-my-foot/" class="post-more waves-effect waves-button">
+            阅读全文…
+        </a>
+    </div>
+    
+</article>
+
+        </li>
+    
+    </ul>
+
+    
+<nav id="page-nav">
+    <div class="inner">
+    <a class="extend prev" rel="prev" href="../8/">上一页</a><a class="page-number" href="../../">1</a><span class="space">&hellip;</span><a class="page-number" href="../7/">7</a><a class="page-number" href="../8/">8</a><span class="page-number current">9</span><a class="page-number" href="../10/">10</a><a class="page-number" href="../11/">11</a><a class="extend next" rel="next" href="../10/">下一页</a>
+    </div>
+</nav>
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="../../atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>ZHZ &copy; 2003 - 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://littlepig.cn/page/9/&title=LittlePig.CN&pic=http://littlepig.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://littlepig.cn/page/9/&title=LittlePig.CN&source=记录 / 回忆 / 分享" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://littlepig.cn/page/9/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=LittlePig.CN&url=http://littlepig.cn/page/9/&via=http://littlepig.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://littlepig.cn/page/9/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAK4AAACuCAAAAACKZ2kyAAABuklEQVR42u3aS47DIBAFwNz/0hlpVlnMkEc3ECIVK8vyp+zFE3TzeMTj+Ttej19Hctfsva2Bi4vb5j6HI+H+9+LkCbkBFxf3PLfzsjxtxtwkCnFxcW/jJgGUPGH8O3Bxcb+LWyOOYw4XF/dm7uykpAbKA3HBWg0XF7fBrRVM1x5vr+/i4uIu6kokoxZbtbfj4uKe4eYF0PH0pR+REwGHi4v7Ie6ONmq+CePNGVxc3CPc2eJpJ1vyqU8Umri4uJu5fWitrVIsmOLi4m7jdhoYtUnM+ANwcXFv4Nb6F8mGjLxNmzRvcHFxb+Ami5kk1PqFjwiNi4u7lNtplCaTleTJeREWFxf3PHc2mPrTmuJuEVxc3M3cZAaUn5l9WV7+wMXFvYe7ajHTL5tGtRNcXNxt3NmWRi3mOhs7cHFxz3P7TdAFjdIdUxxcXNyYWytM5A3X5Hfkn42Li3uGuyD5Fi2ZcHFxb+Pm4VXD1Qqmb1qtuLi4R7h5POUbL/IoXLYJAxcX96PcPHpmr3wThbi4uJdxa63TxcGHi4t7kJsXSWvF01pV5o8rcXFxj3BrS5HZ7VadJm6rvouLizvH/QG/OXadv4DYowAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+lazyScripts.push('//s95.cnzz.com/z_stat.php?id=1235250&web_id=1235250')
+
+</script>
+
+<script src="../../js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="../../js/search.min.js?v=1.7.2" async></script>
+
+
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

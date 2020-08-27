@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>URP综合教务系统外挂 | LittlePig.CN | someone&#39;s Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="urp,hack">
+    <meta name="description" content="起因北京清元优软科技有限公司在 05 年开发的 URP 综合教务管理系统在很多高校都有使用，悲剧的是，除去教务管理人员，在普通学生和老师的眼里，落下的几乎都是”坏名声”！几乎每个学期开始和结束都会听到诸如“为毛手机查不了成绩”，“为啥打印没反应啊”，“成绩分析单咋没图了”等等的吐槽。 分析通过对 html 代码的分析，早期的前端设计和技术方案适应不了浏览器的高速发展是主因，因为没有服务器的管理权，">
+<meta name="keywords" content="urp,hack">
+<meta property="og:type" content="article">
+<meta property="og:title" content="URP综合教务系统外挂">
+<meta property="og:url" content="http://littlepig.cn/posts/2017/03/08/urp-hack/index.html">
+<meta property="og:site_name" content="LittlePig.CN">
+<meta property="og:description" content="起因北京清元优软科技有限公司在 05 年开发的 URP 综合教务管理系统在很多高校都有使用，悲剧的是，除去教务管理人员，在普通学生和老师的眼里，落下的几乎都是”坏名声”！几乎每个学期开始和结束都会听到诸如“为毛手机查不了成绩”，“为啥打印没反应啊”，“成绩分析单咋没图了”等等的吐槽。 分析通过对 html 代码的分析，早期的前端设计和技术方案适应不了浏览器的高速发展是主因，因为没有服务器的管理权，">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://littlepig.cn/media/urp1.jpg">
+<meta property="og:image" content="http://littlepig.cn/media/urp2.jpg">
+<meta property="og:updated_time" content="2017-07-07T08:51:55.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="URP综合教务系统外挂">
+<meta name="twitter:description" content="起因北京清元优软科技有限公司在 05 年开发的 URP 综合教务管理系统在很多高校都有使用，悲剧的是，除去教务管理人员，在普通学生和老师的眼里，落下的几乎都是”坏名声”！几乎每个学期开始和结束都会听到诸如“为毛手机查不了成绩”，“为啥打印没反应啊”，“成绩分析单咋没图了”等等的吐槽。 分析通过对 html 代码的分析，早期的前端设计和技术方案适应不了浏览器的高速发展是主因，因为没有服务器的管理权，">
+<meta name="twitter:image" content="http://littlepig.cn/media/urp1.jpg">
+    
+        <link rel="alternate" type="application/atom+xml" title="LittlePig.CN" href="../../../../../atom.xml">
+    
+    <link rel="shortcut icon" href="../../../../../favicon.ico">
+    <link rel="stylesheet" href="../../../../../css/style.css?v=1.7.2">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(../../../../../img/brand.jpg)">
+      <div class="brand">
+        <a href="../../../../../index.html" class="avatar waves-effect waves-circle waves-light">
+          <img src="../../../../../img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">ZHZ</h5>
+          <a href="mailto:zhz@hebut.edu.cn" title="zhz@hebut.edu.cn" class="mail">zhz@hebut.edu.cn</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="../../../../../index.html"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="../../../../../archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="../../../../../tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="../../../../../categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="../../../../../about"  >
+                <i class="icon icon-lg icon-link"></i>
+                关于
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">URP综合教务系统外挂</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">URP综合教务系统外挂</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-03-07T16:00:00.000Z" itemprop="datePublished" class="page-time">
+  2017-03-08
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#起因"><span class="post-toc-number">1.</span> <span class="post-toc-text">起因</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#分析"><span class="post-toc-number">2.</span> <span class="post-toc-text">分析</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#方案"><span class="post-toc-number">3.</span> <span class="post-toc-text">方案</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#效果"><span class="post-toc-number">4.</span> <span class="post-toc-text">效果</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-urp-hack"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">URP综合教务系统外挂</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-03-08 00:00:00" datetime="2017-03-07T16:00:00.000Z"  itemprop="datePublished">2017-03-08</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h2 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h2><p>北京清元优软科技有限公司在 05 年开发的 URP 综合教务管理系统在很多高校都有使用，悲剧的是，除去教务管理人员，在普通学生和老师的眼里，落下的几乎都是”坏名声”！几乎每个学期开始和结束都会听到诸如“为毛手机查不了成绩”，“为啥打印没反应啊”，“成绩分析单咋没图了”等等的吐槽。</p>
+<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>通过对 html 代码的分析，早期的前端设计和技术方案适应不了浏览器的高速发展是主因，因为没有服务器的管理权，直接修改源代码是不可行的，也不想利用系统漏洞，所以在思考、实验、排除了 n 种方案之后，使用 nginx 做反向代理 配合 substitute 组件调整代码是相对来说较为容易且可行的解决方案，主要解决三个问题，高速浏览器下超链接不跳转以及无法打印还有无法批量填充成绩。</p>
+<h2 id="方案"><a href="#方案" class="headerlink" title="方案"></a>方案</h2><p>以河北工业大学的为例，教务系统源站为 <a href="http://zhjw.hebut.edu.cn" target="_blank" rel="noopener">http://zhjw.hebut.edu.cn</a> （暂称为 A ），我使用的反向代理站为 <a href="http://zhjw.scse.hebut.edu.cn" target="_blank" rel="noopener">http://zhjw.scse.hebut.edu.cn</a> (暂称为 B )，反向代理规则中指定了 .php 文件为 B 站本地解析，/assets 资源为 B 站本地资源，其他均为代理 A 站。对应的 nginx 配置文件如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">	server_name zhjw.scse.hebut.edu.cn littledog.cn zhjw.hebut.edu.cn; </span><br><span class="line">	listen 80;</span><br><span class="line"></span><br><span class="line">	#开启页面压缩</span><br><span class="line">	gzip on;</span><br><span class="line">	gzip_min_length 1k;</span><br><span class="line">	gzip_buffers 4 16k;</span><br><span class="line">	#gzip_http_version 1.0;</span><br><span class="line">	gzip_comp_level 2;</span><br><span class="line">	gzip_types text/plain application/x-JavaScript text/css application/xml text/javascript;</span><br><span class="line">	gzip_vary off;</span><br><span class="line">	gzip_disable &quot;MSIE [1-6]\.&quot;;</span><br><span class="line">	</span><br><span class="line">	#反向代理的默认设定</span><br><span class="line">	location / &#123;</span><br><span class="line">		index index.php index.html index.htm; </span><br><span class="line">		root /data/www/zhjw.scse.hebut.edu.cn/htdocs; </span><br><span class="line">		</span><br><span class="line">		#反向代理设置</span><br><span class="line">		proxy_redirect     off;</span><br><span class="line">		proxy_set_header   Host             $host;</span><br><span class="line">		proxy_set_header   X-Real-IP        $remote_addr;</span><br><span class="line">		proxy_set_header   X-Forwarded-For  $proxy_add_x_forwarded_for;</span><br><span class="line">		</span><br><span class="line">		include fastcgi_params;</span><br><span class="line">		proxy_pass http://zhjw.hebut.edu.cn/;</span><br><span class="line"></span><br><span class="line">		#指定替换类型</span><br><span class="line">  		subs_filter_types text/html text/css text/xml;</span><br><span class="line"></span><br><span class="line">  		#登录后起始页设定为本站 start.php</span><br><span class="line">  		subs_filter &apos;&lt;frame src=&quot;&quot; id=&quot;mainF&quot;&apos; &apos;&lt;frame src=&quot;/start.php&quot; id=&quot;mainF&quot;&apos; gi;</span><br><span class="line"></span><br><span class="line">		#指定使用高速浏览模式，但貌似对360浏览器无效，360浏览器对于教育网网站总是启用兼容模式</span><br><span class="line">		subs_filter &apos;&lt;head&gt;&apos; &apos;&lt;head&gt;&lt;meta name=&quot;renderer&quot; content=&quot;webkit&quot;&gt;&lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge,chrome=1&quot;&gt;&apos; gi;</span><br><span class="line"></span><br><span class="line">		#一些需要修改内容的页面装载 jquery,jqprint,printArea </span><br><span class="line">		subs_filter &apos;&lt;link href=&quot;css/style.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot;&gt;&apos; &apos;&lt;link href=&quot;css/style.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot;&gt;&lt;script src=&quot;/assets/js/jquery-1.8.2.min.js&quot;&gt;&lt;/script&gt;&lt;script src=&quot;/assets/js/jquery.PrintArea.js&quot;&gt;&lt;/script&gt;&lt;script src=&quot;/assets/js/jquery.jqprint.js&quot;&gt;&lt;/script&gt;&apos; gi;</span><br><span class="line">		</span><br><span class="line">		subs_filter &apos;&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;styles.css&quot;&gt;&apos; &apos;&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;styles.css&quot;&gt;&lt;script src=&quot;/assets/js/jquery-1.8.2.min.js&quot;&gt;&lt;/script&gt;&lt;script src=&quot;/assets/js/jquery.PrintArea.js&quot;&gt;&lt;/script&gt;&lt;script src=&quot;/assets/js/jquery.jqprint.js&quot;&gt;&lt;/script&gt;&apos; gi;</span><br><span class="line">		</span><br><span class="line">		subs_filter &apos;&lt;link href=&quot;/css/newcss/project.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot;&gt;&apos; &apos;&lt;link href=&quot;/css/newcss/project.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot;&gt;&lt;script src=&quot;/assets/js/jquery-1.8.2.min.js&quot;&gt;&lt;/script&gt;&lt;script src=&quot;/assets/js/jquery.PrintArea.js&quot;&gt;&lt;/script&gt;&lt;script src=&quot;/assets/js/jquery.jqprint.js&quot;&gt;&lt;/script&gt;&apos; gi;</span><br><span class="line">		</span><br><span class="line">		subs_filter &apos;&lt;link href=&quot;/css/style.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot;&gt;&apos; &apos;&lt;link href=&quot;/css/style.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot;&gt;&lt;script src=&quot;/assets/js/jquery-1.8.2.min.js&quot;&gt;&lt;/script&gt;&lt;script src=&quot;/assets/js/jquery.PrintArea.js&quot;&gt;&lt;/script&gt;&lt;script src=&quot;/assets/js/jquery.jqprint.js&quot;&gt;&lt;/script&gt;&apos; gi;</span><br><span class="line"></span><br><span class="line">		#学生中文成绩单打印页面添加高速打印功能</span><br><span class="line">		subs_filter &apos;&lt;form action=&quot;cj_zwcjd_all.jsp&quot; method=&quot;post&quot;&gt;&apos; &apos;&lt;script&gt;function webprint()&#123;jQuery(&quot;table:first table:first&quot;).css(&quot;display&quot;,&quot;none&quot;);window.print();jQuery(&quot;table:first table:first&quot;).css(&quot;display&quot;,&quot;block&quot;);&#125;;jQuery(document).ready(function()&#123;jQuery(&quot;table,tr,td&quot;).attr(&quot;align&quot;,&quot;center&quot;);jQuery(&quot;#report1 tr:first&quot;).css(&quot;height&quot;,&quot;50px&quot;);jQuery(&quot;#report1&quot;).css(&quot;width&quot;,&quot;720&quot;).css(&quot;margin-top&quot;,&quot;60&quot;).attr(&quot;cellpadding&quot;,&quot;5px&quot;);jQuery(&quot;table:first table:first a:last&quot;).after(&quot; &gt;&gt; &lt;a href=# onclick=webprint();return;&gt;&amp;#39640;&amp;#36895;&amp;#27983;&amp;#35272;&amp;#22120;&amp;#25171;&amp;#21360;&lt;\/a&gt;&quot;);jQuery(&quot;div:contains(\&quot;- - -\&quot;)&quot;).remove();&#125;);&lt;/script&gt;&lt;form action=&quot;cj_zwcjd_all.jsp&quot; method=&quot;post&quot;&gt;&apos; gi;</span><br><span class="line"></span><br><span class="line">		#教学记录表页面添加高速打印功能并设定打印效果</span><br><span class="line">		subs_filter &apos;//new jw080724hnn&apos; &apos;function webprint()&#123;jQuery(&quot;form&quot;).css(&quot;display&quot;,&quot;none&quot;);jQuery(&quot;table:eq(5)&quot;).css(&quot;display&quot;,&quot;none&quot;);window.print();/*jQuery(&quot;table:eq(4)&quot;).jqprint();*/jQuery(&quot;form&quot;).css(&quot;display&quot;,&quot;inline&quot;);jQuery(&quot;table:eq(5)&quot;).css(&quot;display&quot;,&quot;block&quot;);&#125;jQuery(document).ready(function()&#123;jQuery(&quot;#report1&quot;).css(&quot;width&quot;,&quot;1000&quot;);jQuery(&quot;form table:eq(1)&quot;).attr(&quot;width&quot;,&quot;1000&quot;).attr(&quot;align&quot;,&quot;center&quot;);/*jQuery(&quot;select:first&quot;).attr(&quot;onchange&quot;,&quot;cx();&quot;);*/jQuery(&quot;select:first&quot;).after(&quot;&lt;button onclick=cx();&gt;&amp;#26597;&amp;#35810;&lt;/button&gt;&quot;);jQuery(&quot;form&quot;).css(&quot;display&quot;,&quot;inline&quot;);jQuery(&quot;table:eq(3)&quot;).remove();jQuery(&quot;.report1_6_1&quot;).text(&quot;&quot;);jQuery(&quot;tr[height=20]:lt(2)&quot;).remove();jQuery(&quot;table:eq(5) a:last&quot;).after(&quot; &gt;&gt; &lt;a href=# onclick=webprint();return;&gt;&amp;#39640;&amp;#36895;&amp;#27983;&amp;#35272;&amp;#22120;&amp;#25171;&amp;#21360;&lt;\/a&gt;&quot;);jQuery(&quot;div:contains(\&quot;- - -\&quot;)&quot;).remove();&#125;);&apos; gi;</span><br><span class="line"></span><br><span class="line">		#成绩分析页面添加高速打印功能并设定打印效果</span><br><span class="line">		subs_filter &apos;function report1_importExcel()&apos; &apos;function webprint()&#123;jQuery(&quot;table:first&quot;).css(&quot;display&quot;,&quot;none&quot;);window.print();jQuery(&quot;table:first&quot;).css(&quot;display&quot;,&quot;block&quot;);&#125;;jQuery(document).ready(function()&#123;jQuery(&quot;table&quot;).attr(&quot;align&quot;,&quot;center&quot;);jQuery(&quot;tr[height=20]:last&quot;).remove();jQuery(&quot;tr[height=9]:last&quot;).remove();jQuery(&quot;#report1&quot;).css(&quot;width&quot;,&quot;640&quot;);jQuery(&quot;#report1_sub_8_1&quot;).css(&quot;width&quot;,&quot;640&quot;).css(&quot;border-right&quot;,&quot;1px solid&quot;);jQuery(&quot;img&quot;).css(&quot;width&quot;,&quot;638&quot;).css(&quot;height&quot;,&quot;160&quot;).css(&quot;border&quot;,&quot;1px solid&quot;);jQuery(&quot;#report1_sub_11_4&quot;).css(&quot;width&quot;,&quot;426&quot;);jQuery(&quot;#report1_sub_12_4&quot;).css(&quot;width&quot;,&quot;426&quot;);jQuery(&quot;#runqian_submit&quot;).after(&quot; &gt;&gt; &lt;a href=# onclick=webprint();return;&gt;&amp;#39640;&amp;#36895;&amp;#27983;&amp;#35272;&amp;#22120;&amp;#25171;&amp;#21360;&lt;\/a&gt;&quot;);jQuery(&quot;div:contains(\&quot;- - -\&quot;)&quot;).remove();&#125;);function report1_importExcel()&apos; gi;</span><br><span class="line"></span><br><span class="line">		#打印成绩单页面添加高速打印功能并设定打印效果</span><br><span class="line">		#subs_filter &apos;&lt;tr height=&quot;20&quot; style=&quot;height:20px;&quot;&gt;(.*)&lt;/tr&gt;&apos; &apos;&apos; gir;</span><br><span class="line">		#subs_filter &apos;		&lt;td class=&quot;report1_1_1&quot;&gt;&lt;/td&gt;&apos; &apos;&apos; gi;</span><br><span class="line"></span><br><span class="line">		subs_filter &apos;function initialization()&#123;&apos; &apos;function webprint()&#123;jQuery(&quot;form:first&quot;).css(&quot;display&quot;,&quot;none&quot;);jQuery(&quot;table:eq(2) table:first&quot;).css(&quot;display&quot;,&quot;none&quot;);window.print();jQuery(&quot;form:first&quot;).css(&quot;display&quot;,&quot;block&quot;);jQuery(&quot;table:eq(2) table:first&quot;).css(&quot;display&quot;,&quot;block&quot;);&#125;;jQuery(document).ready(function()&#123;jQuery(&quot;tr[height=20]:lt(1)&quot;).remove();jQuery(&quot;table:first&quot;).attr(&quot;width&quot;,&quot;640&quot;);jQuery(&quot;#report1&quot;).css(&quot;width&quot;,&quot;640&quot;);jQuery(&quot;table:eq(2) a:last&quot;).after(&quot; &gt;&gt; &lt;a href=# onclick=webprint();return;&gt;&amp;#39640;&amp;#36895;&amp;#27983;&amp;#35272;&amp;#22120;&amp;#25171;&amp;#21360;&lt;\/a&gt;&quot;);jQuery(&quot;div:contains(\&quot;- - -\&quot;)&quot;).remove();&#125;);function initialization()&#123;&apos; gi;</span><br><span class="line"></span><br><span class="line">		subs_filter onClick=&quot;getType() onClick=&quot;window.open(&apos;/reportFiles/cj/cj_kccj.jsp&apos;,&apos;&apos;,&apos;height=800,width=750,toolbar=no,resizable=yes,menubar=yes,scrollbars=yes&apos;) gi;</span><br><span class="line">		</span><br><span class="line">		#历年成绩查询并添加高速打印功能、设定打印效果</span><br><span class="line">		subs_filter &apos;&lt;form action=&quot;/reportFiles/cj/xs_kccjb.jsp&quot;&apos; &apos;&lt;script&gt;function webprint()&#123;jQuery(&quot;form:first&quot;).css(&quot;display&quot;,&quot;none&quot;);jQuery(&quot;table:lt(2)&quot;).css(&quot;display&quot;,&quot;none&quot;);window.print();jQuery(&quot;form:first&quot;).css(&quot;display&quot;,&quot;block&quot;);jQuery(&quot;table:lt(2)&quot;).css(&quot;display&quot;,&quot;block&quot;);&#125;;jQuery(document).ready(function()&#123;jQuery(&quot;table&quot;).attr(&quot;width&quot;,&quot;640&quot;).attr(&quot;align&quot;,&quot;center&quot;);jQuery(&quot;#report1&quot;).css(&quot;width&quot;,&quot;640&quot;);jQuery(&quot;table:eq(1) a:last&quot;).after(&quot; &gt;&gt; &lt;a href=# onclick=webprint();return;&gt;&amp;#39640;&amp;#36895;&amp;#27983;&amp;#35272;&amp;#22120;&amp;#25171;&amp;#21360;&lt;\/a&gt;&quot;);jQuery(&quot;div:contains(\&quot;- - -\&quot;)&quot;).remove();&#125;);&lt;/script&gt;&lt;form action=&quot;/reportFiles/cj/xs_kccjb.jsp&quot;&apos; gi;</span><br><span class="line"></span><br><span class="line">		#教师课表、教室课表、班级课表添加高速打印功能并设定打印效果</span><br><span class="line">		subs_filter &apos;&lt;td colspan=&quot;9&quot;&gt;&amp;nbsp;&lt;p align=&quot;center&quot; class=&quot;td2 style5&quot;&gt;&apos; &apos;&lt;td colspan=&quot;9&quot;&gt;&lt;p align=&quot;center&quot; class=&quot;td2 style5&quot;&gt;&apos; gi;</span><br><span class="line">		subs_filter &apos;function printkb()&apos; &apos;function webprint()&#123;jQuery(&quot;table:eq(16)&quot;).jqprint();&#125;;jQuery(document).ready(function()&#123;jQuery(&quot;#btprint&quot;).parent().attr(&quot;width&quot;,&quot;200&quot;);jQuery(&quot;#btprint&quot;).after(&quot; &gt;&gt; &lt;a href=# onclick=webprint();return;&gt;&amp;#39640;&amp;#36895;&amp;#27983;&amp;#35272;&amp;#22120;&amp;#25171;&amp;#21360;&lt;\/a&gt;&quot;);jQuery(&quot;div:contains(\&quot;- - -\&quot;)&quot;).remove();&#125;);function printkb()&apos; gi;</span><br><span class="line">		</span><br><span class="line">		#登录成绩添加自动填充功能</span><br><span class="line">		subs_filter &apos;height=&quot;400&quot;&apos; &apos;height=&quot;100%&quot;&apos; gi;</span><br><span class="line">		subs_filter &apos;&lt;table width=&quot;640&quot;&apos; &apos;&lt;table width=&quot;100%&quot;&apos; gi;</span><br><span class="line">		</span><br><span class="line">		subs_filter &apos;&lt;form name=&quot;CjlrmxFrom&quot; method=&quot;post&quot;  action=&quot;cjlrmxAction.do?actionType=1&quot;&gt;&apos; &apos;&lt;script src=&quot;/assets/js/autoscore.js&quot;&gt;&lt;/script&gt;&lt;form name=&quot;CjlrmxFrom&quot; method=&quot;post&quot;  action=&quot;cjlrmxAction.do?actionType=1&quot;&gt;&lt;table width=&quot;100%&quot;&gt;&lt;tr&gt;&lt;td&gt;&lt;textarea class=&quot;manuscript&quot; id=&quot;ss&quot; rows=5 cols=20 style=&quot;width:100%;&quot;&gt;&lt;/textarea&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;button onclick=&quot;autoscore();return false;&quot;&gt;&amp;#33258;&amp;#21160;&amp;#22635;&amp;#20805;&amp;#25104;&amp;#32489;&lt;/button&gt;&amp;nbsp;&amp;nbsp;&lt;button onclick=&quot;autoscorehelp();return false;&quot;&gt;&amp;#20351;&amp;#29992;&amp;#35828;&amp;#26126;&lt;/button&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;div id=&quot;autoscoremsg&quot; style=&quot;background:blue;color:white;padding:2px;2px;2px;2px;&quot;&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&apos; gi;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">	#一些静态资源比如jquery等不进行代理，使用本站提供，注意页面中一定使用 /assets/ 相对链接</span><br><span class="line">	location /assets/ &#123;</span><br><span class="line">		index index.php index.html;</span><br><span class="line">		include fastcgi_params;</span><br><span class="line">		root /data/www/zhjw.scse.hebut.edu.cn/htdocs/;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	#网站主页替换为本站 login.php ，这样可以自定义登录外观，可不替换。</span><br><span class="line">	location =/ &#123;</span><br><span class="line">		proxy_redirect     off;</span><br><span class="line">		proxy_set_header   Host             $host;</span><br><span class="line">		proxy_set_header   X-Real-IP        $remote_addr;</span><br><span class="line">		proxy_set_header   X-Forwarded-For  $proxy_add_x_forwarded_for;</span><br><span class="line">		proxy_pass http://zhjw.scse.hebut.edu.cn/login.php;		</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	#顶部框架使用 top.php 替换</span><br><span class="line">	location /menu/top.jsp &#123;</span><br><span class="line">		proxy_redirect     off;</span><br><span class="line">		proxy_set_header   Host             $host;</span><br><span class="line">		proxy_set_header   X-Real-IP        $remote_addr;</span><br><span class="line">		proxy_set_header   X-Forwarded-For  $proxy_add_x_forwarded_for;</span><br><span class="line">		proxy_pass http://zhjw.scse.hebut.edu.cn/top.php;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	#左侧框架使用menu.php替换，根据不同角色切换为不同菜单。</span><br><span class="line">	location /menu/menu.jsp &#123;</span><br><span class="line">		proxy_redirect     off;</span><br><span class="line">		proxy_set_header   Host             $host;</span><br><span class="line">		proxy_set_header   X-Real-IP        $remote_addr;</span><br><span class="line">		proxy_set_header   X-Forwarded-For  $proxy_add_x_forwarded_for;</span><br><span class="line">		proxy_pass http://zhjw.scse.hebut.edu.cn/menu.php;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	#php 页面解析为本站解析</span><br><span class="line">	location ~ \.php$ &#123; </span><br><span class="line">		include fastcgi_params; </span><br><span class="line">		fastcgi_index index.php; </span><br><span class="line">		#fastcgi_pass 127.0.0.1:9000; </span><br><span class="line">		#fastcgi_pass unix:/run/php/php7.0-fpm.sock;</span><br><span class="line">		fastcgi_pass unix:/var/run/php5-fpm.sock;</span><br><span class="line">		fastcgi_param SCRIPT_FILENAME /data/www/zhjw.scse.hebut.edu.cn/htdocs$fastcgi_script_name; </span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h2><p>还不错，至少各种浏览器都能打开了，一些必须的页面也可以在高速浏览模式打印了，打印效果也基本满足要求，批量从 excel 中导入成绩也工作的很好。</p>
+<p>[<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/media/urp1.jpg" alt="主界面效果](/media/urp1.jpg)" title>
+                </div>
+                <div class="image-caption">主界面效果](/media/urp1.jpg)</div>
+            </figure></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/media/urp2.jpg" alt="教学记录表打印效果" title>
+                </div>
+                <div class="image-caption">教学记录表打印效果</div>
+            </figure>
+
+
+
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-07-07T08:51:55.000Z" itemprop="dateUpdated">2017-07-07 16:51:55</time>
+</span><br>
+
+
+        
+        本文地址：<a href="" target="_blank" rel="external">http://littlepig.cn/posts/2017/03/08/urp-hack/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="http://littlepig.cn">
+            <img src="../../../../../img/avatar.jpg" alt="ZHZ">
+            ZHZ
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赞</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../../tags/hack/">hack</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../../tags/urp/">urp</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://littlepig.cn/posts/2017/03/08/urp-hack/&title=《URP综合教务系统外挂》 — LittlePig.CN&pic=http://littlepig.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://littlepig.cn/posts/2017/03/08/urp-hack/&title=《URP综合教务系统外挂》 — LittlePig.CN&source=记录 / 回忆 / 分享" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://littlepig.cn/posts/2017/03/08/urp-hack/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《URP综合教务系统外挂》 — LittlePig.CN&url=http://littlepig.cn/posts/2017/03/08/urp-hack/&via=http://littlepig.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://littlepig.cn/posts/2017/03/08/urp-hack/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="../../../05/30/build-media-server/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Debian 下建立 nginx rtmp 直播服务</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="../../../../2016/12/21/synology-video-tation-dts/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Synology Video Station DTS 设置</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="../../../../../img/wechat.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="../../../../../img/wechat.png" data-alipay="../../../../../img/alipay.png">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="../../../../../atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>ZHZ &copy; 2003 - 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://littlepig.cn/posts/2017/03/08/urp-hack/&title=《URP综合教务系统外挂》 — LittlePig.CN&pic=http://littlepig.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://littlepig.cn/posts/2017/03/08/urp-hack/&title=《URP综合教务系统外挂》 — LittlePig.CN&source=记录 / 回忆 / 分享" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://littlepig.cn/posts/2017/03/08/urp-hack/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《URP综合教务系统外挂》 — LittlePig.CN&url=http://littlepig.cn/posts/2017/03/08/urp-hack/&via=http://littlepig.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://littlepig.cn/posts/2017/03/08/urp-hack/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACLklEQVR42u3ay66DMAxF0f7/T9NppVvCPja9Es7OqKItZDGw/Mjrhdfxsf5e+bx+9vuze6b/ai0ZMmQ8lnEs13rT/JFHuPjeZMiQsQ9jHRDXW09/ub5OXpMMGTJkpBtap3SdIC5DhgwZnYDLEztSDJNvZciQIaOzIVLK8qTw57W4DBkyHsjgzbL///yT+YYMGTIexag163kRe1cov7iPDBkyRjN4gOOHKkjTrR9wZciQsQ+Dt/JrAwAejvmVL1QZMmSMZqy/SB/Mt5UOHsgIQYYMGVMZfOu801UbHvAStxVkZciQ8UBGeqAhbYGRxI4XvRevRoYMGRsz4hwzDKZ8SBCXrzJkyBjHIEleeiCDhPJaS+60dyhDhoyhjM6GaoE1hdXuKUOGjHkMPkrkg8z0/rWEVYYMGTsweGi7q8Xfac8F8V6GDBnjGJyaXuEvq3VmRIYMGaMZnSFl2j7rP0uGDBm7MdK/pWH0rnbbReopQ4aM0QyySFmbHpXgCR9/lgwZMmYzeJOrFv54Uco/X5wZkSFDxlAG31z6mFrrn7NlyJCxG4MPF9NiMm2oxZNKGTJkDGUc4aqVvryRV6y/ZciQMZrR2RafjgaFaFjQtnqHMmTIeBSDBNl+octDZzHgypAhYwMGP2BRSy7TBlyrFpchQ8b2DF6O1kaYxXGpDBkyZJRSw7TcJcniRRErQ4aM0YxaSscDaxqO+ahVhgwZOzDS0rHWYksDbnpQTIYMGUMZbyE08C40q5H4AAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+lazyScripts.push('//s95.cnzz.com/z_stat.php?id=1235250&web_id=1235250')
+
+</script>
+
+<script src="../../../../../js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="../../../../../js/search.min.js?v=1.7.2" async></script>
+
+
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

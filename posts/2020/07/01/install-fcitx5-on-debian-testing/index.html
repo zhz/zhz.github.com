@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>在 Debian 下安装 fcitx5 | LittlePig.CN | someone&#39;s Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content>
+    <meta name="description" content="昨天升级了下 debian testing ，然后 fcitx 就挂了，表现在只有 WPS 中才可以 ctrl+space 打开并输入中文，其它一律无反应，提交了个 bug 后发现有 fcitx5 ，下一代 fcitx，不过都是在 Arch 上装的，尝试在 debian 上安装了下，没想到工作的还挺好。 卸载老版本 fcitx12sudo apt-get remove fcitxsudo apt-">
+<meta property="og:type" content="article">
+<meta property="og:title" content="在 Debian 下安装 fcitx5">
+<meta property="og:url" content="http://littlepig.cn/posts/2020/07/01/install-fcitx5-on-debian-testing/index.html">
+<meta property="og:site_name" content="LittlePig.CN">
+<meta property="og:description" content="昨天升级了下 debian testing ，然后 fcitx 就挂了，表现在只有 WPS 中才可以 ctrl+space 打开并输入中文，其它一律无反应，提交了个 bug 后发现有 fcitx5 ，下一代 fcitx，不过都是在 Arch 上装的，尝试在 debian 上安装了下，没想到工作的还挺好。 卸载老版本 fcitx12sudo apt-get remove fcitxsudo apt-">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-07-31T01:14:13.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="在 Debian 下安装 fcitx5">
+<meta name="twitter:description" content="昨天升级了下 debian testing ，然后 fcitx 就挂了，表现在只有 WPS 中才可以 ctrl+space 打开并输入中文，其它一律无反应，提交了个 bug 后发现有 fcitx5 ，下一代 fcitx，不过都是在 Arch 上装的，尝试在 debian 上安装了下，没想到工作的还挺好。 卸载老版本 fcitx12sudo apt-get remove fcitxsudo apt-">
+    
+        <link rel="alternate" type="application/atom+xml" title="LittlePig.CN" href="../../../../../atom.xml">
+    
+    <link rel="shortcut icon" href="../../../../../favicon.ico">
+    <link rel="stylesheet" href="../../../../../css/style.css?v=1.7.2">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(../../../../../img/brand.jpg)">
+      <div class="brand">
+        <a href="../../../../../index.html" class="avatar waves-effect waves-circle waves-light">
+          <img src="../../../../../img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">ZHZ</h5>
+          <a href="mailto:zhz@hebut.edu.cn" title="zhz@hebut.edu.cn" class="mail">zhz@hebut.edu.cn</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="../../../../../index.html"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="../../../../../archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="../../../../../tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="../../../../../categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="../../../../../about"  >
+                <i class="icon icon-lg icon-link"></i>
+                关于
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">在 Debian 下安装 fcitx5</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">在 Debian 下安装 fcitx5</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2020-07-01T02:30:50.000Z" itemprop="datePublished" class="page-time">
+  2020-07-01
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#卸载老版本-fcitx"><span class="post-toc-number">1.</span> <span class="post-toc-text">卸载老版本 fcitx</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#安装新版本"><span class="post-toc-number">2.</span> <span class="post-toc-text">安装新版本</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#修改配置文件"><span class="post-toc-number">3.</span> <span class="post-toc-text">修改配置文件</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#找个简单的-UI"><span class="post-toc-number">4.</span> <span class="post-toc-text">找个简单的 UI</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#设置为系统默认输入法"><span class="post-toc-number">5.</span> <span class="post-toc-text">设置为系统默认输入法</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#注销并重新登录即可"><span class="post-toc-number">6.</span> <span class="post-toc-text">注销并重新登录即可</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-install-fcitx5-on-debian-testing"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">在 Debian 下安装 fcitx5</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2020-07-01 10:30:50" datetime="2020-07-01T02:30:50.000Z"  itemprop="datePublished">2020-07-01</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>昨天升级了下 debian testing ，然后 fcitx 就挂了，表现在只有 WPS 中才可以 ctrl+space 打开并输入中文，其它一律无反应，提交了个 bug 后发现有 fcitx5 ，下一代 fcitx，不过都是在 Arch 上装的，尝试在 debian 上安装了下，没想到工作的还挺好。</p>
+<h3 id="卸载老版本-fcitx"><a href="#卸载老版本-fcitx" class="headerlink" title="卸载老版本 fcitx"></a>卸载老版本 fcitx</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get remove fcitx</span><br><span class="line">sudo apt-get autoremove</span><br></pre></td></tr></table></figure>
+
+<h3 id="安装新版本"><a href="#安装新版本" class="headerlink" title="安装新版本"></a>安装新版本</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install fcitx5 fcitx5-chinese-addons</span><br></pre></td></tr></table></figure>
+
+<p>一般说来应该还有两个包 fcitx5-qt 和 fcitx5-gtk ，但提示没找到。</p>
+<h3 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h3><p>注意：不要在开着 fcitx5 的时候修改，否则会被覆盖</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim ~/.config/fcitx5/profile</span><br></pre></td></tr></table></figure>
+
+<p>加入如下内容（直接拷贝即可）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">[Groups/0]</span><br><span class="line"># Group Name</span><br><span class="line">Name=Default</span><br><span class="line"># Layout</span><br><span class="line">Default Layout=us</span><br><span class="line"># Default Input Method</span><br><span class="line">DefaultIM=pinyin</span><br><span class="line"></span><br><span class="line">[Groups/0/Items/0]</span><br><span class="line"># Name</span><br><span class="line">Name=keyboard-us</span><br><span class="line"># Layout</span><br><span class="line">Layout=</span><br><span class="line"></span><br><span class="line">[Groups/0/Items/1]</span><br><span class="line"># Name</span><br><span class="line">Name=pinyin</span><br><span class="line"># Layout</span><br><span class="line">Layout=</span><br><span class="line"></span><br><span class="line">[GroupOrder]</span><br><span class="line">0=Default</span><br></pre></td></tr></table></figure>
+
+<h3 id="找个简单的-UI"><a href="#找个简单的-UI" class="headerlink" title="找个简单的 UI"></a>找个简单的 UI</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/iovxw/fcitx5-simple-theme.git ~/.local/share/fcitx5/themes/simple</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim ~/.config/fcitx5/conf/classicui.conf</span><br></pre></td></tr></table></figure>
+
+<p>添加或者修改如下内容：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"># 垂直待选列表</span><br><span class="line">Vertical Candidate List=False</span><br><span class="line"></span><br><span class="line"># 界面字体</span><br><span class="line">Font=&quot;文泉驿微米黑 Regular 10&quot;</span><br><span class="line"></span><br><span class="line"># 候选词数量</span><br><span class="line">PageSize=8</span><br><span class="line"></span><br><span class="line"># 外观</span><br><span class="line">Theme=simple</span><br><span class="line"></span><br><span class="line"># 联想数量</span><br><span class="line">#PredictionSize=10</span><br><span class="line"># 是否开启联想</span><br><span class="line">#Prediction=False</span><br><span class="line"># 是否开启云拼音</span><br><span class="line">#CloudPinyinEnabled=False</span><br><span class="line"># 云拼音候选词位置</span><br><span class="line">#CloudPinyinIndex=2</span><br><span class="line"># 双拼方案</span><br><span class="line">#ShuangpinProfile=Ziranma</span><br><span class="line"></span><br><span class="line"># 快捷键定义</span><br><span class="line"># 上一页</span><br><span class="line">#[PrevPage]</span><br><span class="line">#0=minus</span><br><span class="line">#1=Up</span><br><span class="line"># 下一页</span><br><span class="line">#[NextPage]</span><br><span class="line">#0=equal</span><br><span class="line">#1=Down</span><br><span class="line"># 上一个候选词</span><br><span class="line">#[PrevCandidate]</span><br><span class="line">#0=Shift+Tab</span><br><span class="line"># 下一个候选词</span><br><span class="line">#[NextCandidate]</span><br><span class="line">#0=Tab</span><br><span class="line"></span><br><span class="line">#[Fuzzy]</span><br><span class="line"># 模糊音</span><br><span class="line">#[Hotkey]</span><br><span class="line"># 繁简转换</span><br><span class="line"># 0=Control+Shift+F</span><br></pre></td></tr></table></figure>
+
+<h3 id="设置为系统默认输入法"><a href="#设置为系统默认输入法" class="headerlink" title="设置为系统默认输入法"></a>设置为系统默认输入法</h3><p>在设置中找到 input-method ，将 fcitx5 设置为默认输入法</p>
+<h3 id="注销并重新登录即可"><a href="#注销并重新登录即可" class="headerlink" title="注销并重新登录即可"></a>注销并重新登录即可</h3>
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2020-07-31T01:14:13.000Z" itemprop="dateUpdated">2020-07-31 09:14:13</time>
+</span><br>
+
+
+        
+        本文地址：<a href="" target="_blank" rel="external">http://littlepig.cn/posts/2020/07/01/install-fcitx5-on-debian-testing/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="http://littlepig.cn">
+            <img src="../../../../../img/avatar.jpg" alt="ZHZ">
+            ZHZ
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赞</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://littlepig.cn/posts/2020/07/01/install-fcitx5-on-debian-testing/&title=《在 Debian 下安装 fcitx5》 — LittlePig.CN&pic=http://littlepig.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://littlepig.cn/posts/2020/07/01/install-fcitx5-on-debian-testing/&title=《在 Debian 下安装 fcitx5》 — LittlePig.CN&source=记录 / 回忆 / 分享" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://littlepig.cn/posts/2020/07/01/install-fcitx5-on-debian-testing/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《在 Debian 下安装 fcitx5》 — LittlePig.CN&url=http://littlepig.cn/posts/2020/07/01/install-fcitx5-on-debian-testing/&via=http://littlepig.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://littlepig.cn/posts/2020/07/01/install-fcitx5-on-debian-testing/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="../../30/change-linux-console-font/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Debian 下控制台字体的设置</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="../../../06/26/add-autocomplete-to-notebook/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">给 jupyter notebook 添加自动补全</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="../../../../../img/wechat.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="../../../../../img/wechat.png" data-alipay="../../../../../img/alipay.png">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="../../../../../atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>ZHZ &copy; 2003 - 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://littlepig.cn/posts/2020/07/01/install-fcitx5-on-debian-testing/&title=《在 Debian 下安装 fcitx5》 — LittlePig.CN&pic=http://littlepig.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://littlepig.cn/posts/2020/07/01/install-fcitx5-on-debian-testing/&title=《在 Debian 下安装 fcitx5》 — LittlePig.CN&source=记录 / 回忆 / 分享" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://littlepig.cn/posts/2020/07/01/install-fcitx5-on-debian-testing/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《在 Debian 下安装 fcitx5》 — LittlePig.CN&url=http://littlepig.cn/posts/2020/07/01/install-fcitx5-on-debian-testing/&via=http://littlepig.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://littlepig.cn/posts/2020/07/01/install-fcitx5-on-debian-testing/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACu0lEQVR42u3aQW6EMAwF0N7/0q3UVSsV+r+TzLB4rBCTgTwWcbD98REfn9/Hz/Ofx9X45F/3Y65Gbj7w8PDwRlPPb30/ZnYln1U+Zzw8PLzTvL3B4H58Mbnb+dyPwcPDw3sCr30FOez+iW04wcPDw3sOr91Y58t9kmjAw8PDexov//hPptVOun1NR3IteHh4eJPv/XpRftf58foeHh4e3qiqngeJ9vpKkreYLR4eHt4B3tWCOytxtS+iTV7MErt4eHh453h5YnQ9JKz8mpfZ8PDw8E7wZtvl++U4eqNxyiNPQPzzxYCHh4e3iTdbrPPN8ez6rn/h4eHhneNFrUtBSuKV91mq9eHh4eEt8Nq8xd62p7ZFIHlZeHh4eK/knW7SytO1+dz+Sabg4eHhvZyXNwe0KeB2iW+35kVlDw8PD29rbSh5QNs0kDdLtS/3sicCDw8Pbyuv3RDPgsTKdnm9HQEPDw9vL2+WjPgcHfmLy1sW8PDw8N7FS66spxhmIadtxvp1joeHh3eAl5Pubzpb3NsGhWS2lw0EeHh4eMd4+Qd//Zg42LRj6jIYHh4e3lZeviGO2p7KMlty57ZIhoeHh7eXlyz6CWDWZNC2fNVbcDw8PLxjvG3NTGXwmJ0XdS48PDy8Y7y2sJQnc2ftBbMWsSiBi4eHh7eVNyzM5+nU0f2XggoeHh7eAV6+YZ2VtZL/tu1Wm7PUeHh4eKMKUXvrNsk7a7dqt9RRGhcPDw/vMC9PPeSBYdYQMLuOh4eHd4K3svi2E1pJRuwKIXh4eHi7eO3y3aYMojL/cgp4GP3w8PDwFnjFR34w6aS0P9tw5ys/Hh4e3hN4SbmrLaQld8jDzx/X8fDw8B7Da9MWK2mIHLwtMODh4eEtlMF2pQlmQaVNeeDh4eG9hrfU2BSPqdOvyaK/q9aHh4eHl/K+AKBfiL06Zdp8AAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+lazyScripts.push('//s95.cnzz.com/z_stat.php?id=1235250&web_id=1235250')
+
+</script>
+
+<script src="../../../../../js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="../../../../../js/search.min.js?v=1.7.2" async></script>
+
+
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

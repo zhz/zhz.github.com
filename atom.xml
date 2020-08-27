@@ -1,0 +1,494 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>LittlePig.CN</title>
+  
+  <subtitle>someone&#39;s Blog</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://littlepig.cn/"/>
+  <updated>2020-08-26T12:45:06.000Z</updated>
+  <id>http://littlepig.cn/</id>
+  
+  <author>
+    <name>ZHZ</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Debian 下 Typora 通过 PicGo 使用 Gitee 做图床的配置</title>
+    <link href="http://littlepig.cn/posts/2020/08/30/use-gitee-as-imagebed-by-picgo-in-typora-under-debian/"/>
+    <id>http://littlepig.cn/posts/2020/08/30/use-gitee-as-imagebed-by-picgo-in-typora-under-debian/</id>
+    <published>2020-08-30T02:30:50.000Z</published>
+    <updated>2020-08-26T12:45:06.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>Windows 下的文章有很多，这里不再赘述，只简单说下 Debian 下的配置过程</p><h3 id="Typora-配置自动上传图片"><a href="#Typora-配置自动上传图片" class="headerlink" title="Typora 配置自动上传图片"></a>Typora 配置自动上传图片</h3><p>在 Typora 的 preferences 中，选择使用 PicGo-Core 作为 uploader，点击 Download or Upgrade 自动下载 picgo 的二进制包，下载后的路径为 <code>~/.config/Typora/picgo/linux</code> </p><p><img src="https://gitee.com/zhuhuaizhong/assets/raw/master/images/image-20200826203007851.png" alt="image-20200826203007851"></p><h3 id="安装-PicGo-的-Gitee-插件"><a href="#安装-PicGo-的-Gitee-插件" class="headerlink" title="安装 PicGo 的 Gitee 插件"></a>安装 PicGo 的 Gitee 插件</h3><p>使用 PicGo 的 CLI 来安装插件</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd  ~/.config/Typora/picgo/linux </span><br><span class="line">./picgo install gitee-uploader</span><br></pre></td></tr></table></figure><h3 id="配置-PicGo-的图床参数"><a href="#配置-PicGo-的图床参数" class="headerlink" title="配置 PicGo 的图床参数"></a>配置 PicGo 的图床参数</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./picgo set uploader</span><br></pre></td></tr></table></figure><p>然后移动下方向键选择 gitee 进行配置</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">? Choose a(n) uploader gitee</span><br><span class="line">? repo: yourid/assets #注意这里要为完整仓库路径，即包括前边的 yourid 部分</span><br><span class="line">? branch: master</span><br><span class="line">? token: #这里配置你的私人 token</span><br><span class="line">? path: images #仓库下的子文件夹</span><br><span class="line">? customPath: default</span><br><span class="line">? customUrl: () #这两个 custom 参数自动即可</span><br></pre></td></tr></table></figure><p>生成的配置文件 config.json 在 <code>~/.picgo</code> 文件夹下，但 PicGo 的默认的图床是 smms ，手工修改为 gitee</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim ~/.picgo/config.json</span><br></pre></td></tr></table></figure><p>修改完后的配置参数大体如下</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;picBed&quot;: &#123;</span><br><span class="line">    &quot;current&quot;: &quot;gitee&quot;,</span><br><span class="line">    &quot;gitee&quot;: &#123;</span><br><span class="line">      &quot;repo&quot;: &quot;zhuhuaizhong/assets&quot;,</span><br><span class="line">      &quot;branch&quot;: &quot;master&quot;,</span><br><span class="line">      &quot;token&quot;: &quot;your token&quot;,</span><br><span class="line">      &quot;path&quot;: &quot;images&quot;,</span><br><span class="line">      &quot;customPath&quot;: &quot;default&quot;,</span><br><span class="line">      &quot;customUrl&quot;: &quot;&quot;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;picgoPlugins&quot;: &#123;</span><br><span class="line">    &quot;picgo-plugin-gitee-uploader&quot;: true</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h3 id="上传测试"><a href="#上传测试" class="headerlink" title="上传测试"></a>上传测试</h3><p>Typora 提供了个 Test Uploader ，不过我的失败了，原因是没有找到上传的文件，可以用 picgo 命令自己测试下</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./picgo u someimage.png</span><br></pre></td></tr></table></figure><p>如果返回了地址即表示上传成功。</p><p>回到 typora ，现在可以在 md 文档中粘贴图片了，可以看到即时的上传提示。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;Windows 下的文章有很多，这里不再赘述，只简单说下 Debian 下的配置过程&lt;/p&gt;
+&lt;h3 id=&quot;Typora-配置自动上传图片&quot;&gt;&lt;a href=&quot;#Typora-配置自动上传图片&quot; class=&quot;headerlink&quot; title=&quot;Typora 配置自动上
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>设置 Jupyter notebook 宽屏</title>
+    <link href="http://littlepig.cn/posts/2020/08/07/jupyter-notebook-full-width/"/>
+    <id>http://littlepig.cn/posts/2020/08/07/jupyter-notebook-full-width/</id>
+    <published>2020-08-07T02:30:50.000Z</published>
+    <updated>2020-08-07T02:37:11.038Z</updated>
+    
+    <content type="html"><![CDATA[<p>Jupyter notebook 默认页面宽度过窄，浪费了左右两侧的宽屏空间，自定义宽度其实只需要放置一个 custom.css 即可。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim ~/.jupyter/custom/custom.css</span><br></pre></td></tr></table></figure><p>添加如下内容，其中宽度根据自己喜好修改即可，然后重新启动 notebook</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.container &#123; width:98% !important; &#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;Jupyter notebook 默认页面宽度过窄，浪费了左右两侧的宽屏空间，自定义宽度其实只需要放置一个 custom.css 即可。&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;p
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Debian 下控制台字体的设置</title>
+    <link href="http://littlepig.cn/posts/2020/07/30/change-linux-console-font/"/>
+    <id>http://littlepig.cn/posts/2020/07/30/change-linux-console-font/</id>
+    <published>2020-07-30T02:30:50.000Z</published>
+    <updated>2020-08-26T13:39:58.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>昨天升级了下 debian testing ，发现启动时的控制台字体越发小了，而且锯齿严重，看起来很不爽，于是自定义了下字体，注意这里的控制台指的是启动时图形界面显示之前的文字界面而不是启动后的终端，即 console 而不是 terminal 。</p><h3 id="使用向导"><a href="#使用向导" class="headerlink" title="使用向导"></a>使用向导</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo dpkg-reconfigure console-setup</span><br></pre></td></tr></table></figure><p>在 console 的 encoding 选项中使用 UTF-8 ，在 character set 中选择 Guess optimal character set ，在 sonsole font 的选项中选择 TerminusBold 或者 TerminusBoldVGA ，在 font size 的选项中选择 8x16 ，然后重新登入即可。</p><h3 id="直接修改配置文件"><a href="#直接修改配置文件" class="headerlink" title="直接修改配置文件"></a>直接修改配置文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/default/console-setup</span><br></pre></td></tr></table></figure><p>我的如下：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"># CONFIGURATION FILE FOR SETUPCON</span><br><span class="line"></span><br><span class="line"># Consult the console-setup(5) manual page.</span><br><span class="line">ACTIVE_CONSOLES=&quot;/dev/tty[1-6]&quot;</span><br><span class="line">CHARMAP=&quot;UTF-8&quot;</span><br><span class="line">CODESET=&quot;guess&quot;</span><br><span class="line">FONTFACE=&quot;TerminusBoldVGA&quot;</span><br><span class="line">FONTSIZE=&quot;8x16&quot;</span><br><span class="line">VIDEOMODE=</span><br><span class="line"></span><br><span class="line"># The following is an example how to use a braille font</span><br><span class="line"># FONT=&apos;lat9w-08.psf.gz brl-8x8.psf&apos;</span><br></pre></td></tr></table></figure><p>可以使用 <code>showconsolefont</code> 命令来查看当前控制台字体样式</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;昨天升级了下 debian testing ，发现启动时的控制台字体越发小了，而且锯齿严重，看起来很不爽，于是自定义了下字体，注意这里的控制台指的是启动时图形界面显示之前的文字界面而不是启动后的终端，即 console 而不是 terminal 。&lt;/p&gt;
+&lt;h3 id=&quot;
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>在 Debian 下安装 fcitx5</title>
+    <link href="http://littlepig.cn/posts/2020/07/01/install-fcitx5-on-debian-testing/"/>
+    <id>http://littlepig.cn/posts/2020/07/01/install-fcitx5-on-debian-testing/</id>
+    <published>2020-07-01T02:30:50.000Z</published>
+    <updated>2020-07-31T01:14:13.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>昨天升级了下 debian testing ，然后 fcitx 就挂了，表现在只有 WPS 中才可以 ctrl+space 打开并输入中文，其它一律无反应，提交了个 bug 后发现有 fcitx5 ，下一代 fcitx，不过都是在 Arch 上装的，尝试在 debian 上安装了下，没想到工作的还挺好。</p><h3 id="卸载老版本-fcitx"><a href="#卸载老版本-fcitx" class="headerlink" title="卸载老版本 fcitx"></a>卸载老版本 fcitx</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get remove fcitx</span><br><span class="line">sudo apt-get autoremove</span><br></pre></td></tr></table></figure><h3 id="安装新版本"><a href="#安装新版本" class="headerlink" title="安装新版本"></a>安装新版本</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install fcitx5 fcitx5-chinese-addons</span><br></pre></td></tr></table></figure><p>一般说来应该还有两个包 fcitx5-qt 和 fcitx5-gtk ，但提示没找到。</p><h3 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h3><p>注意：不要在开着 fcitx5 的时候修改，否则会被覆盖</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim ~/.config/fcitx5/profile</span><br></pre></td></tr></table></figure><p>加入如下内容（直接拷贝即可）</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">[Groups/0]</span><br><span class="line"># Group Name</span><br><span class="line">Name=Default</span><br><span class="line"># Layout</span><br><span class="line">Default Layout=us</span><br><span class="line"># Default Input Method</span><br><span class="line">DefaultIM=pinyin</span><br><span class="line"></span><br><span class="line">[Groups/0/Items/0]</span><br><span class="line"># Name</span><br><span class="line">Name=keyboard-us</span><br><span class="line"># Layout</span><br><span class="line">Layout=</span><br><span class="line"></span><br><span class="line">[Groups/0/Items/1]</span><br><span class="line"># Name</span><br><span class="line">Name=pinyin</span><br><span class="line"># Layout</span><br><span class="line">Layout=</span><br><span class="line"></span><br><span class="line">[GroupOrder]</span><br><span class="line">0=Default</span><br></pre></td></tr></table></figure><h3 id="找个简单的-UI"><a href="#找个简单的-UI" class="headerlink" title="找个简单的 UI"></a>找个简单的 UI</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/iovxw/fcitx5-simple-theme.git ~/.local/share/fcitx5/themes/simple</span><br></pre></td></tr></table></figure><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim ~/.config/fcitx5/conf/classicui.conf</span><br></pre></td></tr></table></figure><p>添加或者修改如下内容：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"># 垂直待选列表</span><br><span class="line">Vertical Candidate List=False</span><br><span class="line"></span><br><span class="line"># 界面字体</span><br><span class="line">Font=&quot;文泉驿微米黑 Regular 10&quot;</span><br><span class="line"></span><br><span class="line"># 候选词数量</span><br><span class="line">PageSize=8</span><br><span class="line"></span><br><span class="line"># 外观</span><br><span class="line">Theme=simple</span><br><span class="line"></span><br><span class="line"># 联想数量</span><br><span class="line">#PredictionSize=10</span><br><span class="line"># 是否开启联想</span><br><span class="line">#Prediction=False</span><br><span class="line"># 是否开启云拼音</span><br><span class="line">#CloudPinyinEnabled=False</span><br><span class="line"># 云拼音候选词位置</span><br><span class="line">#CloudPinyinIndex=2</span><br><span class="line"># 双拼方案</span><br><span class="line">#ShuangpinProfile=Ziranma</span><br><span class="line"></span><br><span class="line"># 快捷键定义</span><br><span class="line"># 上一页</span><br><span class="line">#[PrevPage]</span><br><span class="line">#0=minus</span><br><span class="line">#1=Up</span><br><span class="line"># 下一页</span><br><span class="line">#[NextPage]</span><br><span class="line">#0=equal</span><br><span class="line">#1=Down</span><br><span class="line"># 上一个候选词</span><br><span class="line">#[PrevCandidate]</span><br><span class="line">#0=Shift+Tab</span><br><span class="line"># 下一个候选词</span><br><span class="line">#[NextCandidate]</span><br><span class="line">#0=Tab</span><br><span class="line"></span><br><span class="line">#[Fuzzy]</span><br><span class="line"># 模糊音</span><br><span class="line">#[Hotkey]</span><br><span class="line"># 繁简转换</span><br><span class="line"># 0=Control+Shift+F</span><br></pre></td></tr></table></figure><h3 id="设置为系统默认输入法"><a href="#设置为系统默认输入法" class="headerlink" title="设置为系统默认输入法"></a>设置为系统默认输入法</h3><p>在设置中找到 input-method ，将 fcitx5 设置为默认输入法</p><h3 id="注销并重新登录即可"><a href="#注销并重新登录即可" class="headerlink" title="注销并重新登录即可"></a>注销并重新登录即可</h3>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;昨天升级了下 debian testing ，然后 fcitx 就挂了，表现在只有 WPS 中才可以 ctrl+space 打开并输入中文，其它一律无反应，提交了个 bug 后发现有 fcitx5 ，下一代 fcitx，不过都是在 Arch 上装的，尝试在 debian 上
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>给 jupyter notebook 添加自动补全</title>
+    <link href="http://littlepig.cn/posts/2020/06/26/add-autocomplete-to-notebook/"/>
+    <id>http://littlepig.cn/posts/2020/06/26/add-autocomplete-to-notebook/</id>
+    <published>2020-06-26T02:30:50.000Z</published>
+    <updated>2020-08-26T13:39:19.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="停掉-notebook"><a href="#停掉-notebook" class="headerlink" title="停掉 notebook"></a>停掉 notebook</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">pip3 install jupyter_contrib_nbextensions -i https://pypi.python.org/simple</span><br><span class="line">jupyter contrib nbextension install --user</span><br><span class="line">pip3 install jupyter_nbextensions_configurator -i https://pypi.python.org/simple</span><br><span class="line">jupyter nbextensions_configurator enable --user</span><br></pre></td></tr></table></figure><h2 id="启动-notebook"><a href="#启动-notebook" class="headerlink" title="启动 notebook"></a>启动 notebook</h2><p>先不要打开文件，然后在顶部的 <code>Nbextensions</code> 标签中选中 <code>Hinterland</code> 即可。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;停掉-notebook&quot;&gt;&lt;a href=&quot;#停掉-notebook&quot; class=&quot;headerlink&quot; title=&quot;停掉 notebook&quot;&gt;&lt;/a&gt;停掉 notebook&lt;/h2&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;tabl
+      
+    
+    </summary>
+    
+      <category term="编程" scheme="http://littlepig.cn/categories/%E7%BC%96%E7%A8%8B/"/>
+    
+    
+      <category term="python jupyter" scheme="http://littlepig.cn/tags/python-jupyter/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>python 安装 openpyxl</title>
+    <link href="http://littlepig.cn/posts/2020/06/26/pip-install-openpyxl/"/>
+    <id>http://littlepig.cn/posts/2020/06/26/pip-install-openpyxl/</id>
+    <published>2020-06-26T02:30:50.000Z</published>
+    <updated>2020-08-26T13:41:44.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>pandas 写 excel 需要 openpyxl 的支持，直接 <code>pip3 install openpyxl</code> 提示未找到相应版本，只好到 <a href="https://pypi.python.org/pypi" target="_blank" rel="noopener">https://pypi.python.org/pypi</a> 去主动下载包，pip 支持直接安装 .tar.gz 和 .whl 的包，不过安装 openpyxl 过程中需要提前安装 jdcal 和 et_xmlfile 两个包，直接搜索下来三个包，依次 <code>pip3 install</code> 即可。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;pandas 写 excel 需要 openpyxl 的支持，直接 &lt;code&gt;pip3 install openpyxl&lt;/code&gt; 提示未找到相应版本，只好到 &lt;a href=&quot;https://pypi.python.org/pypi&quot; target=&quot;_blank&quot;
+      
+    
+    </summary>
+    
+      <category term="编程" scheme="http://littlepig.cn/categories/%E7%BC%96%E7%A8%8B/"/>
+    
+    
+      <category term="python" scheme="http://littlepig.cn/tags/python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>让 gdb 显示数据值时不再截断</title>
+    <link href="http://littlepig.cn/posts/2020/05/05/gdb-show-full-string/"/>
+    <id>http://littlepig.cn/posts/2020/05/05/gdb-show-full-string/</id>
+    <published>2020-05-05T02:30:50.000Z</published>
+    <updated>2020-05-06T10:50:19.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>gdb 在呈现数据时，默认最多显示 240 个字符(在我在 Linux 环境下是这样的，其它平台有说 200 的，有说其它长度的)，后续数据会以省略号显示，这在观察字符串的值时非常不便，甚至会导致一些工具受影响，比如我在 Visual Studio Code 中使用 Debug Visuallizer 时就因为 json 字符串过长被省略导致不能可视化，经过摸索可行的方案如下：</p><h3 id="直接执行设置指令"><a href="#直接执行设置指令" class="headerlink" title="直接执行设置指令"></a>直接执行设置指令</h3><p>如果你在 gdb 环境里，则可以直接执行如下命令</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set print elements 0</span><br></pre></td></tr></table></figure><p>其中 0 可以改为你指定的长度，使用 0 表示不截断</p><p>解释参见：<a href="http://ftp.gnu.org/old-gnu/Manuals/gdb-5.1.1/html_node/gdb_57.html#IDX353" target="_blank" rel="noopener">http://ftp.gnu.org/old-gnu/Manuals/gdb-5.1.1/html_node/gdb_57.html#IDX353</a></p><h3 id="设置-gdb-的全局配置文件"><a href="#设置-gdb-的全局配置文件" class="headerlink" title="设置 gdb 的全局配置文件"></a>设置 gdb 的全局配置文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/gdb/gdbinit</span><br></pre></td></tr></table></figure><p>其中添加如下语句</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set print elements 0</span><br></pre></td></tr></table></figure><h3 id="使用自定的-gdbinit-文件"><a href="#使用自定的-gdbinit-文件" class="headerlink" title="使用自定的 .gdbinit 文件"></a>使用自定的 .gdbinit 文件</h3><p>将上述指令添加到 .gdbinit 然后让 gdb 启动时自动设置也可，如果不能自动加载，则可以在 gdb 环境中使用如下指令加载</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source .gdbinit</span><br></pre></td></tr></table></figure><p>或者启动 gdb 时加载</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gdb -command=.gdbinit</span><br></pre></td></tr></table></figure><h3 id="在-VS-Code-的-Debug-Console-中设置"><a href="#在-VS-Code-的-Debug-Console-中设置" class="headerlink" title="在 VS Code 的 Debug Console 中设置"></a>在 VS Code 的 Debug Console 中设置</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-exec set print elements 0</span><br></pre></td></tr></table></figure><h3 id="在-launch-json-中设定"><a href="#在-launch-json-中设定" class="headerlink" title="在 launch.json 中设定"></a>在 launch.json 中设定</h3><p>示例参见：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    // Use IntelliSense to learn about possible attributes.</span><br><span class="line">    // Hover to view descriptions of existing attributes.</span><br><span class="line">    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387</span><br><span class="line">    &quot;version&quot;: &quot;0.2.0&quot;,</span><br><span class="line">    &quot;configurations&quot;: [</span><br><span class="line">        </span><br><span class="line">        &#123;</span><br><span class="line">            &quot;name&quot;: &quot;g++ build and debug active file&quot;,</span><br><span class="line">            &quot;type&quot;: &quot;cppdbg&quot;,</span><br><span class="line">            &quot;request&quot;: &quot;launch&quot;,</span><br><span class="line">            &quot;program&quot;: &quot;$&#123;fileDirname&#125;/$&#123;fileBasenameNoExtension&#125;&quot;,</span><br><span class="line">            &quot;args&quot;: [],</span><br><span class="line">            &quot;stopAtEntry&quot;: false,</span><br><span class="line">            &quot;cwd&quot;: &quot;$&#123;workspaceFolder&#125;&quot;,</span><br><span class="line">            &quot;environment&quot;: [],</span><br><span class="line">            &quot;externalConsole&quot;: false,</span><br><span class="line">            &quot;MIMode&quot;: &quot;gdb&quot;,</span><br><span class="line">            &quot;setupCommands&quot;: [</span><br><span class="line">                &#123;</span><br><span class="line">                    &quot;description&quot;: &quot;Enable pretty-printing for gdb&quot;,</span><br><span class="line">                    &quot;text&quot;: &quot;-enable-pretty-printing&quot;,</span><br><span class="line">                    &quot;ignoreFailures&quot;: true</span><br><span class="line">                &#125;,</span><br><span class="line">                &#123;</span><br><span class="line">                    &quot;description&quot;: &quot;Enable full length display&quot;,</span><br><span class="line">                    &quot;text&quot;: &quot;set print elements 0&quot;,</span><br><span class="line">                    &quot;ignoreFailures&quot;: true</span><br><span class="line">                &#125;</span><br><span class="line">            ],</span><br><span class="line">            &quot;preLaunchTask&quot;: &quot;g++ build active file&quot;,</span><br><span class="line">            &quot;miDebuggerPath&quot;: &quot;/usr/bin/gdb&quot;</span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;gdb 在呈现数据时，默认最多显示 240 个字符(在我在 Linux 环境下是这样的，其它平台有说 200 的，有说其它长度的)，后续数据会以省略号显示，这在观察字符串的值时非常不便，甚至会导致一些工具受影响，比如我在 Visual Studio Code 中使用 Deb
+      
+    
+    </summary>
+    
+      <category term="编程" scheme="http://littlepig.cn/categories/%E7%BC%96%E7%A8%8B/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>解决 MacOS Visual Studio Code 不能调试的问题</title>
+    <link href="http://littlepig.cn/posts/2020/04/01/macos-vs-code-cannot-debug/"/>
+    <id>http://littlepig.cn/posts/2020/04/01/macos-vs-code-cannot-debug/</id>
+    <published>2020-04-01T02:30:50.000Z</published>
+    <updated>2020-04-02T10:24:11.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>最近发现 MacOS Catalina 的 Visual Studio Code 不能调试 C++ 了，翻遍了国内各种资料各种方法无效，不得已准备去啃官方网站的说明，发现这个 </p><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="https://code.visualstudio.com/docs/cpp/launch-json-reference#_externalconsole" alt="https://code.visualstudio.com/docs/cpp/launch-json-reference#_externalconsole" title>                </div>                <div class="image-caption">https://code.visualstudio.com/docs/cpp/launch-json-reference#_externalconsole</div>            </figure> ，原来 xcode 更新之后已经不提供 lldb-mi 了，所以 externalConsole 那个配置项即便为 True 也是无效的，仅仅能打开个 Terminal 但是无法执行程序，解决方法如下：安装 CodeLLDB 插件，然后使用其提供的 launch 配置文件即可。<p>附：tasks.json 和 launch.json</p><p>tasks.json</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;version&quot;: &quot;2.0.0&quot;,</span><br><span class="line">    &quot;tasks&quot;: [</span><br><span class="line">        &#123;</span><br><span class="line">            &quot;type&quot;: &quot;shell&quot;,</span><br><span class="line">            &quot;label&quot;: &quot;clang++ build active file&quot;,</span><br><span class="line">            &quot;command&quot;: &quot;/usr/bin/clang++&quot;,</span><br><span class="line">            &quot;args&quot;: [</span><br><span class="line">                &quot;-std=c++17&quot;,</span><br><span class="line">                &quot;-stdlib=libc++&quot;,</span><br><span class="line">                &quot;-g&quot;,</span><br><span class="line">                &quot;$&#123;file&#125;&quot;,</span><br><span class="line">                &quot;-o&quot;,</span><br><span class="line">                &quot;$&#123;fileDirname&#125;/$&#123;fileBasenameNoExtension&#125;&quot;</span><br><span class="line">            ],</span><br><span class="line">            &quot;options&quot;: &#123;</span><br><span class="line">                &quot;cwd&quot;: &quot;$&#123;workspaceFolder&#125;&quot;</span><br><span class="line">            &#125;,</span><br><span class="line">            &quot;problemMatcher&quot;: [</span><br><span class="line">                &quot;$gcc&quot;</span><br><span class="line">            ],</span><br><span class="line">            &quot;group&quot;: &#123;</span><br><span class="line">                &quot;kind&quot;: &quot;build&quot;,</span><br><span class="line">                &quot;isDefault&quot;: true</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>launch.json , 注意其中的 type 参数</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    // Use IntelliSense to learn about possible attributes.</span><br><span class="line">    // Hover to view descriptions of existing attributes.</span><br><span class="line">    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387</span><br><span class="line">    &quot;version&quot;: &quot;0.2.0&quot;,</span><br><span class="line">    &quot;configurations&quot;: [</span><br><span class="line">      &#123;</span><br><span class="line">        &quot;name&quot;: &quot;clang++ - Build and debug active file&quot;,</span><br><span class="line">        &quot;type&quot;: &quot;lldb&quot;,</span><br><span class="line">        &quot;request&quot;: &quot;launch&quot;,</span><br><span class="line">        &quot;program&quot;: &quot;$&#123;fileDirname&#125;/$&#123;fileBasenameNoExtension&#125;&quot;,</span><br><span class="line">        &quot;args&quot;: [&quot;-arg1&quot;, &quot;-arg2&quot;],</span><br><span class="line">        &quot;cwd&quot;: &quot;$&#123;workspaceFolder&#125;&quot;,</span><br><span class="line">        &quot;preLaunchTask&quot;: &quot;clang++ build active file&quot;</span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;最近发现 MacOS Catalina 的 Visual Studio Code 不能调试 C++ 了，翻遍了国内各种资料各种方法无效，不得已准备去啃官方网站的说明，发现这个 &lt;/p&gt;
+&lt;figure class=&quot;image-bubble&quot;&gt;
+              
+      
+    
+    </summary>
+    
+      <category term="编程" scheme="http://littlepig.cn/categories/%E7%BC%96%E7%A8%8B/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>VS Code Jupyter 提示 Jupyter Server Not Started</title>
+    <link href="http://littlepig.cn/posts/2020/04/01/vscode-jupyter-kernel-not-found/"/>
+    <id>http://littlepig.cn/posts/2020/04/01/vscode-jupyter-kernel-not-found/</id>
+    <published>2020-04-01T02:30:50.000Z</published>
+    <updated>2020-08-26T13:40:32.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>VS Code 支持编辑 Jupyter 的文件格式 ipynb ，并且提供方便的内核变量查看功能，不过部分机器上可能会出现 “Jupyter Server: Not Started” / “No Kernel” 的提示，经过实验有效的解决办法如下：</p><p>在系统中安装有 Python 解释器的前提下，双击左下角的选择使用的 Python 解释器，然后运行 Cell 看有没有效果，如果没有效果，按 F1 选择 “Select Interpreter to start Jupyter server” 然后选择要使用的解释器，再次运行某个 Cell 即可。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;VS Code 支持编辑 Jupyter 的文件格式 ipynb ，并且提供方便的内核变量查看功能，不过部分机器上可能会出现 “Jupyter Server: Not Started” / “No Kernel” 的提示，经过实验有效的解决办法如下：&lt;/p&gt;
+&lt;p&gt;在系统中
+      
+    
+    </summary>
+    
+      <category term="编程" scheme="http://littlepig.cn/categories/%E7%BC%96%E7%A8%8B/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>virtualenv 提示无法找到 pkg_resources</title>
+    <link href="http://littlepig.cn/posts/2020/01/30/virtualenv-pkg-resources-not-found/"/>
+    <id>http://littlepig.cn/posts/2020/01/30/virtualenv-pkg-resources-not-found/</id>
+    <published>2020-01-30T02:30:50.000Z</published>
+    <updated>2020-01-30T10:55:32.000Z</updated>
+    
+    <content type="html"><![CDATA[<p><code>virualenv -p /usr/bin/python3.7 venv</code> 在执行时提示</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">....</span><br><span class="line">setuptools pkg_resources pip wheel failed with error code 1</span><br></pre></td></tr></table></figure><p>仔细上翻你会发现更详细的信息</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Could not install packages due to an EnvironmentError: 404 Client Error: Not Found for url: https://pypi.tuna.tsinghua.edu.cn/simple/pkg-resources/</span><br></pre></td></tr></table></figure><p>应该是清华的源同步没有完全造成的，据说其他的源也都没有这个 pkg-resources ，只好修改配置使用官方源了</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim ~/.config/pip/pip.conf</span><br></pre></td></tr></table></figure><p>把原有 index-url 注释掉，添加一行保存即可</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">index-url = http://e.pypi.python.org/simple</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;&lt;code&gt;virualenv -p /usr/bin/python3.7 venv&lt;/code&gt; 在执行时提示&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span cla
+      
+    
+    </summary>
+    
+      <category term="配置" scheme="http://littlepig.cn/categories/%E9%85%8D%E7%BD%AE/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Epson L380 在 Debian 下的安装</title>
+    <link href="http://littlepig.cn/posts/2020/01/12/install-epson-l380-driver-on-debian/"/>
+    <id>http://littlepig.cn/posts/2020/01/12/install-epson-l380-driver-on-debian/</id>
+    <published>2020-01-12T02:30:50.000Z</published>
+    <updated>2020-01-14T08:15:24.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>Epson 的官方英文网站提供了 L380 在 Linux 下的驱动，安装完毕后依旧不能使用，想尽了各种方式，最后成功了，然而也不知道到底是哪个步骤生效的，暂且做一记录吧</p><h2 id="表现"><a href="#表现" class="headerlink" title="表现"></a>表现</h2><p>打印机无响应，关机开机后会打印英文乱码，但是能看到是 Espon L380 Series 的打印机名称。</p><h2 id="安装打印管理器"><a href="#安装打印管理器" class="headerlink" title="安装打印管理器"></a>安装打印管理器</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install cups cups-client ghostscript</span><br><span class="line">sudo apt-get install system-config-printer</span><br></pre></td></tr></table></figure><h2 id="安装驱动"><a href="#安装驱动" class="headerlink" title="安装驱动"></a>安装驱动</h2><p>到 <a href="http://download.ebz.epson.net/dsc/search/01/search/" target="_blank" rel="noopener">http://download.ebz.epson.net/dsc/search/01/search/</a> 根据打印机型号搜索 Linux 下的驱动，使用 <code>sudo dpkg -i xxxx.deb</code> 安装。</p><h2 id="启用打印机"><a href="#启用打印机" class="headerlink" title="启用打印机"></a>启用打印机</h2><p>默认打印机状态是 disabled 状态，lpq 结果如下</p><blockquote><p>L380 Series is not ready<br>no entries</p></blockquote><p>使用如下指令启用</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo cupsenable L380-Series</span><br></pre></td></tr></table></figure><p>或者在 <code>Start-&gt;System-&gt;Print Settings</code> 双击打印机选择其中的 <code>Enable</code> </p><p>虽然打印机启用可以打印了，但是仍然打印的乱码</p><h2 id="手工解压安装-ppd"><a href="#手工解压安装-ppd" class="headerlink" title="手工解压安装 ppd"></a>手工解压安装 ppd</h2><p>应该还是驱动的问题，难道没有安装好</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/share/pdd</span><br></pre></td></tr></table></figure><p>看到 <code>epson-inkjet-printer-201601w/Epson</code> 文件夹，里边应该是驱动文件，但是是 .gz 格式的，与网上说的 ppd 格式不一致，于是手工解压下</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gunzip Epson-L380_Series-epson-driver.ppd.gz</span><br></pre></td></tr></table></figure><p>重新启动 cups 服务</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl restart cups.service</span><br></pre></td></tr></table></figure><p>无效，尝试将 ppd 拷贝到 /usr/share/cups/model</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo cp Epson-L380_Series-epson-driver.ppd /usr/share/cups/model/</span><br></pre></td></tr></table></figure><p>再次重启 cups 服务。</p><p>如果仍然无效，继续进行下一步</p><h2 id="更改打印机驱动"><a href="#更改打印机驱动" class="headerlink" title="更改打印机驱动"></a>更改打印机驱动</h2><p>登录 <a href="http://localhost:361" target="_blank" rel="noopener">http://localhost:361</a> ,这是 cups 的管理界面，选择顶部的 Administrator(不是中间的 Administrtor 帮助) 进入打印机管理界面，然后 manage printers ，修改其中的 L380 Series 打印机中的驱动，依次尝试给出的列表中的 L380 Series 驱动，我貌似选择的最后一个，然后突然就可以正确打印了。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;Epson 的官方英文网站提供了 L380 在 Linux 下的驱动，安装完毕后依旧不能使用，想尽了各种方式，最后成功了，然而也不知道到底是哪个步骤生效的，暂且做一记录吧&lt;/p&gt;
+&lt;h2 id=&quot;表现&quot;&gt;&lt;a href=&quot;#表现&quot; class=&quot;headerlink&quot; ti
+      
+    
+    </summary>
+    
+      <category term="配置" scheme="http://littlepig.cn/categories/%E9%85%8D%E7%BD%AE/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>更改 Debian 的启动级别</title>
+    <link href="http://littlepig.cn/posts/2020/01/11/change-run-level-on-debian/"/>
+    <id>http://littlepig.cn/posts/2020/01/11/change-run-level-on-debian/</id>
+    <published>2020-01-11T02:30:50.000Z</published>
+    <updated>2020-01-14T11:56:03.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>Debian 使用 systemd 替换了 init，以前使用 inittab 设定 run level 的方式在 Debian 8 及以后已经失效，新的知识点如下：</p><ol><li><p>系统使用 /etc/systemd/system/default.target 来启动设定，这是一个符号连接，有可能存在也有可能不存在。</p></li><li><p>真正的启动配置在 /etc/systemd/system 和 /lib/systemd/system 两个文件夹下，其中第一个文件夹存放的是基本系统设定，第二个为发行版自行的设定。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ls -l /etc/systemd/system/default.target</span><br><span class="line">&gt; ... No such file or directory</span><br><span class="line">ls -l /lib/systemd/system/default.target</span><br><span class="line">&gt; ... /lib/systemd/system/default.target -&gt; graphical.target</span><br></pre></td></tr></table></figure></li><li><p>Debian 默认使用的是 graphical.target ，如果想以文本方式启动只需要将 default.target 指向 multi-user.target 即可。</p></li></ol><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /etc/systemd/system/</span><br><span class="line">sudo ln -s /lib/systemd/system/multi-user.target default.target</span><br></pre></td></tr></table></figure><ol start="4"><li>不过并不建议直接进行手工设定，systemd 提供了更为直接的指令</li></ol><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl set-default multi-user.target</span><br></pre></td></tr></table></figure><p>或者</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo set-default runlevel3.target</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;Debian 使用 systemd 替换了 init，以前使用 inittab 设定 run level 的方式在 Debian 8 及以后已经失效，新的知识点如下：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;系统使用 /etc/systemd/system/default.targ
+      
+    
+    </summary>
+    
+      <category term="配置" scheme="http://littlepig.cn/categories/%E9%85%8D%E7%BD%AE/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>SSH 提示 diffie-hellman-group1-sha1</title>
+    <link href="http://littlepig.cn/posts/2020/01/11/error-diffie-hellman-group1-sha1/"/>
+    <id>http://littlepig.cn/posts/2020/01/11/error-diffie-hellman-group1-sha1/</id>
+    <published>2020-01-11T02:30:50.000Z</published>
+    <updated>2020-01-12T02:05:03.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>当 SSH 到就版本的服务器时可能会碰到如下提示信息：</p><blockquote><p>no matching key exchange method found. Their offer: diffie-hellman-group1-sha1</p></blockquote><p>此时需要在服务器上进行设定才可以登入</p><h2 id="当前用户生效"><a href="#当前用户生效" class="headerlink" title="当前用户生效"></a>当前用户生效</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim  ~/.ssh/config</span><br></pre></td></tr></table></figure><p>添加如下参数</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Host *</span><br><span class="line">KexAlgorithms +diffie-hellman-group1-sha1</span><br></pre></td></tr></table></figure><h2 id="针对所有用户"><a href="#针对所有用户" class="headerlink" title="针对所有用户"></a>针对所有用户</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/ssh/ssh_config</span><br></pre></td></tr></table></figure><p>末尾添加如下参数</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">KexAlgorithms +diffie-hellman-group1-sha1</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;当 SSH 到就版本的服务器时可能会碰到如下提示信息：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;no matching key exchange method found. Their offer: diffie-hellman-group1-sha1&lt;/p&gt;
+&lt;/bloc
+      
+    
+    </summary>
+    
+      <category term="配置" scheme="http://littlepig.cn/categories/%E9%85%8D%E7%BD%AE/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>获取机器序列号</title>
+    <link href="http://littlepig.cn/posts/2020/01/11/get-machine-serial-number/"/>
+    <id>http://littlepig.cn/posts/2020/01/11/get-machine-serial-number/</id>
+    <published>2020-01-11T02:30:50.000Z</published>
+    <updated>2020-01-11T14:15:30.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>有时候需要获取机器序列号，即 BIOS 中的 Serial Number，既可以通过开机时进入 BIOS 中查看，也可以在操作系统中通过指令来查看</p><h2 id="Windows"><a href="#Windows" class="headerlink" title="Windows"></a>Windows</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wmic bios get serialnumber</span><br></pre></td></tr></table></figure><h2 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dmidecode |grep Serial</span><br></pre></td></tr></table></figure><h2 id="EXSI"><a href="#EXSI" class="headerlink" title="EXSI"></a>EXSI</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">esxcli hardware platform get</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;有时候需要获取机器序列号，即 BIOS 中的 Serial Number，既可以通过开机时进入 BIOS 中查看，也可以在操作系统中通过指令来查看&lt;/p&gt;
+&lt;h2 id=&quot;Windows&quot;&gt;&lt;a href=&quot;#Windows&quot; class=&quot;headerlink&quot; titl
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Debian 英文界面下使用中文输入法</title>
+    <link href="http://littlepig.cn/posts/2020/01/11/input-chinese-while-using-english-gui/"/>
+    <id>http://littlepig.cn/posts/2020/01/11/input-chinese-while-using-english-gui/</id>
+    <published>2020-01-11T02:30:50.000Z</published>
+    <updated>2020-01-11T15:35:47.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>Linux 使用中文环境多了有时候会发现部分不完整的翻译或者不准确的翻译实在是很让人不爽，于是便想切换到英文环境下去，但又需要保留中文输入法，毕竟很多地方还是需要录入中文的，Debian 下设置很简单。</p><h2 id="重新配置-locales"><a href="#重新配置-locales" class="headerlink" title="重新配置 locales"></a>重新配置 locales</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo dpkg-reconfigure locales</span><br></pre></td></tr></table></figure><p>选中 zh_CN.* 以及 en_US.UTF-8 选项，然后将 en_US.UTF-8 设置为缺省 locale </p><h2 id="修改配置将-LC-CTYPE-参数设置为-zh-CN-UTF-8"><a href="#修改配置将-LC-CTYPE-参数设置为-zh-CN-UTF-8" class="headerlink" title="修改配置将 LC_CTYPE 参数设置为 zh_CN.UTF-8"></a>修改配置将 LC_CTYPE 参数设置为 zh_CN.UTF-8</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/default/locale</span><br></pre></td></tr></table></figure><p>按照如下格式修改</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">LANG=en_US.UTF-8</span><br><span class="line">LC_CTYPE=zh_CN.UTF-8</span><br></pre></td></tr></table></figure><p>退出重新登录</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;Linux 使用中文环境多了有时候会发现部分不完整的翻译或者不准确的翻译实在是很让人不爽，于是便想切换到英文环境下去，但又需要保留中文输入法，毕竟很多地方还是需要录入中文的，Debian 下设置很简单。&lt;/p&gt;
+&lt;h2 id=&quot;重新配置-locales&quot;&gt;&lt;a href=&quot;
+      
+    
+    </summary>
+    
+      <category term="配置" scheme="http://littlepig.cn/categories/%E9%85%8D%E7%BD%AE/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Debian 下安装屏幕保护</title>
+    <link href="http://littlepig.cn/posts/2020/01/11/install-screen-saver-on-debian/"/>
+    <id>http://littlepig.cn/posts/2020/01/11/install-screen-saver-on-debian/</id>
+    <published>2020-01-11T02:30:50.000Z</published>
+    <updated>2020-01-12T01:54:20.000Z</updated>
+    
+    <content type="html"><![CDATA[<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install xscreensaver</span><br><span class="line">sudo apt-get install xscreensaver-data</span><br><span class="line">sudo apt-get install xscreensaver-data-extra </span><br><span class="line">sudo apt-get install xscreensaver-gl</span><br><span class="line">sudo apt-get install xscreensaver xscreensaver-data-extra xscreensaver-gl-extra</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class
+      
+    
+    </summary>
+    
+      <category term="配置" scheme="http://littlepig.cn/categories/%E9%85%8D%E7%BD%AE/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Mysql 命令行中文乱码</title>
+    <link href="http://littlepig.cn/posts/2020/01/11/mysql-client-chinese-display-error/"/>
+    <id>http://littlepig.cn/posts/2020/01/11/mysql-client-chinese-display-error/</id>
+    <published>2020-01-11T02:30:50.000Z</published>
+    <updated>2020-01-12T02:09:10.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>mysql 命令行下如果显示中文乱码或者不识别中文字段，可以在打开数据库后使用如下指令</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set names utf8;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;mysql 命令行下如果显示中文乱码或者不识别中文字段，可以在打开数据库后使用如下指令&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/
+      
+    
+    </summary>
+    
+      <category term="配置" scheme="http://littlepig.cn/categories/%E9%85%8D%E7%BD%AE/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>MySQL创建数据库/用户以及授权</title>
+    <link href="http://littlepig.cn/posts/2020/01/11/mysql-create-database-user-privileges/"/>
+    <id>http://littlepig.cn/posts/2020/01/11/mysql-create-database-user-privileges/</id>
+    <published>2020-01-11T02:30:50.000Z</published>
+    <updated>2020-01-12T02:13:18.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>创建数据库</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create schema [数据库名称] default character set utf8 collate utf8_general_ci;</span><br></pre></td></tr></table></figure><p>采用 create schema 和 create database 创建数据库的效果一样。</p><p>创建用户</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create user &apos;[用户名称]&apos;@&apos;%&apos; identified by &apos;[用户密码]&apos;;</span><br></pre></td></tr></table></figure><p>密码8位以上，包括：大写字母、小写字母、数字、特殊字符</p><p>%：匹配所有主机，该地方还可以设置成 ‘localhost’，代表只能本地访问，例如 root 账户默认为 ‘localhost‘</p><p>权限设定</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">RANT SELECT,INSERT,UPDATE,DELETE,CREATE,DROP ON databasename.tablename TO &apos;username&apos;@&apos;host&apos;;</span><br></pre></td></tr></table></figure><p>databasename.* 代表整个数据库</p><p>修改生效</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flush  privileges ;</span><br></pre></td></tr></table></figure><p>取消用户所有数据库（表）的所有权限</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">revoke all on *.* from tester;</span><br></pre></td></tr></table></figure><p>删除用户</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">delete from mysql.user where user=&apos;tester&apos;;</span><br></pre></td></tr></table></figure><p>删除数据库</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">drop database [schema名称|数据库名称];</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;创建数据库&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;
+      
+    
+    </summary>
+    
+      <category term="配置" scheme="http://littlepig.cn/categories/%E9%85%8D%E7%BD%AE/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>UWSGI 提示 No Request Plugin</title>
+    <link href="http://littlepig.cn/posts/2020/01/11/uwsgi-no-request-plugin/"/>
+    <id>http://littlepig.cn/posts/2020/01/11/uwsgi-no-request-plugin/</id>
+    <published>2020-01-11T02:30:50.000Z</published>
+    <updated>2020-01-12T02:07:08.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>uwsgi 启动出错，无法响应请求</p><p>提示如下信息</p><blockquote><p>!!!!!!!!!!!!!! WARNING !!!!!!!!!!!!!!<br>no request plugin is loaded, you will not be able to manage requests.<br>you may need to install the package for your language of choice, or simply load it with –plugin.<br>!!!!!!!!!!! END OF WARNING !!!!!!!!!!</p></blockquote><p>解决方法</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install uwsgi-plugin-python uwsgi-plugin-python3</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;uwsgi 启动出错，无法响应请求&lt;/p&gt;
+&lt;p&gt;提示如下信息&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;!!!!!!!!!!!!!! WARNING !!!!!!!!!!!!!!&lt;br&gt;no request plugin is loaded, you will not be
+      
+    
+    </summary>
+    
+      <category term="配置" scheme="http://littlepig.cn/categories/%E9%85%8D%E7%BD%AE/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Remmina 的服务器配置信息在哪里</title>
+    <link href="http://littlepig.cn/posts/2020/01/11/where-is-the-remmina-connections-file/"/>
+    <id>http://littlepig.cn/posts/2020/01/11/where-is-the-remmina-connections-file/</id>
+    <published>2020-01-11T02:30:50.000Z</published>
+    <updated>2020-01-11T15:15:22.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>Remmina 是 Linux 下较为常用的服务器管理工具，支持 RDP / VNC / SSH / SFTP 等常用协议</p><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install remmina remmina-plugins</span><br></pre></td></tr></table></figure><h2 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h2><p>Remmina 提供了简单的单服务器导出功能，但如果服务器数量较多，则必须使用直接拷贝配置文件的方式来进行备份，实在是不方便，配置文件所在路径可以尝试如下两个</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">~/.remmina</span><br><span class="line">~/.local/share/remmina</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;Remmina 是 Linux 下较为常用的服务器管理工具，支持 RDP / VNC / SSH / SFTP 等常用协议&lt;/p&gt;
+&lt;h2 id=&quot;安装&quot;&gt;&lt;a href=&quot;#安装&quot; class=&quot;headerlink&quot; title=&quot;安装&quot;&gt;&lt;/a&gt;安装&lt;/h2&gt;&lt;fig
+      
+    
+    </summary>
+    
+      <category term="工具" scheme="http://littlepig.cn/categories/%E5%B7%A5%E5%85%B7/"/>
+    
+    
+  </entry>
+  
+</feed>

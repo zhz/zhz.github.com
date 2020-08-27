@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>CHtmlView 中的 OnBeforeNavigate2 事件 | LittlePig.CN | someone&#39;s Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="CHtmlView">
+    <meta name="description" content="OnBeforeNavigate2 时间当转向新地址之前发生，在此之前用户可以通过各种条件限定来决定是否转向，但这个事件有一个特点就是：如果同一个页面中有 frame,iframe等，会多次激发这个事件，有些特定的场合可能需要判定是否是最上层页面激发的，此时就需要使用该事件的另外一种形式。 1BeforeNavigate2(LPDISPATCH pDisp, VARIANT* URL,VARIAN">
+<meta name="keywords" content="CHtmlView">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CHtmlView 中的 OnBeforeNavigate2 事件">
+<meta property="og:url" content="http://littlepig.cn/posts/2014/08/12/chtmlview-onbeforenavigate2/index.html">
+<meta property="og:site_name" content="LittlePig.CN">
+<meta property="og:description" content="OnBeforeNavigate2 时间当转向新地址之前发生，在此之前用户可以通过各种条件限定来决定是否转向，但这个事件有一个特点就是：如果同一个页面中有 frame,iframe等，会多次激发这个事件，有些特定的场合可能需要判定是否是最上层页面激发的，此时就需要使用该事件的另外一种形式。 1BeforeNavigate2(LPDISPATCH pDisp, VARIANT* URL,VARIAN">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-05-10T05:38:20.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CHtmlView 中的 OnBeforeNavigate2 事件">
+<meta name="twitter:description" content="OnBeforeNavigate2 时间当转向新地址之前发生，在此之前用户可以通过各种条件限定来决定是否转向，但这个事件有一个特点就是：如果同一个页面中有 frame,iframe等，会多次激发这个事件，有些特定的场合可能需要判定是否是最上层页面激发的，此时就需要使用该事件的另外一种形式。 1BeforeNavigate2(LPDISPATCH pDisp, VARIANT* URL,VARIAN">
+    
+        <link rel="alternate" type="application/atom+xml" title="LittlePig.CN" href="../../../../../atom.xml">
+    
+    <link rel="shortcut icon" href="../../../../../favicon.ico">
+    <link rel="stylesheet" href="../../../../../css/style.css?v=1.7.2">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(../../../../../img/brand.jpg)">
+      <div class="brand">
+        <a href="../../../../../index.html" class="avatar waves-effect waves-circle waves-light">
+          <img src="../../../../../img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">ZHZ</h5>
+          <a href="mailto:zhz@hebut.edu.cn" title="zhz@hebut.edu.cn" class="mail">zhz@hebut.edu.cn</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="../../../../../index.html"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="../../../../../archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="../../../../../tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="../../../../../categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="../../../../../about"  >
+                <i class="icon icon-lg icon-link"></i>
+                关于
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">CHtmlView 中的 OnBeforeNavigate2 事件</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">CHtmlView 中的 OnBeforeNavigate2 事件</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2014-08-12T11:58:45.000Z" itemprop="datePublished" class="page-time">
+  2014-08-12
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+
+<article id="post-chtmlview-onbeforenavigate2"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">CHtmlView 中的 OnBeforeNavigate2 事件</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2014-08-12 19:58:45" datetime="2014-08-12T11:58:45.000Z"  itemprop="datePublished">2014-08-12</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>OnBeforeNavigate2 时间当转向新地址之前发生，在此之前用户可以通过各种条件限定来决定是否转向，但这个事件有一个特点就是：如果同一个页面中有 frame,iframe等，会多次激发这个事件，有些特定的场合可能需要判定是否是最上层页面激发的，此时就需要使用该事件的另外一种形式。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">BeforeNavigate2(LPDISPATCH pDisp, VARIANT* URL,VARIANT* Flags, VARIANT* TargetFrameName,VARIANT* PostData, VARIANT* Headers, BOOL* Cancel)</span><br></pre></td></tr></table></figure>
+
+<p>CHtmlView 中默认的 OnBeforeNavigate2 事件是不带 pDisp 参数的，因此不能直接从 VC 的 ClassWizard 下复写该事件，只能手工添加，在 .h 中照葫芦画瓢</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">virtual void BeforeNavigate2(LPDISPATCH pDisp, VARIANT* URL, VARIANT* Flags, VARIANT* TargetFrameName, VARIANT* PostData, VARIANT* Headers, BOOL* Cancel);</span><br></pre></td></tr></table></figure>
+
+<p>在 cpp 中添加</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">void CIEView::BeforeNavigate2(LPDISPATCH pDisp, VARIANT* URL,VARIANT* Flags, VARIANT* TargetFrameName, VARIANT* PostData, VARIANT* Headers, BOOL* Cancel)</span><br><span class="line">&#123;</span><br><span class="line">    CString strURL(URL-&gt;bstrVal)</span><br><span class="line">    //do sth</span><br><span class="line">    HRESULT hr;</span><br><span class="line">    IUnknown* pUnkBrowser = NULL;</span><br><span class="line">    IUnknown* pUnkDisp=NULL;</span><br><span class="line">    </span><br><span class="line">    hr = m_pBrowserApp-&gt;QueryInterface( IID_IUnknown,(void**)&amp;amp;pUnkBrowser);</span><br><span class="line">    if ( SUCCEEDED(hr) )</span><br><span class="line">    &#123;</span><br><span class="line">        hr = pDisp-&gt;QueryInterface( IID_IUnknown, (void**)&amp;amp;pUnkDisp );</span><br><span class="line">        if ( SUCCEEDED(hr) ) </span><br><span class="line">        &#123;</span><br><span class="line">            if ( pUnkBrowser == pUnkDisp )</span><br><span class="line">            &#123;</span><br><span class="line">                // 这是顶层框架窗口 </span><br><span class="line">                //do sth</span><br><span class="line">            &#125; </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;  </span><br><span class="line">    CHtmlView::BeforeNavigate2(pDisp, URL,Flags, TargetFrameName, PostData, Headers, Cancel);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>特此记之方便他人，免得走弯路。</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-05-10T05:38:20.000Z" itemprop="dateUpdated">2017-05-10 13:38:20</time>
+</span><br>
+
+
+        
+        本文地址：<a href="" target="_blank" rel="external">http://littlepig.cn/posts/2014/08/12/chtmlview-onbeforenavigate2/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="http://littlepig.cn">
+            <img src="../../../../../img/avatar.jpg" alt="ZHZ">
+            ZHZ
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赞</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../../tags/CHtmlView/">CHtmlView</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://littlepig.cn/posts/2014/08/12/chtmlview-onbeforenavigate2/&title=《CHtmlView 中的 OnBeforeNavigate2 事件》 — LittlePig.CN&pic=http://littlepig.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://littlepig.cn/posts/2014/08/12/chtmlview-onbeforenavigate2/&title=《CHtmlView 中的 OnBeforeNavigate2 事件》 — LittlePig.CN&source=记录 / 回忆 / 分享" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://littlepig.cn/posts/2014/08/12/chtmlview-onbeforenavigate2/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《CHtmlView 中的 OnBeforeNavigate2 事件》 — LittlePig.CN&url=http://littlepig.cn/posts/2014/08/12/chtmlview-onbeforenavigate2/&via=http://littlepig.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://littlepig.cn/posts/2014/08/12/chtmlview-onbeforenavigate2/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="../mfc-activex-control-function-call-failed/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">MFC ActiveX Control 的方法调用失败</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="../../../02/23/mysql-sync/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">MySQL 主从同步配置 </h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="../../../../../img/wechat.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="../../../../../img/wechat.png" data-alipay="../../../../../img/alipay.png">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="../../../../../atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>ZHZ &copy; 2003 - 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://littlepig.cn/posts/2014/08/12/chtmlview-onbeforenavigate2/&title=《CHtmlView 中的 OnBeforeNavigate2 事件》 — LittlePig.CN&pic=http://littlepig.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://littlepig.cn/posts/2014/08/12/chtmlview-onbeforenavigate2/&title=《CHtmlView 中的 OnBeforeNavigate2 事件》 — LittlePig.CN&source=记录 / 回忆 / 分享" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://littlepig.cn/posts/2014/08/12/chtmlview-onbeforenavigate2/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《CHtmlView 中的 OnBeforeNavigate2 事件》 — LittlePig.CN&url=http://littlepig.cn/posts/2014/08/12/chtmlview-onbeforenavigate2/&via=http://littlepig.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://littlepig.cn/posts/2014/08/12/chtmlview-onbeforenavigate2/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACtUlEQVR42u3aQY7jMAwEQP//07PAnhbIxOkWJc9gUT4FjmOpdBAZUtcVX19/r9fP/955feb1yfvn8zlsvvDw8PCWpv7uSqZ7P/X8fnLlc8bDw8M7zUuCQYKcbPcJI58zHh4e3m/gTTb0Nsy8GxEPDw/v/+C1S5AHBjw8PLzfzEu28uTVUYEgLtHez2FzrQUPDw9vfayrHeb5zw/19/Dw8PDKrXyeCidJdhskitni4eHhHeDNm0x5ypuPtZYcF/8Y8PDw8Aa8vDjbFgLa4mweMPJAhYeHh3ealxdb18qy+TKtJdnf3MHDw8M7zGv/8K+1vtrA0/62iHt4eHh4Y15ejMgT4tMHAj7MEA8PD+8wL7lz/7q8lJCPno/ytr+Hh4eHt5XXBom8kNomwZMzVEWXDw8PD28rb1KMSJYpP0ywdmgADw8P7xlechyq/XaeBE+KEXh4eHineclDyYGqXW2wNqWOiiZ4eHh4B3iTzb0F5yWJzYEEDw8P70FeuxGvtfmTBYoaXW1gwMPDwyt5kz/5bSKevKct5n4IOXh4eHgHeGtN+valedFhTsLDw8N7kteWa/MJtYsyOaqFh4eHd5o3T4vzVllbgMiLyFceZ/Dw8PDGvA0/vp3upAi7WI3Gw8PDe5A3KeDmIWfSclv8Fg8PD28rr924J8dYJ2Xcdlw8PDy8Z3hrG3QylTYY5AuHh4eH9zyvLUm0A7fLsdZgi57Hw8PD28T7Kq/J0YF2i29Lw9/8Cg8PD+8Ab++08uOq8yCRJOV4eHh453h5MEgOkrbrej9Ke+ygTqzx8PDwBrzFGsbgKECbyi8eU8DDw8P7UV4+iV2ttbYJ97b1hYeHh/ejvPyZvPA6CTYflhsPDw/vGK8tBKylv2ub+6RthoeHh3eCN2mAtQcO2oVbS+ivyRrj4eHh3fH+AECJc6h3IENmAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+lazyScripts.push('//s95.cnzz.com/z_stat.php?id=1235250&web_id=1235250')
+
+</script>
+
+<script src="../../../../../js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="../../../../../js/search.min.js?v=1.7.2" async></script>
+
+
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

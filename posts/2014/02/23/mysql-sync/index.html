@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>MySQL 主从同步配置  | LittlePig.CN | someone&#39;s Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="mysql">
+    <meta name="description" content="貌似很复杂的步骤，其实挺简单的，当然，没考虑安全性等其他因素，以操作简单功能实现为目标。  安装数据库，最好设置root密码相同，然后修改root可以从任意主机登录。  用ssh分别登录 master和slave主机，   1vim /etc/mysql/my.cnf  修改 123[mysqld]log-bin=mysql-bin //启用二进制日志server-id=125120 //服务器唯">
+<meta name="keywords" content="mysql">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySQL 主从同步配置 ">
+<meta property="og:url" content="http://littlepig.cn/posts/2014/02/23/mysql-sync/index.html">
+<meta property="og:site_name" content="LittlePig.CN">
+<meta property="og:description" content="貌似很复杂的步骤，其实挺简单的，当然，没考虑安全性等其他因素，以操作简单功能实现为目标。  安装数据库，最好设置root密码相同，然后修改root可以从任意主机登录。  用ssh分别登录 master和slave主机，   1vim /etc/mysql/my.cnf  修改 123[mysqld]log-bin=mysql-bin //启用二进制日志server-id=125120 //服务器唯">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-08-07T03:29:46.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MySQL 主从同步配置 ">
+<meta name="twitter:description" content="貌似很复杂的步骤，其实挺简单的，当然，没考虑安全性等其他因素，以操作简单功能实现为目标。  安装数据库，最好设置root密码相同，然后修改root可以从任意主机登录。  用ssh分别登录 master和slave主机，   1vim /etc/mysql/my.cnf  修改 123[mysqld]log-bin=mysql-bin //启用二进制日志server-id=125120 //服务器唯">
+    
+        <link rel="alternate" type="application/atom+xml" title="LittlePig.CN" href="../../../../../atom.xml">
+    
+    <link rel="shortcut icon" href="../../../../../favicon.ico">
+    <link rel="stylesheet" href="../../../../../css/style.css?v=1.7.2">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(../../../../../img/brand.jpg)">
+      <div class="brand">
+        <a href="../../../../../index.html" class="avatar waves-effect waves-circle waves-light">
+          <img src="../../../../../img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">ZHZ</h5>
+          <a href="mailto:zhz@hebut.edu.cn" title="zhz@hebut.edu.cn" class="mail">zhz@hebut.edu.cn</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="../../../../../index.html"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="../../../../../archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="../../../../../tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="../../../../../categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="../../../../../about"  >
+                <i class="icon icon-lg icon-link"></i>
+                关于
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">MySQL 主从同步配置 </div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">MySQL 主从同步配置 </h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2014-02-23T02:28:52.000Z" itemprop="datePublished" class="page-time">
+  2014-02-23
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="../../../../../categories/服务/">服务</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+
+<article id="post-mysql-sync"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">MySQL 主从同步配置 </h1>
+        <div class="post-meta">
+            <time class="post-time" title="2014-02-23 10:28:52" datetime="2014-02-23T02:28:52.000Z"  itemprop="datePublished">2014-02-23</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="../../../../../categories/服务/">服务</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>貌似很复杂的步骤，其实挺简单的，当然，没考虑安全性等其他因素，以操作简单功能实现为目标。</p>
+<ol>
+<li><p>安装数据库，最好设置root密码相同，然后修改root可以从任意主机登录。</p>
+</li>
+<li><p>用ssh分别登录 master和slave主机，</p>
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/mysql/my.cnf</span><br></pre></td></tr></table></figure>
+
+<p>修改</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[mysqld]</span><br><span class="line">log-bin=mysql-bin //启用二进制日志</span><br><span class="line">server-id=125120 //服务器唯一ID，默认是1，可以取ip地址后两段</span><br></pre></td></tr></table></figure>
+
+<p>修改后重启</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/etc/init.d/mysql restart</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li><p>mysql -p 登录 master，然后输入 <code>show master status;</code> 查看log文件名称及Position</p>
+</li>
+<li><p>如果已有数据，在 slave 上先将 master 的数据库拷贝过来</p>
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">cd /var/lib/mysql</span><br><span class="line"></span><br><span class="line">scp -rp root@host1:/var/lib/mysql/db1 ./</span><br><span class="line"></span><br><span class="line">....</span><br><span class="line"></span><br><span class="line">chown -R mysql.mysql *</span><br></pre></td></tr></table></figure>
+
+<ol start="5">
+<li>mysql -p 登录 salve ，设置同步参数</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">stop slave;</span><br><span class="line"></span><br><span class="line">change master to master_host=&apos;masterip&apos;,master_user=&apos;root&apos;,master_password=&apos;rootpwd&apos;,master_log_file=&apos;mysql-bin.000001&apos;,master_log_pos=36622;</span><br><span class="line"></span><br><span class="line">start slave;</span><br><span class="line"></span><br><span class="line">show slave status;</span><br></pre></td></tr></table></figure>
+
+<ol start="6">
+<li>测试是否生效</li>
+</ol>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2019-08-07T03:29:46.000Z" itemprop="dateUpdated">2019-08-07 11:29:46</time>
+</span><br>
+
+
+        
+        本文地址：<a href="" target="_blank" rel="external">http://littlepig.cn/posts/2014/02/23/mysql-sync/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="http://littlepig.cn">
+            <img src="../../../../../img/avatar.jpg" alt="ZHZ">
+            ZHZ
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赞</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../../tags/mysql/">mysql</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://littlepig.cn/posts/2014/02/23/mysql-sync/&title=《MySQL 主从同步配置 》 — LittlePig.CN&pic=http://littlepig.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://littlepig.cn/posts/2014/02/23/mysql-sync/&title=《MySQL 主从同步配置 》 — LittlePig.CN&source=记录 / 回忆 / 分享" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://littlepig.cn/posts/2014/02/23/mysql-sync/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《MySQL 主从同步配置 》 — LittlePig.CN&url=http://littlepig.cn/posts/2014/02/23/mysql-sync/&via=http://littlepig.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://littlepig.cn/posts/2014/02/23/mysql-sync/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="../../../08/12/chtmlview-onbeforenavigate2/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">CHtmlView 中的 OnBeforeNavigate2 事件</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="../../../01/13/synology-dsm-gitserver-configuration/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">群晖 DSM 中 GitServer 的配置</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="../../../../../img/wechat.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="../../../../../img/wechat.png" data-alipay="../../../../../img/alipay.png">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="../../../../../atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>ZHZ &copy; 2003 - 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://littlepig.cn/posts/2014/02/23/mysql-sync/&title=《MySQL 主从同步配置 》 — LittlePig.CN&pic=http://littlepig.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://littlepig.cn/posts/2014/02/23/mysql-sync/&title=《MySQL 主从同步配置 》 — LittlePig.CN&source=记录 / 回忆 / 分享" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://littlepig.cn/posts/2014/02/23/mysql-sync/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《MySQL 主从同步配置 》 — LittlePig.CN&url=http://littlepig.cn/posts/2014/02/23/mysql-sync/&via=http://littlepig.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://littlepig.cn/posts/2014/02/23/mysql-sync/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACOElEQVR42u3ay27DMAxE0fz/T7tAt4bkGY7cVNTVKkgcRycLmg99PvK6ftf99fz6+ZX3T5VvRQsGDBjbMq7pUrZ+v3L03fmV82tGe4MBA8Y5DH1zo43Of8a9m743GDBgwJincUpKp29XD/QwYMCAUUv43JTuy88NGDBgbMjIk7+k3aYH4gW1OAwYMDZkJIOBt1//0XwDBgwY/5hxmcstUJOmv7ErGDBgtGYorTTl/Vr66I4cHvYAAwaMAxhuwB29495Bb9tF7TYYMGBsznCDaS01TBJNo5EHAwaMdgx39JgUq7VhgNSMgwEDRmtGrZRdldjpzTgjKMOAAaMpY0GrK0jschIMGDBOYOhtfbcodQcA+mGLh+cGDBgwGjH0tlft2ITU5xOK54cQDAMGjNaM5ACrfovkOQADBgwY84TMDZ21wOr+BcNGGwwYMFoz3FuvTR/1YxkPARcGDBitGat+WG/J6aHZGF7CgAGjKUNvdSXHLJSmv/6XGZNYGDBgNGIoP5Ckhm8c4Bh+CwYMGO0YevmqzxmSllytnIYBA8YJDH2IqARTl7og0YQBA0ZrRjK8VF4n3TD7IQEDBoymjMtcSdjVczl3LAoDBozeDDfM6cPFpLnvppgwYMA4gVE7TuGGxRdnGjBgwDiGoSdwStGbjxDc0AwDBgwYbmLnNtSu0ioGXBgwYBzAcFv/7pGLYuiHAQPGAQz3AIQS6+xpqtnaK9biMGDA2JCRFJC1Y2RuIy8vgGHAgLEt4wdqaA8swQ99jQAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+lazyScripts.push('//s95.cnzz.com/z_stat.php?id=1235250&web_id=1235250')
+
+</script>
+
+<script src="../../../../../js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="../../../../../js/search.min.js?v=1.7.2" async></script>
+
+
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>
