@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>W130S(D400) 黑群晖 4.3 升级 5.1 | LittlePig.CN | someone&#39;s Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="Lenovo W130S (D400)  DSM 4.3 的一块 1T 希捷盘 S.M.A.R.T 提示要挂了，于是换了一块 3T 的，正好趁机升级下系统 1）到 http:&#x2F;&#x2F;nanoboot.eu.org&#x2F; 下载 XPEnoboot 2）到 群晖网站下载官方固件 http:&#x2F;&#x2F;dl.synology.com&#x2F;download&#x2F; 注意选择 XPEnoboot 支持的 DSM_DS3615xs_5">
+<meta property="og:type" content="article">
+<meta property="og:title" content="W130S(D400) 黑群晖 4.3 升级 5.1">
+<meta property="og:url" content="http://littlepig.cn/posts/2015/02/03/dsm-43-update-51/index.html">
+<meta property="og:site_name" content="LittlePig.CN">
+<meta property="og:description" content="Lenovo W130S (D400)  DSM 4.3 的一块 1T 希捷盘 S.M.A.R.T 提示要挂了，于是换了一块 3T 的，正好趁机升级下系统 1）到 http:&#x2F;&#x2F;nanoboot.eu.org&#x2F; 下载 XPEnoboot 2）到 群晖网站下载官方固件 http:&#x2F;&#x2F;dl.synology.com&#x2F;download&#x2F; 注意选择 XPEnoboot 支持的 DSM_DS3615xs_5">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2015-02-03T04:01:30.000Z">
+<meta property="article:modified_time" content="2016-10-31T11:56:16.000Z">
+<meta property="article:author" content="ZHZ">
+<meta name="twitter:card" content="summary">
+    
+        <link rel="alternate" type="application/atom+xml" title="LittlePig.CN" href="../../../../../atom.xml">
+    
+    <link rel="shortcut icon" href="../../../../../favicon.ico">
+    <link rel="stylesheet" href="../../../../../css/style.css?v=1.7.2">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(../../../../../img/brand.jpg)">
+      <div class="brand">
+        <a href="../../../../../index.html" class="avatar waves-effect waves-circle waves-light">
+          <img src="../../../../../img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">ZHZ</h5>
+          <a href="mailto:zhz@hebut.edu.cn" title="zhz@hebut.edu.cn" class="mail">zhz@hebut.edu.cn</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="../../../../../index.html"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="../../../../../archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="../../../../../tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="../../../../../categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="../../../../../about"  >
+                <i class="icon icon-lg icon-link"></i>
+                关于
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">W130S(D400) 黑群晖 4.3 升级 5.1</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">W130S(D400) 黑群晖 4.3 升级 5.1</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2015-02-03T04:01:30.000Z" itemprop="datePublished" class="page-time">
+  2015-02-03
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+
+<article id="post-dsm-43-update-51"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">W130S(D400) 黑群晖 4.3 升级 5.1</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2015-02-03 12:01:30" datetime="2015-02-03T04:01:30.000Z"  itemprop="datePublished">2015-02-03</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>Lenovo W130S (D400)  DSM 4.3 的一块 1T 希捷盘 S.M.A.R.T 提示要挂了，于是换了一块 3T 的，正好趁机升级下系统</p>
+<p>1）到 <a target="_blank" rel="noopener" href="http://nanoboot.eu.org/">http://nanoboot.eu.org/</a> 下载 XPEnoboot</p>
+<p>2）到 群晖网站下载官方固件 <a target="_blank" rel="noopener" href="http://dl.synology.com/download/">http://dl.synology.com/download/</a> 注意选择 XPEnoboot 支持的 DSM_DS3615xs_5022</p>
+<p>3）备份你群晖的重要数据，导出系统配置</p>
+<p>4）找个启动 U 盘，把 win32diskimager 及 1）下载的 XPEnoboot_DS3615xs_5.1-5022.img 放进去</p>
+<p>5）使用你的 U 盘启动 W130S ，然后在 PE 中利用 win32diskimager 把 img 写到系统自带的 256M 闪存盘上，该盘为 SMI 芯片组，VID=090C, PID=1000 (慧荣主控) ，你也可以在写入之前利用 img 编辑工具如 WinImage 修改 img 其中的 syslinux.cfg 文件，把 VID ,PID 换成你的启动闪存盘对应的，我是进去系统后才换的。</p>
+<p>Synoboot支持的U盘VID和PID如下：<br>VID=F400, PID=F401 (Synology)<br>VID=090C, PID=1000 (慧荣主控)<br>VID=0781, PID=5571 (闪迪酷豆)<br>VID=0EA0, PID=2168 (瀚邦主控)</p>
+<p>6）拔掉你的启动 U 盘，使用内置闪存盘启动机器，选择 update 选项启动</p>
+<p>7）在PC上使用群晖助手扫描，然后安装官方的 pat 文件</p>
+<p>8）进入新系统，导入3）导出的系统配置，升级配套套件等。</p>
+<p>我的 download station 的 pt 记录丢了（文件没丢，就是下载记录没了），photo 和 music 以及 movie 需要重新索引，除此之外，无异常。</p>
+<p>因为一开始内置闪存盘的 VID 和 PID 和系统的对应不上，所以 file station 会列出你的内置闪存盘，此时正好可以修改覆盖其中 syslinux.cfg 的 VID和PID，再重启后就看不到内置闪存盘了。</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2016-10-31T11:56:16.000Z" itemprop="dateUpdated">2016-10-31 19:56:16</time>
+</span><br>
+
+
+        
+        本文地址：<a href="" target="_blank" rel="external">http://littlepig.cn/posts/2015/02/03/dsm-43-update-51/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="http://littlepig.cn">
+            <img src="../../../../../img/avatar.jpg" alt="ZHZ">
+            ZHZ
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赞</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://littlepig.cn/posts/2015/02/03/dsm-43-update-51/&title=《W130S(D400) 黑群晖 4.3 升级 5.1》 — LittlePig.CN&pic=http://littlepig.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://littlepig.cn/posts/2015/02/03/dsm-43-update-51/&title=《W130S(D400) 黑群晖 4.3 升级 5.1》 — LittlePig.CN&source=记录 / 回忆 / 分享" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://littlepig.cn/posts/2015/02/03/dsm-43-update-51/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《W130S(D400) 黑群晖 4.3 升级 5.1》 — LittlePig.CN&url=http://littlepig.cn/posts/2015/02/03/dsm-43-update-51/&via=http://littlepig.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://littlepig.cn/posts/2015/02/03/dsm-43-update-51/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="../../../11/14/debian-php-ms-sql-server/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Debian 下 PHP 连接 MS SQL Server</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="../../../../2014/11/29/debian-install-on-lenovo-t168/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">联想万全 T168 安装 Debian</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="../../../../../img/wechat.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="../../../../../img/wechat.png" data-alipay="../../../../../img/alipay.png">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="../../../../../atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license noopener" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>ZHZ &copy; 2003 - 2021</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://littlepig.cn/posts/2015/02/03/dsm-43-update-51/&title=《W130S(D400) 黑群晖 4.3 升级 5.1》 — LittlePig.CN&pic=http://littlepig.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://littlepig.cn/posts/2015/02/03/dsm-43-update-51/&title=《W130S(D400) 黑群晖 4.3 升级 5.1》 — LittlePig.CN&source=记录 / 回忆 / 分享" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://littlepig.cn/posts/2015/02/03/dsm-43-update-51/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《W130S(D400) 黑群晖 4.3 升级 5.1》 — LittlePig.CN&url=http://littlepig.cn/posts/2015/02/03/dsm-43-update-51/&via=http://littlepig.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://littlepig.cn/posts/2015/02/03/dsm-43-update-51/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACL0lEQVR42u3azW7DIBBF4bz/S7vbSnXh3AFH8nC8itLY8HlB5+/zwdf160q///vXdJVtlwwZMl7LuIbXfwvwJcldZN3Jq5EhQ8YBDLI8XzjdBHnaZM8yZMiQMdzc+DlPPFOGDBkyagfu0iaGAagMGTJkrGyIJ7Q8KHw8F5chQ8YLGbzq/v3Pj/Q3ZMiQ8SrGFV7j4Cw9TGt7uHmaDBkyWjPSMllaUNuWoJL9yJAh4wAGH7AggxS1TfORDpSLy5Ahox0jzRPTI5WEhrUxDhkyZJzA4GMQaZksxaODdfzqZciQ0ZrBC2ckKCSp766WpwwZMnozVoI5XoxL32iaSMuQIeMEBg/yas3LFRLapwwZMg5g8IGG9KCMY1IwfnHzmmTIkHEAY/1gfSLg4+0HGTJknMPg5S3+m7SdkLYHZMiQcQKDFMuCQQd8V61ViWZGZMiQ0Y5Bmo5pClqj1tqfMmTIOIexMvpQI5GXFYyRyZAhozWDBHC1MI4npbUSHhq5kCFDRjtGmqaiR+OtpJ9vvpEhQ8YBDN5o5GlnjUruRf83ZMiQ0ZSRhnq7hr3SQt7kwJUhQ0YjxhVeKXXXEyYFQRkyZLRm7C3u8/JZ7fe1g16GDBk9GOSI3FXcT9ulwYErQ4aMAxg8600PxGJLMtytDBkyZMRDWltHLh45cGXIkNGawQNHXkpLmwGTAVYZMmQ0ZaSDFGnJrHbs8sRYhgwZvRkrkxp8aCxNYvmohwwZMlozfgBVAtsZs2yvvgAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+lazyScripts.push('//s95.cnzz.com/z_stat.php?id=1235250&web_id=1235250')
+
+</script>
+
+<script src="../../../../../js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="../../../../../js/search.min.js?v=1.7.2" async></script>
+
+
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

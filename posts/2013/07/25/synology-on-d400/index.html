@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>D400 (W130S) 安装 群晖系统 | LittlePig.CN | someone&#39;s Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="DSM,D400,W130S,Synology">
+    <meta name="description" content="原来 的 W130S  (联想 D400 的定制版本）我升级为了 Server 2012 ，用着也一直挺顺利，挺方便。近几日翻看新闻了解到群晖的新版本已经有 Git Server 模块进入了 Beta ，想到 Server 2012 对照片的管理能力实在差，于是没经住诱惑尝试了下，不过由于是黑群晖，只到 4.2 版本，暂时没法使用 Git Server。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="D400 (W130S) 安装 群晖系统">
+<meta property="og:url" content="http://littlepig.cn/posts/2013/07/25/synology-on-d400/index.html">
+<meta property="og:site_name" content="LittlePig.CN">
+<meta property="og:description" content="原来 的 W130S  (联想 D400 的定制版本）我升级为了 Server 2012 ，用着也一直挺顺利，挺方便。近几日翻看新闻了解到群晖的新版本已经有 Git Server 模块进入了 Beta ，想到 Server 2012 对照片的管理能力实在差，于是没经住诱惑尝试了下，不过由于是黑群晖，只到 4.2 版本，暂时没法使用 Git Server。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2013-07-25T06:01:26.000Z">
+<meta property="article:modified_time" content="2017-05-10T13:44:53.000Z">
+<meta property="article:author" content="ZHZ">
+<meta property="article:tag" content="DSM">
+<meta property="article:tag" content="D400">
+<meta property="article:tag" content="W130S">
+<meta property="article:tag" content="Synology">
+<meta name="twitter:card" content="summary">
+    
+        <link rel="alternate" type="application/atom+xml" title="LittlePig.CN" href="../../../../../atom.xml">
+    
+    <link rel="shortcut icon" href="../../../../../favicon.ico">
+    <link rel="stylesheet" href="../../../../../css/style.css?v=1.7.2">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(../../../../../img/brand.jpg)">
+      <div class="brand">
+        <a href="../../../../../index.html" class="avatar waves-effect waves-circle waves-light">
+          <img src="../../../../../img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">ZHZ</h5>
+          <a href="mailto:zhz@hebut.edu.cn" title="zhz@hebut.edu.cn" class="mail">zhz@hebut.edu.cn</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="../../../../../index.html"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="../../../../../archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="../../../../../tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="../../../../../categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="../../../../../about"  >
+                <i class="icon icon-lg icon-link"></i>
+                关于
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">D400 (W130S) 安装 群晖系统</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">D400 (W130S) 安装 群晖系统</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2013-07-25T06:01:26.000Z" itemprop="datePublished" class="page-time">
+  2013-07-25
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+
+<article id="post-synology-on-d400"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">D400 (W130S) 安装 群晖系统</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2013-07-25 14:01:26" datetime="2013-07-25T06:01:26.000Z"  itemprop="datePublished">2013-07-25</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>原来 的 W130S  (联想 D400 的定制版本）我升级为了 Server 2012 ，用着也一直挺顺利，挺方便。近几日翻看新闻了解到群晖的新版本已经有 Git Server 模块进入了 Beta ，想到 Server 2012 对照片的管理能力实在差，于是没经住诱惑尝试了下，不过由于是黑群晖，只到 4.2 版本，暂时没法使用 Git Server。</p>
+<a id="more"></a>
+
+<p>1）群晖官方网站有 Live Demo 可供尝试：<a target="_blank" rel="noopener" href="http://www.synology.com/products/dsm_livedemo.php?lang=chs">http://www.synology.com/products/dsm_livedemo.php?lang=chs</a></p>
+<p>2）淘宝一块供 D400 用的VGA显示输出板子，这样才能看到输出并调节 BIOS 的启动顺序，找一套 USB 接口的键盘鼠标方便操作。</p>
+<p>3）下载群晖系统必须的系统镜像和软件，我的网盘里有 <a target="_blank" rel="noopener" href="http://pan.baidu.com/share/link?shareid=501801&amp;uk=1543778081">http://pan.baidu.com/share/link?shareid=501801&amp;uk=1543778081</a></p>
+<p>Win32 Disk Imager 用来将下边的启动镜像写入 u 盘或者 D400 自带的闪存盘<br>Synoboo4.2ForD5100.img 此为系统启动镜像，可以启动基本的群晖系统供下边的群辉助手发现并使用。<br>Synology Assistant 群辉助手，用来对群晖的 NAS 进行初始化和管理，群晖官方网站可下载。<br>DS3612xs 3202 Repack.pat 破解后的群晖系统。</p>
+<p>把原来NAS的数据想办法导出，因为安装过程会将数据盘也格式化，群晖数据盘是 EXT4 格式，所以以前的 NTFS 没法直接挂载使用。</p>
+<p>网上大部分都是将 img 写入空白 u 盘来启动，可是我的 u 盘里已经有不少东西了，而且能够 pe 启动，所以不想再格式化，所以我将上述软件放到了 u 盘里，然后利用我的 u 盘启动将 img 写入了 W130S 自带的256M闪存里。</p>
+<p>4）下面步骤很简单，但可能需要多次尝试</p>
+<p>可启动u盘插入W130S，接好外接显示器和键盘鼠标，启动 W130S，开机时按 F2 进入 CMOS ，boot 菜单里调整为 All USB HDD 优先启动，内置 USB Disk 其次，SATA 数据盘再次，保存退出，重启进入 PE 。</p>
+<p>运行 Disk Imager ，将Synoboo4.2ForD5100.img 写入系统自带的 256M 闪存，不要写错盘。</p>
+<p>拔掉 U 盘，重启机器进入字符界面的 Linux 系统。</p>
+<p>在 PC 上使用 Synology Assistant 会扫描到新的机器，然后点击右键安装，选择 DS3612xs 3202 Repack.pat ，设置网络信息，不使用 SHR ，安装完毕后会重启。</p>
+<p>上述步骤我一开始卸载了NAS所有的数据盘，用自带的 256M 启动之后，直接写 pat ，但是提示无法写入成功，后来尝试了很多次，发现加载了数据盘才可以写入，也即写入是写到了第一个 SATA 盘上，与内置 256 M u盘上负责启动的系统没关系，不知道是不是可以这样理解。</p>
+<p>5）再次使用 Synology Assistant 连接，然后使用 admin 及刚才设置的密码即可进入 DSM 的桌面，根据自己需要安装组件配置参数即可。</p>
+<p>6）一些注意事项：</p>
+<p>套件中心配置里可以选择使用 beta 测试版组件，很可以依然没有 git server ，官方说基于 4.3 才有此组件。</p>
+<p>下载中心里如果玩 pt 的话， bt 设置里要去掉 DHT 网络，共享率设置为 100，并且做好 bt 端口的 upnp 设置。这样才能保证有上传，不会被 ban 掉。</p>
+<p>不同用户的配置是不一样的，所以不建议使用 admin 账号来配置 Video Station ,Audio Station,Download Station 和 Photo Station，最好新建一个属于 admin 组的账号再次登陆进行配置。</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-05-10T13:44:53.000Z" itemprop="dateUpdated">2017-05-10 21:44:53</time>
+</span><br>
+
+
+        
+        本文地址：<a href="" target="_blank" rel="external">http://littlepig.cn/posts/2013/07/25/synology-on-d400/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="http://littlepig.cn">
+            <img src="../../../../../img/avatar.jpg" alt="ZHZ">
+            ZHZ
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赞</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../../tags/D400/" rel="tag">D400</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../../tags/DSM/" rel="tag">DSM</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../../tags/Synology/" rel="tag">Synology</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../../tags/W130S/" rel="tag">W130S</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://littlepig.cn/posts/2013/07/25/synology-on-d400/&title=《D400 (W130S) 安装 群晖系统》 — LittlePig.CN&pic=http://littlepig.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://littlepig.cn/posts/2013/07/25/synology-on-d400/&title=《D400 (W130S) 安装 群晖系统》 — LittlePig.CN&source=原来 的 W130S  (联想 D400 的定制版本）我升级为了 Server 2012 ，用着也一直挺顺利，挺方便。近几日翻看新闻了解到群晖的新版本已经..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://littlepig.cn/posts/2013/07/25/synology-on-d400/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《D400 (W130S) 安装 群晖系统》 — LittlePig.CN&url=http://littlepig.cn/posts/2013/07/25/synology-on-d400/&via=http://littlepig.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://littlepig.cn/posts/2013/07/25/synology-on-d400/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="../../../08/23/mysql-master-slave-fix/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">MySQL 主从备份失败</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="../../19/install-exsi-5-1-on-dell-poweredge-r720/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Dell PowerEdge R720 安装 EXSI 5.1</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="../../../../../img/wechat.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="../../../../../img/wechat.png" data-alipay="../../../../../img/alipay.png">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="../../../../../atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license noopener" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>ZHZ &copy; 2003 - 2021</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://littlepig.cn/posts/2013/07/25/synology-on-d400/&title=《D400 (W130S) 安装 群晖系统》 — LittlePig.CN&pic=http://littlepig.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://littlepig.cn/posts/2013/07/25/synology-on-d400/&title=《D400 (W130S) 安装 群晖系统》 — LittlePig.CN&source=原来 的 W130S  (联想 D400 的定制版本）我升级为了 Server 2012 ，用着也一直挺顺利，挺方便。近几日翻看新闻了解到群晖的新版本已经..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://littlepig.cn/posts/2013/07/25/synology-on-d400/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《D400 (W130S) 安装 群晖系统》 — LittlePig.CN&url=http://littlepig.cn/posts/2013/07/25/synology-on-d400/&via=http://littlepig.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://littlepig.cn/posts/2013/07/25/synology-on-d400/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACJElEQVR42u3aQXKDMAwF0Nz/0nTbRYEvqbSD/bxiJgnwvFAkS59PvI5v6+zTs+/3fvV5YmFgYLyWcVyu5DvXDz67z/Wd83fDwMDYh5E8/vq6+tJJgM6DNQYGBsb1dZ7SVYMpBgYGRo+Rl6C9DcLAwMCYFLF5GE1Ow/6tFsfAwHghIz91//vrR/obGBgYr2IcxVVtPVbvdrQWBgbG2ow8wI3Ky+AO1YCLgYGxDyMZ20rK198K09WWZ2FmDQMD47WM/NA/D5r5p/Mi+eZ/AwMDYwnGJCwmwxb5UX4eapt5KwYGxmsZT/B6QTZPTAvlLgYGxkKM3phFNZhWBy+qx3wYGBirMvL0a3LolofppJz+gYSBgbEZI3mVXgLXazNEgRgDA2MbRjUhq+J7G1SYFsHAwFiUMW8i9orPfPvyQTEMDIzdGPmPk9edH+oVRjcwMDCWY/RSwLyIzQPlpC2BgYGxNqOceLUamb3pj/KoGQYGxtKMSSE6L0rzYrg8OYKBgbEQozoq0ZvFyovYKhIDA2MfRt687I2LVYvSnIqBgbEbY9IfrI58VY/kbp6IgYGxKOMort4gRbV5MKq/MTAwlmPMGwB5YyAP0L2CFgMDY21G9ThscrhfbV4WAi4GBsYGjELVO96OSSl7k+diYGBgjCvHfMCrmb1iYGBgtIrb+dZER3UYGBgbMKrNgGprsxd2k3tiYGDswJjnXT12b8xilLBiYGC8j/EFhnOTYTH+KKYAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+lazyScripts.push('//s95.cnzz.com/z_stat.php?id=1235250&web_id=1235250')
+
+</script>
+
+<script src="../../../../../js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="../../../../../js/search.min.js?v=1.7.2" async></script>
+
+
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

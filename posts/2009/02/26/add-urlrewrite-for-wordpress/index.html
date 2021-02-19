@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>给 WordPress 添加固定链接 | LittlePig.CN | someone&#39;s Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="这里我只能以我的认为来描述整个过程，虽然对这些名词也是略有听说、不知其味。 　　所谓的固定链接其实就是修改 WordPress 目录、页面或者帖子的超级链接也即 URL 的形式，这里的固定既可以理解为动词也可以理解为形容词，WP 默认的链接形势类似于动态语言所产生的那种链接形式，比如 http:&#x2F;&#x2F;littlepig.cn&#x2F;?postid&#x3D;5 ，对应的页面是id为5的页面，这种链接的缺点就是链">
+<meta property="og:type" content="article">
+<meta property="og:title" content="给 WordPress 添加固定链接">
+<meta property="og:url" content="http://littlepig.cn/posts/2009/02/26/add-urlrewrite-for-wordpress/index.html">
+<meta property="og:site_name" content="LittlePig.CN">
+<meta property="og:description" content="这里我只能以我的认为来描述整个过程，虽然对这些名词也是略有听说、不知其味。 　　所谓的固定链接其实就是修改 WordPress 目录、页面或者帖子的超级链接也即 URL 的形式，这里的固定既可以理解为动词也可以理解为形容词，WP 默认的链接形势类似于动态语言所产生的那种链接形式，比如 http:&#x2F;&#x2F;littlepig.cn&#x2F;?postid&#x3D;5 ，对应的页面是id为5的页面，这种链接的缺点就是链">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2009-02-26T14:19:04.000Z">
+<meta property="article:modified_time" content="2021-02-19T04:44:58.123Z">
+<meta property="article:author" content="ZHZ">
+<meta name="twitter:card" content="summary">
+    
+        <link rel="alternate" type="application/atom+xml" title="LittlePig.CN" href="../../../../../atom.xml">
+    
+    <link rel="shortcut icon" href="../../../../../favicon.ico">
+    <link rel="stylesheet" href="../../../../../css/style.css?v=1.7.2">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(../../../../../img/brand.jpg)">
+      <div class="brand">
+        <a href="../../../../../index.html" class="avatar waves-effect waves-circle waves-light">
+          <img src="../../../../../img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">ZHZ</h5>
+          <a href="mailto:zhz@hebut.edu.cn" title="zhz@hebut.edu.cn" class="mail">zhz@hebut.edu.cn</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="../../../../../index.html"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="../../../../../archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="../../../../../tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="../../../../../categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="../../../../../about"  >
+                <i class="icon icon-lg icon-link"></i>
+                关于
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">给 WordPress 添加固定链接</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">给 WordPress 添加固定链接</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2009-02-26T14:19:04.000Z" itemprop="datePublished" class="page-time">
+  2009-02-26
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+
+<article id="post-add-urlrewrite-for-wordpress"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">给 WordPress 添加固定链接</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2009-02-26 22:19:04" datetime="2009-02-26T14:19:04.000Z"  itemprop="datePublished">2009-02-26</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>　　这里我只能以我的认为来描述整个过程，虽然对这些名词也是略有听说、不知其味。</p>
+<p>　　所谓的固定链接其实就是修改 WordPress 目录、页面或者帖子的超级链接也即 URL 的形式，这里的固定既可以理解为动词也可以理解为形容词，WP 默认的链接形势类似于动态语言所产生的那种链接形式，比如 <a href="http://littlepig.cn/?postid=5">http://littlepig.cn/?postid=5</a> ，对应的页面是id为5的页面，这种链接的缺点就是链接本身不带有任何信息，一眼看去根本就不知道里面内容是什么，据说搜索引擎也对这种链接爱理不理的，自然而然带来的浏览量、流量就少，所以我们得想点办法。</p>
+<p>　　Apache 支持 URL Rewrite 功能， 就是将某种形式的链接转移到另外一个链接上，利用这个功能，我们可以将 Apache 接受到的 <a href="http://littlepig.cn/somecat/somepost.html">http://littlepig.cn/somecat/somepost.html</a>  这种形式的链接转到 <a href="http://littlepig.cn/?postid=5">http://littlepig.cn/?postid=5</a>  的页面上，只需要在站点的 .htaccess 里面添加规则即可，但是显然的，我们不可能为所有的页面都一一书写规则，因此我们可以使用泛匹配 (wide cast) 将某些固定形式的请求转移到一个单独的 php 页面上，由 php 的代码分析并确定链接该指向哪个真正的页面，然后再行加载。这个过程有点类似于域名的泛解析。很幸运的，WordPress 就完美的支持 URL Rewrite ，index.php 就可以看作是一个 URL 解析器。</p>
+<p>　　有了上面的基础，实现链接的自定义就比较方便了</p>
+<p>　　１、在后台的 设置 - 固定链接 选项里，你可以选择系统提供的几种固定样式的链接，但都不怎么人性化，当然我们也可以自己定义，自定义的字段(或者叫做标签)可以使用的有如下几种</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">%year% </span><br><span class="line">　　　年，四位数，如：2004</span><br><span class="line"></span><br><span class="line">　　　%monthnum%</span><br><span class="line">　　　月，如： 05</span><br><span class="line"></span><br><span class="line">　　　%day%</span><br><span class="line">　　　日，如：28</span><br><span class="line"></span><br><span class="line">　　　%hour%</span><br><span class="line">　　　时，更精确的时间，如：15</span><br><span class="line"></span><br><span class="line">　　　%minute%</span><br><span class="line">　　　分，如：43</span><br><span class="line"></span><br><span class="line">　　　%second%</span><br><span class="line">　　　秒，如：33</span><br><span class="line"></span><br><span class="line">　　　%postname%</span><br><span class="line">　　　文章名，这是WordPress 固定链接比较常用的标签。如一篇文章的标题为“This Is A Great Post”，则使用这个标签的固定链接就是“this-is-a-great-post”。对于中文，WordPress 会进行编码而后输出编码结果。</span><br><span class="line"></span><br><span class="line">　　　%post_id%</span><br><span class="line">　　　文章的唯一标识，如：423</span><br><span class="line"></span><br><span class="line">　　　%category%</span><br><span class="line">　　　分类</span><br><span class="line"></span><br><span class="line">　　　%author%</span><br><span class="line">　　　文章作者名</span><br></pre></td></tr></table></figure>
+<p>　　在自定义固定链接的时候，域名是不用输入的，直接使用　/%category%/%postname%/ 这种形式即可，当然，你也可以在后边加上 .htm 或者 .html ，这样看起来更像是静态页面，但据说不加扩展名最后使用/结尾那种形式更受搜索引擎青睐，其中 %postnam% 有的帖子里叫做 日志缩略名 ，貌似在 WP 2.7 里已经取消了这个选项，我在新建日志的时候反正没有找到任何输入类似信息的地方，只是在快速编辑日志的时候会出现一个叫做别名的选项，应该就是所说的日志缩略名，帖子在正常修改的时候在标题的下面会显示有 修改固定链接 的选项。</p>
+<p>　　WordPress 设置好了，接下来的工作就是配置 Apache 来实现 URL Rewrite ，据说大部分网络服务提供商都开启了 mod_rewrite ，站点管理员只需要在网站根目录的 .htaccess 文件里配置规则即可，显然，写规则也得懂得很多知识，我还是决定使用拿来主义，搜啊搜，找到了一段</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;IfModule mod_rewrite.c&gt;</span><br><span class="line">RewriteEngine On</span><br><span class="line">RewriteBase &#x2F;</span><br><span class="line">RewriteCond %&#123;REQUEST_FILENAME&#125; !-f</span><br><span class="line">RewriteCond %&#123;REQUEST_FILENAME&#125; !-d</span><br><span class="line">RewriteRule . &#x2F;index.php [L]</span><br><span class="line">&lt;&#x2F;IfModule&gt;</span><br></pre></td></tr></table></figure>
+<p>　　将上面代码放入你站点根目录的 .htaccess 里即可。</p>
+<p>　　现在你的 WordPress 就应该可以工作了，但有些地方要注意，一是你需要修改你以前所有文章的 别名，尽量去掉中文，因为中文会编码成 %2d%e2 这种形式，显然，这样的链接没有任何意义，甚至还不如 /?id=5 那种呢，这个工作量比较大，而且，要求你还得懂点英文，咱总不能拿 look-what-look 这种链接来秀吧？固定链接这个操作最好在开博的时候就进行，以后省事多了；二是我发现 页面(page) 的标题如果有中文，不仅编码后的链接不美观，而且根本就不能访问，所以这些页面的 固定链接 是必须要改成英文的。</p>
+<p>　　目前就发现这么多问题，我的貌似目前工作正常。</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2021-02-19T04:44:58.123Z" itemprop="dateUpdated">2021-02-19 12:44:58</time>
+</span><br>
+
+
+        
+        本文地址：<a href="" target="_blank" rel="external">http://littlepig.cn/posts/2009/02/26/add-urlrewrite-for-wordpress/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="http://littlepig.cn">
+            <img src="../../../../../img/avatar.jpg" alt="ZHZ">
+            ZHZ
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赞</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://littlepig.cn/posts/2009/02/26/add-urlrewrite-for-wordpress/&title=《给 WordPress 添加固定链接》 — LittlePig.CN&pic=http://littlepig.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://littlepig.cn/posts/2009/02/26/add-urlrewrite-for-wordpress/&title=《给 WordPress 添加固定链接》 — LittlePig.CN&source=记录 / 回忆 / 分享" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://littlepig.cn/posts/2009/02/26/add-urlrewrite-for-wordpress/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《给 WordPress 添加固定链接》 — LittlePig.CN&url=http://littlepig.cn/posts/2009/02/26/add-urlrewrite-for-wordpress/&via=http://littlepig.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://littlepig.cn/posts/2009/02/26/add-urlrewrite-for-wordpress/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="../site-construction-log/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">近期站点建设小记</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="../../../../2007/02/23/dreamming-all-the-day/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">心理 - 总是整夜整夜的做梦怎么办</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="../../../../../img/wechat.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="../../../../../img/wechat.png" data-alipay="../../../../../img/alipay.png">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="../../../../../atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license noopener" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>ZHZ &copy; 2003 - 2021</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://littlepig.cn/posts/2009/02/26/add-urlrewrite-for-wordpress/&title=《给 WordPress 添加固定链接》 — LittlePig.CN&pic=http://littlepig.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://littlepig.cn/posts/2009/02/26/add-urlrewrite-for-wordpress/&title=《给 WordPress 添加固定链接》 — LittlePig.CN&source=记录 / 回忆 / 分享" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://littlepig.cn/posts/2009/02/26/add-urlrewrite-for-wordpress/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《给 WordPress 添加固定链接》 — LittlePig.CN&url=http://littlepig.cn/posts/2009/02/26/add-urlrewrite-for-wordpress/&via=http://littlepig.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://littlepig.cn/posts/2009/02/26/add-urlrewrite-for-wordpress/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACs0lEQVR42u3aUW4iMRAE0Nz/0tkDRANVbTfJSm++EBqM3yDZTbW/vuLrO75+fupphNcjP43wtXHh4eHhXZ36z3uSd56or0dI5pnPGQ8PD2+blwyX3D/bQl4/gnYOeHh4eP8j7+nOtoBO7sTDw8P7+7yTAjp5fRJM4OHh4X2S1y7E+WKdx7ivJ7qeteDh4eF1OUAdof7u65X+Hh4eHt7VAwEbm0QbUtSzxcPDw1vg5Qtu275qI4Z2zGSeeHh4eHu8/A//ydGotlyePaY3PxgeHh7eMS8ZIp/6LCXIR2sLdzw8PLwNXpt8toPONpV8Q6obYHh4eHjHvLaAvhUZtAt9crDgwv8DPDw8vIPTR0lh3TbM8oNWs7K+yFrw8PDwDnh5SLoR7J6HIG9+MTw8PLwP8vJyNr8/OiA1imvrMAIPDw/vgDcrZNslfhY3tJvN42h4eHh4V3nJoPlE85A3HycPNd6EEXh4eHiXeHlhnZe2eXR7ckChOGSAh4eHt8BLiua2nG0X93yDufAb4uHh4R3z2rZWDmhbWTPqm40NDw8Pb403OyBVt6MOYoschoeHh7fNmx0RyDeJ5DHV4ULbQsPDw8O7yssD0zY+aK/2MFb0WTw8PLyrvJO2/d1gtw1wo2/Hw8PDW+DlsLwIPtlC2hZXUY7j4eHhXeXVB0BHfflh/FpGIdEX4+Hh4V3itV+fl9ft1NstJ9oY8PDw8BZ47URnrf3ZEYG89RUdGsDDw8M74H2X191IIhnzqHzHw8PDW+CdNPVnjFlYXDS6bp1ZwMPDw1ub+my5b9ta+baBh4eH90nerGU1Aw9bWSd7Gh4eHt6v8m6V423sO3yUeHh4eH+A1xbEeeiQtNPyMBcPDw9vmzcLCG6Bb4UgjxsDHh4e3lXe7GBTvogn7yQPbqWzh4eHh9fx/gHZ47tgKSuqggAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+lazyScripts.push('//s95.cnzz.com/z_stat.php?id=1235250&web_id=1235250')
+
+</script>
+
+<script src="../../../../../js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="../../../../../js/search.min.js?v=1.7.2" async></script>
+
+
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

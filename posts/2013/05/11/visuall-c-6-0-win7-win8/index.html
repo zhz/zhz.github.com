@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>绿色安装版 Visual C++ 6.0 | LittlePig.CN | someone&#39;s Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="6.0,c#,VC6,Visual,Win7,Win8">
+    <meta name="description" content="一直见到有人烦恼在 Windows 7 或者 Windows 8 下运行 Visual C++ 6.0 ，我想这主要得益于庞大的教育大军，几乎所有的国内高校计算机基础课程还在推荐 VC6 作为学习编程基础的软件，的确，启动运行速度快，体积小，人见人爱，我也一直在用，不过我不习惯 Win7和Win8，故在 XP 下没出现过很多的问题，看到不少同学都把精力浪费在了想法解决 VC6 的兼容性上，于是做个">
+<meta property="og:type" content="article">
+<meta property="og:title" content="绿色安装版 Visual C++ 6.0">
+<meta property="og:url" content="http://littlepig.cn/posts/2013/05/11/visuall-c-6-0-win7-win8/index.html">
+<meta property="og:site_name" content="LittlePig.CN">
+<meta property="og:description" content="一直见到有人烦恼在 Windows 7 或者 Windows 8 下运行 Visual C++ 6.0 ，我想这主要得益于庞大的教育大军，几乎所有的国内高校计算机基础课程还在推荐 VC6 作为学习编程基础的软件，的确，启动运行速度快，体积小，人见人爱，我也一直在用，不过我不习惯 Win7和Win8，故在 XP 下没出现过很多的问题，看到不少同学都把精力浪费在了想法解决 VC6 的兼容性上，于是做个">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2013-05-11T02:21:42.000Z">
+<meta property="article:modified_time" content="2016-10-17T08:31:02.000Z">
+<meta property="article:author" content="ZHZ">
+<meta property="article:tag" content="6.0">
+<meta property="article:tag" content="c#">
+<meta property="article:tag" content="VC6">
+<meta property="article:tag" content="Visual">
+<meta property="article:tag" content="Win7">
+<meta property="article:tag" content="Win8">
+<meta name="twitter:card" content="summary">
+    
+        <link rel="alternate" type="application/atom+xml" title="LittlePig.CN" href="../../../../../atom.xml">
+    
+    <link rel="shortcut icon" href="../../../../../favicon.ico">
+    <link rel="stylesheet" href="../../../../../css/style.css?v=1.7.2">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(../../../../../img/brand.jpg)">
+      <div class="brand">
+        <a href="../../../../../index.html" class="avatar waves-effect waves-circle waves-light">
+          <img src="../../../../../img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">ZHZ</h5>
+          <a href="mailto:zhz@hebut.edu.cn" title="zhz@hebut.edu.cn" class="mail">zhz@hebut.edu.cn</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="../../../../../index.html"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="../../../../../archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="../../../../../tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="../../../../../categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="../../../../../about"  >
+                <i class="icon icon-lg icon-link"></i>
+                关于
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">绿色安装版 Visual C++ 6.0</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">绿色安装版 Visual C++ 6.0</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2013-05-11T02:21:42.000Z" itemprop="datePublished" class="page-time">
+  2013-05-11
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+
+<article id="post-visuall-c-6-0-win7-win8"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">绿色安装版 Visual C++ 6.0</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2013-05-11 10:21:42" datetime="2013-05-11T02:21:42.000Z"  itemprop="datePublished">2013-05-11</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>一直见到有人烦恼在 Windows 7 或者 Windows 8 下运行 Visual C++ 6.0 ，我想这主要得益于庞大的教育大军，几乎所有的国内高校计算机基础课程还在推荐 VC6 作为学习编程基础的软件，的确，启动运行速度快，体积小，人见人爱，我也一直在用，不过我不习惯 Win7和Win8，故在 XP 下没出现过很多的问题，看到不少同学都把精力浪费在了想法解决 VC6 的兼容性上，于是做个了小程序包装了个 VC6 的绿色安装版，在 Win7 64位平台上测试了下，没有问题，欢迎使用。</p>
+<p>下载链接：<a target="_blank" rel="noopener" href="http://w.scse.hebut.edu.cn/download/75/">http://w.scse.hebut.edu.cn/download/75/</a></p>
+<p>在做这个小工具过程中的总结如下：</p>
+<p>GetWindowsDirectory 函数在 64 位Win7/8 下得到的是 system32 目录，不过如果你是32位应用程序 DLL，你应该放置在 c:\windows\SysWOW64 目录</p>
+<p>SHFileOperation 在 win7/8 下操作系统目录会出现权限问题，所以不能用来拷贝文件到系统目录，只好自己一个一个CopyFile了</p>
+<p>注册表文件是 unicode 的，读写比较麻烦，尤其是在 ansi 里读。</p>
+<p>通过添加资源的办法可以让 VC6 编写的程序原生具备提权功能，参见：<a target="_blank" rel="noopener" href="http://jingyan.baidu.com/article/f0e83a25c2e78a22e5910137.html">http://jingyan.baidu.com/article/f0e83a25c2e78a22e5910137.html</a></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2016-10-17T08:31:02.000Z" itemprop="dateUpdated">2016-10-17 16:31:02</time>
+</span><br>
+
+
+        
+        本文地址：<a href="" target="_blank" rel="external">http://littlepig.cn/posts/2013/05/11/visuall-c-6-0-win7-win8/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="http://littlepig.cn">
+            <img src="../../../../../img/avatar.jpg" alt="ZHZ">
+            ZHZ
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赞</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../../tags/6-0/" rel="tag">6.0</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../../tags/VC6/" rel="tag">VC6</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../../tags/Visual/" rel="tag">Visual</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../../tags/Win7/" rel="tag">Win7</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../../tags/Win8/" rel="tag">Win8</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../../tags/c/" rel="tag">c#</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://littlepig.cn/posts/2013/05/11/visuall-c-6-0-win7-win8/&title=《绿色安装版 Visual C++ 6.0》 — LittlePig.CN&pic=http://littlepig.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://littlepig.cn/posts/2013/05/11/visuall-c-6-0-win7-win8/&title=《绿色安装版 Visual C++ 6.0》 — LittlePig.CN&source=记录 / 回忆 / 分享" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://littlepig.cn/posts/2013/05/11/visuall-c-6-0-win7-win8/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《绿色安装版 Visual C++ 6.0》 — LittlePig.CN&url=http://littlepig.cn/posts/2013/05/11/visuall-c-6-0-win7-win8/&via=http://littlepig.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://littlepig.cn/posts/2013/05/11/visuall-c-6-0-win7-win8/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="../../26/is-64-os/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">C++ 判断是否64位系统</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="../../../03/19/via-ohci-compliant-ieee-1394-host-controller-for-xp/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">XP 下的 VIA OHCI Compliant IEEE 1394 Host Controller</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="../../../../../img/wechat.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="../../../../../img/wechat.png" data-alipay="../../../../../img/alipay.png">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="../../../../../atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license noopener" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>ZHZ &copy; 2003 - 2021</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://littlepig.cn/posts/2013/05/11/visuall-c-6-0-win7-win8/&title=《绿色安装版 Visual C++ 6.0》 — LittlePig.CN&pic=http://littlepig.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://littlepig.cn/posts/2013/05/11/visuall-c-6-0-win7-win8/&title=《绿色安装版 Visual C++ 6.0》 — LittlePig.CN&source=记录 / 回忆 / 分享" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://littlepig.cn/posts/2013/05/11/visuall-c-6-0-win7-win8/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《绿色安装版 Visual C++ 6.0》 — LittlePig.CN&url=http://littlepig.cn/posts/2013/05/11/visuall-c-6-0-win7-win8/&via=http://littlepig.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://littlepig.cn/posts/2013/05/11/visuall-c-6-0-win7-win8/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACHklEQVR42u3awW3EMAwEwOu/aacCCUvSF+Ck0SsPO+Y4wMai+PnE61ms5Pr9NdW7RgsDA+NnGc92ra6p/v59oflzlzVgYGBcwEgevw/HpLgeIwlrDAwMjF6JSXTun4WBgYExZ5Q/4OKtLAYGBsYkOnv45KNw9IIwMDCOZvRaZv/z81fONzAwMH6K8RRXtTWWROQzXhgYGGcz8oCrbkp7BwmjejAwMA5l5MMN+VZ2chi5r2f5XAwMjKMZo0Z8EMR5ib2N7vL/BgYGxqGM3la2dxiQvI7kXgwMjHsYeWssH5Ko9vOrEY+BgXEPI4m5wjayOB5RPVqI/gIYGBjHMXqF5ilebc9Nxj4wMDDuYeSHBNWW2VsjF4V2GwYGxkGM6sOS1n9+ZaGVltyLgYFxHCOP2ny0ohqXkw0zBgbGDYxe0603RtaL4+awBQYGxkGMXiz2ojb5EOwdP2BgYJzNqP6K+UBGr5EX1YCBgXEN461jyOrRZvXFlY8EMDAwjmBMonbSkiuXu6oTAwPjSsa7h5qTz9DodWNgYFzASB4/H8voNeOi40wMDIxDGZNRiWrj/isbVwwMjAsY+Sq36QdlJa+sGtMYGBi/zpiEbHXMq9eeiwIXAwPjAkYefHk056231/biGBgYGINhiz2gN+SBgYGBUQ3c6jWTkF1uYjEwMI5mzMe2qvdWt6yvtdswMDB+kDGJvN7HXFJEb1AMAwPjOMYfXlBBzwu42zIAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+lazyScripts.push('//s95.cnzz.com/z_stat.php?id=1235250&web_id=1235250')
+
+</script>
+
+<script src="../../../../../js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="../../../../../js/search.min.js?v=1.7.2" async></script>
+
+
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

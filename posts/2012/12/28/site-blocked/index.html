@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>nginx做反向代理网站提示被重置 | LittlePig.CN | someone&#39;s Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="nginx,blocked">
+    <meta name="description" content="Exsi 中的两台虚拟机，Debian 系统，暂且称为 A 和 B ，均配置两块网卡，一内一外，不同之处是 A 同时做了个 DNS ，添加了一个内部使用的域 myserver.com，并配置为了透明代理做网关，内网地址为 192.168.1.1 ，B 用 nginx 做反向代理代理内部的其他 web server 对外提供服务，dns 设置为了 192.168.1.1 。 奇怪现象的产生是不定的，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="nginx做反向代理网站提示被重置">
+<meta property="og:url" content="http://littlepig.cn/posts/2012/12/28/site-blocked/index.html">
+<meta property="og:site_name" content="LittlePig.CN">
+<meta property="og:description" content="Exsi 中的两台虚拟机，Debian 系统，暂且称为 A 和 B ，均配置两块网卡，一内一外，不同之处是 A 同时做了个 DNS ，添加了一个内部使用的域 myserver.com，并配置为了透明代理做网关，内网地址为 192.168.1.1 ，B 用 nginx 做反向代理代理内部的其他 web server 对外提供服务，dns 设置为了 192.168.1.1 。 奇怪现象的产生是不定的，">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2012-12-28T13:19:53.000Z">
+<meta property="article:modified_time" content="2016-10-31T11:58:13.000Z">
+<meta property="article:author" content="ZHZ">
+<meta property="article:tag" content="nginx">
+<meta property="article:tag" content="blocked">
+<meta name="twitter:card" content="summary">
+    
+        <link rel="alternate" type="application/atom+xml" title="LittlePig.CN" href="../../../../../atom.xml">
+    
+    <link rel="shortcut icon" href="../../../../../favicon.ico">
+    <link rel="stylesheet" href="../../../../../css/style.css?v=1.7.2">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(../../../../../img/brand.jpg)">
+      <div class="brand">
+        <a href="../../../../../index.html" class="avatar waves-effect waves-circle waves-light">
+          <img src="../../../../../img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">ZHZ</h5>
+          <a href="mailto:zhz@hebut.edu.cn" title="zhz@hebut.edu.cn" class="mail">zhz@hebut.edu.cn</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="../../../../../index.html"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="../../../../../archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="../../../../../tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="../../../../../categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="../../../../../about"  >
+                <i class="icon icon-lg icon-link"></i>
+                关于
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">nginx做反向代理网站提示被重置</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">nginx做反向代理网站提示被重置</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2012-12-28T13:19:53.000Z" itemprop="datePublished" class="page-time">
+  2012-12-28
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+
+<article id="post-site-blocked"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">nginx做反向代理网站提示被重置</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2012-12-28 21:19:53" datetime="2012-12-28T13:19:53.000Z"  itemprop="datePublished">2012-12-28</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>Exsi 中的两台虚拟机，Debian 系统，暂且称为 A 和 B ，均配置两块网卡，一内一外，不同之处是 A 同时做了个 DNS ，添加了一个内部使用的域 myserver.com，并配置为了透明代理做网关，内网地址为 192.168.1.1 ，B 用 nginx 做反向代理代理内部的其他 web server 对外提供服务，dns 设置为了 192.168.1.1 。</p>
+<p>奇怪现象的产生是不定的，具体表现为 A 工作一直正常，B 代理的网站如果在内部机器上（比如 192.168.1.1 或者 .1.x ）访问完全没有问题，同一个外部网段的机器访问也完全没有问题，但是其他网段就不一定了，有的能访问，有的会提示重置，ping B 什么的都是没有问题，只是访问 web service 会连接不上， lynx 会提示 cannot read document 。如果把 B 换个外网 IP，则偶尔会能正常工作一段时间，比如一天，或者一个小时，然后就连不上了，但这个 IP 放到其他服务器上是好好的，最初怀疑是上层路由器根据某种规则禁止掉了，但是又被否定了，因为同样的两外一台做反向代理的机器 C 就没有问题，这种困扰一直持续了好几周，尝试了各种办法都无法确认是哪的问题，你说 web service 的问题吧，没防火墙，没定规则，而且内网访问就没事，你说路由器的设置问题吧，怎么 C 就没事呢。</p>
+<p>上周在视图修改 nginx 的反向代理配置的时候，眼光盯了下 upstream server 的配置语句，留意到都是使用的内网域名，即 xxx.myserver.com 的字样，记得网上大部分资料这部分都是直接提供的 ip 地址，当时还想呢，当内网机器数量比较多的时候，使用 ip 地址多不好记啊，弄个 DNS 用来解析内部域名多方便，所以才有了 A 这台 DNS，也正是这个原因，才把 B 的 DNS 设置为了 192.168.1.1 。想到 nginx 可能会使用反向解析，会不会是DNS的原因呢，于是尝试把 B 改为实际 DNS ，然后把 B 反向代理配置文件中的 xxx.myserver.com 都改为内网对应的 IP 地址 ，重启 nginx ，一切正常，不能访问的问题解决了。晕倒，难道是 A 做的 DNS 的问题？于是重新试验了下 A 的 DNS ，正向和反向工作均没有问题，这就奇了怪了。</p>
+<p>头疼，反正问题解决了，先凑合用吧。</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2016-10-31T11:58:13.000Z" itemprop="dateUpdated">2016-10-31 19:58:13</time>
+</span><br>
+
+
+        
+        本文地址：<a href="" target="_blank" rel="external">http://littlepig.cn/posts/2012/12/28/site-blocked/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="http://littlepig.cn">
+            <img src="../../../../../img/avatar.jpg" alt="ZHZ">
+            ZHZ
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赞</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../../tags/blocked/" rel="tag">blocked</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../../tags/nginx/" rel="tag">nginx</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://littlepig.cn/posts/2012/12/28/site-blocked/&title=《nginx做反向代理网站提示被重置》 — LittlePig.CN&pic=http://littlepig.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://littlepig.cn/posts/2012/12/28/site-blocked/&title=《nginx做反向代理网站提示被重置》 — LittlePig.CN&source=记录 / 回忆 / 分享" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://littlepig.cn/posts/2012/12/28/site-blocked/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《nginx做反向代理网站提示被重置》 — LittlePig.CN&url=http://littlepig.cn/posts/2012/12/28/site-blocked/&via=http://littlepig.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://littlepig.cn/posts/2012/12/28/site-blocked/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="../../30/tengine-install/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">debian 下 tengine 的安装和使用</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="../../21/debian-router-gateway/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Debian 下配置软路由（透明网关）</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="../../../../../img/wechat.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="../../../../../img/wechat.png" data-alipay="../../../../../img/alipay.png">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="../../../../../atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license noopener" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>ZHZ &copy; 2003 - 2021</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://littlepig.cn/posts/2012/12/28/site-blocked/&title=《nginx做反向代理网站提示被重置》 — LittlePig.CN&pic=http://littlepig.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://littlepig.cn/posts/2012/12/28/site-blocked/&title=《nginx做反向代理网站提示被重置》 — LittlePig.CN&source=记录 / 回忆 / 分享" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://littlepig.cn/posts/2012/12/28/site-blocked/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《nginx做反向代理网站提示被重置》 — LittlePig.CN&url=http://littlepig.cn/posts/2012/12/28/site-blocked/&via=http://littlepig.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://littlepig.cn/posts/2012/12/28/site-blocked/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACQElEQVR42u3aO3LDMAxFUe9/00rrhuR9IJOJwMvKo8iWTgoMfp8PPs/XGf2V37/zra0jQ4aM1zKe6Rk9YHRn+pT5r5F3kyFDxj2MeUAcfa7dOb8+/4XhdRkyZMjAwZeEWo6XIUOGjBojTfjmAZf8g2TIkCGDF7E8yeMNOw47VovLkCHjhQzedf/7z78y35AhQ8arGE949tv96T3orWTIkNGawQPcnJSWu3GBShJNGTJkXMPgRWktQyNJJxk5LLqGMmTIaMfYL27TZbJTo81jGBkyZPxjBg9tvPjkCSVJHFH6KEOGjGsY88QrbZylY0teyg67hjJkyGjKIMUkuV57cG2lY5HVypAhoymj2IgPxwC8xUZCf5AgypAhoykjbejvvGitoEWTWBkyZLRgpE188ro8UNZGp2jNQoYMGe0Y6QN2Sta0rA3qbxkyZDRlpGVnbSWCjBbSRttiMCBDhox2DF4upm2yWuGarmjIkCHjBkZadqbF56nhZbxsIUOGjHYM/uo830wBabjf2hyRIUPGqxhpgyxI1A414FCYliFDxmWMtB3GA+6pEQUKuDJkyGjH2B9YpmsZaUtu8V0ZMmQ0ZTzh4QsQvMXPG2qL5poMGTKaMnbC3E5jjjyLr27IkCHjBgYJsrWxZZo+HphpyJAhozWjFvhq6d1O2ocWLGTIkHE9gzTdeNOfF8nBKpgMGTKuZ5AX4oPPtIReFLEyZMhozeANNRIE02YcSRZlyJBxMyMtHU+xdwrj4lBThgwZ72P8ABcuQc+xKfSRAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+lazyScripts.push('//s95.cnzz.com/z_stat.php?id=1235250&web_id=1235250')
+
+</script>
+
+<script src="../../../../../js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="../../../../../js/search.min.js?v=1.7.2" async></script>
+
+
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

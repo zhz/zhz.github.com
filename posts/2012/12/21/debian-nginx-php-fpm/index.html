@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>Debian 下 nginx + php-fpm 的安装配置 | LittlePig.CN | someone&#39;s Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="debian,nginx,cluster,dotdeb,php-fpm,proxy">
+    <meta name="description" content="debian 下安装 LNMP 环境方便的很，只是自带的 nginx 版本比较低，故使用的是dotdeb的安装包。MySQL 用自带的即可，目前是 5.5">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Debian 下 nginx + php-fpm 的安装配置">
+<meta property="og:url" content="http://littlepig.cn/posts/2012/12/21/debian-nginx-php-fpm/index.html">
+<meta property="og:site_name" content="LittlePig.CN">
+<meta property="og:description" content="debian 下安装 LNMP 环境方便的很，只是自带的 nginx 版本比较低，故使用的是dotdeb的安装包。MySQL 用自带的即可，目前是 5.5">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2012-12-21T01:57:52.000Z">
+<meta property="article:modified_time" content="2016-10-17T08:06:50.000Z">
+<meta property="article:author" content="ZHZ">
+<meta property="article:tag" content="debian">
+<meta property="article:tag" content="nginx">
+<meta property="article:tag" content="cluster">
+<meta property="article:tag" content="dotdeb">
+<meta property="article:tag" content="php-fpm">
+<meta property="article:tag" content="proxy">
+<meta name="twitter:card" content="summary">
+    
+        <link rel="alternate" type="application/atom+xml" title="LittlePig.CN" href="../../../../../atom.xml">
+    
+    <link rel="shortcut icon" href="../../../../../favicon.ico">
+    <link rel="stylesheet" href="../../../../../css/style.css?v=1.7.2">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(../../../../../img/brand.jpg)">
+      <div class="brand">
+        <a href="../../../../../index.html" class="avatar waves-effect waves-circle waves-light">
+          <img src="../../../../../img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">ZHZ</h5>
+          <a href="mailto:zhz@hebut.edu.cn" title="zhz@hebut.edu.cn" class="mail">zhz@hebut.edu.cn</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="../../../../../index.html"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="../../../../../archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="../../../../../tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="../../../../../categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="../../../../../about"  >
+                <i class="icon icon-lg icon-link"></i>
+                关于
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Debian 下 nginx + php-fpm 的安装配置</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Debian 下 nginx + php-fpm 的安装配置</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2012-12-21T01:57:52.000Z" itemprop="datePublished" class="page-time">
+  2012-12-21
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+
+<article id="post-debian-nginx-php-fpm"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Debian 下 nginx + php-fpm 的安装配置</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2012-12-21 09:57:52" datetime="2012-12-21T01:57:52.000Z"  itemprop="datePublished">2012-12-21</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>debian 下安装 LNMP 环境方便的很，只是自带的 nginx 版本比较低，故使用的是dotdeb的安装包。MySQL 用自带的即可，目前是 5.5</p>
+<!--more--
+
+## 源添加 dotdeb
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">deb http:&#x2F;&#x2F;packages.dotdeb.org squeeze all</span><br></pre></td></tr></table></figure>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">wget http:&#x2F;&#x2F;www.dotdeb.org&#x2F;dotdeb.gpg</span><br><span class="line">cat dotdeb.gpg | sudo apt-key add -</span><br><span class="line">apt-get update &amp;&amp; apt-get upgrade</span><br><span class="line"></span><br><span class="line">apt-get install nginx php5-fpm</span><br></pre></td></tr></table></figure>
+<h2 id="配置相关参数"><a href="#配置相关参数" class="headerlink" title="配置相关参数"></a>配置相关参数</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim &#x2F;etc&#x2F;nginx&#x2F;nginx.conf</span><br></pre></td></tr></table></figure>
+<p>我的网站主目录放置在了 /www 中，并启用了缓存，故配置文件如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line">user www-data;</span><br><span class="line">worker_processes 8;</span><br><span class="line">pid &#x2F;var&#x2F;run&#x2F;nginx.pid;</span><br><span class="line">events &#123;</span><br><span class="line">worker_connections 65535;</span><br><span class="line"># multi_accept on;</span><br><span class="line">&#125;</span><br><span class="line">http &#123;</span><br><span class="line">##</span><br><span class="line"># Basic Settings</span><br><span class="line">##</span><br><span class="line"></span><br><span class="line">sendfile on;</span><br><span class="line">tcp_nopush on;</span><br><span class="line">tcp_nodelay on;</span><br><span class="line">keepalive_timeout 65;</span><br><span class="line">types_hash_max_size 2048;</span><br><span class="line"># server_tokens off;</span><br><span class="line"></span><br><span class="line"># server_names_hash_bucket_size 64;</span><br><span class="line"># server_name_in_redirect off;</span><br><span class="line"></span><br><span class="line">include &#x2F;etc&#x2F;nginx&#x2F;mime.types;</span><br><span class="line">default_type application&#x2F;octet-stream;</span><br><span class="line"></span><br><span class="line">##</span><br><span class="line"># Logging Settings</span><br><span class="line">##</span><br><span class="line"></span><br><span class="line">#access_log &#x2F;var&#x2F;log&#x2F;nginx&#x2F;access.log;</span><br><span class="line">#error_log &#x2F;var&#x2F;log&#x2F;nginx&#x2F;error.log;</span><br><span class="line"></span><br><span class="line">access_log &#x2F;logs&#x2F;nginx&#x2F;access.log;</span><br><span class="line">error_log &#x2F;logs&#x2F;nginx&#x2F;error.log;</span><br><span class="line"></span><br><span class="line">##</span><br><span class="line"># Cache Settings</span><br><span class="line">##</span><br><span class="line"></span><br><span class="line">proxy_temp_path &#x2F;cache&#x2F;proxy_temp_dir;</span><br><span class="line">proxy_cache_path &#x2F;cache&#x2F;proxy_cache_dir levels&#x3D;1:2 keys_zone&#x3D;cache_zone_one:256m inactive&#x3D;1d max_size&#x3D;1g;</span><br><span class="line"># mem cache &lt;&#x3D;256M ,total size&lt;&#x3D;1G</span><br><span class="line"></span><br><span class="line">##</span><br><span class="line"># Gzip Settings</span><br><span class="line">##</span><br><span class="line"></span><br><span class="line">gzip on;</span><br><span class="line">gzip_disable &quot;msie6&quot;;</span><br><span class="line"></span><br><span class="line">gzip_vary on;</span><br><span class="line">gzip_proxied any;</span><br><span class="line">gzip_comp_level 6;</span><br><span class="line">gzip_buffers 16 8k;</span><br><span class="line">gzip_http_version 1.1;</span><br><span class="line">gzip_types text&#x2F;plain text&#x2F;css application&#x2F;json application&#x2F;x-javascript text&#x2F;xml application&#x2F;xml application&#x2F;xml+rss text&#x2F;javascript;</span><br><span class="line"></span><br><span class="line">client_max_body_size 300m;</span><br><span class="line"></span><br><span class="line">##</span><br><span class="line"># Virtual Host Configs</span><br><span class="line">##</span><br><span class="line"></span><br><span class="line">include &#x2F;etc&#x2F;nginx&#x2F;conf.d&#x2F;*.conf;</span><br><span class="line">include &#x2F;etc&#x2F;nginx&#x2F;sites-enabled&#x2F;*;</span><br><span class="line">include &#x2F;www&#x2F;*&#x2F;nginx.conf;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>其中缓存需要手工建立目录</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mkdir &#x2F;cache</span><br><span class="line">mkdir &#x2F;cache&#x2F;proxy_temp_dir</span><br><span class="line">chmod -R 777 &#x2F;cache</span><br></pre></td></tr></table></figure>
+<p>配置文件最后的include指令非常方便，以后每新建一个站点，直接在 /www 目录中新建一个站点目录，里边放置一个站点配置文件 nginx.conf ，再在里边新建一个目录 htdocs 放置网站文件即可，目录结构非常清晰。</p>
+<h2 id="不同类型的站点下的-nginx-conf-示例"><a href="#不同类型的站点下的-nginx-conf-示例" class="headerlink" title="不同类型的站点下的 nginx.conf 示例"></a>不同类型的站点下的 nginx.conf 示例</h2><h3 id="普通的"><a href="#普通的" class="headerlink" title="普通的"></a>普通的</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    server_name hadoop.littledog.cn;</span><br><span class="line">    listen 80;</span><br><span class="line">    location ~\.php$ &#123;</span><br><span class="line">    include &#x2F;etc&#x2F;nginx&#x2F;fastcgi_params;</span><br><span class="line">    fastcgi_pass 127.0.0.1:9000;</span><br><span class="line">    fastcgi_index index.php;</span><br><span class="line">    fastcgi_param SCRIPT_FILENAME &#x2F;www&#x2F;hadoop.littledog.cn&#x2F;htdocs$fastcgi_script_name;</span><br><span class="line">    &#125;    &#125;</span><br><span class="line">location &#x2F; &#123;</span><br><span class="line">    root &#x2F;www&#x2F;hadoop.littledog.cn&#x2F;htdocs;</span><br><span class="line">    index index.htm index.php;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br></pre></td></tr></table></figure>
+<h3 id="WORDPRESS需要有固定链接的"><a href="#WORDPRESS需要有固定链接的" class="headerlink" title="WORDPRESS需要有固定链接的"></a>WORDPRESS需要有固定链接的</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">server_name biz.littlepig.cn;</span><br><span class="line">listen 80;</span><br><span class="line">location &#x2F; &#123;</span><br><span class="line">index index.php;</span><br><span class="line">root &#x2F;www&#x2F;biz.littlepig.cn&#x2F;htdocs;</span><br><span class="line"></span><br><span class="line">if (-f $request_filename) &#123;</span><br><span class="line">expires max;</span><br><span class="line">break;</span><br><span class="line">&#125;</span><br><span class="line">if (-d $request_filename) &#123;</span><br><span class="line">break;</span><br><span class="line">&#125;&#125;</span><br><span class="line">rewrite ^(.+)$ &#x2F;index.php?q&#x3D;$1 last;</span><br><span class="line"># Enable nice permalinks for WordPress</span><br><span class="line">error_page 404 &#x3D; &#x2F;&#x2F;index.php?q&#x3D;$uri;</span><br><span class="line">&#125;</span><br><span class="line">location ~ \.php$ &#123;</span><br><span class="line">include fastcgi_params;</span><br><span class="line">fastcgi_index index.php;</span><br><span class="line">fastcgi_pass 127.0.0.1:9000;</span><br><span class="line">fastcgi_param SCRIPT_FILENAME &#x2F;www&#x2F;biz.littlepig.cn&#x2F;htdocs$fastcgi_script_name;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="需要认证用户或者指定IP才能访问的"><a href="#需要认证用户或者指定IP才能访问的" class="headerlink" title="需要认证用户或者指定IP才能访问的"></a>需要认证用户或者指定IP才能访问的</h3><p>其中用户配置可以由 htpasswd.sh 文件生成，参见 <a target="_blank" rel="noopener" href="http://www.littlepig.cn/code/htpasswd/">htpasswd 脚本</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">server_name hdfs.littledog.cn;</span><br><span class="line">listen 80;</span><br><span class="line">location &#x2F; &#123;</span><br><span class="line">#allow 202.113.125.0&#x2F;24;</span><br><span class="line">#allow 10.0.0.0&#x2F;8;</span><br><span class="line">#deny all;</span><br><span class="line">auth_basic &quot;Authorized users only&quot;;</span><br><span class="line">auth_basic_user_file &quot;&#x2F;www&#x2F;hadoop.littledog.cn&#x2F;htpasswd.conf&quot;;</span><br><span class="line">root &#x2F;www&#x2F;hadoop.littledog.cn&#x2F;htdocs;</span><br><span class="line">index index.html index.php;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="做反向代理的"><a href="#做反向代理的" class="headerlink" title="做反向代理的"></a>做反向代理的</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">server_name manager.littledog.cn;</span><br><span class="line">listen 80;</span><br><span class="line">location &#x2F; &#123;</span><br><span class="line">index index.htm index.php;</span><br><span class="line">proxy_redirect off;</span><br><span class="line">proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">proxy_set_header Host $host;</span><br><span class="line">proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line">proxy_set_header Accept-Encoding &#39;&#39;;</span><br><span class="line">proxy_pass http:&#x2F;&#x2F;192.168.1.20:7180;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="做动静分离的"><a href="#做动静分离的" class="headerlink" title="做动静分离的"></a>做动静分离的</h3><p>我指定了静态的那台机器存储上传的文件，同时利用了 /etc/nginx.conf 中指定的 cache_zone_one 做缓存</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">upstream static.cluster &#123;</span><br><span class="line">server static.myserver.com;</span><br><span class="line">&#125;</span><br><span class="line">upstream dynamic.cluster &#123;</span><br><span class="line">server www1.myserver.com;</span><br><span class="line">server www2.myserver.com;</span><br><span class="line">server www3.myserver.com;</span><br><span class="line">&#125;</span><br><span class="line">server &#123;</span><br><span class="line">server_name www.caitool.com caitool.com;</span><br><span class="line">listen 80;</span><br><span class="line">index index.html index.htm index.php index.jsp;</span><br><span class="line">root &#x2F;www&#x2F;www.caitool.com&#x2F;htdocs&#x2F;;</span><br><span class="line">access_log off;</span><br><span class="line">location &#x2F; &#123;</span><br><span class="line">proxy_next_upstream error timeout invalid_header http_500 http_502 http_503 http_504 http_404;</span><br><span class="line">proxy_redirect off;</span><br><span class="line">proxy_set_header Host $host;</span><br><span class="line">proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line">proxy_pass http:&#x2F;&#x2F;static.cluster;</span><br><span class="line">proxy_cache cache_zone_one;</span><br><span class="line">&#125;</span><br><span class="line">location ~ .*\.(php|jsp|do|action)?$ &#123;</span><br><span class="line">proxy_next_upstream error timeout invalid_header http_500 http_502 http_503 http_504 http_404;</span><br><span class="line">proxy_redirect off;</span><br><span class="line">proxy_set_header Host $host;</span><br><span class="line">proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line">proxy_pass http:&#x2F;&#x2F;dynamic.cluster;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">server &#123;</span><br><span class="line">server_name up.caitool.com;</span><br><span class="line">listen 80;</span><br><span class="line">index index.html index.htm index.php;</span><br><span class="line">access_log off;</span><br><span class="line"></span><br><span class="line">location &#x2F; &#123;</span><br><span class="line">proxy_next_upstream error timeout invalid_header http_500 http_502 http_503 http_504 http_404;</span><br><span class="line">proxy_redirect off;</span><br><span class="line">proxy_set_header Host $host;</span><br><span class="line">proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line">proxy_pass http:&#x2F;&#x2F;static.cluster;</span><br><span class="line">#proxy_cache cache_zone_one;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="配置-php-fpm-的参数"><a href="#配置-php-fpm-的参数" class="headerlink" title="配置 php-fpm 的参数"></a>配置 php-fpm 的参数</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim &#x2F;etc&#x2F;php5&#x2F;fpm&#x2F;php.ini</span><br></pre></td></tr></table></figure>
+<p>主要修改的有如下几个选项（我使用了 memcached 做 session 存储）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">max_execution_time &#x3D; 300</span><br><span class="line">;session.save_handler &#x3D; files</span><br><span class="line">session.save_handler &#x3D; memcache</span><br><span class="line">;session.save_path &#x3D; &quot;&#x2F;tmp&quot;</span><br><span class="line">session.save_path &#x3D; &quot;tcp:&#x2F;&#x2F;mem.myserver.com:11211&quot;</span><br><span class="line">upload_max_filesize &#x3D; 20M</span><br></pre></td></tr></table></figure>
+<h2 id="启动关闭服务"><a href="#启动关闭服务" class="headerlink" title="启动关闭服务"></a>启动关闭服务</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;etc&#x2F;init.d&#x2F;nginx start|stop|restart</span><br><span class="line"></span><br><span class="line">&#x2F;etc&#x2F;init.d&#x2F;php5-fpm start|stop|restart</span><br></pre></td></tr></table></figure>
+<p>或者</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service xxxx start|stop|restart</span><br></pre></td></tr></table></figure>
+<p>在我的建议下，mirros.ustc.edu.cn 也添加了 dotdeb 的镜像。</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2016-10-17T08:06:50.000Z" itemprop="dateUpdated">2016-10-17 16:06:50</time>
+</span><br>
+
+
+        
+        本文地址：<a href="" target="_blank" rel="external">http://littlepig.cn/posts/2012/12/21/debian-nginx-php-fpm/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="http://littlepig.cn">
+            <img src="../../../../../img/avatar.jpg" alt="ZHZ">
+            ZHZ
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赞</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../../tags/cluster/" rel="tag">cluster</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../../tags/debian/" rel="tag">debian</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../../tags/dotdeb/" rel="tag">dotdeb</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../../tags/nginx/" rel="tag">nginx</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../../tags/php-fpm/" rel="tag">php-fpm</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../../tags/proxy/" rel="tag">proxy</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://littlepig.cn/posts/2012/12/21/debian-nginx-php-fpm/&title=《Debian 下 nginx + php-fpm 的安装配置》 — LittlePig.CN&pic=http://littlepig.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://littlepig.cn/posts/2012/12/21/debian-nginx-php-fpm/&title=《Debian 下 nginx + php-fpm 的安装配置》 — LittlePig.CN&source=记录 / 回忆 / 分享" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://littlepig.cn/posts/2012/12/21/debian-nginx-php-fpm/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Debian 下 nginx + php-fpm 的安装配置》 — LittlePig.CN&url=http://littlepig.cn/posts/2012/12/21/debian-nginx-php-fpm/&via=http://littlepig.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://littlepig.cn/posts/2012/12/21/debian-nginx-php-fpm/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="../debian-router-gateway/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Debian 下配置软路由（透明网关）</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="../debian-bind9/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Debian 下 Bind9 的基本配置</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="../../../../../img/wechat.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="../../../../../img/wechat.png" data-alipay="../../../../../img/alipay.png">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="../../../../../atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license noopener" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>ZHZ &copy; 2003 - 2021</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://littlepig.cn/posts/2012/12/21/debian-nginx-php-fpm/&title=《Debian 下 nginx + php-fpm 的安装配置》 — LittlePig.CN&pic=http://littlepig.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://littlepig.cn/posts/2012/12/21/debian-nginx-php-fpm/&title=《Debian 下 nginx + php-fpm 的安装配置》 — LittlePig.CN&source=记录 / 回忆 / 分享" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://littlepig.cn/posts/2012/12/21/debian-nginx-php-fpm/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Debian 下 nginx + php-fpm 的安装配置》 — LittlePig.CN&url=http://littlepig.cn/posts/2012/12/21/debian-nginx-php-fpm/&via=http://littlepig.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://littlepig.cn/posts/2012/12/21/debian-nginx-php-fpm/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACLElEQVR42u3aQXKDMAwFUO5/abrtopAviXQG+3mVSULQY6HIlo4jXuevdfXp1fd7Vx3fWBgYGK9lnLcrD+v+9+9/J3//MgYMDIwNGMntr9Ji9ZtJoHlsGBgYGPevqyVdjsfAwMCYMKoFX69wxMDAwOhtYpPg7m/cKw0f3otjYGC8kNE7Mvuf11/pb2BgYLyKcRZXr7CbpNQoKgwMjKUZ1a1mctBWHa3Ii8sP8WBgYCzKSBJrkiifakYmd/nj1zAwMJZmTBLiZKir1xZNeBgYGOsxnhqPSEJJ2gnR877638DAwFiU0dt25rm8nPUHrVAMDIxVGfmwV3U4o1diNgfFMDAwNmNUS7cqrFoCRuUpBgbGBoxqgstTcN5+yAcvPrQwMTAwlmZMwp1TRwUlBgbG0oxqY7J60Jan4OZoBQYGxmaMvJGZNyl7ofceHAYGxqqM6sXVg7b8meV3/yMSDAyMpRlPFV75gEVy1cMzIxgYGMsxkqZjdWgsH8XolYkYGBi7Mapb0Mmn8/139L+BgYGxHKN6WJ8/gvyR5YNozcyNgYGxEGN+rF89pOu1WjEwMNZmnMWVh56PjvVKySOfVsPAwHg5o3r0Xy7XxmXiV2ZGMDAwXsjIk2wvvfaal+WEi4GBsQEjT3z5MdmEWo0WAwMDozdCkW9f82GOxxIuBgbGBoxnz7uqSfZyE4uBgbE0I28GzA/6e+3Mx47bMDAwXsiYpLx54ThJshgYGBswfgBy+9E/9KXFywAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+lazyScripts.push('//s95.cnzz.com/z_stat.php?id=1235250&web_id=1235250')
+
+</script>
+
+<script src="../../../../../js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="../../../../../js/search.min.js?v=1.7.2" async></script>
+
+
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

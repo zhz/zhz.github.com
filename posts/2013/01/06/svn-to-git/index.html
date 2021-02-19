@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>SVN 转移到 Git | LittlePig.CN | someone&#39;s Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="git,gitstack,svn,tortoisegit,visualsvn">
+    <meta name="description" content="一直使用 SVN 来同步自己的代码，这样可以方便的保留历史记录，不过，有一点不方便的就是，提交时必须保证能连接到 SVN Server ，Git 就不必，可以本地提交，待到连网时再同步到 Git Server ，于是，这两天把自己的 SVN Server 更新成了 Git Server。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SVN 转移到 Git">
+<meta property="og:url" content="http://littlepig.cn/posts/2013/01/06/svn-to-git/index.html">
+<meta property="og:site_name" content="LittlePig.CN">
+<meta property="og:description" content="一直使用 SVN 来同步自己的代码，这样可以方便的保留历史记录，不过，有一点不方便的就是，提交时必须保证能连接到 SVN Server ，Git 就不必，可以本地提交，待到连网时再同步到 Git Server ，于是，这两天把自己的 SVN Server 更新成了 Git Server。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2013-01-06T01:26:51.000Z">
+<meta property="article:modified_time" content="2016-10-31T12:01:30.000Z">
+<meta property="article:author" content="ZHZ">
+<meta property="article:tag" content="git">
+<meta property="article:tag" content="gitstack">
+<meta property="article:tag" content="svn">
+<meta property="article:tag" content="tortoisegit">
+<meta property="article:tag" content="visualsvn">
+<meta name="twitter:card" content="summary">
+    
+        <link rel="alternate" type="application/atom+xml" title="LittlePig.CN" href="../../../../../atom.xml">
+    
+    <link rel="shortcut icon" href="../../../../../favicon.ico">
+    <link rel="stylesheet" href="../../../../../css/style.css?v=1.7.2">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(../../../../../img/brand.jpg)">
+      <div class="brand">
+        <a href="../../../../../index.html" class="avatar waves-effect waves-circle waves-light">
+          <img src="../../../../../img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">ZHZ</h5>
+          <a href="mailto:zhz@hebut.edu.cn" title="zhz@hebut.edu.cn" class="mail">zhz@hebut.edu.cn</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="../../../../../index.html"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="../../../../../archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="../../../../../tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="../../../../../categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="../../../../../about"  >
+                <i class="icon icon-lg icon-link"></i>
+                关于
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">SVN 转移到 Git</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">SVN 转移到 Git</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2013-01-06T01:26:51.000Z" itemprop="datePublished" class="page-time">
+  2013-01-06
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+
+<article id="post-svn-to-git"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">SVN 转移到 Git</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2013-01-06 09:26:51" datetime="2013-01-06T01:26:51.000Z"  itemprop="datePublished">2013-01-06</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>一直使用 SVN 来同步自己的代码，这样可以方便的保留历史记录，不过，有一点不方便的就是，提交时必须保证能连接到 SVN Server ，Git 就不必，可以本地提交，待到连网时再同步到 Git Server ，于是，这两天把自己的 SVN Server 更新成了 Git Server。</p>
+<a id="more"></a>
+
+<p>我的 SVN Server 是安装在我的 NAS 的 Server 2012 上的，使用的是 VisualSVN Server，用起来极其方便，这次找来找去找到了一个支持 Windows 平台的 GitStack ，免费版本支持 2 个用户但不限定功能，这对个人用户足够了，到 <a target="_blank" rel="noopener" href="http://gitstack.com/">http://gitstack.com/</a> 上下载，安装一路 Next 即可，需要注意的是，如果你的系统里有其他 Web Server ，比如 IIS 什么的，需要先停止掉，因为 GitStack 安装的 apache 默认会占据 80 端口 。安装完毕之后会进入web配置界面，简洁，基本上一眼就能看懂，需要注意的如下</p>
+<p>1）如果你的服务器是公网，尽量禁止掉 Web 浏览仓库的功能，因为我发现这个 web 界面默认会列出来所有仓库的名称，虽然进入每个仓库需要账户，但是被人看见项目名称也不爽吧。</p>
+<p>2）要在你的系统防火墙里允许 httpd.exe （就是gitstack 带的 apache ）通过，否则 clone 或者 push 都会出现 401 error 。</p>
+<p>3）每个仓库都要设置账户，这点和 visualsvn server 不同，visualsvn server 的账户是通用的，gitstack 每个仓库都必须单独指定访问账户及权限。</p>
+<p>接下来把 svn 仓库转入 gitstack 稍微麻烦点，每个仓库都需要用 git 从 svn server 克隆出来处理之后再 push 进去，不过官方给了步骤，按部就班即可。参见 <a target="_blank" rel="noopener" href="http://gitstack.com/migrate-from-svn-to-git/">http://gitstack.com/migrate-from-svn-to-git/</a></p>
+<p>git 客户端使用的还是那只乌龟的 TortoiseGit ，不过注意需要先安装 git 才可以。</p>
+<p>补充：</p>
+<p>用了一会，发现 git 不支持部分克隆（部分导出，或者说单独导出仓库的某个子目录），郁闷，这可是很有必要的功能啊，否则仓库数量就太多了。</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2016-10-31T12:01:30.000Z" itemprop="dateUpdated">2016-10-31 20:01:30</time>
+</span><br>
+
+
+        
+        本文地址：<a href="" target="_blank" rel="external">http://littlepig.cn/posts/2013/01/06/svn-to-git/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="http://littlepig.cn">
+            <img src="../../../../../img/avatar.jpg" alt="ZHZ">
+            ZHZ
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赞</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../../tags/git/" rel="tag">git</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../../tags/gitstack/" rel="tag">gitstack</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../../tags/svn/" rel="tag">svn</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../../tags/tortoisegit/" rel="tag">tortoisegit</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../../tags/visualsvn/" rel="tag">visualsvn</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://littlepig.cn/posts/2013/01/06/svn-to-git/&title=《SVN 转移到 Git》 — LittlePig.CN&pic=http://littlepig.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://littlepig.cn/posts/2013/01/06/svn-to-git/&title=《SVN 转移到 Git》 — LittlePig.CN&source=一直使用 SVN 来同步自己的代码，这样可以方便的保留历史记录，不过，有一点不方便的就是，提交时必须保证能连接到 SVN Server ，Git 就不必，..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://littlepig.cn/posts/2013/01/06/svn-to-git/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《SVN 转移到 Git》 — LittlePig.CN&url=http://littlepig.cn/posts/2013/01/06/svn-to-git/&via=http://littlepig.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://littlepig.cn/posts/2013/01/06/svn-to-git/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="../../07/install-mongodb-on-debian/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">debian 下 安装 mongodb</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="../../04/bootstrap-for-ie6/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">bootstrap 的 IE6 补丁</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="../../../../../img/wechat.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="../../../../../img/wechat.png" data-alipay="../../../../../img/alipay.png">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="../../../../../atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license noopener" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>ZHZ &copy; 2003 - 2021</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://littlepig.cn/posts/2013/01/06/svn-to-git/&title=《SVN 转移到 Git》 — LittlePig.CN&pic=http://littlepig.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://littlepig.cn/posts/2013/01/06/svn-to-git/&title=《SVN 转移到 Git》 — LittlePig.CN&source=一直使用 SVN 来同步自己的代码，这样可以方便的保留历史记录，不过，有一点不方便的就是，提交时必须保证能连接到 SVN Server ，Git 就不必，..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://littlepig.cn/posts/2013/01/06/svn-to-git/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《SVN 转移到 Git》 — LittlePig.CN&url=http://littlepig.cn/posts/2013/01/06/svn-to-git/&via=http://littlepig.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://littlepig.cn/posts/2013/01/06/svn-to-git/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACHklEQVR42u3ay46DMAwFUP7/p5ntSDNtr22oRHKyqioKOSzc+HEc8Tp/rcn3vadctjAwMB7LON+uV9f8vUPvKe/vn+wNAwNjH8arB+fXJL9KAnTvuRgYGBjVz9Ut9u6JgYGBUb1dEi4TDAYGBsYkic3T0V7B7ku5OAYGxgMZedX9+59v6W9gYGA8inEWV06dtBzKu8LAwFiaMWlA9tLOZoKaHDQxMDAWZUxK+fNTWf5SPox3YGBgLM1IBibmwXc+fpG0EDAwMHZgJKEtf2Ry58lY2Mt/DwwMjOUY1WZkXjLrsZuvBgMDYwNGcrCbNwx65bboVxgYGBswquWteUhNgnWSYP/zv4GBgbEZI99KNWheXMjDwMDYgNEb8KoOUlRh+dAGBgbGPowkTZ20EPLP1ZYqBgbG2ox5u7GacFY3WgVjYGCsyqiG0d5QVx4h8+YBBgbGDozJIFe19DYf3YiGLTAwMJZjzFPZUUG/NfBRnhzBwMBYjtEr3CfNzkkBLkmSMTAwdmDcUcSvjp1NQjMGBsYOjF5RrFcgy4fPCj1KDAyMRRlncfValdXmQfUFYWBgrM3IV7UAlw9M9K6vhmkMDIynM6pBtlc+y0NnM+BiYGBswKgGvvuams3BDgwMDIy4lF8NoEmD4Zj4MDAwtmTkxbUENkmho/4GBgbGQoy8oHbVWEZegLu43IaBgfFARu/c1Tvw5ZuYHEYxMDAWYvwAoml/rWAnEaMAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+lazyScripts.push('//s95.cnzz.com/z_stat.php?id=1235250&web_id=1235250')
+
+</script>
+
+<script src="../../../../../js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="../../../../../js/search.min.js?v=1.7.2" async></script>
+
+
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

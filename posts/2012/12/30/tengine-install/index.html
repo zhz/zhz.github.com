@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>debian 下 tengine 的安装和使用 | LittlePig.CN | someone&#39;s Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="debian,nginx,tengine">
+    <meta name="description" content="tengine 是淘宝开源的 nginx 修改版本，添加了一些新的特性，官方网站在此 http:&#x2F;&#x2F;tengine.taobao.com ，我习惯使用 dotdeb 的 nginx ，因此按照 dotdeb 编译 nginx 的参数编译了下 tengine 代替 nginx . 安装编译环境1apt-get install build-essential 安装 dotdeb 的 nginx 可参考">
+<meta property="og:type" content="article">
+<meta property="og:title" content="debian 下 tengine 的安装和使用">
+<meta property="og:url" content="http://littlepig.cn/posts/2012/12/30/tengine-install/index.html">
+<meta property="og:site_name" content="LittlePig.CN">
+<meta property="og:description" content="tengine 是淘宝开源的 nginx 修改版本，添加了一些新的特性，官方网站在此 http:&#x2F;&#x2F;tengine.taobao.com ，我习惯使用 dotdeb 的 nginx ，因此按照 dotdeb 编译 nginx 的参数编译了下 tengine 代替 nginx . 安装编译环境1apt-get install build-essential 安装 dotdeb 的 nginx 可参考">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2012-12-30T01:12:13.000Z">
+<meta property="article:modified_time" content="2019-08-07T03:41:10.000Z">
+<meta property="article:author" content="ZHZ">
+<meta property="article:tag" content="debian">
+<meta property="article:tag" content="nginx">
+<meta property="article:tag" content="tengine">
+<meta name="twitter:card" content="summary">
+    
+        <link rel="alternate" type="application/atom+xml" title="LittlePig.CN" href="../../../../../atom.xml">
+    
+    <link rel="shortcut icon" href="../../../../../favicon.ico">
+    <link rel="stylesheet" href="../../../../../css/style.css?v=1.7.2">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(../../../../../img/brand.jpg)">
+      <div class="brand">
+        <a href="../../../../../index.html" class="avatar waves-effect waves-circle waves-light">
+          <img src="../../../../../img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">ZHZ</h5>
+          <a href="mailto:zhz@hebut.edu.cn" title="zhz@hebut.edu.cn" class="mail">zhz@hebut.edu.cn</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="../../../../../index.html"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="../../../../../archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="../../../../../tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="../../../../../categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="../../../../../about"  >
+                <i class="icon icon-lg icon-link"></i>
+                关于
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">debian 下 tengine 的安装和使用</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">debian 下 tengine 的安装和使用</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2012-12-30T01:12:13.000Z" itemprop="datePublished" class="page-time">
+  2012-12-30
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#%E5%AE%89%E8%A3%85%E7%BC%96%E8%AF%91%E7%8E%AF%E5%A2%83"><span class="post-toc-number">1.</span> <span class="post-toc-text">安装编译环境</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#%E8%8E%B7%E5%8F%96-tengine-%E7%9A%84%E6%BA%90%E4%BB%A3%E7%A0%81"><span class="post-toc-number">2.</span> <span class="post-toc-text">获取 tengine 的源代码</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#%E8%8E%B7%E5%8F%96%E7%AC%AC%E4%B8%89%E6%96%B9%E6%A8%A1%E5%9D%97"><span class="post-toc-number">3.</span> <span class="post-toc-text">获取第三方模块</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#%E4%B8%80%E4%BA%9B%E7%BC%96%E8%AF%91%E9%9C%80%E8%A6%81%E7%9A%84%E9%99%84%E5%8A%A0%E6%A8%A1%E5%9D%97"><span class="post-toc-number">4.</span> <span class="post-toc-text">一些编译需要的附加模块</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#%E5%BC%80%E5%A7%8B%E7%BC%96%E8%AF%91"><span class="post-toc-number">5.</span> <span class="post-toc-text">开始编译</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#%E6%9B%BF%E6%8D%A2-nginx"><span class="post-toc-number">6.</span> <span class="post-toc-text">替换 nginx</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-tengine-install"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">debian 下 tengine 的安装和使用</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2012-12-30 09:12:13" datetime="2012-12-30T01:12:13.000Z"  itemprop="datePublished">2012-12-30</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>tengine 是淘宝开源的 nginx 修改版本，添加了一些新的特性，官方网站在此 <a target="_blank" rel="noopener" href="http://tengine.taobao.com/">http://tengine.taobao.com</a> ，我习惯使用 dotdeb 的 nginx ，因此按照 dotdeb 编译 nginx 的参数编译了下 tengine 代替 nginx .</p>
+<h3 id="安装编译环境"><a href="#安装编译环境" class="headerlink" title="安装编译环境"></a>安装编译环境</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get install build-essential</span><br></pre></td></tr></table></figure>
+<p>安装 dotdeb 的 nginx 可参考<a target="_blank" rel="noopener" href="http://www.littlepig.cn/software/debian-nginx-php-fpm/" title="Permanent Link to Debian 下 nginx + php-fpm 的安装配置">Debian 下 nginx + php-fpm 的安装配置</a></p>
+<h3 id="获取-tengine-的源代码"><a href="#获取-tengine-的源代码" class="headerlink" title="获取 tengine 的源代码"></a>获取 tengine 的源代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wget -c http:&#x2F;&#x2F;tengine.taobao.org&#x2F;download&#x2F;tengine-1.4.2.tar.gz</span><br><span class="line">tar zxvf tengine-1.4.2.tar.gz</span><br></pre></td></tr></table></figure>
+<h3 id="获取第三方模块"><a href="#获取第三方模块" class="headerlink" title="获取第三方模块"></a>获取第三方模块</h3><p>nginx 第三方库可以从这个网址下载<br><a target="_blank" rel="noopener" href="http://wiki.nginx.org/3rdPartyModules">http://wiki.nginx.org/3rdPartyModules</a></p>
+<p>dotdeb 安装了几个第三方库，但是有一些我从这个页面上没有找到，所以只下载了其中的 5 个，放置在了 /root/modules 目录中，结构如下</p>
+<p><code>nginx-auth-pam nginx-echo ginx-upstream-fair nginx-cache-purge nginx-http-substitution-filter</code></p>
+<h3 id="一些编译需要的附加模块"><a href="#一些编译需要的附加模块" class="headerlink" title="一些编译需要的附加模块"></a>一些编译需要的附加模块</h3><p>编译 tengine 及 这5个第三方库需要一些附加库，依次安装</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">apt-get install libpcre3-dev</span><br><span class="line">apt-get install libssl-dev</span><br><span class="line">apt-get install libxml2-dev</span><br><span class="line">apt-get install libxslt1-dev</span><br><span class="line">apt-get install libgd2-xpm-dev</span><br><span class="line">apt-get install libgeoip-dev</span><br><span class="line">apt-get install libpam-dev</span><br></pre></td></tr></table></figure>
+<p>这几个库不是很好找，我的 sources.list 是这样的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">deb http:&#x2F;&#x2F;mirrors.ustc.edu.cn&#x2F;debian&#x2F; squeeze main</span><br><span class="line">deb-src http:&#x2F;&#x2F;mirrors.ustc.edu.cn&#x2F;debian&#x2F; squeeze main</span><br><span class="line"></span><br><span class="line">deb http:&#x2F;&#x2F;security.debian.org&#x2F; squeeze&#x2F;updates main</span><br><span class="line">deb-src http:&#x2F;&#x2F;security.debian.org&#x2F; squeeze&#x2F;updates main</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">deb http:&#x2F;&#x2F;mirrors.ustc.edu.cn&#x2F;debian&#x2F; squeeze-updates main</span><br><span class="line">deb-src http:&#x2F;&#x2F;mirrors.ustc.edu.cn&#x2F;debian&#x2F; squeeze-updates main</span><br><span class="line"></span><br><span class="line">deb http:&#x2F;&#x2F;packages.dotdeb.org squeeze all</span><br></pre></td></tr></table></figure>
+<h3 id="开始编译"><a href="#开始编译" class="headerlink" title="开始编译"></a>开始编译</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cd tengine-1.4.2&#96;</span><br><span class="line"></span><br><span class="line">.&#x2F;configure  --prefix&#x3D;&#x2F;usr&#x2F;share&#x2F;nginx --conf-path&#x3D;&#x2F;etc&#x2F;nginx&#x2F;nginx.conf --error-log-path&#x3D;&#x2F;var&#x2F;log&#x2F;nginx&#x2F;error.log --http-client-body-temp-path&#x3D;&#x2F;var&#x2F;lib&#x2F;nginx&#x2F;body --http-fastcgi-temp-path&#x3D;&#x2F;var&#x2F;lib&#x2F;nginx&#x2F;fastcgi --http-log-path&#x3D;&#x2F;var&#x2F;log&#x2F;nginx&#x2F;access.log --http-proxy-temp-path&#x3D;&#x2F;var&#x2F;lib&#x2F;nginx&#x2F;proxy --http-scgi-temp-path&#x3D;&#x2F;var&#x2F;lib&#x2F;nginx&#x2F;scgi --http-uwsgi-temp-path&#x3D;&#x2F;var&#x2F;lib&#x2F;nginx&#x2F;uwsgi --lock-path&#x3D;&#x2F;var&#x2F;lock&#x2F;nginx.lock --pid-path&#x3D;&#x2F;var&#x2F;run&#x2F;nginx.pid --with-pcre-jit --with-debug --with-file-aio --with-http_addition_module --with-http_dav_module --with-http_geoip_module --with-http_gzip_static_module --with-http_image_filter_module --with-http_realip_module --with-http_secure_link_module --with-http_stub_status_module --with-http_ssl_module --with-http_sub_module --with-http_xslt_module --with-ipv6 --with-sha1&#x3D;&#x2F;usr&#x2F;include&#x2F;openssl --with-md5&#x3D;&#x2F;usr&#x2F;include&#x2F;openssl --with-mail --with-mail_ssl_module --add-module&#x3D;&#x2F;root&#x2F;modules&#x2F;nginx-auth-pam --add-module&#x3D;&#x2F;root&#x2F;modules&#x2F;nginx-echo --add-module&#x3D;&#x2F;root&#x2F;modules&#x2F;nginx-upstream-fair --add-module&#x3D;&#x2F;root&#x2F;modules&#x2F;nginx-cache-purge --add-module&#x3D;&#x2F;root&#x2F;modules&#x2F;nginx-http-substitution-filter --with-http_upstream_check_module --with-http_concat_module --dso-path&#x3D;&#x2F;etc&#x2F;nginx&#x2F;modules</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>其中新加入的几个参数是</p>
+<p><code>--with-http_upstream_check_module</code>  是后端服务器主动健康检查模块</p>
+<p><code>--with-http_concat_module</code> 是 js,css等文件合并模块</p>
+<p><code>--dso-path</code> 指定动态 modules 所在目录，放置在 /etc/nginx/modules</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make</span><br></pre></td></tr></table></figure>
+<h3 id="替换-nginx"><a href="#替换-nginx" class="headerlink" title="替换 nginx"></a>替换 nginx</h3><p>编译完成后，将 objs 中的 nginx 代替 dotdeb 中的即可。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mv &#x2F;usr&#x2F;sbin&#x2F;nginx &#x2F;usr&#x2F;sbin&#x2F;nginx.before.tengine</span><br><span class="line">mv &#x2F;root&#x2F;tengine-1.4.2&#x2F;objs&#x2F;nginx &#x2F;usr&#x2F;sbin&#x2F;</span><br></pre></td></tr></table></figure>
+<p>其他使用方式和 dotdeb 一样</p>
+<p>用 <code>nginx -V</code> 可以查看到 nginx 已经被替换为 tengine 。</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2019-08-07T03:41:10.000Z" itemprop="dateUpdated">2019-08-07 11:41:10</time>
+</span><br>
+
+
+        
+        本文地址：<a href="" target="_blank" rel="external">http://littlepig.cn/posts/2012/12/30/tengine-install/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="http://littlepig.cn">
+            <img src="../../../../../img/avatar.jpg" alt="ZHZ">
+            ZHZ
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赞</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../../tags/debian/" rel="tag">debian</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../../tags/nginx/" rel="tag">nginx</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../../tags/tengine/" rel="tag">tengine</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://littlepig.cn/posts/2012/12/30/tengine-install/&title=《debian 下 tengine 的安装和使用》 — LittlePig.CN&pic=http://littlepig.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://littlepig.cn/posts/2012/12/30/tengine-install/&title=《debian 下 tengine 的安装和使用》 — LittlePig.CN&source=记录 / 回忆 / 分享" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://littlepig.cn/posts/2012/12/30/tengine-install/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《debian 下 tengine 的安装和使用》 — LittlePig.CN&url=http://littlepig.cn/posts/2012/12/30/tengine-install/&via=http://littlepig.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://littlepig.cn/posts/2012/12/30/tengine-install/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="../debian-config/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Debian 的常见配置汇总</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="../../28/site-blocked/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">nginx做反向代理网站提示被重置</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="../../../../../img/wechat.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="../../../../../img/wechat.png" data-alipay="../../../../../img/alipay.png">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="../../../../../atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license noopener" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>ZHZ &copy; 2003 - 2021</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://littlepig.cn/posts/2012/12/30/tengine-install/&title=《debian 下 tengine 的安装和使用》 — LittlePig.CN&pic=http://littlepig.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://littlepig.cn/posts/2012/12/30/tengine-install/&title=《debian 下 tengine 的安装和使用》 — LittlePig.CN&source=记录 / 回忆 / 分享" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://littlepig.cn/posts/2012/12/30/tengine-install/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《debian 下 tengine 的安装和使用》 — LittlePig.CN&url=http://littlepig.cn/posts/2012/12/30/tengine-install/&via=http://littlepig.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://littlepig.cn/posts/2012/12/30/tengine-install/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACNUlEQVR42u3aQW7DMAwEwPz/0+41BWJ1KSpALY1PhlPIGh9YUuTrFV/X2/X+ZPzr+5O7NcdvWXxhYGA8lnENryrjbhPjv0ne+8dbMDAwDmCMA+Ld/ThQ5psYM5JgjYGBgXH34iR9TEJz/skwMDAw1gbcpHwdfyAMDAyMahE7V3bOlalfrMUxMDAeyOiEyG/ff6W/gYGB8SjGVbySlkAeauf28GE1DAyMrRl5gJtLGZPjubmAi4GBcRqjOtrVKW47jYTkiBADA+MERjIENnd8n6SGCTIKuBgYGBsxxofs+ZBWldcJ9x9WxsDA2JqRpHRz4M4WkyBe6MdiYGA8nLFqzKKchzaK2C9Oi2BgYPx7RjXhmxvS6gffD/cYGBgHMKpHZv15rc581+1xGwYGxqaMamOgnLQVmwTVInayhYmBgfFARmfMqzqWmgxkFEYrMDAwDmAkh2Wd1mYVUC1fb2txDAyMrRl5CJ4rRKuFbpQ+YmBgbM2olo5zB/dJurkqJcXAwNibkQfftUNja1NJDAyMXRnV5mJ169UBsjwx/fUrBgbGAYxVjcZ8u511MDAwTmas2lze1JwbNcPAwDiHcRWvpLjtNCkX1N8YGBjbMaphrrPo3BBYJ23FwMDYiTF3NLaq5Zn8G4g+HAYGxgGMuRGKueed8N2aE8HAwDiSkQMK53/xEwwMDIw84OYH/XMtgegDYWBgHMBIUre8STleea5kxcDAOJnRmtSIj/g7AXdVcwIDA+OBjB9f4mqYe7jeUAAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+lazyScripts.push('//s95.cnzz.com/z_stat.php?id=1235250&web_id=1235250')
+
+</script>
+
+<script src="../../../../../js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="../../../../../js/search.min.js?v=1.7.2" async></script>
+
+
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

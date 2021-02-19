@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>群晖 DSM 中 GitServer 的配置 | LittlePig.CN | someone&#39;s Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="server,synology,git">
+    <meta name="description" content="群晖中 GitServer 的信息很少，官网竟然都没有找到相关资料，只在内置的帮助中有一屏说明，也是无济于事，于是自己摸索了下。 准备工作： 因为我是个人使用 NAS，所以我把我自己的账号 zhz 加入了 Administrator 组，这样在一些目录权限上应该就没什么限制了。 1）安装 git server ，在 git server 的配置中勾选用户 zhz 以使用 git server 。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="群晖 DSM 中 GitServer 的配置">
+<meta property="og:url" content="http://littlepig.cn/posts/2014/01/13/synology-dsm-gitserver-configuration/index.html">
+<meta property="og:site_name" content="LittlePig.CN">
+<meta property="og:description" content="群晖中 GitServer 的信息很少，官网竟然都没有找到相关资料，只在内置的帮助中有一屏说明，也是无济于事，于是自己摸索了下。 准备工作： 因为我是个人使用 NAS，所以我把我自己的账号 zhz 加入了 Administrator 组，这样在一些目录权限上应该就没什么限制了。 1）安装 git server ，在 git server 的配置中勾选用户 zhz 以使用 git server 。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2014-01-13T11:44:04.000Z">
+<meta property="article:modified_time" content="2016-10-31T11:42:37.000Z">
+<meta property="article:author" content="ZHZ">
+<meta property="article:tag" content="server">
+<meta property="article:tag" content="synology">
+<meta property="article:tag" content="git">
+<meta name="twitter:card" content="summary">
+    
+        <link rel="alternate" type="application/atom+xml" title="LittlePig.CN" href="../../../../../atom.xml">
+    
+    <link rel="shortcut icon" href="../../../../../favicon.ico">
+    <link rel="stylesheet" href="../../../../../css/style.css?v=1.7.2">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(../../../../../img/brand.jpg)">
+      <div class="brand">
+        <a href="../../../../../index.html" class="avatar waves-effect waves-circle waves-light">
+          <img src="../../../../../img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">ZHZ</h5>
+          <a href="mailto:zhz@hebut.edu.cn" title="zhz@hebut.edu.cn" class="mail">zhz@hebut.edu.cn</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="../../../../../index.html"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="../../../../../archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="../../../../../tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="../../../../../categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="../../../../../about"  >
+                <i class="icon icon-lg icon-link"></i>
+                关于
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">群晖 DSM 中 GitServer 的配置</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">群晖 DSM 中 GitServer 的配置</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2014-01-13T11:44:04.000Z" itemprop="datePublished" class="page-time">
+  2014-01-13
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+
+<article id="post-synology-dsm-gitserver-configuration"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">群晖 DSM 中 GitServer 的配置</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2014-01-13 19:44:04" datetime="2014-01-13T11:44:04.000Z"  itemprop="datePublished">2014-01-13</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>群晖中 GitServer 的信息很少，官网竟然都没有找到相关资料，只在内置的帮助中有一屏说明，也是无济于事，于是自己摸索了下。</p>
+<p>准备工作：</p>
+<p>因为我是个人使用 NAS，所以我把我自己的账号 zhz 加入了 Administrator 组，这样在一些目录权限上应该就没什么限制了。</p>
+<p>1）安装 git server ，在 git server 的配置中勾选用户 zhz 以使用 git server 。</p>
+<p>2）在 DSM “共享文件夹” 中新建一个叫做 repository 的目录，并给与 zhz 可读写的权限，可以设置为对没有权限的用户网络邻居中不可见。</p>
+<p>3）通过网上邻居访问到 repository 目录，在其中新建你的项目目录，比如叫做  TestProj ，然后通过 tortoisegit 右键 “在此处创建版本库”，勾选 “制作纯版本库（没有工作区选项）”，好了，服务器端工作完成。</p>
+<p>4）剩下的工作就和其他git server类似了，使用如下链接将空项目克隆到本地某个目录： ssh://zhz@192.168.1.100/volume1/repository/TestProj ，其中 volume1 是你建立 repository 文件夹时选择的卷，然后添加文件，提交到本地库，推送到远程 NAS 即可。</p>
+<p>整个过程其实用不到 ssh 到 shell 中打命令，当然，如果你的项目权限控制比较严格可能就需要 ssh 进去修改库目录的权限什么之类的了。</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2016-10-31T11:42:37.000Z" itemprop="dateUpdated">2016-10-31 19:42:37</time>
+</span><br>
+
+
+        
+        本文地址：<a href="" target="_blank" rel="external">http://littlepig.cn/posts/2014/01/13/synology-dsm-gitserver-configuration/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="http://littlepig.cn">
+            <img src="../../../../../img/avatar.jpg" alt="ZHZ">
+            ZHZ
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赞</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../../tags/git/" rel="tag">git</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../../tags/server/" rel="tag">server</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../../tags/synology/" rel="tag">synology</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://littlepig.cn/posts/2014/01/13/synology-dsm-gitserver-configuration/&title=《群晖 DSM 中 GitServer 的配置》 — LittlePig.CN&pic=http://littlepig.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://littlepig.cn/posts/2014/01/13/synology-dsm-gitserver-configuration/&title=《群晖 DSM 中 GitServer 的配置》 — LittlePig.CN&source=记录 / 回忆 / 分享" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://littlepig.cn/posts/2014/01/13/synology-dsm-gitserver-configuration/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《群晖 DSM 中 GitServer 的配置》 — LittlePig.CN&url=http://littlepig.cn/posts/2014/01/13/synology-dsm-gitserver-configuration/&via=http://littlepig.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://littlepig.cn/posts/2014/01/13/synology-dsm-gitserver-configuration/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="../../../02/23/mysql-sync/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">MySQL 主从同步配置 </h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="../d400-synology-4-2-update-to-4-3/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Lenovo D400 (W130S) 黑群晖 4.2 升级 4.3</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="../../../../../img/wechat.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="../../../../../img/wechat.png" data-alipay="../../../../../img/alipay.png">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="../../../../../atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license noopener" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>ZHZ &copy; 2003 - 2021</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://littlepig.cn/posts/2014/01/13/synology-dsm-gitserver-configuration/&title=《群晖 DSM 中 GitServer 的配置》 — LittlePig.CN&pic=http://littlepig.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://littlepig.cn/posts/2014/01/13/synology-dsm-gitserver-configuration/&title=《群晖 DSM 中 GitServer 的配置》 — LittlePig.CN&source=记录 / 回忆 / 分享" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://littlepig.cn/posts/2014/01/13/synology-dsm-gitserver-configuration/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《群晖 DSM 中 GitServer 的配置》 — LittlePig.CN&url=http://littlepig.cn/posts/2014/01/13/synology-dsm-gitserver-configuration/&via=http://littlepig.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://littlepig.cn/posts/2014/01/13/synology-dsm-gitserver-configuration/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACrElEQVR42u3ay27bMBAFUP//T6ebLgoUke+8Uhc4WgWCLfLQgDi5w9crvr4er+8+8/yE51H+vPP338sXHh4e3vHUq5N+nnr1Cfmc8fDw8K55yeOSRUmGn2wb+Zzx8PDwPo2X3M8XJSmm8fDw8P5fXi8ySD5fBePh4eH9W17vNZ1sAHkY8TzR86wFDw8PL+blXaTP+fukv4eHh4c37qpXI9pkEtXAtzfP39/Fw8PDO+DlL9xJzNo7mtArl/Hw8PB+kjcJT5PjBZNFGbXB8PDw8FZ51ZdvoZBtsZODCMnTXr29BQ8PDy/gJY+oAqrfnS93hMTDw8Nb5SUT6vXWettMvrU0e3d4eHh4A16vkN0NHaov+sKPgYeHh3fAy6e4dafX6MpbaM0OHh4eHl6Rl28M1YNQ84hhcpALDw8P74JXjVl7h6guwo7CloCHh4d3wNvNQvOCePK0KLDAw8PDO+BVy9ZqkFoNYZ9HGW1seHh4eKu85IXeCyCqW0u+fAUkHh4e3iovmWgvYM3j2l4kEY2Lh4eHd8bLi+at+n03jPh2dDw8PLxjXl5ez2OL3U2iEN3i4eHhLfG2yuJ5cVwt6N8sKx4eHt4xrxdG5CV4zugtyrcnI/Dw8PBWeb1wodowq5bd1eL+zc+Dh4eHd8ybhxG94nvyzDcFNx4eHt4Zrzpw3qzKy/S89VWYCR4eHt4Zb952Sg6e9o4IjIJgPDw8vFXeV/HqTa4aZyTHGgrHVfHw8PBWeb0oIY9iJ9TqKKMLDw8Pr8jLN4PklV0NLHotsXwOeHh4eHe83SF793e3MTw8PLzP4fVe+vNFfH7br20MeHh4eGc1Z++4QGFacdvszaaCh4eHd8brNb2qZXQ1LM5/hoWsBQ8PD6/Wc6/8ex/EB70tofeZ7fQCDw8P7+H6BXf4K/AUVDmGAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+lazyScripts.push('//s95.cnzz.com/z_stat.php?id=1235250&web_id=1235250')
+
+</script>
+
+<script src="../../../../../js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="../../../../../js/search.min.js?v=1.7.2" async></script>
+
+
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>
