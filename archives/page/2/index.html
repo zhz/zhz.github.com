@@ -178,13 +178,7 @@
       <h2 class="post-list__post-title post-title"><a href="/posts/2020/04/01/macos-vs-code-cannot-debug/" title="link to post.title">解决 MacOS Visual Studio Code 不能调试的问题</a></h2>
       <p class="excerpt">
     
-      最近发现 MacOS Catalina 的 Visual Studio Code 不能调试 C++ 了，翻遍了国内各种资料各种方法无效，不得已准备去啃官方网站的说明，发现这个 
-
-                
-                    
-                    
-                
-                https://code.visua
+      最近发现 MacOS Catalina 的 Visual Studio Code 不能调试 C++ 了，翻遍了国内各种资料各种方法无效，不得已准备去啃官方网站的说明，发现这个 ，原来 xcode 更新之后已经不提供 lldb-mi 了，所以 externalConsole 那个配置项即便为 True 也是无效的，仅仅能打开个 Terminal 但是无法执行程序，解决方法如下：安装 CodeLLDB
     &hellip;
       </p>
       <div class="post-list__meta"><time datetime="2020-04-01T02:30:50.000Z" class="post-list__meta--date date">2020-04-01</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;</span><a class="btn-border-small" href="/posts/2020/04/01/macos-vs-code-cannot-debug/">继续阅读</a></div>
