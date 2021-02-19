@@ -1,181 +1,184 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     
-
-    
-
-    
-
-
-
-    <meta charset="utf-8">
-    
-    
-    
-    
-    <title>在WP里使用被禁止的 Javascript,Iframe 等 | LittlePig.CN | someone&#39;s Blog</title>
+    <title>在WP里使用被禁止的 Javascript,Iframe 等 | LittlePig.CN</title>
+    <meta name="renderer" content="webkit">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    
-    <meta name="theme-color" content="#3F51B5">
-    
-    
-    <meta name="keywords" content="javascript">
-    <meta name="description" content="WordPress 里发表日志时默认禁止了一些标签的使用，比如 &lt;Script&gt;、&lt;IFrame&gt; 等，虽然有一定的好处，但缺点也是显而易见的，很多功能都得到了限制，虽然修改 WP 的内部代码可以解除限制，但并不是完美的办法，因为将来 WP 升级时，你仍然需要再行修改。如果你需要使用这些标签的页面比较单一，那么可以采用如下的方法进行。 　　我们知道，WordPress">
-<meta property="og:type" content="article">
-<meta property="og:title" content="在WP里使用被禁止的 Javascript,Iframe 等">
-<meta property="og:url" content="http://littlepig.cn/posts/2009/03/01/use-javascript-iframe-etc-in-wordpress/index.html">
-<meta property="og:site_name" content="LittlePig.CN">
-<meta property="og:description" content="WordPress 里发表日志时默认禁止了一些标签的使用，比如 &lt;Script&gt;、&lt;IFrame&gt; 等，虽然有一定的好处，但缺点也是显而易见的，很多功能都得到了限制，虽然修改 WP 的内部代码可以解除限制，但并不是完美的办法，因为将来 WP 升级时，你仍然需要再行修改。如果你需要使用这些标签的页面比较单一，那么可以采用如下的方法进行。 　　我们知道，WordPress">
-<meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2009-03-01T07:21:22.000Z">
-<meta property="article:modified_time" content="2016-10-17T08:40:55.000Z">
-<meta property="article:author" content="ZHZ">
-<meta property="article:tag" content="javascript">
-<meta name="twitter:card" content="summary">
-    
-        <link rel="alternate" type="application/atom+xml" title="LittlePig.CN" href="../../../../../atom.xml">
-    
-    <link rel="shortcut icon" href="../../../../../favicon.ico">
-    <link rel="stylesheet" href="../../../../../css/style.css?v=1.7.2">
-    <script>window.lazyScripts=[]</script>
 
-    <!-- custom head -->
+    <meta name="description" content="记录 / 回忆 / 分享">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="在WP里使用被禁止的 Javascript,Iframe 等 | LittlePig.CN">
+    <meta name="twitter:description" content="记录 / 回忆 / 分享">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="在WP里使用被禁止的 Javascript,Iframe 等 | LittlePig.CN">
+    <meta property="og:description" content="记录 / 回忆 / 分享">
+
+    
+    <meta name="author" content="ZHZ">
+    
+    
+<link rel="stylesheet" href="../../../../../css/vno.css">
+
+    
+<link rel="stylesheet" href="../../../../../netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+
+
+    
+    <link rel="icon" href="/favicon.png">
     
 
-<meta name="generator" content="Hexo 5.3.0"></head>
+    <meta name="generator" content="hexo"/>
+    
+    <link rel="alternate" type="application/rss+xml" title="LittlePig.CN" href="/atom.xml">
+    
 
-<body>
-    <div id="loading" class="active"></div>
+    <link rel="canonical" href="http://littlepig.cn/posts/2009/03/01/use-javascript-iframe-etc-in-wordpress/"/>
 
-    <aside id="menu" class="hide" >
-  <div class="inner flex-row-vertical">
-    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
-        <i class="icon icon-lg icon-close"></i>
+                 
+</head>
+
+<body class="home-template no-js">
+    
+<script src="../../../../../cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+
+    
+<script src="../../../../../js/main.js"></script>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="fa fa-list btn-mobile-menu__icon"></i>
+        <i class="fa fa-angle-up btn-mobile-close__icon hidden"></i>
+    </span>
+
+    <header class="panel-cover panel-cover--collapsed" style="background-image: url(/images/background-cover.jpg)">
+  <div class="panel-main">
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+
+        <a href="/" title="前往 LittlePig.CN 的主页"><img src="/avatar.png" width="80" alt="LittlePig.CN logo" class="panel-cover__logo logo" /></a>
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage for LittlePig.CN">LittlePig.CN</a></h1>
+
+        
+        <span class="panel-cover__subtitle panel-subtitle">someone&#39;s Blog</span>
+        
+
+        <hr class="panel-cover__divider" />
+
+        
+          
+<div id="toc" class="toc-article">
+ <strong class="toc-title">文章目录</strong>
+
+</div>
+
+        
+
+        <hr class="panel-cover__divider panel-cover__divider--secondary" />
+
+
+          <div class="navigation-wrapper">
+            <div>
+            <nav class="cover-navigation cover-navigation--primary">
+              <ul class="navigation">
+                <li class="navigation__item"><a href="/#blog" title="访问博客" class="blog-button">博客</a></li>
+              
+                <li class="navigation__item"><a href="/tags/">标签</a></li>
+              
+                <li class="navigation__item"><a href="/about/">关于我</a></li>
+              
+              </ul>
+            </nav>
+            </div>
+            <div>
+            <nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+  <!-- Weibo-->
+  
+  <li class="navigation__item">
+    <a href="http://weibo.com/zhuhuaizhong" title="我的微博" target="_blank">
+      <i class='social fa fa-weibo'></i>
+      <span class="label">Weibo</span>
     </a>
-    <div class="brand-wrap" style="background-image:url(../../../../../img/brand.jpg)">
-      <div class="brand">
-        <a href="../../../../../index.html" class="avatar waves-effect waves-circle waves-light">
-          <img src="../../../../../img/avatar.jpg">
-        </a>
-        <hgroup class="introduce">
-          <h5 class="nickname">ZHZ</h5>
-          <a href="mailto:zhz@hebut.edu.cn" title="zhz@hebut.edu.cn" class="mail">zhz@hebut.edu.cn</a>
-        </hgroup>
+  </li> 
+
+
+  <!-- Github -->
+  
+  <li class="navigation__item">
+    <a href="http://github.com/zhz" title="查看我的GitHub主页" target="_blank">
+      <i class='social fa fa-github'></i>
+      <span class="label">Github</span>
+    </a>
+  </li>
+
+
+<!-- Stack Overflow -->
+        
+
+  <!-- Google Plus -->
+  
+
+<!-- Facebook -->
+
+  
+<!-- Twitter -->
+
+  
+
+  <li class="navigation__item">
+    <a href="/atom.xml" title="RSS" target="_blank">
+      <i class='social fa fa-rss'></i>
+      <span class="label">RSS</span>
+    </a>
+  </li>
+
+
+
+  </ul>
+</nav>
+
+            </div>
+          </div>
+
+
       </div>
-    </div>
-    <div class="scroll-wrap flex-col">
-      <ul class="nav">
-        
-            <li class="waves-block waves-effect">
-              <a href="../../../../../index.html"  >
-                <i class="icon icon-lg icon-home"></i>
-                主页
-              </a>
-            </li>
-        
-            <li class="waves-block waves-effect">
-              <a href="../../../../../archives"  >
-                <i class="icon icon-lg icon-archives"></i>
-                归档
-              </a>
-            </li>
-        
-            <li class="waves-block waves-effect">
-              <a href="../../../../../tags"  >
-                <i class="icon icon-lg icon-tags"></i>
-                标签
-              </a>
-            </li>
-        
-            <li class="waves-block waves-effect">
-              <a href="../../../../../categories"  >
-                <i class="icon icon-lg icon-th-list"></i>
-                分类
-              </a>
-            </li>
-        
-            <li class="waves-block waves-effect">
-              <a href="../../../../../about"  >
-                <i class="icon icon-lg icon-link"></i>
-                关于
-              </a>
-            </li>
-        
-      </ul>
-    </div>
-  </div>
-</aside>
 
-    <main id="main">
-        <header class="top-header" id="header">
-    <div class="flex-row">
-        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
-          <i class="icon icon-lg icon-navicon"></i>
-        </a>
-        <div class="flex-col header-title ellipsis">在WP里使用被禁止的 Javascript,Iframe 等</div>
-        
-        <div class="search-wrap" id="search-wrap">
-            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
-                <i class="icon icon-lg icon-chevron-left"></i>
-            </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
-            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
-                <i class="icon icon-lg icon-search"></i>
-            </a>
-        </div>
-        
-        
-        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
-            <i class="icon icon-lg icon-share-alt"></i>
-        </a>
-        
-    </div>
-</header>
-<header class="content-header post-header">
-
-    <div class="container fade-scale">
-        <h1 class="title">在WP里使用被禁止的 Javascript,Iframe 等</h1>
-        <h5 class="subtitle">
-            
-                <time datetime="2009-03-01T07:21:22.000Z" itemprop="datePublished" class="page-time">
-  2009-03-01
-</time>
-
-
-            
-        </h5>
     </div>
 
-    
-
-
+    <div class="panel-cover--overlay cover-blue"></div>
+  </div> 
 </header>
 
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner">
+            <article class="post-container post-container--single">
 
-<div class="container body-wrap">
-    
+  <header class="post-header">
+    <div class="post-meta">
+      <time datetime="2009-03-01T07:21:22.000Z" class="post-list__meta--date date">2009-03-01</time> &#8226; <span class="post-meta__tags tags">于&nbsp;
+  <a class="-none-link" href="../../../../../tags/javascript/" rel="tag">javascript</a>
+ </span>
+      <span class="page-pv">
+      &nbsp;阅读&nbsp;<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>
+      </span> 
+   
+    </div>
+    <h1 class="post-title">在WP里使用被禁止的 Javascript,Iframe 等</h1>
 
-<article id="post-use-javascript-iframe-etc-in-wordpress"
-  class="post-article article-type-post fade" itemprop="blogPost">
+  </header>
 
-    <div class="post-card">
-        <h1 class="post-card-title">在WP里使用被禁止的 Javascript,Iframe 等</h1>
-        <div class="post-meta">
-            <time class="post-time" title="2009-03-01 15:21:22" datetime="2009-03-01T07:21:22.000Z"  itemprop="datePublished">2009-03-01</time>
-
-            
-
-
-            
-<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
-    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
-</span>
-
-
-        </div>
-        <div class="post-content" id="post-content" itemprop="postContent">
-            <p>　　WordPress 里发表日志时默认禁止了一些标签的使用，比如 <code>&lt;Script&gt;</code>、<code>&lt;IFrame&gt;</code> 等，虽然有一定的好处，但缺点也是显而易见的，很多功能都得到了限制，虽然修改 WP 的内部代码可以解除限制，但并不是完美的办法，因为将来 WP 升级时，你仍然需要再行修改。如果你需要使用这些标签的页面比较单一，那么可以采用如下的方法进行。</p>
+  <section class="post">
+    <p>　　WordPress 里发表日志时默认禁止了一些标签的使用，比如 <code>&lt;Script&gt;</code>、<code>&lt;IFrame&gt;</code> 等，虽然有一定的好处，但缺点也是显而易见的，很多功能都得到了限制，虽然修改 WP 的内部代码可以解除限制，但并不是完美的办法，因为将来 WP 升级时，你仍然需要再行修改。如果你需要使用这些标签的页面比较单一，那么可以采用如下的方法进行。</p>
 <p>　　我们知道，WordPress 的页面 (Page) 可以继承自某个模板，虽然文章的页面内容是被编辑器过滤的，但模板里的内容不会，既然这样，我们可以将 script ,iframe 等被禁止的标签及内容放置在模板，然后新建页面时继承自该模板即可。</p>
 <p>　　下面以我的万年历作为例子，说明一下具体过程：</p>
 <p>　　 首先将你的 Page.php 复制一份，改名为 calendar.php ,然后在最上部加入如下内容</p>
@@ -186,312 +189,87 @@
 <p>　　 保存并上传该模板文件。注意文件要保存成 UTF-8 格式，否则会出现乱码。</p>
 <p>　　新建一个页面，模板选择下拉菜单里的 calendar 即可。</p>
 
-        </div>
-
-        <blockquote class="post-copyright">
-    
-    <div class="content">
-        
-<span class="post-time">
-    最后更新时间：<time datetime="2016-10-17T08:40:55.000Z" itemprop="dateUpdated">2016-10-17 16:40:55</time>
-</span><br>
-
-
-        
-        本文地址：<a href="" target="_blank" rel="external">http://littlepig.cn/posts/2009/03/01/use-javascript-iframe-etc-in-wordpress/</a>
-        
-    </div>
-    
-    <footer>
-        <a href="http://littlepig.cn">
-            <img src="../../../../../img/avatar.jpg" alt="ZHZ">
-            ZHZ
-        </a>
-    </footer>
-</blockquote>
-
-        
-<div class="page-reward">
-    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赞</a>
-</div>
-
-
-
-        <div class="post-footer">
-            
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../../tags/javascript/" rel="tag">javascript</a></li></ul>
-
-
-            
-<div class="page-share-wrap">
-    
-
-<div class="page-share" id="pageShare">
-    <ul class="reset share-icons">
-      <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://littlepig.cn/posts/2009/03/01/use-javascript-iframe-etc-in-wordpress/&title=《在WP里使用被禁止的 Javascript,Iframe 等》 — LittlePig.CN&pic=http://littlepig.cn/img/avatar.jpg" data-title="微博">
-          <i class="icon icon-weibo"></i>
-        </a>
-      </li>
-      <li>
-        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
-          <i class="icon icon-weixin"></i>
-        </a>
-      </li>
-      <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://littlepig.cn/posts/2009/03/01/use-javascript-iframe-etc-in-wordpress/&title=《在WP里使用被禁止的 Javascript,Iframe 等》 — LittlePig.CN&source=记录 / 回忆 / 分享" data-title=" QQ">
-          <i class="icon icon-qq"></i>
-        </a>
-      </li>
-      <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://littlepig.cn/posts/2009/03/01/use-javascript-iframe-etc-in-wordpress/" data-title=" Facebook">
-          <i class="icon icon-facebook"></i>
-        </a>
-      </li>
-      <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《在WP里使用被禁止的 Javascript,Iframe 等》 — LittlePig.CN&url=http://littlepig.cn/posts/2009/03/01/use-javascript-iframe-etc-in-wordpress/&via=http://littlepig.cn" data-title=" Twitter">
-          <i class="icon icon-twitter"></i>
-        </a>
-      </li>
-      <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://littlepig.cn/posts/2009/03/01/use-javascript-iframe-etc-in-wordpress/" data-title=" Google+">
-          <i class="icon icon-google-plus"></i>
-        </a>
-      </li>
-    </ul>
- </div>
-
-
-
-    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
-        <i class="icon icon-share-alt icon-lg"></i>
-    </a>
-</div>
-
-
-
-        </div>
-    </div>
-
-    
-<nav class="post-nav flex-row flex-justify-between">
-  
-    <div class="waves-block waves-effect prev">
-      <a href="../../05/google-vs-baidu/" id="post-prev" class="post-nav-link">
-        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
-        <h4 class="title">CNNIC称谷歌高学历用户流失率远低于百度</h4>
-      </a>
-    </div>
-  
-
-  
-    <div class="waves-block waves-effect next">
-      <a href="../../../02/27/split-screen/" id="post-next" class="post-nav-link">
-        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
-        <h4 class="title">试用几款屏幕分割软件 - Split Screen</h4>
-      </a>
-    </div>
-  
-</nav>
-
-
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  </section>
 
 </article>
 
-<div id="reward" class="page-modal reward-lay">
-    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <h3 class="reward-title">
-        <i class="icon icon-quote-left"></i>
-        谢谢~
-        <i class="icon icon-quote-right"></i>
-    </h3>
-    <div class="reward-content">
-        
-        <div class="reward-code">
-            <img id="rewardCode" src="../../../../../img/wechat.png" alt="打赏二维码">
-        </div>
-        
-        <label class="reward-toggle">
-            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
-                data-wechat="../../../../../img/wechat.png" data-alipay="../../../../../img/alipay.png">
-            <div class="reward-toggle-ctrol">
-                <span class="reward-toggle-item wechat">微信</span>
-                <span class="reward-toggle-label"></span>
-                <span class="reward-toggle-item alipay">支付宝</span>
-            </div>
-        </label>
-        
-    </div>
-</div>
-
-
-
-</div>
-
-        <footer class="footer">
-    <div class="top">
-        
-<p>
-    <span id="busuanzi_container_site_uv" style='display:none'>
-        站点总访客数：<span id="busuanzi_value_site_uv"></span>
-    </span>
-    <span id="busuanzi_container_site_pv" style='display:none'>
-        站点总访问量：<span id="busuanzi_value_site_pv"></span>
-    </span>
-</p>
-
-
-        <p>
-            
-                <span><a href="../../../../../atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
-            
-            <span>博客内容遵循 <a rel="license noopener" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
-        </p>
-    </div>
-    <div class="bottom">
-        <p><span>ZHZ &copy; 2003 - 2021</span>
-            <span>
+<section class="read-more">
+           
+    
+               
+            <div class="read-more-item">
+                <span class="read-more-item-dim">最近的文章</span>
+                <h2 class="post-list__post-title post-title"><a href="/posts/2009/03/05/google-vs-baidu/" title="CNNIC称谷歌高学历用户流失率远低于百度">CNNIC称谷歌高学历用户流失率远低于百度</a></h2>
+                <p class="excerpt">
                 
-                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
-            </span>
-        </p>
-    </div>
+                先转帖一篇报道
+`2009-03-05 14:53:14　来源: 网易科技报道
+　　网易科技讯 3月5日消息，今日在CNNIC《2008中国搜索引擎用户行为研究报告》发布会上，该机构分析师向网易科技透露，从目前取得的数据来看，谷歌高学历用户的流失率低于百度　　对方透露，从CNNIC掌握的数据分析，百
+                &hellip;
+                </p>
+                <div class="post-list__meta"><time datetime="2009-03-05T14:04:05.000Z" class="post-list__meta--date date">2009-03-05</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;</span><a class="btn-border-small" href="/posts/2009/03/05/google-vs-baidu/">继续阅读</a></div>
+                           
+            </div>
+        
+        
+               
+            <div class="read-more-item">
+                <span class="read-more-item-dim">更早的文章</span>
+                <h2 class="post-list__post-title post-title"><a href="/posts/2009/02/27/split-screen/" title="试用几款屏幕分割软件 - Split Screen">试用几款屏幕分割软件 - Split Screen</a></h2>
+                <p class="excerpt">
+                
+                　　大屏幕的优势显而易见，尤其是编写程序的时候，看着满屏幕一览无余的代码，排列整齐的工具栏，畅快之情油然而生，心情好了，程序写起来自然也带劲，看电影的时候更是如此，当你发现你需要摆动脑袋才能够看满屏幕的时候，那感觉一定是身临其境！
+　　其实，如果不是只作为电影观赏和代码编写，那么大屏幕也就没有什么值
+                &hellip;
+                </p>
+                <div class="post-list__meta"><time datetime="2009-02-27T13:14:26.000Z" class="post-list__meta--date date">2009-02-27</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
+  <a class="-none-link" href="../../../../../tags/GirdVista/" rel="tag">GirdVista</a>, <a class="-none-link" href="../../../../../tags/GridMove/" rel="tag">GridMove</a>, <a class="-none-link" href="../../../../../tags/MaxTo/" rel="tag">MaxTo</a>, <a class="-none-link" href="../../../../../tags/WinSplit/" rel="tag">WinSplit</a>
+</span><a class="btn-border-small" href="/posts/2009/02/27/split-screen/">继续阅读</a></div>
+                       
+            </div>
+        
+     
+   
+   
+  
+</section>
+
+  
+
+            <footer class="footer">
+    <span class="footer__copyright">
+        本站点采用 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a>
+    </span>
+    <span class="footer__copyright">
+        基于 <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a> 搭建，感谢 <a target="_blank" rel="noopener" href="https://pages.github.com/">GitHub Pages</a> 提供免费的托管服务
+    </span>
+    <span class="footer__copyright">
+        &copy; 2021 - 本站使用 <a target="_blank" rel="noopener" href="https://github.com/zhz/hexo-theme-vno2 ">vno2</a> 主题,
+        由<a href="https://littlepig.cn ">@zhz</a> 修改自 <a href="https://monniya.com" target="_blank">monniya.com</a>, 原创出自<a href="http://github.com/onevcat/vno" target="_blank">onevcat</a>
+    </span>
+    
 </footer>
 
-    </main>
-    <div class="mask" id="mask"></div>
-<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
 
-
-
-<div class="global-share" id="globalShare">
-    <ul class="reset share-icons">
-      <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://littlepig.cn/posts/2009/03/01/use-javascript-iframe-etc-in-wordpress/&title=《在WP里使用被禁止的 Javascript,Iframe 等》 — LittlePig.CN&pic=http://littlepig.cn/img/avatar.jpg" data-title="微博">
-          <i class="icon icon-weibo"></i>
-        </a>
-      </li>
-      <li>
-        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
-          <i class="icon icon-weixin"></i>
-        </a>
-      </li>
-      <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://littlepig.cn/posts/2009/03/01/use-javascript-iframe-etc-in-wordpress/&title=《在WP里使用被禁止的 Javascript,Iframe 等》 — LittlePig.CN&source=记录 / 回忆 / 分享" data-title=" QQ">
-          <i class="icon icon-qq"></i>
-        </a>
-      </li>
-      <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://littlepig.cn/posts/2009/03/01/use-javascript-iframe-etc-in-wordpress/" data-title=" Facebook">
-          <i class="icon icon-facebook"></i>
-        </a>
-      </li>
-      <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《在WP里使用被禁止的 Javascript,Iframe 等》 — LittlePig.CN&url=http://littlepig.cn/posts/2009/03/01/use-javascript-iframe-etc-in-wordpress/&via=http://littlepig.cn" data-title=" Twitter">
-          <i class="icon icon-twitter"></i>
-        </a>
-      </li>
-      <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://littlepig.cn/posts/2009/03/01/use-javascript-iframe-etc-in-wordpress/" data-title=" Google+">
-          <i class="icon icon-google-plus"></i>
-        </a>
-      </li>
-    </ul>
- </div>
-
-
-<div class="page-modal wx-share" id="wxShare">
-    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACrElEQVR42u3aQW6EMAwF0Ln/pdttpXaY/+OEsnisEIwgj5Fiy/brFR9fP47f15Nfvrv7+/z6eJ048PDw8AZLf/e46yvXy82fcA3IPwQeHh7ePbzkcclC86DS/vLdej5Y8PDw8B7Daz/BWihKEnE8PDy85/PaJDtJiFsSHh4e3hN47TY9KdHmAebWWgseHh7egS7Sc86P9Pfw8PDwxl31pBmWp9H5wEFyN1otHh4e3gFevuFOCqlrowkJO2qh4eHh4W3l5dvx3jZYW+pNhrT+OMfDw8M7zGubWPlA1XzUIE+so2iGh4eHN+CdSJ3bAJBs+i0YDw8P7zRvPtiUpLntMEGbfI96d3h4eHgD3lry2pZok7GttmBRNMDw8PDwxrx8I06Kp5MFrT2hGMnCw8PD28TLE9YW0zau8itFOMHDw8PbyssbYPkr6wZ/DKjv4uHh4R3jTfLPtsQwz3iLj4WHh4d3mDcptk4CQ56a52t47fo38PDw8JYGrfJtfa0Blhc4FltfeHh4eFt5yVLWigJtK6vo0eXpOx4eHt4x3lpZtk2m5yXgtjmHh4eHd5q3Nly11hhbKy7UnwwPDw/vAC9JW3clwW0i3j4ZDw8P705eUfEdANoW16QIgoeHh/dfvDzJ3hWLkiBUJ/p4eHh4x3htsrurGLGr7LvYK8PDw8Mb8PJjsvRdA1VFCQMPDw/vFt5ae6xdxK6G1ofghIeHh7eVNwkJeZDICxntUNeHt+Ph4eEd4M2bWGtFjTYdjxpdJ3p0eHh4eEt1zja9zgscLWMxbODh4eEd4+UbepLaTjb9SWTDw8PDezIvGZNqCwR5Al28BQ8PD+8BvGQsYC2lvmbkzTM8PDy8e3htyaBtd7UjBXliPZopw8PDw1vitYNN+YjVfKRgMRjg4eHhneJ9AxzsAyfkh6C/AAAAAElFTkSuQmCC" alt="微信分享二维码">
-</div>
-
-
-
-
-    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
-<script>
-var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
-
-
-lazyScripts.push('//s95.cnzz.com/z_stat.php?id=1235250&web_id=1235250')
-
-</script>
-
-<script src="../../../../../js/main.min.js?v=1.7.2"></script>
-
-
-<div class="search-panel" id="search-panel">
-    <ul class="search-result" id="search-result"></ul>
-</div>
-<template id="search-tpl">
-<li class="item">
-    <a href="{path}" class="waves-block waves-effect">
-        <div class="title ellipsis" title="{title}">{title}</div>
-        <div class="flex-row flex-middle">
-            <div class="tags ellipsis">
-                {tags}
-            </div>
-            <time class="flex-col time">{date}</time>
         </div>
-    </a>
-</li>
-</template>
+    </div>
 
-<script src="../../../../../js/search.min.js?v=1.7.2" async></script>
-
-
-
-<!-- mathjax config similar to math.stackexchange -->
-
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-    tex2jax: {
-        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-        processEscapes: true,
-        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-    }
-});
-
-MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-        all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-});
-</script>
-
-<script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+     
+    
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?60ce267446f73c3b0610372cd44a86d7";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
 
 
 
-
-<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
-
-
-
-
+    <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+    
 </body>
 </html>

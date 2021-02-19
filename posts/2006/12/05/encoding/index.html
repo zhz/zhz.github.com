@@ -1,187 +1,182 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     
-
-    
-
-    
-
-
-
-    <meta charset="utf-8">
-    
-    
-    
-    
-    <title>编码相关基础知识 | LittlePig.CN | someone&#39;s Blog</title>
+    <title>编码相关基础知识 | LittlePig.CN</title>
+    <meta name="renderer" content="webkit">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    
-    <meta name="theme-color" content="#3F51B5">
-    
-    
-    <meta name="keywords" content="">
-    <meta name="description" content="ANSI,AscII,GB2312,GBK,BIG5,GB18030,Unicode,UCS（就是unicode）Utf-8,utf-16,utf-32 …… 看看编码之多，真是够复杂，可这还仅仅是个开始，应用方面变化无穷，本文对这些基本的编码进行了详细的介绍。">
-<meta property="og:type" content="article">
-<meta property="og:title" content="编码相关基础知识">
-<meta property="og:url" content="http://littlepig.cn/posts/2006/12/05/encoding/index.html">
-<meta property="og:site_name" content="LittlePig.CN">
-<meta property="og:description" content="ANSI,AscII,GB2312,GBK,BIG5,GB18030,Unicode,UCS（就是unicode）Utf-8,utf-16,utf-32 …… 看看编码之多，真是够复杂，可这还仅仅是个开始，应用方面变化无穷，本文对这些基本的编码进行了详细的介绍。">
-<meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2006-12-05T07:23:01.000Z">
-<meta property="article:modified_time" content="2019-08-07T09:51:20.000Z">
-<meta property="article:author" content="ZHZ">
-<meta name="twitter:card" content="summary">
-    
-        <link rel="alternate" type="application/atom+xml" title="LittlePig.CN" href="../../../../../atom.xml">
-    
-    <link rel="shortcut icon" href="../../../../../favicon.ico">
-    <link rel="stylesheet" href="../../../../../css/style.css?v=1.7.2">
-    <script>window.lazyScripts=[]</script>
 
-    <!-- custom head -->
+    <meta name="description" content="记录 / 回忆 / 分享">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="编码相关基础知识 | LittlePig.CN">
+    <meta name="twitter:description" content="记录 / 回忆 / 分享">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="编码相关基础知识 | LittlePig.CN">
+    <meta property="og:description" content="记录 / 回忆 / 分享">
+
+    
+    <meta name="author" content="ZHZ">
+    
+    
+<link rel="stylesheet" href="../../../../../css/vno.css">
+
+    
+<link rel="stylesheet" href="../../../../../netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+
+
+    
+    <link rel="icon" href="/favicon.png">
     
 
-<meta name="generator" content="Hexo 5.3.0"></head>
+    <meta name="generator" content="hexo"/>
+    
+    <link rel="alternate" type="application/rss+xml" title="LittlePig.CN" href="/atom.xml">
+    
 
-<body>
-    <div id="loading" class="active"></div>
+    <link rel="canonical" href="http://littlepig.cn/posts/2006/12/05/encoding/"/>
 
-    <aside id="menu" class="hide" >
-  <div class="inner flex-row-vertical">
-    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
-        <i class="icon icon-lg icon-close"></i>
+                 
+</head>
+
+<body class="home-template no-js">
+    
+<script src="../../../../../cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+
+    
+<script src="../../../../../js/main.js"></script>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="fa fa-list btn-mobile-menu__icon"></i>
+        <i class="fa fa-angle-up btn-mobile-close__icon hidden"></i>
+    </span>
+
+    <header class="panel-cover panel-cover--collapsed" style="background-image: url(/images/background-cover.jpg)">
+  <div class="panel-main">
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+
+        <a href="/" title="前往 LittlePig.CN 的主页"><img src="/avatar.png" width="80" alt="LittlePig.CN logo" class="panel-cover__logo logo" /></a>
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage for LittlePig.CN">LittlePig.CN</a></h1>
+
+        
+        <span class="panel-cover__subtitle panel-subtitle">someone&#39;s Blog</span>
+        
+
+        <hr class="panel-cover__divider" />
+
+        
+          
+<div id="toc" class="toc-article">
+ <strong class="toc-title">文章目录</strong>
+<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%8E%E5%9F%BA%E7%A1%80%E7%9A%84%E5%BC%80%E5%A7%8B"><span class="toc-number">1.</span> <span class="toc-text">从基础的开始</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8A%E5%B1%82%E5%BB%BA%E7%AD%91%E5%AD%97%E7%AC%A6%EF%BC%9A"><span class="toc-number">2.</span> <span class="toc-text">上层建筑字符：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ASCII-%E5%AD%97%E7%AC%A6%E9%9B%86"><span class="toc-number">3.</span> <span class="toc-text">ASCII 字符集</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ASCII%E6%89%A9%E5%B1%95%E5%AD%97%E7%AC%A6%E9%9B%86%E6%89%A9%E5%B1%95"><span class="toc-number">4.</span> <span class="toc-text">ASCII扩展字符集扩展</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#GB2312-%E5%AD%97%E7%AC%A6%E9%9B%86"><span class="toc-number">5.</span> <span class="toc-text">GB2312 字符集</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#BIG5-%E5%AD%97%E7%AC%A6%E9%9B%86"><span class="toc-number">6.</span> <span class="toc-text">BIG5 字符集</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#GB18030-%E5%AD%97%E7%AC%A6%E9%9B%86"><span class="toc-number">7.</span> <span class="toc-text">GB18030 字符集</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Unicode%E5%AD%97%E7%AC%A6%E9%9B%86%EF%BC%88%E7%AE%80%E7%A7%B0%E4%B8%BAUCS%EF%BC%89"><span class="toc-number">8.</span> <span class="toc-text">Unicode字符集（简称为UCS）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#UNICODE-%E4%B8%8E-UTF8%E3%80%81UTF16"><span class="toc-number">9.</span> <span class="toc-text">UNICODE 与 UTF8、UTF16</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFBase64%EF%BC%9F"><span class="toc-number">10.</span> <span class="toc-text">什么是Base64？</span></a></li></ol>
+</div>
+
+        
+
+        <hr class="panel-cover__divider panel-cover__divider--secondary" />
+
+
+          <div class="navigation-wrapper">
+            <div>
+            <nav class="cover-navigation cover-navigation--primary">
+              <ul class="navigation">
+                <li class="navigation__item"><a href="/#blog" title="访问博客" class="blog-button">博客</a></li>
+              
+                <li class="navigation__item"><a href="/tags/">标签</a></li>
+              
+                <li class="navigation__item"><a href="/about/">关于我</a></li>
+              
+              </ul>
+            </nav>
+            </div>
+            <div>
+            <nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+  <!-- Weibo-->
+  
+  <li class="navigation__item">
+    <a href="http://weibo.com/zhuhuaizhong" title="我的微博" target="_blank">
+      <i class='social fa fa-weibo'></i>
+      <span class="label">Weibo</span>
     </a>
-    <div class="brand-wrap" style="background-image:url(../../../../../img/brand.jpg)">
-      <div class="brand">
-        <a href="../../../../../index.html" class="avatar waves-effect waves-circle waves-light">
-          <img src="../../../../../img/avatar.jpg">
-        </a>
-        <hgroup class="introduce">
-          <h5 class="nickname">ZHZ</h5>
-          <a href="mailto:zhz@hebut.edu.cn" title="zhz@hebut.edu.cn" class="mail">zhz@hebut.edu.cn</a>
-        </hgroup>
+  </li> 
+
+
+  <!-- Github -->
+  
+  <li class="navigation__item">
+    <a href="http://github.com/zhz" title="查看我的GitHub主页" target="_blank">
+      <i class='social fa fa-github'></i>
+      <span class="label">Github</span>
+    </a>
+  </li>
+
+
+<!-- Stack Overflow -->
+        
+
+  <!-- Google Plus -->
+  
+
+<!-- Facebook -->
+
+  
+<!-- Twitter -->
+
+  
+
+  <li class="navigation__item">
+    <a href="/atom.xml" title="RSS" target="_blank">
+      <i class='social fa fa-rss'></i>
+      <span class="label">RSS</span>
+    </a>
+  </li>
+
+
+
+  </ul>
+</nav>
+
+            </div>
+          </div>
+
+
       </div>
-    </div>
-    <div class="scroll-wrap flex-col">
-      <ul class="nav">
-        
-            <li class="waves-block waves-effect">
-              <a href="../../../../../index.html"  >
-                <i class="icon icon-lg icon-home"></i>
-                主页
-              </a>
-            </li>
-        
-            <li class="waves-block waves-effect">
-              <a href="../../../../../archives"  >
-                <i class="icon icon-lg icon-archives"></i>
-                归档
-              </a>
-            </li>
-        
-            <li class="waves-block waves-effect">
-              <a href="../../../../../tags"  >
-                <i class="icon icon-lg icon-tags"></i>
-                标签
-              </a>
-            </li>
-        
-            <li class="waves-block waves-effect">
-              <a href="../../../../../categories"  >
-                <i class="icon icon-lg icon-th-list"></i>
-                分类
-              </a>
-            </li>
-        
-            <li class="waves-block waves-effect">
-              <a href="../../../../../about"  >
-                <i class="icon icon-lg icon-link"></i>
-                关于
-              </a>
-            </li>
-        
-      </ul>
-    </div>
-  </div>
-</aside>
 
-    <main id="main">
-        <header class="top-header" id="header">
-    <div class="flex-row">
-        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
-          <i class="icon icon-lg icon-navicon"></i>
-        </a>
-        <div class="flex-col header-title ellipsis">编码相关基础知识</div>
-        
-        <div class="search-wrap" id="search-wrap">
-            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
-                <i class="icon icon-lg icon-chevron-left"></i>
-            </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
-            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
-                <i class="icon icon-lg icon-search"></i>
-            </a>
-        </div>
-        
-        
-        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
-            <i class="icon icon-lg icon-share-alt"></i>
-        </a>
-        
-    </div>
-</header>
-<header class="content-header post-header">
-
-    <div class="container fade-scale">
-        <h1 class="title">编码相关基础知识</h1>
-        <h5 class="subtitle">
-            
-                <time datetime="2006-12-05T07:23:01.000Z" itemprop="datePublished" class="page-time">
-  2006-12-05
-</time>
-
-
-            
-        </h5>
     </div>
 
-    
-
-
+    <div class="panel-cover--overlay cover-blue"></div>
+  </div> 
 </header>
 
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner">
+            <article class="post-container post-container--single">
 
-<div class="container body-wrap">
-    
-    <aside class="post-widget">
-        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
-            <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#%E4%BB%8E%E5%9F%BA%E7%A1%80%E7%9A%84%E5%BC%80%E5%A7%8B"><span class="post-toc-number">1.</span> <span class="post-toc-text">从基础的开始</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#%E4%B8%8A%E5%B1%82%E5%BB%BA%E7%AD%91%E5%AD%97%E7%AC%A6%EF%BC%9A"><span class="post-toc-number">2.</span> <span class="post-toc-text">上层建筑字符：</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#ASCII-%E5%AD%97%E7%AC%A6%E9%9B%86"><span class="post-toc-number">3.</span> <span class="post-toc-text">ASCII 字符集</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#ASCII%E6%89%A9%E5%B1%95%E5%AD%97%E7%AC%A6%E9%9B%86%E6%89%A9%E5%B1%95"><span class="post-toc-number">4.</span> <span class="post-toc-text">ASCII扩展字符集扩展</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#GB2312-%E5%AD%97%E7%AC%A6%E9%9B%86"><span class="post-toc-number">5.</span> <span class="post-toc-text">GB2312 字符集</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#BIG5-%E5%AD%97%E7%AC%A6%E9%9B%86"><span class="post-toc-number">6.</span> <span class="post-toc-text">BIG5 字符集</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#GB18030-%E5%AD%97%E7%AC%A6%E9%9B%86"><span class="post-toc-number">7.</span> <span class="post-toc-text">GB18030 字符集</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Unicode%E5%AD%97%E7%AC%A6%E9%9B%86%EF%BC%88%E7%AE%80%E7%A7%B0%E4%B8%BAUCS%EF%BC%89"><span class="post-toc-number">8.</span> <span class="post-toc-text">Unicode字符集（简称为UCS）</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#UNICODE-%E4%B8%8E-UTF8%E3%80%81UTF16"><span class="post-toc-number">9.</span> <span class="post-toc-text">UNICODE 与 UTF8、UTF16</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFBase64%EF%BC%9F"><span class="post-toc-number">10.</span> <span class="post-toc-text">什么是Base64？</span></a></li></ol>
-        </nav>
-    </aside>
+  <header class="post-header">
+    <div class="post-meta">
+      <time datetime="2006-12-05T07:23:01.000Z" class="post-list__meta--date date">2006-12-05</time> &#8226; <span class="post-meta__tags tags">于&nbsp; </span>
+      <span class="page-pv">
+      &nbsp;阅读&nbsp;<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>
+      </span> 
+   
+    </div>
+    <h1 class="post-title">编码相关基础知识</h1>
 
+  </header>
 
-<article id="post-encoding"
-  class="post-article article-type-post fade" itemprop="blogPost">
-
-    <div class="post-card">
-        <h1 class="post-card-title">编码相关基础知识</h1>
-        <div class="post-meta">
-            <time class="post-time" title="2006-12-05 15:23:01" datetime="2006-12-05T07:23:01.000Z"  itemprop="datePublished">2006-12-05</time>
-
-            
-
-
-            
-<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
-    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
-</span>
-
-
-        </div>
-        <div class="post-content" id="post-content" itemprop="postContent">
-            <p>ANSI,AscII,GB2312,GBK,BIG5,GB18030,Unicode,UCS（就是unicode）Utf-8,utf-16,utf-32 …… 看看编码之多，真是够复杂，可这还仅仅是个开始，应用方面变化无穷，本文对这些基本的编码进行了详细的介绍。</p>
+  <section class="post">
+    <p>ANSI,AscII,GB2312,GBK,BIG5,GB18030,Unicode,UCS（就是unicode）Utf-8,utf-16,utf-32 …… 看看编码之多，真是够复杂，可这还仅仅是个开始，应用方面变化无穷，本文对这些基本的编码进行了详细的介绍。</p>
 <a id="more"></a>
 
 <h3 id="从基础的开始"><a href="#从基础的开始" class="headerlink" title="从基础的开始"></a>从基础的开始</h3><p>最小的单元是位（bit），接着是字节（Byte），一个字节＝8位，英语表示是1 byte=8 bits 。机器语言的单位Byte。接着是KB，1 KB=1024 Byte;  接着是MB，1 MB=1024 KB;  接着是GB，1 GB=1024 MB ;接着是TB, 1TB=1024 GB。<br>接着是进制：二进制0和1，8进制0-7， 十进制不用说，16进制0-9后面是A,B,C,D,E,F 他们关系如下：<br>Binary     Octal  Decimal Hex<br>0          0      0       0<br>1          1      1       1<br>10         2      2       2<br>11         3      3       3<br>100        4      4       4<br>101        5      5       5<br>110        6      6       6<br>111        7      7       7<br>1000       10     8       8<br>1001       11     9       9<br>1010       12     10      A<br>1011       13     11      B<br>1100       14     12      C<br>1101       15     13      D<br>1110       16     14      E<br>1111       17     15      F</p>
@@ -249,310 +244,82 @@
 <p>    但是，如果是基于以上两点，那么我们使用最简单的恺撒法即可，为什么Base64看起来要比恺撒法复杂呢？这是因为在Email的传送过程中，由于历史原因，Email只被允许传送ASCII字符，即一个8位字节的低7位。因此，如果您发送了一封带有非ASCII字符（即字节的最高位是1）的Email通过有“历史问题”的网关时就可能会出现问题。网关可能会把最高位置为0！很明显，问题就这样产生了！因此，为了能够正常的传送Email，这个问题就必须考虑！所以，单单靠改变字母的位置的恺撒之类的方案也就不行了。关于这一点可以参考RFC2046。<br>基于以上的一些主要原因产生了Base64编码。</p>
 <p>鉴于算法比较让人头大，想看的人自然会有看到的办法拉，俺是头大得很，就不放上来了。</p>
 
-        </div>
-
-        <blockquote class="post-copyright">
-    
-    <div class="content">
-        
-<span class="post-time">
-    最后更新时间：<time datetime="2019-08-07T09:51:20.000Z" itemprop="dateUpdated">2019-08-07 17:51:20</time>
-</span><br>
-
-
-        
-        本文地址：<a href="" target="_blank" rel="external">http://littlepig.cn/posts/2006/12/05/encoding/</a>
-        
-    </div>
-    
-    <footer>
-        <a href="http://littlepig.cn">
-            <img src="../../../../../img/avatar.jpg" alt="ZHZ">
-            ZHZ
-        </a>
-    </footer>
-</blockquote>
-
-        
-<div class="page-reward">
-    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赞</a>
-</div>
-
-
-
-        <div class="post-footer">
-            
-
-            
-<div class="page-share-wrap">
-    
-
-<div class="page-share" id="pageShare">
-    <ul class="reset share-icons">
-      <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://littlepig.cn/posts/2006/12/05/encoding/&title=《编码相关基础知识》 — LittlePig.CN&pic=http://littlepig.cn/img/avatar.jpg" data-title="微博">
-          <i class="icon icon-weibo"></i>
-        </a>
-      </li>
-      <li>
-        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
-          <i class="icon icon-weixin"></i>
-        </a>
-      </li>
-      <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://littlepig.cn/posts/2006/12/05/encoding/&title=《编码相关基础知识》 — LittlePig.CN&source=ANSI,AscII,GB2312,GBK,BIG5,GB18030,Unicode,UCS（就是unicode）Utf-8,utf-16,utf-32 ..." data-title=" QQ">
-          <i class="icon icon-qq"></i>
-        </a>
-      </li>
-      <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://littlepig.cn/posts/2006/12/05/encoding/" data-title=" Facebook">
-          <i class="icon icon-facebook"></i>
-        </a>
-      </li>
-      <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《编码相关基础知识》 — LittlePig.CN&url=http://littlepig.cn/posts/2006/12/05/encoding/&via=http://littlepig.cn" data-title=" Twitter">
-          <i class="icon icon-twitter"></i>
-        </a>
-      </li>
-      <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://littlepig.cn/posts/2006/12/05/encoding/" data-title=" Google+">
-          <i class="icon icon-google-plus"></i>
-        </a>
-      </li>
-    </ul>
- </div>
-
-
-
-    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
-        <i class="icon icon-share-alt icon-lg"></i>
-    </a>
-</div>
-
-
-
-        </div>
-    </div>
-
-    
-<nav class="post-nav flex-row flex-justify-between">
-  
-    <div class="waves-block waves-effect prev">
-      <a href="../../19/why-teacher-should-write/" id="post-prev" class="post-nav-link">
-        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
-        <h4 class="title">教师为什么要写作</h4>
-      </a>
-    </div>
-  
-
-  
-    <div class="waves-block waves-effect next">
-      <a href="../../../01/09/class-about-coders/" id="post-next" class="post-nav-link">
-        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
-        <h4 class="title">程序员的十种级别</h4>
-      </a>
-    </div>
-  
-</nav>
-
-
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  </section>
 
 </article>
 
-<div id="reward" class="page-modal reward-lay">
-    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <h3 class="reward-title">
-        <i class="icon icon-quote-left"></i>
-        谢谢~
-        <i class="icon icon-quote-right"></i>
-    </h3>
-    <div class="reward-content">
-        
-        <div class="reward-code">
-            <img id="rewardCode" src="../../../../../img/wechat.png" alt="打赏二维码">
-        </div>
-        
-        <label class="reward-toggle">
-            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
-                data-wechat="../../../../../img/wechat.png" data-alipay="../../../../../img/alipay.png">
-            <div class="reward-toggle-ctrol">
-                <span class="reward-toggle-item wechat">微信</span>
-                <span class="reward-toggle-label"></span>
-                <span class="reward-toggle-item alipay">支付宝</span>
-            </div>
-        </label>
-        
-    </div>
-</div>
-
-
-
-</div>
-
-        <footer class="footer">
-    <div class="top">
-        
-<p>
-    <span id="busuanzi_container_site_uv" style='display:none'>
-        站点总访客数：<span id="busuanzi_value_site_uv"></span>
-    </span>
-    <span id="busuanzi_container_site_pv" style='display:none'>
-        站点总访问量：<span id="busuanzi_value_site_pv"></span>
-    </span>
-</p>
-
-
-        <p>
-            
-                <span><a href="../../../../../atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
-            
-            <span>博客内容遵循 <a rel="license noopener" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
-        </p>
-    </div>
-    <div class="bottom">
-        <p><span>ZHZ &copy; 2003 - 2021</span>
-            <span>
+<section class="read-more">
+           
+    
+               
+            <div class="read-more-item">
+                <span class="read-more-item-dim">最近的文章</span>
+                <h2 class="post-list__post-title post-title"><a href="/posts/2006/12/19/why-teacher-should-write/" title="教师为什么要写作">教师为什么要写作</a></h2>
+                <p class="excerpt">
                 
-                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
-            </span>
-        </p>
-    </div>
+                　　造就教师的书卷气的有效途径，除了读书，大概就是写作了。写作是最能体现一个人的综合素质的。我一向认为，能够写好文章的人，也一定能上好课。因为一篇文章和一节课非常近似。文章无非是这样几个要素：第一是主题——你要表达什么，肯定什么，否定什么；歌颂什么，贬斥什么，这就是文章的主题。主题是一篇文章的灵魂，
+                &hellip;
+                </p>
+                <div class="post-list__meta"><time datetime="2006-12-19T01:23:58.000Z" class="post-list__meta--date date">2006-12-19</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;</span><a class="btn-border-small" href="/posts/2006/12/19/why-teacher-should-write/">继续阅读</a></div>
+                           
+            </div>
+        
+        
+               
+            <div class="read-more-item">
+                <span class="read-more-item-dim">更早的文章</span>
+                <h2 class="post-list__post-title post-title"><a href="/posts/2006/01/09/class-about-coders/" title="程序员的十种级别">程序员的十种级别</a></h2>
+                <p class="excerpt">
+                
+                出处： Java研究组织 作者： godyin
+                &hellip;
+                </p>
+                <div class="post-list__meta"><time datetime="2006-01-09T12:05:41.000Z" class="post-list__meta--date date">2006-01-09</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;</span><a class="btn-border-small" href="/posts/2006/01/09/class-about-coders/">继续阅读</a></div>
+                       
+            </div>
+        
+     
+   
+   
+  
+</section>
+
+  
+
+            <footer class="footer">
+    <span class="footer__copyright">
+        本站点采用 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a>
+    </span>
+    <span class="footer__copyright">
+        基于 <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a> 搭建，感谢 <a target="_blank" rel="noopener" href="https://pages.github.com/">GitHub Pages</a> 提供免费的托管服务
+    </span>
+    <span class="footer__copyright">
+        &copy; 2021 - 本站使用 <a target="_blank" rel="noopener" href="https://github.com/zhz/hexo-theme-vno2 ">vno2</a> 主题,
+        由<a href="https://littlepig.cn ">@zhz</a> 修改自 <a href="https://monniya.com" target="_blank">monniya.com</a>, 原创出自<a href="http://github.com/onevcat/vno" target="_blank">onevcat</a>
+    </span>
+    
 </footer>
 
-    </main>
-    <div class="mask" id="mask"></div>
-<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
 
-
-
-<div class="global-share" id="globalShare">
-    <ul class="reset share-icons">
-      <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://littlepig.cn/posts/2006/12/05/encoding/&title=《编码相关基础知识》 — LittlePig.CN&pic=http://littlepig.cn/img/avatar.jpg" data-title="微博">
-          <i class="icon icon-weibo"></i>
-        </a>
-      </li>
-      <li>
-        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
-          <i class="icon icon-weixin"></i>
-        </a>
-      </li>
-      <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://littlepig.cn/posts/2006/12/05/encoding/&title=《编码相关基础知识》 — LittlePig.CN&source=ANSI,AscII,GB2312,GBK,BIG5,GB18030,Unicode,UCS（就是unicode）Utf-8,utf-16,utf-32 ..." data-title=" QQ">
-          <i class="icon icon-qq"></i>
-        </a>
-      </li>
-      <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://littlepig.cn/posts/2006/12/05/encoding/" data-title=" Facebook">
-          <i class="icon icon-facebook"></i>
-        </a>
-      </li>
-      <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《编码相关基础知识》 — LittlePig.CN&url=http://littlepig.cn/posts/2006/12/05/encoding/&via=http://littlepig.cn" data-title=" Twitter">
-          <i class="icon icon-twitter"></i>
-        </a>
-      </li>
-      <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://littlepig.cn/posts/2006/12/05/encoding/" data-title=" Google+">
-          <i class="icon icon-google-plus"></i>
-        </a>
-      </li>
-    </ul>
- </div>
-
-
-<div class="page-modal wx-share" id="wxShare">
-    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACJ0lEQVR42u3aS27DMAwFwNz/0u62i8Z5j3IKWB6tgsAfTQswpMjXK17Hm5VcP3vL6xsLAwPjtozjdM0Yv+9KntC+94+3Y2BgPICRbCIJi+/uOr/3nHH+FgwMDIzzDeXPaYMsBgYGxjojT/jOA+55KMfAwMBoi9gE3x6l5bDLanEMDIwbMvJN/P/nr/Q3MDAwbsU4ypU/ZxbKj9HCwMDYm5EHuFnbMk8B26QTAwPjOYzZAdlKhpbAknbpH/8HDAyMTRnrgxT5sNescC0GPjAwMDZlJGVqS0qK27YM/rArDAyMxzBmAbdN9Wah9gMYAwNja0ZbfH6vbdB+s1RDY2Bg3Iox21A+kDErhtuhMQwMjOcw2oQvLz7bP1B9kIeBgbE1Y3YQ3zLWYXVLFQMDYzvGetNxJQQPRyvazBQDA+O2jKSATL5ZGc64IN3EwMDYmrHSmFw5bsvP84v0EQMDY1NG0edcGP+alawXzIxgYGBswWg31x7Qt8MTK8d5GBgYT2CsFKvJcd5VB3lRhouBgbEpIw+47Ubzo/9ZiwIDA+NpjNkIV1sAt2+MDuAwMDA2ZRzlaoNsHqzbVBIDA+M5jFkhmgTf/Jr8mW2LFAMDYydG3gBYv36WREYBFwMD4wGMlWK1bT2u/AJ8yHMxMDAwyrJz1sLMgzIGBgZGm8zlwxnrQfZtEYuBgbE1IylK823N7m1bpxgYGM9htCFvvf8w28QFTU0MDIz7MX4AqcuyUP4fr6YAAAAASUVORK5CYII=" alt="微信分享二维码">
-</div>
-
-
-
-
-    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
-<script>
-var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
-
-
-lazyScripts.push('//s95.cnzz.com/z_stat.php?id=1235250&web_id=1235250')
-
-</script>
-
-<script src="../../../../../js/main.min.js?v=1.7.2"></script>
-
-
-<div class="search-panel" id="search-panel">
-    <ul class="search-result" id="search-result"></ul>
-</div>
-<template id="search-tpl">
-<li class="item">
-    <a href="{path}" class="waves-block waves-effect">
-        <div class="title ellipsis" title="{title}">{title}</div>
-        <div class="flex-row flex-middle">
-            <div class="tags ellipsis">
-                {tags}
-            </div>
-            <time class="flex-col time">{date}</time>
         </div>
-    </a>
-</li>
-</template>
+    </div>
 
-<script src="../../../../../js/search.min.js?v=1.7.2" async></script>
-
-
-
-<!-- mathjax config similar to math.stackexchange -->
-
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-    tex2jax: {
-        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-        processEscapes: true,
-        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-    }
-});
-
-MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-        all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-});
-</script>
-
-<script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+     
+    
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?60ce267446f73c3b0610372cd44a86d7";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
 
 
 
-
-<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
-
-
-
-
+    <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+    
 </body>
 </html>
