@@ -1,184 +1,436 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+
+<html lang="zh-CN">
+    <head>
+    <meta charset="utf-8">
+    <!--
+        hexo-theme-suka © SukkaW
+        GitHub: https://github.com/SukkaW/hexo-theme-suka
+    -->
+
+    <!-- ### Resource Hint ### -->
+
+    <!-- ## DNS Prefetch ## -->
+    <meta http-equiv="x-dns-prefetch-control" content="on">
+
+<!-- busuanzi -->
+
+    <link rel="dns-prefetch" href="//busuanzi.ibruce.info">
+
+
+<!-- comment -->
+
+
+
+
+
+
+
+<!-- analytics -->
+
+
+
+
+
+
+
+    <!-- ## Preload ## -->
     
-    <title>WordPress 修改常用函数 | LittlePig.CN</title>
+    <!-- Busuanzi -->
+    
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/busuanzi@2.3.0/bsz.pure.mini.js" as="script">
+
+
+
+
+
+
+
+    <!-- ### Meta & Title & Info ### -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, maximum-scale=5, viewport-fit=cover">
     <meta name="renderer" content="webkit">
-    <meta name="HandheldFriendly" content="True">
-    <meta name="MobileOptimized" content="320">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    <meta name="description" content="记录 / 回忆 / 分享">
+    <!-- Title -->
+    <title>WordPress 修改常用函数 | LittlePig.CN</title>
 
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="WordPress 修改常用函数 | LittlePig.CN">
-    <meta name="twitter:description" content="记录 / 回忆 / 分享">
+    <!-- Favicons -->
+    <link rel="icon" type="image&#x2F;ico" href="/img/suka-favicon.ico">
 
-    <meta property="og:type" content="article">
-    <meta property="og:title" content="WordPress 修改常用函数 | LittlePig.CN">
-    <meta property="og:description" content="记录 / 回忆 / 分享">
+    <!-- ### Import File ### -->
+    <link rel="stylesheet" href="lib/spectre/spectre.min.css"><style>
+    body {
+        background-color: #f8f9fa;
+    }
+
+    a, a:visited {
+        color: #0070ff;
+    }
+
+    a:active, a:focus, a:hover {
+        color: #0070ff;
+        opacity: .75;
+    }
+
+    #post-content a,
+    #post-content a:hover,
+    #post-content a:focus,
+    #post-content a:visited {
+        color: #005eb9;
+        opacity: 1;
+    }
 
     
-    <meta name="author" content="ZHZ">
+
+    .post-entry .card-body a {
+        color: #0070ff;
+    }
+
+    .avatar {
+        background: #444;
+    }
+
+    .navbar-link,
+    .navbar-link:visited,
+    .timeline .timeline-item .timeline-icon.icon-lg {
+        color: #0070ff;
+    }
+
+    .navbar-link:hover {
+        color: #0070ff;
+        opacity: .8;
+    }
+
+    #search-input .btn,
+    #disqus_click_btn,
+    #disqus-switch-to-direct,
+    #disqus-loadmore-button {
+        background: #727e96;
+        border-color: #727e96;
+        color: #fff;
+    }
+
+    #post-toc a.post-toc-link,
+    #post-toc a.post-toc-link:visited,
+    .share-menu.menu .menu-item>a {
+        color: #727e96;
+    }
+
+    .share-menu.menu .menu-item>a:hover,
+    .share-menu.menu .menu-item>a:focus,
+    .share-menu.menu .menu-item>a:visited {
+        color: #50596c;
+        background: #f8f9fa;
+        opacity: .85;
+    }
+</style><link rel="stylesheet" href="css/style.min.css">
+
+
+
+
+
+
+
+
+    <!-- Prettify Theme -->
     
+    <link rel="preload" href="../../../../../css/highlight/github.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="../../../../../css/highlight/github.min.css"></noscript>
+
+
+
+
+
+<script>
+/*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
+!function(t){"use strict";t.loadCSS||(t.loadCSS=function(){});var e=loadCSS.relpreload={};if(e.support=function(){var e;try{e=t.document.createElement("link").relList.supports("preload")}catch(t){e=!1}return function(){return e}}(),e.bindMediaToggle=function(t){var e=t.media||"all";function a(){t.addEventListener?t.removeEventListener("load",a):t.attachEvent&&t.detachEvent("onload",a),t.setAttribute("onload",null),t.media=e}t.addEventListener?t.addEventListener("load",a):t.attachEvent&&t.attachEvent("onload",a),setTimeout(function(){t.rel="stylesheet",t.media="only x"}),setTimeout(a,3e3)},e.poly=function(){if(!e.support())for(var a=t.document.getElementsByTagName("link"),n=0;n<a.length;n++){var o=a[n];"preload"!==o.rel||"style"!==o.getAttribute("as")||o.getAttribute("data-loadcss")||(o.setAttribute("data-loadcss",!0),e.bindMediaToggle(o))}},!e.support()){e.poly();var a=t.setInterval(e.poly,500);t.addEventListener?t.addEventListener("load",function(){e.poly(),t.clearInterval(a)}):t.attachEvent&&t.attachEvent("onload",function(){e.poly(),t.clearInterval(a)})}"undefined"!=typeof exports?exports.loadCSS=loadCSS:t.loadCSS=loadCSS}("undefined"!=typeof global?global:this);
+</script>
+
+    <!-- ### Site Verification ### -->
     
-<link rel="stylesheet" href="../../../../../css/vno.css">
+
+
+    <link rel="alternate" type="application/atom+xml" href="atom.xml"><meta name="mobile-web-app-capable" content="yes"><meta name="application-name" content="LittlePig.CN"><meta name="msapplication-starturl" content="http://littlepig.cn"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="LittlePig.CN"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <!-- ### The Open Graph & Twitter Card Protocol ### -->
+    <meta property="og:title" content="WordPress 修改常用函数 | LittlePig.CN"><meta property="og:site_name" content="LittlePig.CN"><meta property="og:type" content="article"><meta property="og:url" content="http://littlepig.cn/posts/2009/03/11/wordpress-common-function-list/"><meta property="og:locale" content="zh-CN"><meta name="description" content="在配置 WordPress 的过程中，对模板的修改是避免不了的，每次都要 Google 一些函数的用法，比较繁琐，这里总结了一些常用的方便查询。 - ZHZ - LittlePig.CN"><meta name="keywords" content="function, wordpress"><meta property="article:published_time" content="2009-03-11T05:11:41.000Z"><meta property="article:modified_time" content="2016-10-17T08:24:11.000Z"><meta property="og:updated_time" content="2016-10-17T08:24:11.000Z"><meta property="article:author" content="ZHZ"><meta property="article:tag" content="function, wordpress"><meta name="twitter:card" content="summary">
 
     
-<link rel="stylesheet" href="../../../../../netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
 
+    <!-- ### Canonical link ### -->
+    <link rel="canonical" href="http://littlepig.cn/posts/2009/03/11/wordpress-common-function-list/">
 
-    
-    <link rel="icon" href="/favicon.png">
-    
+    <meta name="generator" content="Hexo 5.3.0">
 
-    <meta name="generator" content="hexo"/>
-    
-    <link rel="alternate" type="application/rss+xml" title="LittlePig.CN" href="/atom.xml">
+    <!-- ### Analytics ### -->
     
 
-    <link rel="canonical" href="http://littlepig.cn/posts/2009/03/11/wordpress-common-function-list/"/>
 
-                 
+
+
+
+
+
+    <!-- ### Structured Data ### -->
+    
+
+
+
+<script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "url": "http://littlepig.cn/posts/2009/03/11/wordpress-common-function-list/",
+    "@type": "BlogPosting",
+    "logo": "http://littlepig.cn/img/suka-favicon.ico",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "http://littlepig.cn/posts/2009/03/11/wordpress-common-function-list/"
+    },
+    "headline": "WordPress 修改常用函数 | LittlePig.CN",
+    
+    "image": {
+        "@type": "ImageObject",
+        "url": "http://littlepig.cn/img/suka-favicon.ico"
+    },
+    
+    "datePublished": "2009-03-11T05:11:41.000Z",
+    "dateModified": "2016-10-17T08:24:11.000Z",
+    "author": {
+        "@type": "Person",
+        "name": "ZHZ",
+        "image": {
+            "@type": "ImageObject",
+            "url": "http://littlepig.cn/img/default_avatar.png"
+        },
+        "description": "Hi, nice to meet you."
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "LittlePig.CN",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "http://littlepig.cn/img/suka-favicon.ico"
+        }
+    },
+    
+    "potentialAction": {
+        "@type": "SearchAction",
+        "target": "http://littlepig.cn/search?s={search_term_string}",
+        "query-input": "required name=search_term_string"
+    },
+    
+    "keywords": "function, wordpress",
+    "description": "在配置 WordPress 的过程中，对模板的修改是避免不了的，每次都要 Google 一些函数的用法，比较繁琐，这里总结了一些常用的方便查询。 - ZHZ - LittlePig.CN"
+}
+</script>
+
+
+
+    <!-- ### Custom Head ### -->
+    
 </head>
 
-<body class="home-template no-js">
+    <body>
+            
+
+            <!-- ### Main content ### -->
+            <!-- ## Header ##-->
+<header>
+    <h1 class="header-title text-center"><a href="/">LittlePig.CN</a></h1>
+
+    <p class="text-center header-slogan">
+        
+            
+                Hi, nice to meet you.
+            
+        
+    </p>
+
+    <nav class="navbar-section text-center">
     
-<script src="../../../../../cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
-
+        <a href="../../../../../index.html" class="navbar-link">首页</a>
     
-<script src="../../../../../js/main.js"></script>
+    
+        <a href="../../../../../archives/" class="navbar-link">归档</a>
+    
+    
+        <a href="/search" class="navbar-link">搜索</a>
+    
+    
+    
+        <div class="dropdown dropdown-right">
+    <a class="navbar-link dropdown-toggle" tabindex="0">分享</a>
+    <ul class="menu share-menu">
 
-    <span class="mobile btn-mobile-menu">
-        <i class="fa fa-list btn-mobile-menu__icon"></i>
-        <i class="fa fa-angle-up btn-mobile-close__icon hidden"></i>
-    </span>
-
-    <header class="panel-cover panel-cover--collapsed" style="background-image: url(/images/background-cover.jpg)">
-  <div class="panel-main">
-    <div class="panel-main__inner panel-inverted">
-    <div class="panel-main__content">
-
-
-        <a href="/" title="前往 LittlePig.CN 的主页"><img src="/avatar.png" width="80" alt="LittlePig.CN logo" class="panel-cover__logo logo" /></a>
-        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage for LittlePig.CN">LittlePig.CN</a></h1>
-
+        <!-- Share Weibo -->
         
-        <span class="panel-cover__subtitle panel-subtitle">someone&#39;s Blog</span>
+        <li class="menu-item">
+            <a href="http://service.weibo.com/share/share.php?appkey=&title=LittlePig.CN&url=http://littlepig.cn&pic=http://littlepig.cn/img/suka-favicon.ico&searchPic=false&style=simple" target="_blank" rel="external noopener noreferrer nofollow">分享到微博</a>
+        </li>
         
 
-        <hr class="panel-cover__divider" />
-
+        <!-- Share Twitter -->
         
-          
-<div id="toc" class="toc-article">
- <strong class="toc-title">文章目录</strong>
-<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%9D%A1%E4%BB%B6%E5%88%A4%E6%96%AD"><span class="toc-number">1.</span> <span class="toc-text">基本条件判断</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Header%E9%83%A8%E5%88%86%E6%B6%89%E5%8F%8A%E7%9A%84%E5%87%BD%E6%95%B0"><span class="toc-number">2.</span> <span class="toc-text">Header部分涉及的函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E6%9D%BF%E5%B8%B8%E7%94%A8%E7%9A%84PHP%E5%87%BD%E6%95%B0%E5%8F%8A%E5%91%BD%E4%BB%A4"><span class="toc-number">3.</span> <span class="toc-text">模板常用的PHP函数及命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E6%A8%A1%E6%9D%BF%E7%9B%B8%E5%85%B3%E5%87%BD%E6%95%B0"><span class="toc-number">4.</span> <span class="toc-text">其他模板相关函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E4%BA%9B%E5%B8%B8%E7%94%A8%E7%9A%84%EF%BC%8C%E6%88%91%E4%BC%9A%E5%8F%8A%E6%97%B6%E8%A1%A5%E5%85%85"><span class="toc-number">5.</span> <span class="toc-text">一些常用的，我会及时补充</span></a></li></ol>
+        <li class="menu-item">
+            <a href="https://twitter.com/intent/tweet?text=LittlePig.CN&url=http://littlepig.cn&via=ZHZ" target="_blank" rel="external noopener noreferrer nofollow">分享到 Twitter</a>
+        </li>
+        
+
+        <!-- Share Facebook -->
+        
+        <li class="menu-item">
+            <a href="https://www.facebook.com/sharer/sharer.php?u=http://littlepig.cn" target="_blank" rel="external noopener noreferrer nofollow">分享到 Facebook</a>
+        </li>
+        
+
+        <!-- Share Google+ -->
+        
+        <li class="menu-item">
+            <a href="https://plus.google.com/share?url=http://littlepig.cn" target="_blank" rel="external noopener noreferrer nofollow">分享到 Google+</a>
+        </li>
+        
+
+        <!-- Share LinkedIn -->
+        
+        <li class="menu-item">
+            <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://littlepig.cn&title=WordPress 修改常用函数" target="_blank" rel="external noopener noreferrer nofollow">分享到 LinkedIn</a>
+        </li>
+        
+
+        <!-- Share QQ -->
+        
+        <li class="menu-item">
+            <a href="http://connect.qq.com/widget/shareqq/index.html?site=LittlePig.CN&title=WordPress 修改常用函数&summary=记录 / 回忆 / 分享&pics=http://littlepig.cn/img/suka-favicon.ico&url=http://littlepig.cn" target="_blank" rel="external noopener noreferrer nofollow"> 分享到 QQ</a>
+        </li>
+        
+
+        <!-- Share Telegram -->
+        
+        <li class="menu-item">
+            <a href="https://t.me/share/url?url=http://littlepig.cn&text=WordPress 修改常用函数" target="_blank" rel="external noopener noreferrer nofollow">分享到 Telegram</a>
+        </li>
+        
+
+        <!-- QRCode -->
+        
+        <li class="menu-item">
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKQAAACkCAAAAAA83tqdAAACIUlEQVR42u3a0W7CMAxG4b7/S29Xk9CW+D8uRYP69AaNAv0yNalj+/j6gOMQKVKkyDdAHsXxc371ucdzu996fO8PIFxX5Gzk8qbdIHe41Sv57O66IkWSCfP7pt+BdhOqGvzy90SKbCzUuwWbDkqkyCsmTgdDHg4iRZ4JMHYXqr7XCUouiYJE3g5JN2JXv75ktyjy45EocRQmQzWoNNEuy6qJvA1y9WM08VRt/Om5MmARORZZJTrJpKoGW10j/hNEjkWmjVFnk0YWePwQEDkSSRKjVTK+s+CTB4dIkbvAtFrIaVHpTIJBpMgETAswKcyT95cDFTkSSYpGafPUSerTJhSRIncTKAUVpCmJFOhFiqQbedI8Ui3czzQ1iZyNTM1Hnb9JATWhRYpMBdBqw0+aRqog5bKivMhbIM9u/mlAQnEiRabFtwulQQcJjEWKJAXzU5t7+L0YYIgch+wGtnRBrlBkcoqciUxJ/VR0Ss0gaZCtbhaRo5FnFmdyjjYziZyNJA97stkiyQHyXZEi082diuhnCkopoBY5G0mKRClw7TYzpYKWSJGp2ZgU3ennaSFB5ExkOroLNk0sVIlZkbOR5EamjSKk+ZgmsUTORqYJQwKDtCGrBoI6B0SOQ5ImuGeS92SSihTZLW528Smgjk0AIkUWiVTa3JGCYFL4FykyFSzTok2b7Ujjk0iR3Y0Y3fjTwKTVKCJyBPKdD5EiRYr8x+MbYWWVxPIKyz4AAAAASUVORK5CYII=" alr="QRCode">
+        </li>
+        
+
+    </ul>
 </div>
-
-        
-
-        <hr class="panel-cover__divider panel-cover__divider--secondary" />
-
-
-          <div class="navigation-wrapper">
-            <div>
-            <nav class="cover-navigation cover-navigation--primary">
-              <ul class="navigation">
-                <li class="navigation__item"><a href="/#blog" title="访问博客" class="blog-button">博客</a></li>
-              
-                <li class="navigation__item"><a href="/tags/">标签</a></li>
-              
-                <li class="navigation__item"><a href="/about/">关于我</a></li>
-              
-              </ul>
-            </nav>
-            </div>
-            <div>
-            <nav class="cover-navigation navigation--social">
-  <ul class="navigation">
-
-  <!-- Weibo-->
-  
-  <li class="navigation__item">
-    <a href="http://weibo.com/zhuhuaizhong" title="我的微博" target="_blank">
-      <i class='social fa fa-weibo'></i>
-      <span class="label">Weibo</span>
-    </a>
-  </li> 
-
-
-  <!-- Github -->
-  
-  <li class="navigation__item">
-    <a href="http://github.com/zhz" title="查看我的GitHub主页" target="_blank">
-      <i class='social fa fa-github'></i>
-      <span class="label">Github</span>
-    </a>
-  </li>
-
-
-<!-- Stack Overflow -->
-        
-
-  <!-- Google Plus -->
-  
-
-<!-- Facebook -->
-
-  
-<!-- Twitter -->
-
-  
-
-  <li class="navigation__item">
-    <a href="/atom.xml" title="RSS" target="_blank">
-      <i class='social fa fa-rss'></i>
-      <span class="label">RSS</span>
-    </a>
-  </li>
-
-
-
-  </ul>
+    
+    
 </nav>
-
-            </div>
-          </div>
-
-
-      </div>
-
-    </div>
-
-    <div class="panel-cover--overlay cover-blue"></div>
-  </div> 
 </header>
 
-    <div class="content-wrapper">
-        <div class="content-wrapper__inner">
-            <article class="post-container post-container--single">
+            
+    <!-- ## Post ## -->
+    <div class="post-container">
+    <div id="post-card" class="card">
+        
+        <div class="card-item-container">
+            <div class="card-inner-cell">
+                <!-- # Post Header Info # -->
+                <div class="card-header">
+                    
+    <h1 class="card-title h3 mb-2">WordPress 修改常用函数</h1>
 
-  <header class="post-header">
-    <div class="post-meta">
-      <time datetime="2009-03-11T05:11:41.000Z" class="post-list__meta--date date">2009-03-11</time> &#8226; <span class="post-meta__tags tags">于&nbsp;
-  <a class="-none-link" href="../../../../../tags/function/" rel="tag">function</a>, <a class="-none-link" href="../../../../../tags/wordpress/" rel="tag">wordpress</a>
- </span>
-      <span class="page-pv">
-      &nbsp;阅读&nbsp;<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>
-      </span> 
-   
+
+
+
+<div class="post-header-info">
+    <p class="post-header-info-left text-gray">
+        <img class="author-thumb lazyload" data-src="../../../../../img/default_avatar.png" src="../../../../../img/suka-lazyload.gif" alt="ZHZ's Avatar">
+        <span>2009-03-11</span>
+        
+        
+            <!-- Busuanzi Post Views -->
+<span id="busuanzi_container_page_pv" hidden>
+    <span class="suka-devide-dot"></span>
+    <span></span>
+    <span id="busuanzi_value_page_pv"></span>
+    <span>Views</span>
+</span>
+        
+        
+    </p>
+    <div class="post-header-info-right">
+        
+            <div class="dropdown dropdown-right">
+<a class="dropdown-toggle" tabindex="0">分享本文</a>
+<ul class="menu share-menu">
+    <!-- Share Weibo -->
+    
+    <li class="menu-item">
+        <a href="http://service.weibo.com/share/share.php?appkey=&title=WordPress 修改常用函数&url=http://littlepig.cn/posts/2009/03/11/wordpress-common-function-list/&pic=http://littlepig.cn/img/suka-favicon.ico&searchPic=false&style=simple" target="_blank" rel="external noopener noreferrer nofollow">分享到微博</a>
+    </li>
+    
+
+    <!-- Share Twitter -->
+    
+    <li class="menu-item">
+        <a href="https://twitter.com/intent/tweet?text=WordPress 修改常用函数&url=http://littlepig.cn/posts/2009/03/11/wordpress-common-function-list/&via=ZHZ" target="_blank" rel="external noopener noreferrer nofollow">分享到 Twitter</a>
+    </li>
+    
+
+    <!-- Share Facebook -->
+    
+    <li class="menu-item">
+        <a href="https://www.facebook.com/sharer/sharer.php?u=http://littlepig.cn/posts/2009/03/11/wordpress-common-function-list/" target="_blank" rel="external noopener noreferrer nofollow">分享到 Facebook</a>
+    </li>
+    
+
+    <!-- Share Google+ -->
+    
+    <li class="menu-item">
+        <a href="https://plus.google.com/share?url=http://littlepig.cn/posts/2009/03/11/wordpress-common-function-list/" target="_blank" rel="external noopener noreferrer nofollow">分享到 Google+</a>
+    </li>
+    
+
+    <!-- Share LinkedIn -->
+    
+    <li class="menu-item">
+        <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://littlepig.cn/posts/2009/03/11/wordpress-common-function-list/&title=LittlePig.CN" target="_blank" rel="external noopener noreferrer nofollow">分享到 LinkedIn</a>
+    </li>
+    
+
+    <!-- Share QQ -->
+    
+    <li class="menu-item">
+        <a href="http://connect.qq.com/widget/shareqq/index.html?site=LittlePig.CN&title=LittlePig.CN&summary=记录 / 回忆 / 分享&pics=http://littlepig.cn/img/suka-favicon.ico&url=http://littlepig.cn/posts/2009/03/11/wordpress-common-function-list/" target="_blank" rel="external noopener noreferrer nofollow"> 分享到 QQ</a>
+    </li>
+    
+
+    <!-- Share Telegram -->
+    
+    <li class="menu-item">
+        <a href="https://t.me/share/url?url=http://littlepig.cn/posts/2009/03/11/wordpress-common-function-list/&text=LittlePig.CN" target="_blank" rel="external noopener noreferrer nofollow">分享到 Telegram</a>
+    </li>
+    
+
+    <!-- QRCode -->
+    
+    <li class="menu-item">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKQAAACkCAAAAAA83tqdAAACIUlEQVR42u3a0W7CMAxG4b7/S29Xk9CW+D8uRYP69AaNAv0yNalj+/j6gOMQKVKkyDdAHsXxc371ucdzu996fO8PIFxX5Gzk8qbdIHe41Sv57O66IkWSCfP7pt+BdhOqGvzy90SKbCzUuwWbDkqkyCsmTgdDHg4iRZ4JMHYXqr7XCUouiYJE3g5JN2JXv75ktyjy45EocRQmQzWoNNEuy6qJvA1y9WM08VRt/Om5MmARORZZJTrJpKoGW10j/hNEjkWmjVFnk0YWePwQEDkSSRKjVTK+s+CTB4dIkbvAtFrIaVHpTIJBpMgETAswKcyT95cDFTkSSYpGafPUSerTJhSRIncTKAUVpCmJFOhFiqQbedI8Ui3czzQ1iZyNTM1Hnb9JATWhRYpMBdBqw0+aRqog5bKivMhbIM9u/mlAQnEiRabFtwulQQcJjEWKJAXzU5t7+L0YYIgch+wGtnRBrlBkcoqciUxJ/VR0Ss0gaZCtbhaRo5FnFmdyjjYziZyNJA97stkiyQHyXZEi082diuhnCkopoBY5G0mKRClw7TYzpYKWSJGp2ZgU3ennaSFB5ExkOroLNk0sVIlZkbOR5EamjSKk+ZgmsUTORqYJQwKDtCGrBoI6B0SOQ5ImuGeS92SSihTZLW528Smgjk0AIkUWiVTa3JGCYFL4FykyFSzTok2b7Ujjk0iR3Y0Y3fjTwKTVKCJyBPKdD5EiRYr8x+MbYWWVxPIKyz4AAAAASUVORK5CYII=" alt="QRCode">
+    </li>
+    
+
+</ul>
+</div>
+        
     </div>
-    <h1 class="post-title">WordPress 修改常用函数</h1>
-
-  </header>
-
-  <section class="post">
-    <p>　　在配置 WordPress 的过程中，对模板的修改是避免不了的，每次都要 Google 一些函数的用法，比较繁琐，这里总结了一些常用的方便查询。</p>
+</div>
+                </div>
+                <div class="card-body">
+                    
+                        
+                        
+                            <div id="post-toc"><ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%9D%A1%E4%BB%B6%E5%88%A4%E6%96%AD"><span class="post-toc-number">1.</span> <span class="post-toc-text">基本条件判断</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Header%E9%83%A8%E5%88%86%E6%B6%89%E5%8F%8A%E7%9A%84%E5%87%BD%E6%95%B0"><span class="post-toc-number">2.</span> <span class="post-toc-text">Header部分涉及的函数</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E6%A8%A1%E6%9D%BF%E5%B8%B8%E7%94%A8%E7%9A%84PHP%E5%87%BD%E6%95%B0%E5%8F%8A%E5%91%BD%E4%BB%A4"><span class="post-toc-number">3.</span> <span class="post-toc-text">模板常用的PHP函数及命令</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E5%85%B6%E4%BB%96%E6%A8%A1%E6%9D%BF%E7%9B%B8%E5%85%B3%E5%87%BD%E6%95%B0"><span class="post-toc-number">4.</span> <span class="post-toc-text">其他模板相关函数</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E4%B8%80%E4%BA%9B%E5%B8%B8%E7%94%A8%E7%9A%84%EF%BC%8C%E6%88%91%E4%BC%9A%E5%8F%8A%E6%97%B6%E8%A1%A5%E5%85%85"><span class="post-toc-number">5.</span> <span class="post-toc-text">一些常用的，我会及时补充</span></a></li></ol></div>
+                        
+                    
+                    <article id="post-content">
+                        <p>　　在配置 WordPress 的过程中，对模板的修改是避免不了的，每次都要 Google 一些函数的用法，比较繁琐，这里总结了一些常用的方便查询。</p>
 <a id="more"></a>
 <h2 id="基本条件判断"><a href="#基本条件判断" class="headerlink" title="基本条件判断"></a>基本条件判断</h2><p>is_home() : 是否为主页<br>is_single() : 是否为内容页(Post)<br>is_page() : 是否为内容页(Page)<br>is_category() : 是否为Category/Archive页<br>is_tag() : 是否为Tag存档页<br>is_date() : 是否为指定日期存档页<br>is_year() : 是否为指定年份存档页<br>is_month() : 是否为指定月份存档页<br>is_day() : 是否为指定日存档页<br>is_time() : 是否为指定时间存档页<br>is_archive() : 是否为存档页<br>is_search() : 是否为搜索结果页<br>is_404() : 是否为 ‘HTTP 404: Not Found’ 错误页<br>is_paged() : 主页/Category/Archive页是否以多页显示</p>
 <h2 id="Header部分涉及的函数"><a href="#Header部分涉及的函数" class="headerlink" title="Header部分涉及的函数"></a>Header部分涉及的函数</h2><?php bloginfo(’name’); ?><p> : 博客名称(Title)<br><?php bloginfo(’stylesheet_url’); ?> : CSS文件路径<br><?php bloginfo(’pingback_url’); ?> : PingBack Url<br><?php bloginfo(’template_url’); ?> : 模板文件路径<br><?php bloginfo(’version’); ?> : WordPress版本<br><?php bloginfo(’atom_url’); ?> : Atom Url<br><?php bloginfo(’rss2_url’); ?> : RSS 2.o Url<br><?php bloginfo(’url’); ?> : 博客URL<br><?php bloginfo(’html_type’); ?> : 博客网页Html类型<br><?php bloginfo(’charset’); ?> : 博客网页编码<br><?php bloginfo(’description’); ?> : 博客描述<br><?php wp_title(); ?> : 内容页面的Title (Post/Page)</p>
@@ -187,88 +439,146 @@
 <h2 id="一些常用的，我会及时补充"><a href="#一些常用的，我会及时补充" class="headerlink" title="一些常用的，我会及时补充"></a>一些常用的，我会及时补充</h2><?php if(current_user_can('level_0')) :判断用户权限
 
 
-  </section>
-
-</article>
-
-<section class="read-more">
-           
-    
-               
-            <div class="read-more-item">
-                <span class="read-more-item-dim">最近的文章</span>
-                <h2 class="post-list__post-title post-title"><a href="/posts/2009/03/11/sharedimages/" title="[付费推荐]无限容量免费图库 SharedImages.Org">[付费推荐]无限容量免费图库 SharedImages.Org</a></h2>
-                <p class="excerpt">
-                
-                　　图片的存储、外链和访问一直是博客人所比较关心的问题，因为空间大小、流量限制等很多因素，图片的使用往往都小心翼翼，尤其是很多原创的数码图片由于体积关系更是无法直接展示，很多相册诸如 Flickr 等虽然可以外链但又有诸多限制，这里推荐的 SharedImages.Org 不仅提供了无限的存储空间和
-                &hellip;
-                </p>
-                <div class="post-list__meta"><time datetime="2009-03-11T10:25:19.000Z" class="post-list__meta--date date">2009-03-11</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="-none-link" href="../../../../../tags/sharedimages/" rel="tag">sharedimages</a>
-</span><a class="btn-border-small" href="/posts/2009/03/11/sharedimages/">继续阅读</a></div>
-                           
-            </div>
-        
-        
-               
-            <div class="read-more-item">
-                <span class="read-more-item-dim">更早的文章</span>
-                <h2 class="post-list__post-title post-title"><a href="/posts/2009/03/10/english-paper-template/" title="英文投稿信的几个模板">英文投稿信的几个模板</a></h2>
-                <p class="excerpt">
-                
-                投稿信模版一
-来源：http://forum.e2002.com/simple/index.php?t54758.html
-Dear XX (Editor):Here is our paper submitted to “(XX Journal)”.The Title:   XXXXThe Auth
-                &hellip;
-                </p>
-                <div class="post-list__meta"><time datetime="2009-03-10T15:53:49.000Z" class="post-list__meta--date date">2009-03-10</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="-none-link" href="../../../../../tags/template/" rel="tag">template</a>
-</span><a class="btn-border-small" href="/posts/2009/03/10/english-paper-template/">继续阅读</a></div>
-                       
-            </div>
-        
-     
-   
-   
-  
-</section>
-
-  
-
-            <footer class="footer">
-    <span class="footer__copyright">
-        本站点采用 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a>
-    </span>
-    <span class="footer__copyright">
-        基于 <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a> 搭建，感谢 <a target="_blank" rel="noopener" href="https://pages.github.com/">GitHub Pages</a> 提供免费的托管服务
-    </span>
-    <span class="footer__copyright">
-        &copy; 2021 - 本站使用 <a target="_blank" rel="noopener" href="https://github.com/zhz/hexo-theme-vno2 ">vno2</a> 主题,
-        由<a href="https://littlepig.cn ">@zhz</a> 修改自 <a href="https://monniya.com" target="_blank">monniya.com</a>, 原创出自<a href="http://github.com/onevcat/vno" target="_blank">onevcat</a>
-    </span>
-    
-</footer>
+                    </article>
+                    
 
 
-        </div>
-    </div>
-
-     
-    
+    <blockquote id="date-expire-notification" class="post-expired-notify">本文最后更新于 <span id="date-expire-num"></span> 天前，文中所描述的信息可能已发生改变</blockquote>
     <script>
-        var _hmt = _hmt || [];
-        (function() {
-            var hm = document.createElement("script");
-            hm.src = "//hm.baidu.com/hm.js?60ce267446f73c3b0610372cd44a86d7";
-            var s = document.getElementsByTagName("script")[0]; 
-            s.parentNode.insertBefore(hm, s);
-        })();
+    (function() {
+        var dateUpdate = Date.parse("2016-10-17");
+        var nowDate = new Date();
+        var a = nowDate.getTime();
+        var b = a - dateUpdate;
+        var daysUpdateExpire = Math.floor(b/(24*3600*1000));
+        if (daysUpdateExpire >= 120) {
+            document.getElementById('date-expire-num').innerHTML = daysUpdateExpire;
+        } else {
+            document.getElementById('date-expire-notification').style.display = 'none';
+        }
+    })();
     </script>
 
 
+<p class="post-footer-info mb-0 pt-0">本文发表于&nbsp;<time datetime="2009-03-11T05:11:41.000Z" itemprop="datePublished">2009-03-11</time>
 
-    <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    , 最后修改于&nbsp;<time datetime="2016-10-17T08:24:11.000Z" itemprop="dateModified">2016-10-17</time>
+
+</p>
+<p class="post-footer-info mb-0 pt-2">
+
+
+
+<span class="post-tags-list mt-2">
+
+<a class="post-tags-list-item" href="../../../../../tags/function/" rel="tag">#&nbsp;function</a>
+
+<a class="post-tags-list-item" href="../../../../../tags/wordpress/" rel="tag">#&nbsp;wordpress</a>
+
+</span>
+
+
+</p>
+
+                </div>
+                <div class="post-nav px-2 bg-gray">
+<ul class="pagination">
+    <!-- Prev Nav -->
     
+        <li class="page-item page-prev">
+            <a href="../sharedimages/" rel="prev">
+                <div class="page-item-title"><i class="icon icon-back" aria-hidden="true"></i></div>
+                <div class="page-item-subtitle">[付费推荐]无限容量免费图库 SharedImages.Org</div>
+            </a>
+        </li>
     
-</body>
+
+    <!-- Next Nav -->
+    
+        <li class="page-item page-next">
+            <a href="../../10/english-paper-template/" rel="next">
+                <div class="page-item-title"><i class="icon icon-forward" aria-hidden="true"></i></div>
+                <div class="page-item-subtitle">英文投稿信的几个模板</div>
+            </a>
+        </li>
+    
+</ul>
+</div>
+
+                
+                    <!-- # Comment # -->
+                    
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+            <!-- ### Footer ### -->
+            <footer class="text-center">
+    <!-- footer copyright -->
+    
+        <p class="footer-copyright mb-0">Copyright&nbsp;©&nbsp;<span id="copyright-year"></span>
+            <a class="footer-copyright-a" href="http://littlepig.cn">LittlePig.CN</a>
+        </p>
+
+    <!-- footer custom text -->
+    <p class="footer-text mb-0">
+    
+    </p>
+    <!-- footer develop info -->
+    <p class="footer-develop mb-0">
+        
+    <!-- Busuanzi User Views -->
+    <span id="busuanzi_container_site_uv" hidden>
+        <span></span>
+        <span id="busuanzi_value_site_uv"></span>
+        <span>Viewers</span>
+        
+            <span>|</span>
+        
+    </span>
+
+
+
+
+        
+        Powered by&nbsp;<!--
+         --><a href="https://hexo.io" target="_blank" class="footer-develop-a" rel="external nofollow noopener noreferrer">Hexo</a><span class="footer-develop-divider"></span>Theme&nbsp;-&nbsp;<!--
+         --><a href="https://github.com/SukkaW/hexo-theme-suka" target="_blank" class="footer-develop-a" rel="external noopener">Suka</a>
+    </p>
+</footer>
+
+
+        <!-- ### Import File ### -->
+        <!-- ### Footer JS Import ### -->
+
+<script>
+
+    
+window.lazyLoadOptions = {
+    elements_selector: ".lazyload",
+    threshold: 50
+};
+document.getElementById('copyright-year').textContent = new Date().getFullYear();
+console.log('\n %c Suka Theme (hexo-theme-suka) | © SukkaW | Verision 1.3.3 %c https://github.com/SukkaW/hexo-theme-suka \n', 'color: #fff; background: #444; padding:5px 0;', 'background: #bbb; padding:5px 0;');
+
+</script>
+
+<script src="lib/vanilla-lazyload/lazyload.min.js" async></script>
+    <script src="https://cdn.jsdelivr.net/npm/busuanzi@2.3.0/bsz.pure.mini.js" async></script>
+
+
+<!-- Offset -->
+
+
+
+
+<!-- Comment -->
+
+
+<!-- ### Custom Footer ### -->
+
+    </body>
+
 </html>

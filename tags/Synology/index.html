@@ -1,312 +1,504 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+
+<html lang="zh-CN">
+    <head>
+    <meta charset="utf-8">
+    <!--
+        hexo-theme-suka © SukkaW
+        GitHub: https://github.com/SukkaW/hexo-theme-suka
+    -->
+
+    <!-- ### Resource Hint ### -->
+
+    <!-- ## DNS Prefetch ## -->
+    <meta http-equiv="x-dns-prefetch-control" content="on">
+
+<!-- busuanzi -->
+
+    <link rel="dns-prefetch" href="//busuanzi.ibruce.info">
+
+
+<!-- comment -->
+
+
+
+
+
+
+
+<!-- analytics -->
+
+
+
+
+
+
+
+    <!-- ## Preload ## -->
     
-    <title>LittlePig.CN | someone&#39;s Blog</title>
+    <!-- Busuanzi -->
+    
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/busuanzi@2.3.0/bsz.pure.mini.js" as="script">
+
+
+
+
+
+
+
+    <!-- ### Meta & Title & Info ### -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, maximum-scale=5, viewport-fit=cover">
     <meta name="renderer" content="webkit">
-    <meta name="HandheldFriendly" content="True">
-    <meta name="MobileOptimized" content="320">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    <meta name="description" content="记录 / 回忆 / 分享">
+    <!-- Title -->
+    <title>标签: Synology | LittlePig.CN</title>
 
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="LittlePig.CN | someone&#39;s Blog">
-    <meta name="twitter:description" content="记录 / 回忆 / 分享">
+    <!-- Favicons -->
+    <link rel="icon" type="image&#x2F;ico" href="/img/suka-favicon.ico">
 
-    <meta property="og:type" content="article">
-    <meta property="og:title" content="LittlePig.CN | someone&#39;s Blog">
-    <meta property="og:description" content="记录 / 回忆 / 分享">
+    <!-- ### Import File ### -->
+    <link rel="stylesheet" href="lib/spectre/spectre.min.css"><style>
+    body {
+        background-color: #f8f9fa;
+    }
+
+    a, a:visited {
+        color: #0070ff;
+    }
+
+    a:active, a:focus, a:hover {
+        color: #0070ff;
+        opacity: .75;
+    }
+
+    #post-content a,
+    #post-content a:hover,
+    #post-content a:focus,
+    #post-content a:visited {
+        color: #005eb9;
+        opacity: 1;
+    }
 
     
-    <meta name="author" content="ZHZ">
+
+    .post-entry .card-body a {
+        color: #0070ff;
+    }
+
+    .avatar {
+        background: #444;
+    }
+
+    .navbar-link,
+    .navbar-link:visited,
+    .timeline .timeline-item .timeline-icon.icon-lg {
+        color: #0070ff;
+    }
+
+    .navbar-link:hover {
+        color: #0070ff;
+        opacity: .8;
+    }
+
+    #search-input .btn,
+    #disqus_click_btn,
+    #disqus-switch-to-direct,
+    #disqus-loadmore-button {
+        background: #727e96;
+        border-color: #727e96;
+        color: #fff;
+    }
+
+    #post-toc a.post-toc-link,
+    #post-toc a.post-toc-link:visited,
+    .share-menu.menu .menu-item>a {
+        color: #727e96;
+    }
+
+    .share-menu.menu .menu-item>a:hover,
+    .share-menu.menu .menu-item>a:focus,
+    .share-menu.menu .menu-item>a:visited {
+        color: #50596c;
+        background: #f8f9fa;
+        opacity: .85;
+    }
+</style><link rel="stylesheet" href="css/style.min.css">
+
+
+
+
+
+
+
+
+    <!-- Prettify Theme -->
     
+
+
+
+
+<script>
+/*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
+!function(t){"use strict";t.loadCSS||(t.loadCSS=function(){});var e=loadCSS.relpreload={};if(e.support=function(){var e;try{e=t.document.createElement("link").relList.supports("preload")}catch(t){e=!1}return function(){return e}}(),e.bindMediaToggle=function(t){var e=t.media||"all";function a(){t.addEventListener?t.removeEventListener("load",a):t.attachEvent&&t.detachEvent("onload",a),t.setAttribute("onload",null),t.media=e}t.addEventListener?t.addEventListener("load",a):t.attachEvent&&t.attachEvent("onload",a),setTimeout(function(){t.rel="stylesheet",t.media="only x"}),setTimeout(a,3e3)},e.poly=function(){if(!e.support())for(var a=t.document.getElementsByTagName("link"),n=0;n<a.length;n++){var o=a[n];"preload"!==o.rel||"style"!==o.getAttribute("as")||o.getAttribute("data-loadcss")||(o.setAttribute("data-loadcss",!0),e.bindMediaToggle(o))}},!e.support()){e.poly();var a=t.setInterval(e.poly,500);t.addEventListener?t.addEventListener("load",function(){e.poly(),t.clearInterval(a)}):t.attachEvent&&t.attachEvent("onload",function(){e.poly(),t.clearInterval(a)})}"undefined"!=typeof exports?exports.loadCSS=loadCSS:t.loadCSS=loadCSS}("undefined"!=typeof global?global:this);
+</script>
+
+    <!-- ### Site Verification ### -->
     
-<link rel="stylesheet" href="../../css/vno.css">
+
+
+    <link rel="alternate" type="application/atom+xml" href="atom.xml"><meta name="mobile-web-app-capable" content="yes"><meta name="application-name" content="LittlePig.CN"><meta name="msapplication-starturl" content="http://littlepig.cn"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="LittlePig.CN"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <!-- ### The Open Graph & Twitter Card Protocol ### -->
+    <meta property="og:title" content="标签: Synology | LittlePig.CN"><meta property="og:site_name" content="LittlePig.CN"><meta property="og:type" content="website"><meta property="og:url" content="http://littlepig.cn/tags/Synology/"><meta property="og:locale" content="zh-CN"><meta name="description" content="记录 &#x2F; 回忆 &#x2F; 分享 - ZHZ - LittlePig.CN">
 
     
-<link rel="stylesheet" href="../../netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
 
+    <!-- ### Canonical link ### -->
+    <link rel="canonical" href="http://littlepig.cn/tags/Synology/">
 
-    
-    <link rel="icon" href="/favicon.png">
-    
+    <meta name="generator" content="Hexo 5.3.0">
 
-    <meta name="generator" content="hexo"/>
-    
-    <link rel="alternate" type="application/rss+xml" title="LittlePig.CN" href="/atom.xml">
+    <!-- ### Analytics ### -->
     
 
-    <link rel="canonical" href="http://littlepig.cn"/>
 
-                 
+
+
+
+
+
+    <!-- ### Structured Data ### -->
+    
+
+
+
+
+    <!-- ### Custom Head ### -->
+    
 </head>
 
-<body class="home-template no-js">
+    <body>
+            
+
+            <!-- ### Main content ### -->
+            <!-- ## Header ##-->
+<header>
+    <h1 class="header-title text-center"><a href="/">LittlePig.CN</a></h1>
+
+    <p class="text-center header-slogan">
+        
+            
+                Hi, nice to meet you.
+            
+        
+    </p>
+
+    <nav class="navbar-section text-center">
     
-<script src="../../cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
-
+        <a href="../../index.html" class="navbar-link">首页</a>
     
-<script src="../../js/main.js"></script>
+    
+        <a href="../../archives/" class="navbar-link">归档</a>
+    
+    
+        <a href="/search" class="navbar-link">搜索</a>
+    
+    
+    
+        <div class="dropdown dropdown-right">
+    <a class="navbar-link dropdown-toggle" tabindex="0">分享</a>
+    <ul class="menu share-menu">
 
-    <span class="mobile btn-mobile-menu">
-        <i class="fa fa-list btn-mobile-menu__icon"></i>
-        <i class="fa fa-angle-up btn-mobile-close__icon hidden"></i>
-    </span>
-
-    <header class="panel-cover panel-cover--collapsed" style="background-image: url(/images/background-cover.jpg)">
-  <div class="panel-main">
-    <div class="panel-main__inner panel-inverted">
-    <div class="panel-main__content">
-
-
-        <a href="/" title="前往 LittlePig.CN 的主页"><img src="/avatar.png" width="80" alt="LittlePig.CN logo" class="panel-cover__logo logo" /></a>
-        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage for LittlePig.CN">LittlePig.CN</a></h1>
-
+        <!-- Share Weibo -->
         
-        <span class="panel-cover__subtitle panel-subtitle">someone&#39;s Blog</span>
-        
-
-        <hr class="panel-cover__divider" />
-
-        
-          
+        <li class="menu-item">
+            <a href="http://service.weibo.com/share/share.php?appkey=&title=LittlePig.CN&url=http://littlepig.cn&pic=http://littlepig.cn/img/suka-favicon.ico&searchPic=false&style=simple" target="_blank" rel="external noopener noreferrer nofollow">分享到微博</a>
+        </li>
         
 
-        <hr class="panel-cover__divider panel-cover__divider--secondary" />
-
-
-          <div class="navigation-wrapper">
-            <div>
-            <nav class="cover-navigation cover-navigation--primary">
-              <ul class="navigation">
-                <li class="navigation__item"><a href="/#blog" title="访问博客" class="blog-button">博客</a></li>
-              
-                <li class="navigation__item"><a href="/tags/">标签</a></li>
-              
-                <li class="navigation__item"><a href="/about/">关于我</a></li>
-              
-              </ul>
-            </nav>
-            </div>
-            <div>
-            <nav class="cover-navigation navigation--social">
-  <ul class="navigation">
-
-  <!-- Weibo-->
-  
-  <li class="navigation__item">
-    <a href="http://weibo.com/zhuhuaizhong" title="我的微博" target="_blank">
-      <i class='social fa fa-weibo'></i>
-      <span class="label">Weibo</span>
-    </a>
-  </li> 
-
-
-  <!-- Github -->
-  
-  <li class="navigation__item">
-    <a href="http://github.com/zhz" title="查看我的GitHub主页" target="_blank">
-      <i class='social fa fa-github'></i>
-      <span class="label">Github</span>
-    </a>
-  </li>
-
-
-<!-- Stack Overflow -->
+        <!-- Share Twitter -->
+        
+        <li class="menu-item">
+            <a href="https://twitter.com/intent/tweet?text=LittlePig.CN&url=http://littlepig.cn&via=ZHZ" target="_blank" rel="external noopener noreferrer nofollow">分享到 Twitter</a>
+        </li>
         
 
-  <!-- Google Plus -->
-  
+        <!-- Share Facebook -->
+        
+        <li class="menu-item">
+            <a href="https://www.facebook.com/sharer/sharer.php?u=http://littlepig.cn" target="_blank" rel="external noopener noreferrer nofollow">分享到 Facebook</a>
+        </li>
+        
 
-<!-- Facebook -->
+        <!-- Share Google+ -->
+        
+        <li class="menu-item">
+            <a href="https://plus.google.com/share?url=http://littlepig.cn" target="_blank" rel="external noopener noreferrer nofollow">分享到 Google+</a>
+        </li>
+        
 
-  
-<!-- Twitter -->
+        <!-- Share LinkedIn -->
+        
+        <li class="menu-item">
+            <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://littlepig.cn&title=" target="_blank" rel="external noopener noreferrer nofollow">分享到 LinkedIn</a>
+        </li>
+        
 
-  
+        <!-- Share QQ -->
+        
+        <li class="menu-item">
+            <a href="http://connect.qq.com/widget/shareqq/index.html?site=LittlePig.CN&title=&summary=记录 / 回忆 / 分享&pics=http://littlepig.cn/img/suka-favicon.ico&url=http://littlepig.cn" target="_blank" rel="external noopener noreferrer nofollow"> 分享到 QQ</a>
+        </li>
+        
 
-  <li class="navigation__item">
-    <a href="/atom.xml" title="RSS" target="_blank">
-      <i class='social fa fa-rss'></i>
-      <span class="label">RSS</span>
-    </a>
-  </li>
+        <!-- Share Telegram -->
+        
+        <li class="menu-item">
+            <a href="https://t.me/share/url?url=http://littlepig.cn&text=" target="_blank" rel="external noopener noreferrer nofollow">分享到 Telegram</a>
+        </li>
+        
 
+        <!-- QRCode -->
+        
+        <li class="menu-item">
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIQAAACECAAAAAB0L9x7AAABj0lEQVR42u3aSQ7DIBBEUd//0sk+gqrCsnARfW8iZSBv0aIHuD4FzwUCBIgjEJd4Rp//vjdaJ1kXRDdiGDTmD0ffG/1+ti6IfsQosGZBp7BL64I4EqECchaUIP4bMdt8VIID8R8ImWhEQKoN7rEsCmI7whW6d18frbZBbEPYptUUuargeawrB7EVMSpUk6JXNcGqQYqyKIjXES7ARgVNOhBRxRGIToQLOIdygTjb9EB0I1aGpAlGFjKzwARRg3DJaRZsyaamghJEL8I1smpokgbjtGgGUY1QQemGp+ngFcQ5iLuHJ2kBPA16ELWItJBZOaCPNkIQ1Qi1+aiLHMlwZKn5AfE6IklK6WUfF7DRMBXE6wiVgO4OytLGCEQvIilG0guCSzAQtYjkIM4NQFzj/MjhLIgtiPSisBuguYQmC10QdQh1AUcNwNJDu/jAHkQVwm06sjgxyW6p+QFRj0gGIwkqOogDcRwiaXjTw3wQ/Yg0EbnhhwvkW1kUxHZEelE4DcJk2A6iF/HmAwIEiGrEF7qjSemyW4GGAAAAAElFTkSuQmCC" alr="QRCode">
+        </li>
+        
 
-
-  </ul>
+    </ul>
+</div>
+    
+    
 </nav>
-
-            </div>
-          </div>
-
-
-      </div>
-
-    </div>
-
-    <div class="panel-cover--overlay cover-blue"></div>
-  </div> 
 </header>
 
-    <div class="content-wrapper">
-        <div class="content-wrapper__inner">
-            <div class="main-post-list">
-    
-  <ol class="post-list">
-  
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/posts/2013/07/25/synology-on-d400/" title="link to post.title">D400 (W130S) 安装 群晖系统</a></h2>
-      <p class="excerpt">
-    
-      原来 的 W130S  (联想 D400 的定制版本）我升级为了 Server 2012 ，用着也一直挺顺利，挺方便。近几日翻看新闻了解到群晖的新版本已经有 Git Server 模块进入了 Beta ，想到 Server 2012 对照片的管理能力实在差，于是没经住诱惑尝试了下，不过由于是黑群晖，只到 4.2 版本，暂时没法使用 Git Server。
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2013-07-25T06:01:26.000Z" class="post-list__meta--date date">2013-07-25</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="-none-link" href="../D400/" rel="tag">D400</a>, <a class="-none-link" href="../DSM/" rel="tag">DSM</a>, <a class="-none-link" href="" rel="tag">Synology</a>, <a class="-none-link" href="../W130S/" rel="tag">W130S</a>
-</span><a class="btn-border-small" href="/posts/2013/07/25/synology-on-d400/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-  </ol>
+            <div class="container">
+    <div class="main-container">
+        <main>
+            <!-- # Title # -->
+            <h2 class="page-title">标签 : Synology</h2>
+            <!-- # Post List # -->
+            <div class="post-stream-container">
+                
+                    <article class="post-entry container px-0 card">
+        <div class="columns col-gapless">
+            
+                <div class="column col-12">
+                    
+    <h2 class="h5 mb-0 card-header"><a class="card-title" href="../../posts/2013/07/25/synology-on-d400/" rel="bookmark">D400 (W130S) 安装 群晖系统</a></h2>
 
 
- <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"], linebreaks: { automatic:true }, EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50) },
-        tex2jax: { inlineMath: [ ["$", "$"], ["\\(","\\)"] ], processEscapes: true, ignoreClass: "tex2jax_ignore|dno",skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']},
-        TeX: {  noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } }, Macros: { href: "{}" } },
-        messageStyle: "none"
-    }); 
+<p class="mb-0 card-body">
     
-</script>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for(i=0; i < all.length; i += 1) {
-            all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-    });
-</script>
-<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
+        原来 的 W130S  (联想 D400 的定制版本）我升级为了 Server 2012 ，用着也一直挺顺利，挺方便。近几日翻看新闻了解到群晖的新版本已经有 Git Server 模块进入了 Beta ，想到 Server 2012 对照片的管理能力实在差，于是没经住诱惑尝试了下，不过由于是黑群晖，只到 4.2 版本，暂时没法使用 Git Server。
+    <a href="../../posts/2013/07/25/synology-on-d400/">阅读全文</a>
+</p>
+
+
+
+
+    <!-- Date & Category -->
+    <div class="card-footer post-entry-info text-gray">
+        <img class="author-thumb lazyload" data-src="../../img/default_avatar.png" src="../../img/suka-lazyload.gif" alt="ZHZ's Avatar">
+        <time>2013-07-25</time>
+        
+        
+    </div>
+
+                </div>
+            
+        </div>
+</article>
+
+                
+            </div>
+        </main>
+        
+
+    </div>
 </div>
-
-
-            <footer class="footer">
-    <span class="footer__copyright">
-        本站点采用 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a>
-    </span>
-    <span class="footer__copyright">
-        基于 <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a> 搭建，感谢 <a target="_blank" rel="noopener" href="https://pages.github.com/">GitHub Pages</a> 提供免费的托管服务
-    </span>
-    <span class="footer__copyright">
-        &copy; 2021 - 本站使用 <a target="_blank" rel="noopener" href="https://github.com/zhz/hexo-theme-vno2 ">vno2</a> 主题,
-        由<a href="https://littlepig.cn ">@zhz</a> 修改自 <a href="https://monniya.com" target="_blank">monniya.com</a>, 原创出自<a href="http://github.com/onevcat/vno" target="_blank">onevcat</a>
-    </span>
+            <!-- ### Footer ### -->
+            <footer class="text-center">
+    <!-- footer copyright -->
     
+        <p class="footer-copyright mb-0">Copyright&nbsp;©&nbsp;<span id="copyright-year"></span>
+            <a class="footer-copyright-a" href="http://littlepig.cn">LittlePig.CN</a>
+        </p>
+
+    <!-- footer custom text -->
+    <p class="footer-text mb-0">
+    
+    </p>
+    <!-- footer develop info -->
+    <p class="footer-develop mb-0">
+        
+    <!-- Busuanzi User Views -->
+    <span id="busuanzi_container_site_uv" hidden>
+        <span></span>
+        <span id="busuanzi_value_site_uv"></span>
+        <span>Viewers</span>
+        
+            <span>|</span>
+        
+    </span>
+
+
+
+
+        
+        Powered by&nbsp;<!--
+         --><a href="https://hexo.io" target="_blank" class="footer-develop-a" rel="external nofollow noopener noreferrer">Hexo</a><span class="footer-develop-divider"></span>Theme&nbsp;-&nbsp;<!--
+         --><a href="https://github.com/SukkaW/hexo-theme-suka" target="_blank" class="footer-develop-a" rel="external noopener">Suka</a>
+    </p>
 </footer>
 
 
-        </div>
+        <!-- ### Import File ### -->
+        <!-- ### Footer JS Import ### -->
+
+<script>
+
+    
+window.lazyLoadOptions = {
+    elements_selector: ".lazyload",
+    threshold: 50
+};
+document.getElementById('copyright-year').textContent = new Date().getFullYear();
+console.log('\n %c Suka Theme (hexo-theme-suka) | © SukkaW | Verision 1.3.3 %c https://github.com/SukkaW/hexo-theme-suka \n', 'color: #fff; background: #444; padding:5px 0;', 'background: #bbb; padding:5px 0;');
+
+</script>
+
+<script src="lib/vanilla-lazyload/lazyload.min.js" async></script>
+    <script src="https://cdn.jsdelivr.net/npm/busuanzi@2.3.0/bsz.pure.mini.js" async></script>
+
+
+<!-- Offset -->
+
+
+
+
+<!-- Comment -->
+
+
+<!-- ### Custom Footer ### -->
+
+    </body>
+
+</html>ault_avatar.png" src="../../img/suka-lazyload.gif" alt="ZHZ's Avatar">
+        <time>2014-01-13</time>
+        
+        
     </div>
 
-     
+                </div>
+            
+        </div>
+</article>
+
+                
+                    <article class="post-entry container px-0 card">
+        <div class="columns col-gapless">
+            
+                <div class="column col-12">
+                    
+    <h2 class="h5 mb-0 card-header"><a class="card-title" href="../../posts/2014/01/13/d400-synology-4-2-update-to-4-3/" rel="bookmark">Lenovo D400 (W130S) 黑群晖 4.2 升级 4.3</a></h2>
+
+
+<p class="mb-0 card-body">
     
-    <script>
-        var _hmt = _hmt || [];
-        (function() {
-            var hm = document.createElement("script");
-            hm.src = "//hm.baidu.com/hm.js?60ce267446f73c3b0610372cd44a86d7";
-            var s = document.getElementsByTagName("script")[0]; 
-            s.parentNode.insertBefore(hm, s);
-        })();
-    </script>
+        我的联想 W130S 自从上次稀里糊涂的安装好黑群晖 4.2 后，一直用的比较不爽，主要表现在没法认出插入...
+    <a href="../../posts/2014/01/13/d400-synology-4-2-update-to-4-3/">阅读全文</a>
+</p>
 
 
 
-    <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-    
-    
-</body>
-</html>
-014/01/13/d400-synology-4-2-update-to-4-3/" title="link to post.title">Lenovo D400 (W130S) 黑群晖 4.2 升级 4.3</a></h2>
-      <p class="excerpt">
-    
-      我的联想 W130S 自从上次稀里糊涂的安装好黑群晖 4.2 后，一直用的比较不爽，主要表现在没法认出插入的U盘或者移动硬盘，经常没事就硬盘损毁然后又修复（也不知道是真的还是假的，至少有这提示，原来的 windows home server 就没事），最郁闷的是没法安装 git server ，而作为半个码农表示没有代码的备份和版本管理是完全不可忍受的，SVN 使用又必须得联网不方便，于是今天把 
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2014-01-13T10:28:01.000Z" class="post-list__meta--date date">2014-01-13</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="-none-link" href="../NAS/" rel="tag">NAS</a>, <a class="-none-link" href="../d400/" rel="tag">d400</a>, <a class="-none-link" href="" rel="tag">synology</a>, <a class="-none-link" href="../w130s/" rel="tag">w130s</a>
-</span><a class="btn-border-small" href="/posts/2014/01/13/d400-synology-4-2-update-to-4-3/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-  </ol>
 
+    <!-- Date & Category -->
+    <div class="card-footer post-entry-info text-gray">
+        <img class="author-thumb lazyload" data-src="../../img/default_avatar.png" src="../../img/suka-lazyload.gif" alt="ZHZ's Avatar">
+        <time>2014-01-13</time>
+        
+        
+    </div>
 
- <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"], linebreaks: { automatic:true }, EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50) },
-        tex2jax: { inlineMath: [ ["$", "$"], ["\\(","\\)"] ], processEscapes: true, ignoreClass: "tex2jax_ignore|dno",skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']},
-        TeX: {  noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } }, Macros: { href: "{}" } },
-        messageStyle: "none"
-    }); 
-    
-</script>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for(i=0; i < all.length; i += 1) {
-            all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-    });
-</script>
-<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
+                </div>
+            
+        </div>
+</article>
+
+                
+            </div>
+        </main>
+        
+
+    </div>
 </div>
-
-
-            <footer class="footer">
-    <span class="footer__copyright">
-        本站点采用 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a>
-    </span>
-    <span class="footer__copyright">
-        基于 <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a> 搭建，感谢 <a target="_blank" rel="noopener" href="https://pages.github.com/">GitHub Pages</a> 提供免费的托管服务
-    </span>
-    <span class="footer__copyright">
-        &copy; 2021 - 本站使用 <a target="_blank" rel="noopener" href="https://github.com/zhz/hexo-theme-vno2 ">vno2</a> 主题,
-        由<a href="https://littlepig.cn ">@zhz</a> 修改自 <a href="https://monniya.com" target="_blank">monniya.com</a>, 原创出自<a href="http://github.com/onevcat/vno" target="_blank">onevcat</a>
-    </span>
+            <!-- ### Footer ### -->
+            <footer class="text-center">
+    <!-- footer copyright -->
     
+        <p class="footer-copyright mb-0">Copyright&nbsp;©&nbsp;<span id="copyright-year"></span>
+            <a class="footer-copyright-a" href="http://littlepig.cn">LittlePig.CN</a>
+        </p>
+
+    <!-- footer custom text -->
+    <p class="footer-text mb-0">
+    
+    </p>
+    <!-- footer develop info -->
+    <p class="footer-develop mb-0">
+        
+    <!-- Busuanzi User Views -->
+    <span id="busuanzi_container_site_uv" hidden>
+        <span></span>
+        <span id="busuanzi_value_site_uv"></span>
+        <span>Viewers</span>
+        
+            <span>|</span>
+        
+    </span>
+
+
+
+
+        
+        Powered by&nbsp;<!--
+         --><a href="https://hexo.io" target="_blank" class="footer-develop-a" rel="external nofollow noopener noreferrer">Hexo</a><span class="footer-develop-divider"></span>Theme&nbsp;-&nbsp;<!--
+         --><a href="https://github.com/SukkaW/hexo-theme-suka" target="_blank" class="footer-develop-a" rel="external noopener">Suka</a>
+    </p>
 </footer>
 
 
-        </div>
-    </div>
+        <!-- ### Import File ### -->
+        <!-- ### Footer JS Import ### -->
 
-     
+<script>
+
     
-    <script>
-        var _hmt = _hmt || [];
-        (function() {
-            var hm = document.createElement("script");
-            hm.src = "//hm.baidu.com/hm.js?60ce267446f73c3b0610372cd44a86d7";
-            var s = document.getElementsByTagName("script")[0]; 
-            s.parentNode.insertBefore(hm, s);
-        })();
-    </script>
+window.lazyLoadOptions = {
+    elements_selector: ".lazyload",
+    threshold: 50
+};
+document.getElementById('copyright-year').textContent = new Date().getFullYear();
+console.log('\n %c Suka Theme (hexo-theme-suka) | © SukkaW | Verision 1.3.3 %c https://github.com/SukkaW/hexo-theme-suka \n', 'color: #fff; background: #444; padding:5px 0;', 'background: #bbb; padding:5px 0;');
+
+</script>
+
+<script src="lib/vanilla-lazyload/lazyload.min.js" async></script>
+    <script src="https://cdn.jsdelivr.net/npm/busuanzi@2.3.0/bsz.pure.mini.js" async></script>
+
+
+<!-- Offset -->
 
 
 
-    <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-    
-    
-</body>
+
+<!-- Comment -->
+
+
+<!-- ### Custom Footer ### -->
+
+    </body>
+
 </html>
