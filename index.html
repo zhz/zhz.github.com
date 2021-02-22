@@ -1,759 +1,765 @@
 <!DOCTYPE html>
+<html>
+<head>
+    
 
-<html lang="zh-CN">
-    <head>
+    
+
+    
+
+
+
     <meta charset="utf-8">
-    <!--
-        hexo-theme-suka © SukkaW
-        GitHub: https://github.com/SukkaW/hexo-theme-suka
-    -->
-
-    <!-- ### Resource Hint ### -->
-
-    <!-- ## DNS Prefetch ## -->
-    <meta http-equiv="x-dns-prefetch-control" content="on">
-
-<!-- busuanzi -->
-
-    <link rel="dns-prefetch" href="//busuanzi.ibruce.info">
-
-
-<!-- comment -->
-
-
-
-
-
-
-
-<!-- analytics -->
-
-
-
-
-
-
-
-    <!-- ## Preload ## -->
     
-    <!-- Busuanzi -->
     
-    <link rel="preload" href="https://cdn.jsdelivr.net/npm/busuanzi@2.3.0/bsz.pure.mini.js" as="script">
+    
+    
+    <title>LittlePig.CN | someone&#39;s Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="记录 &#x2F; 回忆 &#x2F; 分享">
+<meta property="og:type" content="website">
+<meta property="og:title" content="LittlePig.CN">
+<meta property="og:url" content="http://littlepig.cn/index.html">
+<meta property="og:site_name" content="LittlePig.CN">
+<meta property="og:description" content="记录 &#x2F; 回忆 &#x2F; 分享">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="ZHZ">
+<meta name="twitter:card" content="summary">
+    
+        <link rel="alternate" type="application/atom+xml" title="LittlePig.CN" href="atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script>window.lazyScripts=[]</script>
 
-
-
-
-
-
-
-    <!-- ### Meta & Title & Info ### -->
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, maximum-scale=5, viewport-fit=cover">
-    <meta name="renderer" content="webkit">
-
-    <!-- Title -->
-    <title>LittlePig.CN</title>
-
-    <!-- Favicons -->
-    <link rel="icon" type="image&#x2F;ico" href="/img/suka-favicon.ico">
-
-    <!-- ### Import File ### -->
-    <link rel="stylesheet" href="lib/spectre/spectre.min.css"><style>
-    body {
-        background-color: #f8f9fa;
-    }
-
-    a, a:visited {
-        color: #0070ff;
-    }
-
-    a:active, a:focus, a:hover {
-        color: #0070ff;
-        opacity: .75;
-    }
-
-    #post-content a,
-    #post-content a:hover,
-    #post-content a:focus,
-    #post-content a:visited {
-        color: #005eb9;
-        opacity: 1;
-    }
-
+    <!-- custom head -->
     
 
-    .post-entry .card-body a {
-        color: #0070ff;
-    }
+<meta name="generator" content="Hexo 4.2.1"></head>
 
-    .avatar {
-        background: #444;
-    }
+<body>
+    <div id="loading" class="active"></div>
 
-    .navbar-link,
-    .navbar-link:visited,
-    .timeline .timeline-item .timeline-icon.icon-lg {
-        color: #0070ff;
-    }
+    <aside id="menu"  >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="index.html" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">ZHZ</h5>
+          <a href="mailto:zhz@hebut.edu.cn" title="zhz@hebut.edu.cn" class="mail">zhz@hebut.edu.cn</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="index.html"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-link"></i>
+                关于
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
 
-    .navbar-link:hover {
-        color: #0070ff;
-        opacity: .8;
-    }
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">LittlePig.CN</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header index-header">
 
-    #search-input .btn,
-    #disqus_click_btn,
-    #disqus-switch-to-direct,
-    #disqus-loadmore-button {
-        background: #727e96;
-        border-color: #727e96;
-        color: #fff;
-    }
-
-    #post-toc a.post-toc-link,
-    #post-toc a.post-toc-link:visited,
-    .share-menu.menu .menu-item>a {
-        color: #727e96;
-    }
-
-    .share-menu.menu .menu-item>a:hover,
-    .share-menu.menu .menu-item>a:focus,
-    .share-menu.menu .menu-item>a:visited {
-        color: #50596c;
-        background: #f8f9fa;
-        opacity: .85;
-    }
-</style><link rel="stylesheet" href="css/style.min.css">
-
-
-
-
-
-
-
-
-    <!-- Prettify Theme -->
-    
-
-
-
-
-<script>
-/*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
-!function(t){"use strict";t.loadCSS||(t.loadCSS=function(){});var e=loadCSS.relpreload={};if(e.support=function(){var e;try{e=t.document.createElement("link").relList.supports("preload")}catch(t){e=!1}return function(){return e}}(),e.bindMediaToggle=function(t){var e=t.media||"all";function a(){t.addEventListener?t.removeEventListener("load",a):t.attachEvent&&t.detachEvent("onload",a),t.setAttribute("onload",null),t.media=e}t.addEventListener?t.addEventListener("load",a):t.attachEvent&&t.attachEvent("onload",a),setTimeout(function(){t.rel="stylesheet",t.media="only x"}),setTimeout(a,3e3)},e.poly=function(){if(!e.support())for(var a=t.document.getElementsByTagName("link"),n=0;n<a.length;n++){var o=a[n];"preload"!==o.rel||"style"!==o.getAttribute("as")||o.getAttribute("data-loadcss")||(o.setAttribute("data-loadcss",!0),e.bindMediaToggle(o))}},!e.support()){e.poly();var a=t.setInterval(e.poly,500);t.addEventListener?t.addEventListener("load",function(){e.poly(),t.clearInterval(a)}):t.attachEvent&&t.attachEvent("onload",function(){e.poly(),t.clearInterval(a)})}"undefined"!=typeof exports?exports.loadCSS=loadCSS:t.loadCSS=loadCSS}("undefined"!=typeof global?global:this);
-</script>
-
-    <!-- ### Site Verification ### -->
-    
-
-
-    <link rel="alternate" type="application/atom+xml" href="atom.xml"><meta name="mobile-web-app-capable" content="yes"><meta name="application-name" content="LittlePig.CN"><meta name="msapplication-starturl" content="http://littlepig.cn"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="LittlePig.CN"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-
-    <!-- ### The Open Graph & Twitter Card Protocol ### -->
-    <meta property="og:title" content="LittlePig.CN"><meta property="og:site_name" content="LittlePig.CN"><meta property="og:type" content="website"><meta property="og:url" content="http://littlepig.cn/"><meta property="og:locale" content="zh-CN"><meta name="description" content="记录 &#x2F; 回忆 &#x2F; 分享 - ZHZ - LittlePig.CN">
-
-    
-
-    <!-- ### Canonical link ### -->
-    <link rel="canonical" href="http://littlepig.cn/">
-
-    <meta name="generator" content="Hexo 5.3.0">
-
-    <!-- ### Analytics ### -->
-    
-
-
-
-
-
-
-
-    <!-- ### Structured Data ### -->
-    
-<script type="application/ld+json">
-{
-    "@context": "http://schema.org",
-    "@type": "Blog",
-    "author": {
-        "@type": "Person",
-        "name": "ZHZ",
-        "image": {
-            "@type": "ImageObject",
-            "url": "http://littlepig.cn/img/default_avatar.png"
-        },
-        "description": "Hi, nice to meet you."
-    },
-    "publisher": {
-        "@type": "Organization",
-        "name": "LittlePig.CN",
-        "logo": {
-            "@type": "ImageObject",
-            "url": "http://littlepig.cn/img/suka-favicon.ico"
-        }
-    },
-    "url": "http://littlepig.cn",
-    "logo": "http://littlepig.cn/img/suka-favicon.ico",
-    "image": {
-        "@type": "ImageObject",
-        "url": "http://littlepig.cn/img/suka-favicon.ico"
-    },
-    "mainEntityOfPage": {
-        "@type": "WebPage",
-        "@id": "http://littlepig.cn"
-    },
-    
-    "potentialAction": {
-        "@type": "SearchAction",
-        "target": "http://littlepig.cn/search?s={search_term_string}",
-        "query-input": "required name=search_term_string"
-    },
-    
-    "keywords": "",
-    "description": "记录 / 回忆 / 分享 - ZHZ - LittlePig.CN"
-}
-</script>
-
-
-
-
-
-    <!-- ### Custom Head ### -->
-    
-</head>
-
-    <body>
+    <div class="container fade-scale">
+        <h1 class="title">LittlePig.CN</h1>
+        <h5 class="subtitle">
             
-
-            <!-- ### Main content ### -->
-            <!-- ## Header ##-->
-<header>
-    <h1 class="header-title text-center"><a href="/">LittlePig.CN</a></h1>
-
-    <p class="text-center header-slogan">
-        
+                someone's Blog
             
-                Hi, nice to meet you.
-            
-        
-    </p>
+        </h5>
+    </div>
 
-    <nav class="navbar-section text-center">
     
-        <a href="index.html" class="navbar-link">首页</a>
-    
-    
-        <a href="archives/" class="navbar-link">归档</a>
-    
-    
-        <a href="/search" class="navbar-link">搜索</a>
-    
-    
-    
-        <div class="dropdown dropdown-right">
-    <a class="navbar-link dropdown-toggle" tabindex="0">分享</a>
-    <ul class="menu share-menu">
 
-        <!-- Share Weibo -->
-        
-        <li class="menu-item">
-            <a href="http://service.weibo.com/share/share.php?appkey=&title=LittlePig.CN&url=http://littlepig.cn&pic=http://littlepig.cn/img/suka-favicon.ico&searchPic=false&style=simple" target="_blank" rel="external noopener noreferrer nofollow">分享到微博</a>
-        </li>
-        
 
-        <!-- Share Twitter -->
-        
-        <li class="menu-item">
-            <a href="https://twitter.com/intent/tweet?text=LittlePig.CN&url=http://littlepig.cn&via=ZHZ" target="_blank" rel="external noopener noreferrer nofollow">分享到 Twitter</a>
-        </li>
-        
-
-        <!-- Share Facebook -->
-        
-        <li class="menu-item">
-            <a href="https://www.facebook.com/sharer/sharer.php?u=http://littlepig.cn" target="_blank" rel="external noopener noreferrer nofollow">分享到 Facebook</a>
-        </li>
-        
-
-        <!-- Share Google+ -->
-        
-        <li class="menu-item">
-            <a href="https://plus.google.com/share?url=http://littlepig.cn" target="_blank" rel="external noopener noreferrer nofollow">分享到 Google+</a>
-        </li>
-        
-
-        <!-- Share LinkedIn -->
-        
-        <li class="menu-item">
-            <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://littlepig.cn&title=" target="_blank" rel="external noopener noreferrer nofollow">分享到 LinkedIn</a>
-        </li>
-        
-
-        <!-- Share QQ -->
-        
-        <li class="menu-item">
-            <a href="http://connect.qq.com/widget/shareqq/index.html?site=LittlePig.CN&title=&summary=记录 / 回忆 / 分享&pics=http://littlepig.cn/img/suka-favicon.ico&url=http://littlepig.cn" target="_blank" rel="external noopener noreferrer nofollow"> 分享到 QQ</a>
-        </li>
-        
-
-        <!-- Share Telegram -->
-        
-        <li class="menu-item">
-            <a href="https://t.me/share/url?url=http://littlepig.cn&text=" target="_blank" rel="external noopener noreferrer nofollow">分享到 Telegram</a>
-        </li>
-        
-
-        <!-- QRCode -->
-        
-        <li class="menu-item">
-            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHQAAAB0CAAAAABx8Un7AAABOUlEQVR42u3aQQ6DMAxEUe5/6XaLkO2ZhOBk8bNpUSEPCYvYTq/fhnGBgoJOoVcx7udE3+/H1jygbWj40MXk6mbCGwZtRZ8PPguQ6DpnHtAz0ejYnQf0LDQLHtCzUTVJtVAvX2VAX6POZM7nsmwQ9BUqi54kQNzfp6o20FdoFQhVsEWLQXY9aC+aXVwt2ur8tAgDbUGrhoYKFGeRkJkD6HJUBUOVeDuJOOgetEqwnQXbKaZB+9CoQBoNIJWIg/ajqklVvfzVzQ53V0CXoU4gqI0DuZEE2o46BZXb2LCqNtBPULfRMbIRaBXFoJ+hTiMxW8DdxiRoP+ok3iMF0/ALH/QT1GlWVC+CqT/MgG5Fy2J3pigG3YqqwthJ3EH7UWeCamO+CjLQflQVQu4G0dLdf9BptHOAgoIOjT+ri3JCditD4wAAAABJRU5ErkJggg==" alr="QRCode">
-        </li>
-        
-
-    </ul>
-</div>
-    
-    
-</nav>
 </header>
 
-            <div class="container">
-    <div class="main-container">
-        <main>
-            <div class="post-stream-container">
-                <!-- # Post List # -->
-                
-                    
-                        <article class="post-entry container px-0 card">
-        <div class="columns col-gapless">
-            
-                <div class="column col-12">
-                    
-    <h2 class="h5 mb-0 card-header"><a class="card-title" href="posts/2021/02/15/git-passwd-manage-on-macos/" rel="bookmark">MacOS 下 git 账户信息的保存和修改</a></h2>
+<div class="container body-wrap">
+
+    <ul class="post-list">
+    
+        <li class="post-list-item fade">
+            <article id="post-git-passwd-manage-on-macos"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2021-02-15 00:00:00" datetime="2021-02-14T16:00:00.000Z"  itemprop="datePublished">2021-02-15</time>
+
+        
 
 
-<p class="mb-0 card-body">
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="posts/2021/02/15/git-passwd-manage-on-macos/">MacOS 下 git 账户信息的保存和修改</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
     
         
 保存账户信息 
 
 在终端命令行中输入：
+1git config --global credential.helper osxkeychain
+然后在 git 操作中 只要输入一次账号名和密码 ,在之后的操作中 就不需要再次输入了。
 
-    <a href="posts/2021/02/15/git-passwd-manage-on-macos/">阅读全文</a>
-</p>
+修改或者删除账户信息
 
+用钥匙串去更改用户名和密码：
+应用程序 -&gt; 实用工具 -&gt; 钥匙串 -&gt; 右上角搜索 git -&gt; 双击登陆...
+    
 
-
-
-    <!-- Date & Category -->
-    <div class="card-footer post-entry-info text-gray">
-        <img class="author-thumb lazyload" data-src="/img/default_avatar.png" src="img/suka-lazyload.gif" alt="ZHZ's Avatar">
-        <time>2021-02-15</time>
-        
-        
+        <a href="posts/2021/02/15/git-passwd-manage-on-macos/" class="post-more waves-effect waves-button">
+            阅读全文…
+        </a>
     </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/git/" rel="tag">git</a></li></ul>
 
-                </div>
-            
-        </div>
+    </div>
+    
 </article>
 
-                    
-                
-                    
-                        <article class="post-entry container px-0 card">
-        <div class="columns col-gapless">
-            
-                <div class="column col-12">
-                    
-    <h2 class="h5 mb-0 card-header"><a class="card-title" href="posts/2021/02/13/enable-pylint-on-vscode/" rel="bookmark">Visual Studio Code 下 PyLint 的启用</a></h2>
-
-
-<p class="mb-0 card-body">
-    
-        
-安装 pylint1
-    <a href="posts/2021/02/13/enable-pylint-on-vscode/">阅读全文</a>
-</p>
-
-
-
-
-    <!-- Date & Category -->
-    <div class="card-footer post-entry-info text-gray">
-        <img class="author-thumb lazyload" data-src="/img/default_avatar.png" src="img/suka-lazyload.gif" alt="ZHZ's Avatar">
-        <time>2021-02-13</time>
-        
-        
-    </div>
-
-                </div>
-            
-        </div>
-</article>
-
-                    
-                
-                    
-                        <article class="post-entry container px-0 card">
-        <div class="columns col-gapless">
-            
-                <div class="column col-12">
-                    
-    <h2 class="h5 mb-0 card-header"><a class="card-title" href="posts/2020/09/07/remove-logs-or-extend-disks-in-vcsa/" rel="bookmark">VCSA 日志清理及空间扩容</a></h2>
-
-
-<p class="mb-0 card-body">
-    
-        日志清理ssh 到 VCSA 上，输入 shell 进入控制...
-    <a href="posts/2020/09/07/remove-logs-or-extend-disks-in-vcsa/">阅读全文</a>
-</p>
-
-
-
-
-    <!-- Date & Category -->
-    <div class="card-footer post-entry-info text-gray">
-        <img class="author-thumb lazyload" data-src="/img/default_avatar.png" src="img/suka-lazyload.gif" alt="ZHZ's Avatar">
-        <time>2020-09-07</time>
-        
-        
-    </div>
-
-                </div>
-            
-        </div>
-</article>
-
-                    
-                
-                    
-                        <article class="post-entry container px-0 card">
-        <div class="columns col-gapless">
-            
-                <div class="column col-12">
-                    
-    <h2 class="h5 mb-0 card-header"><a class="card-title" href="posts/2020/08/30/use-gitee-as-imagebed-by-picgo-in-typora-under-debian/" rel="bookmark">Debian 下 Typora 通过 PicGo 使用 Gitee 做图床的配置</a></h2>
-
-
-<p class="mb-0 card-body">
-    
-        Windows 下的文章有很多，这里不再赘述，只简单说下 Debian 下的配置过程
-
-    <a href="posts/2020/08/30/use-gitee-as-imagebed-by-picgo-in-typora-under-debian/">阅读全文</a>
-</p>
-
-
-
-
-    <!-- Date & Category -->
-    <div class="card-footer post-entry-info text-gray">
-        <img class="author-thumb lazyload" data-src="/img/default_avatar.png" src="img/suka-lazyload.gif" alt="ZHZ's Avatar">
-        <time>2020-08-30</time>
-        
-        
-    </div>
-
-                </div>
-            
-        </div>
-</article>
-
-                    
-                
-                    
-                        <article class="post-entry container px-0 card">
-        <div class="columns col-gapless">
-            
-                <div class="column col-12">
-                    
-    <h2 class="h5 mb-0 card-header"><a class="card-title" href="posts/2020/08/28/route-control-of-openvxn-of-dsm/" rel="bookmark">Synology DSM 的 OpenVxN 自定义路由设定</a></h2>
-
-
-<p class="mb-0 card-body">
-    
-        这里的路由设定指的是 VxN 客户端的路由设定，只不过是连接 OpenVxN 服务器时自动从服务器获取的但应用在客户端路由规则，典型的应用场景就是希望连接上 OpenVxN 后只对内网网段走 VxN ，其它走原来链路，这样内网外...
-    <a href="posts/2020/08/28/route-control-of-openvxn-of-dsm/">阅读全文</a>
-</p>
-
-
-
-
-    <!-- Date & Category -->
-    <div class="card-footer post-entry-info text-gray">
-        <img class="author-thumb lazyload" data-src="/img/default_avatar.png" src="img/suka-lazyload.gif" alt="ZHZ's Avatar">
-        <time>2020-08-28</time>
-        
-            <span class="suka-devide-dot"></span>
-            <a class="category-link" href="categories/%E6%9C%8D%E5%8A%A1/">服务</a>
-        
-        
-    </div>
-
-                </div>
-            
-        </div>
-</article>
-
-                    
-                
-                    
-                        <article class="post-entry container px-0 card">
-        <div class="columns col-gapless">
-            
-                <div class="column col-12">
-                    
-    <h2 class="h5 mb-0 card-header"><a class="card-title" href="posts/2020/08/07/jupyter-notebook-full-width/" rel="bookmark">设置 Jupyter notebook 宽屏</a></h2>
-
-
-<p class="mb-0 card-body">
-    
-        Jupyter notebook 默认页面宽度过窄，浪费了左右两侧的宽屏空间，自定义宽度其实只需要放置一个 custom.css 即可。
-
-    <a href="posts/2020/08/07/jupyter-notebook-full-width/">阅读全文</a>
-</p>
-
-
-
-
-    <!-- Date & Category -->
-    <div class="card-footer post-entry-info text-gray">
-        <img class="author-thumb lazyload" data-src="/img/default_avatar.png" src="img/suka-lazyload.gif" alt="ZHZ's Avatar">
-        <time>2020-08-07</time>
-        
-        
-    </div>
-
-                </div>
-            
-        </div>
-</article>
-
-                    
-                
-                    
-                        <article class="post-entry container px-0 card">
-        <div class="columns col-gapless">
-            
-                <div class="column col-12">
-                    
-    <h2 class="h5 mb-0 card-header"><a class="card-title" href="posts/2020/07/30/change-linux-console-font/" rel="bookmark">Debian 下控制台字体的设置</a></h2>
-
-
-<p class="mb-0 card-body">
-    
-        昨天升级了下 debian testing ，发现启动时的控制台字体越发小了，而且锯齿严重，看起来很不爽，于是自定义了下字体，注意这里的控制台指的是启动时图形界面显示之前的文字界面而不是启动后的终端，即 console 而不是 ...
-    <a href="posts/2020/07/30/change-linux-console-font/">阅读全文</a>
-</p>
-
-
-
-
-    <!-- Date & Category -->
-    <div class="card-footer post-entry-info text-gray">
-        <img class="author-thumb lazyload" data-src="/img/default_avatar.png" src="img/suka-lazyload.gif" alt="ZHZ's Avatar">
-        <time>2020-07-30</time>
-        
-        
-    </div>
-
-                </div>
-            
-        </div>
-</article>
-
-                    
-                
-                    
-                        <article class="post-entry container px-0 card">
-        <div class="columns col-gapless">
-            
-                <div class="column col-12">
-                    
-    <h2 class="h5 mb-0 card-header"><a class="card-title" href="posts/2020/07/01/install-fcitx5-on-debian-testing/" rel="bookmark">在 Debian 下安装 fcitx5</a></h2>
-
-
-<p class="mb-0 card-body">
-    
-        昨天升级了下 debian testing ，然后 fcitx 就挂了，表现在只有 WPS 中才可以 ctrl+space 打开并输入中文，其它一律无反应，提交了个 bug 后发现有 fcitx5 ，下一代 fcitx，不过都是...
-    <a href="posts/2020/07/01/install-fcitx5-on-debian-testing/">阅读全文</a>
-</p>
-
-
-
-
-    <!-- Date & Category -->
-    <div class="card-footer post-entry-info text-gray">
-        <img class="author-thumb lazyload" data-src="/img/default_avatar.png" src="img/suka-lazyload.gif" alt="ZHZ's Avatar">
-        <time>2020-07-01</time>
-        
-        
-    </div>
-
-                </div>
-            
-        </div>
-</article>
-
-                    
-                
-                    
-                        <article class="post-entry container px-0 card">
-        <div class="columns col-gapless">
-            
-                <div class="column col-12">
-                    
-    <h2 class="h5 mb-0 card-header"><a class="card-title" href="posts/2020/06/26/add-autocomplete-to-notebook/" rel="bookmark">给 jupyter notebook 添加自动补全</a></h2>
-
-
-<p class="mb-0 card-body">
-    
-        停掉 notebook
-    <a href="posts/2020/06/26/add-autocomplete-to-notebook/">阅读全文</a>
-</p>
-
-
-
-
-    <!-- Date & Category -->
-    <div class="card-footer post-entry-info text-gray">
-        <img class="author-thumb lazyload" data-src="/img/default_avatar.png" src="img/suka-lazyload.gif" alt="ZHZ's Avatar">
-        <time>2020-06-26</time>
-        
-            <span class="suka-devide-dot"></span>
-            <a class="category-link" href="categories/%E7%BC%96%E7%A8%8B/">编程</a>
-        
-        
-    </div>
-
-                </div>
-            
-        </div>
-</article>
-
-                    
-                
-                    
-                        <article class="post-entry container px-0 card">
-        <div class="columns col-gapless">
-            
-                <div class="column col-12">
-                    
-    <h2 class="h5 mb-0 card-header"><a class="card-title" href="posts/2020/06/26/pip-install-openpyxl/" rel="bookmark">python 安装 openpyxl</a></h2>
-
-
-<p class="mb-0 card-body">
-    
-        pandas 写 excel 需要 openpyxl 的支持，直接 pip3 install openpyxl 提示未找到相应版本，只好到 
-    <a href="posts/2020/06/26/pip-install-openpyxl/">阅读全文</a>
-</p>
-
-
-
-
-    <!-- Date & Category -->
-    <div class="card-footer post-entry-info text-gray">
-        <img class="author-thumb lazyload" data-src="/img/default_avatar.png" src="img/suka-lazyload.gif" alt="ZHZ's Avatar">
-        <time>2020-06-26</time>
-        
-            <span class="suka-devide-dot"></span>
-            <a class="category-link" href="categories/%E7%BC%96%E7%A8%8B/">编程</a>
-        
-        
-    </div>
-
-                </div>
-            
-        </div>
-</article>
-
-                    
-                
-            </div>
-        </main>
-        
-<nav>
-<ul class="pagination">
-    
-    
-        <li class="page-item page-next">
-            <a href="page/2/" rel="next">
-                <span class="page-item-title">下一页</span>
-                <span class="page-item-subtitle"><i class="icon icon-forward" aria-hidden="true"></i></span>
-            </a>
         </li>
     
-</ul>
+        <li class="post-list-item fade">
+            <article id="post-enable-pylint-on-vscode"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2021-02-13 00:00:00" datetime="2021-02-12T16:00:00.000Z"  itemprop="datePublished">2021-02-13</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="posts/2021/02/13/enable-pylint-on-vscode/">Visual Studio Code 下 PyLint 的启用</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        
+安装 pylint1pip3 install pylint
+在 .vscode 的 settings.json 中启用1234&quot;python.pythonPath&quot;: &quot;&#x2F;Library&#x2F;Frameworks&#x2F;Python.framework&#x2F;Versions&#x2F;3.8&#x2F;bin&#x2F;python3...
+    
+
+        <a href="posts/2021/02/13/enable-pylint-on-vscode/" class="post-more waves-effect waves-button">
+            阅读全文…
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/python-pylint/" rel="tag">python,pylint</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-remove-logs-or-extend-disks-in-vcsa"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2020-09-07 14:30:50" datetime="2020-09-07T06:30:50.000Z"  itemprop="datePublished">2020-09-07</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="posts/2020/09/07/remove-logs-or-extend-disks-in-vcsa/">VCSA 日志清理及空间扩容</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        日志清理ssh 到 VCSA 上，输入 shell 进入控制台
+1df -lh
+查看空间大小，发现 /storage/archive 占据空间比较大，这里应该是备份日志的地方，里边文件不大但很多，查找并删除 30 天以前的日志
+12cd /storage/archive/vpostgresfind * -mtime +30 -exec rm &#123;&#125; \;
+
+
+磁盘扩容首先对...
+    
+
+        <a href="posts/2020/09/07/remove-logs-or-extend-disks-in-vcsa/" class="post-more waves-effect waves-button">
+            阅读全文…
+        </a>
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-use-gitee-as-imagebed-by-picgo-in-typora-under-debian"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2020-08-30 10:30:50" datetime="2020-08-30T02:30:50.000Z"  itemprop="datePublished">2020-08-30</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="posts/2020/08/30/use-gitee-as-imagebed-by-picgo-in-typora-under-debian/">Debian 下 Typora 通过 PicGo 使用 Gitee 做图床的配置</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        Windows 下的文章有很多，这里不再赘述，只简单说下 Debian 下的配置过程
+Typora 配置自动上传图片在 Typora 的 preferences 中，选择使用 PicGo-Core 作为 uploader，点击 Download or Upgrade 自动下载 picgo 的二进制包，下载后的路径为 ~/.config/Typora/picgo/linux 
+
+安装 PicG...
+    
+
+        <a href="posts/2020/08/30/use-gitee-as-imagebed-by-picgo-in-typora-under-debian/" class="post-more waves-effect waves-button">
+            阅读全文…
+        </a>
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-route-control-of-openvxn-of-dsm"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2020-08-28 10:30:50" datetime="2020-08-28T02:30:50.000Z"  itemprop="datePublished">2020-08-28</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="categories/%E6%9C%8D%E5%8A%A1/">服务</a></li></ul>
+
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="posts/2020/08/28/route-control-of-openvxn-of-dsm/">Synology DSM 的 OpenVxN 自定义路由设定</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        这里的路由设定指的是 VxN 客户端的路由设定，只不过是连接 OpenVxN 服务器时自动从服务器获取的但应用在客户端路由规则，典型的应用场景就是希望连接上 OpenVxN 后只对内网网段走 VxN ，其它走原来链路，这样内网外网速度都得兼，当然，你可以在客户端自己通过命令设定路由规则，但显然没有这种方式方便而且便于分发。
+步骤：
+首先 SSH 到 DSM ，然后
+1vim /var/pac...
+    
+
+        <a href="posts/2020/08/28/route-control-of-openvxn-of-dsm/" class="post-more waves-effect waves-button">
+            阅读全文…
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/DSM/" rel="tag">DSM</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-jupyter-notebook-full-width"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2020-08-07 10:30:50" datetime="2020-08-07T02:30:50.000Z"  itemprop="datePublished">2020-08-07</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="posts/2020/08/07/jupyter-notebook-full-width/">设置 Jupyter notebook 宽屏</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        Jupyter notebook 默认页面宽度过窄，浪费了左右两侧的宽屏空间，自定义宽度其实只需要放置一个 custom.css 即可。
+1vim ~&#x2F;.jupyter&#x2F;custom&#x2F;custom.css
+添加如下内容，其中宽度根据自己喜好修改即可，然后重新启动 notebook
+1.container &#123; width:98% !important; ...
+    
+
+        <a href="posts/2020/08/07/jupyter-notebook-full-width/" class="post-more waves-effect waves-button">
+            阅读全文…
+        </a>
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-change-linux-console-font"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2020-07-30 10:30:50" datetime="2020-07-30T02:30:50.000Z"  itemprop="datePublished">2020-07-30</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="posts/2020/07/30/change-linux-console-font/">Debian 下控制台字体的设置</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        昨天升级了下 debian testing ，发现启动时的控制台字体越发小了，而且锯齿严重，看起来很不爽，于是自定义了下字体，注意这里的控制台指的是启动时图形界面显示之前的文字界面而不是启动后的终端，即 console 而不是 terminal 。
+使用向导1sudo dpkg-reconfigure console-setup
+在 console 的 encoding 选项中使用 UTF-...
+    
+
+        <a href="posts/2020/07/30/change-linux-console-font/" class="post-more waves-effect waves-button">
+            阅读全文…
+        </a>
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-install-fcitx5-on-debian-testing"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2020-07-01 10:30:50" datetime="2020-07-01T02:30:50.000Z"  itemprop="datePublished">2020-07-01</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="posts/2020/07/01/install-fcitx5-on-debian-testing/">在 Debian 下安装 fcitx5</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        昨天升级了下 debian testing ，然后 fcitx 就挂了，表现在只有 WPS 中才可以 ctrl+space 打开并输入中文，其它一律无反应，提交了个 bug 后发现有 fcitx5 ，下一代 fcitx，不过都是在 Arch 上装的，尝试在 debian 上安装了下，没想到工作的还挺好。
+卸载老版本 fcitx12sudo apt-get remove fcitxsudo a...
+    
+
+        <a href="posts/2020/07/01/install-fcitx5-on-debian-testing/" class="post-more waves-effect waves-button">
+            阅读全文…
+        </a>
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-add-autocomplete-to-notebook"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2020-06-26 10:30:50" datetime="2020-06-26T02:30:50.000Z"  itemprop="datePublished">2020-06-26</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="categories/%E7%BC%96%E7%A8%8B/">编程</a></li></ul>
+
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="posts/2020/06/26/add-autocomplete-to-notebook/">给 jupyter notebook 添加自动补全</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        停掉 notebook1234pip3 install jupyter_contrib_nbextensions -i https:&#x2F;&#x2F;pypi.python.org&#x2F;simplejupyter contrib nbextension install --userpip3 install jupyter_nbextensions_configurator -i ...
+    
+
+        <a href="posts/2020/06/26/add-autocomplete-to-notebook/" class="post-more waves-effect waves-button">
+            阅读全文…
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/python-jupyter/" rel="tag">python jupyter</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-pip-install-openpyxl"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2020-06-26 10:30:50" datetime="2020-06-26T02:30:50.000Z"  itemprop="datePublished">2020-06-26</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="categories/%E7%BC%96%E7%A8%8B/">编程</a></li></ul>
+
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="posts/2020/06/26/pip-install-openpyxl/">python 安装 openpyxl</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        pandas 写 excel 需要 openpyxl 的支持，直接 pip3 install openpyxl 提示未找到相应版本，只好到 https://pypi.python.org/pypi 去主动下载包，pip 支持直接安装 .tar.gz 和 .whl 的包，不过安装 openpyxl 过程中需要提前安装 jdcal 和 et_xmlfile 两个包，直接搜索下来三个包，依次 pi...
+    
+
+        <a href="posts/2020/06/26/pip-install-openpyxl/" class="post-more waves-effect waves-button">
+            阅读全文…
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/python/" rel="tag">python</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+    </ul>
+
+    
+<nav id="page-nav">
+    <div class="inner">
+    <span class="page-number current">1</span><a class="page-number" href="page/2/">2</a><a class="page-number" href="page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="page/12/">12</a><a class="extend next" rel="next" href="page/2/">下一页</a>
+    </div>
 </nav>
 
 
-    </div>
 </div>
 
-            <!-- ### Footer ### -->
-            <footer class="text-center">
-    <!-- footer copyright -->
-    
-        <p class="footer-copyright mb-0">Copyright&nbsp;©&nbsp;<span id="copyright-year"></span>
-            <a class="footer-copyright-a" href="http://littlepig.cn">LittlePig.CN</a>
-        </p>
-
-    <!-- footer custom text -->
-    <p class="footer-text mb-0">
-    
-    </p>
-    <!-- footer develop info -->
-    <p class="footer-develop mb-0">
+        <footer class="footer">
+    <div class="top">
         
-    <!-- Busuanzi User Views -->
-    <span id="busuanzi_container_site_uv" hidden>
-        <span></span>
-        <span id="busuanzi_value_site_uv"></span>
-        <span>Viewers</span>
-        
-            <span>|</span>
-        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
     </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
 
 
-
-
-        
-        Powered by&nbsp;<!--
-         --><a href="https://hexo.io" target="_blank" class="footer-develop-a" rel="external nofollow noopener noreferrer">Hexo</a><span class="footer-develop-divider"></span>Theme&nbsp;-&nbsp;<!--
-         --><a href="https://github.com/SukkaW/hexo-theme-suka" target="_blank" class="footer-develop-a" rel="external noopener">Suka</a>
-    </p>
+        <p>
+            
+                <span><a href="atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>ZHZ &copy; 2003 - 2021</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
 </footer>
 
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
 
-        <!-- ### Import File ### -->
-        <!-- ### Footer JS Import ### -->
 
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://littlepig.cn/&title=LittlePig.CN&pic=http://littlepig.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://littlepig.cn/&title=LittlePig.CN&source=记录 / 回忆 / 分享" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://littlepig.cn/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=LittlePig.CN&url=http://littlepig.cn/&via=http://littlepig.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://littlepig.cn/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJYAAACWCAAAAAAZai4+AAABVElEQVR42u3aQQ7DIAxE0dz/0nRbKQqZscuins+qilLnsQAM+Lrktr6a8uT+/DrRYMEaxFrb5n7Spd/fgQUrmfU0QpVBvucqcWDBgtVh7Z/ryzYsWLBcljIdwIIFq8Zyw+mb0uO5PCxYI1i10LXfR863YMH6c9Yym/uv4ldgwQpj6QNYX1D36bURHxasGJYSQt+munEeU3NYsMJYejGBO+BrKbhd4wAL1giWO4z1Q97a4S8sWMks/QC3tkFtzViwYAWwlPWxPym0Dn9hwYphuWU9ehrtdtWug4AFaxxLH8DuYrzvnlQHAQtWGMtNajuFBS8dgAUrhtUpONA3rkqxHSxYyax+XZy7tvYvZmDBmspyJ4XaTtO+OoUFK5LlJsTuYtyqSoAFC1bp2PcH15ywYMEyLyY7BQrGvSssWAGsWqD9FNCZSmDBSmOdyGCPpNGwYM1kfQASuH21JnoYewAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
 <script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
 
-    
-window.lazyLoadOptions = {
-    elements_selector: ".lazyload",
-    threshold: 50
-};
-document.getElementById('copyright-year').textContent = new Date().getFullYear();
-console.log('\n %c Suka Theme (hexo-theme-suka) | © SukkaW | Verision 1.3.3 %c https://github.com/SukkaW/hexo-theme-suka \n', 'color: #fff; background: #444; padding:5px 0;', 'background: #bbb; padding:5px 0;');
+
+lazyScripts.push('//s95.cnzz.com/z_stat.php?id=1235250&web_id=1235250')
 
 </script>
 
-<script src="lib/vanilla-lazyload/lazyload.min.js" async></script>
-    <script src="https://cdn.jsdelivr.net/npm/busuanzi@2.3.0/bsz.pure.mini.js" async></script>
+<script src="/js/main.min.js?v=1.7.2"></script>
 
 
-<!-- Offset -->
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
 
 
 
 
-<!-- Comment -->
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 
-<!-- ### Custom Footer ### -->
 
-    </body>
 
+
+</body>
 </html>

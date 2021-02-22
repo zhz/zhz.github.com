@@ -1,441 +1,193 @@
 <!DOCTYPE html>
+<html>
+<head>
+    
 
-<html lang="zh-CN">
-    <head>
+    
+
+    
+
+
+
     <meta charset="utf-8">
-    <!--
-        hexo-theme-suka © SukkaW
-        GitHub: https://github.com/SukkaW/hexo-theme-suka
-    -->
-
-    <!-- ### Resource Hint ### -->
-
-    <!-- ## DNS Prefetch ## -->
-    <meta http-equiv="x-dns-prefetch-control" content="on">
-
-<!-- busuanzi -->
-
-    <link rel="dns-prefetch" href="//busuanzi.ibruce.info">
-
-
-<!-- comment -->
-
-
-
-
-
-
-
-<!-- analytics -->
-
-
-
-
-
-
-
-    <!-- ## Preload ## -->
     
-    <!-- Busuanzi -->
     
-    <link rel="preload" href="https://cdn.jsdelivr.net/npm/busuanzi@2.3.0/bsz.pure.mini.js" as="script">
+    
+    
+    <title>Debian 的常见配置汇总 | LittlePig.CN | someone&#39;s Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="debian">
+    <meta name="description" content="虽然各种LINUX发行版都用过，不过感觉最方便易用的还是 debian ，稳定（版本更新周期长）、轻便（不加乱七八糟的东西）、高效（好用的包管理机制），不过自己懒，加之配置完就扔一边用去，不是天天接触，所以每次配置都习惯去 Internet 上搜，效率低，想想还是自己把过程记录下来比较好。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Debian 的常见配置汇总">
+<meta property="og:url" content="http://littlepig.cn/posts/2012/12/30/debian-config/index.html">
+<meta property="og:site_name" content="LittlePig.CN">
+<meta property="og:description" content="虽然各种LINUX发行版都用过，不过感觉最方便易用的还是 debian ，稳定（版本更新周期长）、轻便（不加乱七八糟的东西）、高效（好用的包管理机制），不过自己懒，加之配置完就扔一边用去，不是天天接触，所以每次配置都习惯去 Internet 上搜，效率低，想想还是自己把过程记录下来比较好。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2012-12-30T01:39:58.000Z">
+<meta property="article:modified_time" content="2016-10-17T07:03:33.000Z">
+<meta property="article:author" content="ZHZ">
+<meta property="article:tag" content="debian">
+<meta name="twitter:card" content="summary">
+    
+        <link rel="alternate" type="application/atom+xml" title="LittlePig.CN" href="../../../../../atom.xml">
+    
+    <link rel="shortcut icon" href="../../../../../favicon.ico">
+    <link rel="stylesheet" href="../../../../../css/style.css?v=1.7.2">
+    <script>window.lazyScripts=[]</script>
 
-
-
-
-
-
-
-    <!-- ### Meta & Title & Info ### -->
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, maximum-scale=5, viewport-fit=cover">
-    <meta name="renderer" content="webkit">
-
-    <!-- Title -->
-    <title>Debian 的常见配置汇总 | LittlePig.CN</title>
-
-    <!-- Favicons -->
-    <link rel="icon" type="image&#x2F;ico" href="/img/suka-favicon.ico">
-
-    <!-- ### Import File ### -->
-    <link rel="stylesheet" href="lib/spectre/spectre.min.css"><style>
-    body {
-        background-color: #f8f9fa;
-    }
-
-    a, a:visited {
-        color: #0070ff;
-    }
-
-    a:active, a:focus, a:hover {
-        color: #0070ff;
-        opacity: .75;
-    }
-
-    #post-content a,
-    #post-content a:hover,
-    #post-content a:focus,
-    #post-content a:visited {
-        color: #005eb9;
-        opacity: 1;
-    }
-
+    <!-- custom head -->
     
 
-    .post-entry .card-body a {
-        color: #0070ff;
-    }
+<meta name="generator" content="Hexo 4.2.1"></head>
 
-    .avatar {
-        background: #444;
-    }
+<body>
+    <div id="loading" class="active"></div>
 
-    .navbar-link,
-    .navbar-link:visited,
-    .timeline .timeline-item .timeline-icon.icon-lg {
-        color: #0070ff;
-    }
-
-    .navbar-link:hover {
-        color: #0070ff;
-        opacity: .8;
-    }
-
-    #search-input .btn,
-    #disqus_click_btn,
-    #disqus-switch-to-direct,
-    #disqus-loadmore-button {
-        background: #727e96;
-        border-color: #727e96;
-        color: #fff;
-    }
-
-    #post-toc a.post-toc-link,
-    #post-toc a.post-toc-link:visited,
-    .share-menu.menu .menu-item>a {
-        color: #727e96;
-    }
-
-    .share-menu.menu .menu-item>a:hover,
-    .share-menu.menu .menu-item>a:focus,
-    .share-menu.menu .menu-item>a:visited {
-        color: #50596c;
-        background: #f8f9fa;
-        opacity: .85;
-    }
-</style><link rel="stylesheet" href="css/style.min.css">
-
-
-
-
-
-
-
-
-    <!-- Prettify Theme -->
-    
-    <link rel="preload" href="../../../../../css/highlight/github.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="../../../../../css/highlight/github.min.css"></noscript>
-
-
-
-
-
-<script>
-/*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
-!function(t){"use strict";t.loadCSS||(t.loadCSS=function(){});var e=loadCSS.relpreload={};if(e.support=function(){var e;try{e=t.document.createElement("link").relList.supports("preload")}catch(t){e=!1}return function(){return e}}(),e.bindMediaToggle=function(t){var e=t.media||"all";function a(){t.addEventListener?t.removeEventListener("load",a):t.attachEvent&&t.detachEvent("onload",a),t.setAttribute("onload",null),t.media=e}t.addEventListener?t.addEventListener("load",a):t.attachEvent&&t.attachEvent("onload",a),setTimeout(function(){t.rel="stylesheet",t.media="only x"}),setTimeout(a,3e3)},e.poly=function(){if(!e.support())for(var a=t.document.getElementsByTagName("link"),n=0;n<a.length;n++){var o=a[n];"preload"!==o.rel||"style"!==o.getAttribute("as")||o.getAttribute("data-loadcss")||(o.setAttribute("data-loadcss",!0),e.bindMediaToggle(o))}},!e.support()){e.poly();var a=t.setInterval(e.poly,500);t.addEventListener?t.addEventListener("load",function(){e.poly(),t.clearInterval(a)}):t.attachEvent&&t.attachEvent("onload",function(){e.poly(),t.clearInterval(a)})}"undefined"!=typeof exports?exports.loadCSS=loadCSS:t.loadCSS=loadCSS}("undefined"!=typeof global?global:this);
-</script>
-
-    <!-- ### Site Verification ### -->
-    
-
-
-    <link rel="alternate" type="application/atom+xml" href="atom.xml"><meta name="mobile-web-app-capable" content="yes"><meta name="application-name" content="LittlePig.CN"><meta name="msapplication-starturl" content="http://littlepig.cn"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="LittlePig.CN"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-
-    <!-- ### The Open Graph & Twitter Card Protocol ### -->
-    <meta property="og:title" content="Debian 的常见配置汇总 | LittlePig.CN"><meta property="og:site_name" content="LittlePig.CN"><meta property="og:type" content="article"><meta property="og:url" content="http://littlepig.cn/posts/2012/12/30/debian-config/"><meta property="og:locale" content="zh-CN"><meta name="description" content="虽然各种LINUX发行版都用过，不过感觉最方便易用的还是 debian ，稳定（版本更新周期长）、轻便（不加乱七八糟的东西）、高效（好用的包管理机制），不过自己懒，加之配置完就扔一边用去，不是天天接触，所以每次配置都习惯去 Internet 上搜，效率低，想想还是自己把过程记录下来比较好。 - ZHZ - LittlePig.CN"><meta name="keywords" content="debian"><meta property="article:published_time" content="2012-12-30T01:39:58.000Z"><meta property="article:modified_time" content="2016-10-17T07:03:33.000Z"><meta property="og:updated_time" content="2016-10-17T07:03:33.000Z"><meta property="article:author" content="ZHZ"><meta property="article:tag" content="debian"><meta name="twitter:card" content="summary">
-
-    
-
-    <!-- ### Canonical link ### -->
-    <link rel="canonical" href="http://littlepig.cn/posts/2012/12/30/debian-config/">
-
-    <meta name="generator" content="Hexo 5.3.0">
-
-    <!-- ### Analytics ### -->
-    
-
-
-
-
-
-
-
-    <!-- ### Structured Data ### -->
-    
-
-
-
-<script type="application/ld+json">
-{
-    "@context": "http://schema.org",
-    "url": "http://littlepig.cn/posts/2012/12/30/debian-config/",
-    "@type": "BlogPosting",
-    "logo": "http://littlepig.cn/img/suka-favicon.ico",
-    "mainEntityOfPage": {
-        "@type": "WebPage",
-        "@id": "http://littlepig.cn/posts/2012/12/30/debian-config/"
-    },
-    "headline": "Debian 的常见配置汇总 | LittlePig.CN",
-    
-    "image": {
-        "@type": "ImageObject",
-        "url": "http://littlepig.cn/img/suka-favicon.ico"
-    },
-    
-    "datePublished": "2012-12-30T01:39:58.000Z",
-    "dateModified": "2016-10-17T07:03:33.000Z",
-    "author": {
-        "@type": "Person",
-        "name": "ZHZ",
-        "image": {
-            "@type": "ImageObject",
-            "url": "http://littlepig.cn/img/default_avatar.png"
-        },
-        "description": "Hi, nice to meet you."
-    },
-    "publisher": {
-        "@type": "Organization",
-        "name": "LittlePig.CN",
-        "logo": {
-            "@type": "ImageObject",
-            "url": "http://littlepig.cn/img/suka-favicon.ico"
-        }
-    },
-    
-    "potentialAction": {
-        "@type": "SearchAction",
-        "target": "http://littlepig.cn/search?s={search_term_string}",
-        "query-input": "required name=search_term_string"
-    },
-    
-    "keywords": "debian",
-    "description": "虽然各种LINUX发行版都用过，不过感觉最方便易用的还是 debian ，稳定（版本更新周期长）、轻便（不加乱七八糟的东西）、高效（好用的包管理机制），不过自己懒，加之配置完就扔一边用去，不是天天接触，所以每次配置都习惯去 Internet 上搜，效率低，想想还是自己把过程记录下来比较好。 - ZHZ - LittlePig.CN"
-}
-</script>
-
-
-
-    <!-- ### Custom Head ### -->
-    
-</head>
-
-    <body>
-            
-
-            <!-- ### Main content ### -->
-            <!-- ## Header ##-->
-<header>
-    <h1 class="header-title text-center"><a href="/">LittlePig.CN</a></h1>
-
-    <p class="text-center header-slogan">
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(../../../../../img/brand.jpg)">
+      <div class="brand">
+        <a href="../../../../../index.html" class="avatar waves-effect waves-circle waves-light">
+          <img src="../../../../../img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">ZHZ</h5>
+          <a href="mailto:zhz@hebut.edu.cn" title="zhz@hebut.edu.cn" class="mail">zhz@hebut.edu.cn</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
         
-            
-                Hi, nice to meet you.
-            
+            <li class="waves-block waves-effect">
+              <a href="../../../../../index.html"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
         
-    </p>
+            <li class="waves-block waves-effect">
+              <a href="../../../../../archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="../../../../../tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="../../../../../categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="../../../../../about"  >
+                <i class="icon icon-lg icon-link"></i>
+                关于
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
 
-    <nav class="navbar-section text-center">
-    
-        <a href="../../../../../index.html" class="navbar-link">首页</a>
-    
-    
-        <a href="../../../../../archives/" class="navbar-link">归档</a>
-    
-    
-        <a href="/search" class="navbar-link">搜索</a>
-    
-    
-    
-        <div class="dropdown dropdown-right">
-    <a class="navbar-link dropdown-toggle" tabindex="0">分享</a>
-    <ul class="menu share-menu">
-
-        <!-- Share Weibo -->
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Debian 的常见配置汇总</div>
         
-        <li class="menu-item">
-            <a href="http://service.weibo.com/share/share.php?appkey=&title=LittlePig.CN&url=http://littlepig.cn&pic=http://littlepig.cn/img/suka-favicon.ico&searchPic=false&style=simple" target="_blank" rel="external noopener noreferrer nofollow">分享到微博</a>
-        </li>
-        
-
-        <!-- Share Twitter -->
-        
-        <li class="menu-item">
-            <a href="https://twitter.com/intent/tweet?text=LittlePig.CN&url=http://littlepig.cn&via=ZHZ" target="_blank" rel="external noopener noreferrer nofollow">分享到 Twitter</a>
-        </li>
-        
-
-        <!-- Share Facebook -->
-        
-        <li class="menu-item">
-            <a href="https://www.facebook.com/sharer/sharer.php?u=http://littlepig.cn" target="_blank" rel="external noopener noreferrer nofollow">分享到 Facebook</a>
-        </li>
-        
-
-        <!-- Share Google+ -->
-        
-        <li class="menu-item">
-            <a href="https://plus.google.com/share?url=http://littlepig.cn" target="_blank" rel="external noopener noreferrer nofollow">分享到 Google+</a>
-        </li>
-        
-
-        <!-- Share LinkedIn -->
-        
-        <li class="menu-item">
-            <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://littlepig.cn&title=Debian 的常见配置汇总" target="_blank" rel="external noopener noreferrer nofollow">分享到 LinkedIn</a>
-        </li>
-        
-
-        <!-- Share QQ -->
-        
-        <li class="menu-item">
-            <a href="http://connect.qq.com/widget/shareqq/index.html?site=LittlePig.CN&title=Debian 的常见配置汇总&summary=记录 / 回忆 / 分享&pics=http://littlepig.cn/img/suka-favicon.ico&url=http://littlepig.cn" target="_blank" rel="external noopener noreferrer nofollow"> 分享到 QQ</a>
-        </li>
-        
-
-        <!-- Share Telegram -->
-        
-        <li class="menu-item">
-            <a href="https://t.me/share/url?url=http://littlepig.cn&text=Debian 的常见配置汇总" target="_blank" rel="external noopener noreferrer nofollow">分享到 Telegram</a>
-        </li>
-        
-
-        <!-- QRCode -->
-        
-        <li class="menu-item">
-            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJQAAACUCAAAAABQV18IAAAB6ElEQVR42u3b0U7DMBBE0fz/T8MTEorimdm2QvZw/YJEaHIqbWzverm+NhwXKFCgQD2gLjF+rj/e4PZ7dY/kOaC6UOqhTze+X1d/M/lyoLpQKsCTF+GOW305+RxQ/wJ1xy2DdHENFCiFSQL5T98+UFuj5EK5ePBqs6YC/SO7BFDbo9IF992fH89mQG2JskUHkyC4YF8F+FtVF1Bbo1aJ4xNCTaouAXWfA9WHSoPcLb4OIuGgKlCTBCIpZKzuoQq0oLpQk8BdvQzTIkg0eYI6GuU+oBZTN0G6hd5u8kAdh0puohZUd81NsKD6UGkwpoV8tZC7YAfVgXIbPFfYcA0TLikB1Ylym7ek4JE039jDJ1AVKDmZhUE9ba6Ik1FQx6LSA52kuJocXEaBDqoCNZrowo2hSzjiAgeoY1CqcOYmVteU4xZ7mSGDOhb1SsPoZOM3mVxBdaAmkFcbKeJkBFQNShVOk3+wSCdOe3gJqgI1PQxKcUliahMHUEei0uLZKmmdBr48AABVgUobmpMkMznElBs/UDWodAPnJlrXYGMnaFBVqLRB0E2kVzCiZglQtahJI2CaxMaJA6h6VNKk7AI+apYAVYGSAThIGmwz4ORgG9SxqGThdAt1epgUBzqoY1E7DVCgQIH6Nb4BDXavHleLBYUAAAAASUVORK5CYII=" alr="QRCode">
-        </li>
-        
-
-    </ul>
-</div>
-    
-    
-</nav>
-</header>
-
-            
-    <!-- ## Post ## -->
-    <div class="post-container">
-    <div id="post-card" class="card">
-        
-        <div class="card-item-container">
-            <div class="card-inner-cell">
-                <!-- # Post Header Info # -->
-                <div class="card-header">
-                    
-    <h1 class="card-title h3 mb-2">Debian 的常见配置汇总</h1>
-
-
-
-
-<div class="post-header-info">
-    <p class="post-header-info-left text-gray">
-        <img class="author-thumb lazyload" data-src="../../../../../img/default_avatar.png" src="../../../../../img/suka-lazyload.gif" alt="ZHZ's Avatar">
-        <span>2012-12-30</span>
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
         
         
-            <!-- Busuanzi Post Views -->
-<span id="busuanzi_container_page_pv" hidden>
-    <span class="suka-devide-dot"></span>
-    <span></span>
-    <span id="busuanzi_value_page_pv"></span>
-    <span>Views</span>
-</span>
-        
-        
-    </p>
-    <div class="post-header-info-right">
-        
-            <div class="dropdown dropdown-right">
-<a class="dropdown-toggle" tabindex="0">分享本文</a>
-<ul class="menu share-menu">
-    <!-- Share Weibo -->
-    
-    <li class="menu-item">
-        <a href="http://service.weibo.com/share/share.php?appkey=&title=Debian 的常见配置汇总&url=http://littlepig.cn/posts/2012/12/30/debian-config/&pic=http://littlepig.cn/img/suka-favicon.ico&searchPic=false&style=simple" target="_blank" rel="external noopener noreferrer nofollow">分享到微博</a>
-    </li>
-    
-
-    <!-- Share Twitter -->
-    
-    <li class="menu-item">
-        <a href="https://twitter.com/intent/tweet?text=Debian 的常见配置汇总&url=http://littlepig.cn/posts/2012/12/30/debian-config/&via=ZHZ" target="_blank" rel="external noopener noreferrer nofollow">分享到 Twitter</a>
-    </li>
-    
-
-    <!-- Share Facebook -->
-    
-    <li class="menu-item">
-        <a href="https://www.facebook.com/sharer/sharer.php?u=http://littlepig.cn/posts/2012/12/30/debian-config/" target="_blank" rel="external noopener noreferrer nofollow">分享到 Facebook</a>
-    </li>
-    
-
-    <!-- Share Google+ -->
-    
-    <li class="menu-item">
-        <a href="https://plus.google.com/share?url=http://littlepig.cn/posts/2012/12/30/debian-config/" target="_blank" rel="external noopener noreferrer nofollow">分享到 Google+</a>
-    </li>
-    
-
-    <!-- Share LinkedIn -->
-    
-    <li class="menu-item">
-        <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://littlepig.cn/posts/2012/12/30/debian-config/&title=LittlePig.CN" target="_blank" rel="external noopener noreferrer nofollow">分享到 LinkedIn</a>
-    </li>
-    
-
-    <!-- Share QQ -->
-    
-    <li class="menu-item">
-        <a href="http://connect.qq.com/widget/shareqq/index.html?site=LittlePig.CN&title=LittlePig.CN&summary=记录 / 回忆 / 分享&pics=http://littlepig.cn/img/suka-favicon.ico&url=http://littlepig.cn/posts/2012/12/30/debian-config/" target="_blank" rel="external noopener noreferrer nofollow"> 分享到 QQ</a>
-    </li>
-    
-
-    <!-- Share Telegram -->
-    
-    <li class="menu-item">
-        <a href="https://t.me/share/url?url=http://littlepig.cn/posts/2012/12/30/debian-config/&text=LittlePig.CN" target="_blank" rel="external noopener noreferrer nofollow">分享到 Telegram</a>
-    </li>
-    
-
-    <!-- QRCode -->
-    
-    <li class="menu-item">
-        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJQAAACUCAAAAABQV18IAAAB6ElEQVR42u3b0U7DMBBE0fz/T8MTEorimdm2QvZw/YJEaHIqbWzverm+NhwXKFCgQD2gLjF+rj/e4PZ7dY/kOaC6UOqhTze+X1d/M/lyoLpQKsCTF+GOW305+RxQ/wJ1xy2DdHENFCiFSQL5T98+UFuj5EK5ePBqs6YC/SO7BFDbo9IF992fH89mQG2JskUHkyC4YF8F+FtVF1Bbo1aJ4xNCTaouAXWfA9WHSoPcLb4OIuGgKlCTBCIpZKzuoQq0oLpQk8BdvQzTIkg0eYI6GuU+oBZTN0G6hd5u8kAdh0puohZUd81NsKD6UGkwpoV8tZC7YAfVgXIbPFfYcA0TLikB1Ylym7ek4JE039jDJ1AVKDmZhUE9ba6Ik1FQx6LSA52kuJocXEaBDqoCNZrowo2hSzjiAgeoY1CqcOYmVteU4xZ7mSGDOhb1SsPoZOM3mVxBdaAmkFcbKeJkBFQNShVOk3+wSCdOe3gJqgI1PQxKcUliahMHUEei0uLZKmmdBr48AABVgUobmpMkMznElBs/UDWodAPnJlrXYGMnaFBVqLRB0E2kVzCiZglQtahJI2CaxMaJA6h6VNKk7AI+apYAVYGSAThIGmwz4ORgG9SxqGThdAt1epgUBzqoY1E7DVCgQIH6Nb4BDXavHleLBYUAAAAASUVORK5CYII=" alt="QRCode">
-    </li>
-    
-
-</ul>
-</div>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
         
     </div>
-</div>
-                </div>
-                <div class="card-body">
-                    
-                        
-                        
-                            <div id="post-toc"><ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E5%AE%89%E8%A3%85"><span class="post-toc-number">1.</span> <span class="post-toc-text">安装</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7"><span class="post-toc-number">2.</span> <span class="post-toc-text">常用工具</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E4%BF%AE%E6%94%B9%E7%BB%88%E7%AB%AF%E5%AD%97%E4%BD%93"><span class="post-toc-number">3.</span> <span class="post-toc-text">修改终端字体</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E6%9B%B4%E6%94%B9-locale"><span class="post-toc-number">4.</span> <span class="post-toc-text">更改 locale</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E5%AE%89%E8%A3%85%E8%BD%BB%E9%87%8F%E7%BA%A7%E7%9A%84-XFCE"><span class="post-toc-number">5.</span> <span class="post-toc-text">安装轻量级的 XFCE</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E7%BD%91%E7%BB%9C%E5%9F%BA%E6%9C%AC%E8%AE%BE%E7%BD%AE"><span class="post-toc-number">6.</span> <span class="post-toc-text">网络基本设置</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#%E8%AE%BE%E7%BD%AE-ip-%E7%AD%89%E4%BF%A1%E6%81%AF"><span class="post-toc-number">6.1.</span> <span class="post-toc-text">设置 ip 等信息</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#%E8%AE%BE%E7%BD%AE-DNS-%E5%9F%9F%E5%90%8D%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="post-toc-number">6.2.</span> <span class="post-toc-text">设置 DNS 域名服务器</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#%E8%AE%BE%E7%BD%AE%E6%9C%BA%E5%99%A8%E5%90%8D"><span class="post-toc-number">6.3.</span> <span class="post-toc-text">设置机器名</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#%E8%AE%BE%E7%BD%AE-hosts"><span class="post-toc-number">6.4.</span> <span class="post-toc-text">设置 hosts</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E8%AE%BE%E7%BD%AE%E6%97%B6%E9%97%B4%E8%87%AA%E5%8A%A8%E5%90%8C%E6%AD%A5"><span class="post-toc-number">7.</span> <span class="post-toc-text">设置时间自动同步</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E9%85%8D%E7%BD%AE%E9%80%8F%E6%98%8E%E7%BD%91%E5%85%B3-%E8%BD%AF%E8%B7%AF%E7%94%B1"><span class="post-toc-number">8.</span> <span class="post-toc-text">配置透明网关(软路由)</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E9%85%8D%E7%BD%AE-DNS"><span class="post-toc-number">9.</span> <span class="post-toc-text">配置 DNS</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E9%85%8D%E7%BD%AE%E6%97%B6%E9%97%B4%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="post-toc-number">10.</span> <span class="post-toc-text">配置时间服务器</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E9%85%8D%E7%BD%AE-Samba"><span class="post-toc-number">11.</span> <span class="post-toc-text">配置 Samba</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E9%85%8D%E7%BD%AE-FTP"><span class="post-toc-number">12.</span> <span class="post-toc-text">配置 FTP</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E9%85%8D%E7%BD%AE-LNMP"><span class="post-toc-number">13.</span> <span class="post-toc-text">配置 LNMP</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E9%85%8D%E7%BD%AE-MYSQL"><span class="post-toc-number">14.</span> <span class="post-toc-text">配置 MYSQL</span></a></li></ol></div>
-                        
-                    
-                    <article id="post-content">
-                        <p>虽然各种LINUX发行版都用过，不过感觉最方便易用的还是 debian ，稳定（版本更新周期长）、轻便（不加乱七八糟的东西）、高效（好用的包管理机制），不过自己懒，加之配置完就扔一边用去，不是天天接触，所以每次配置都习惯去 Internet 上搜，效率低，想想还是自己把过程记录下来比较好。</p>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Debian 的常见配置汇总</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2012-12-30T01:39:58.000Z" itemprop="datePublished" class="page-time">
+  2012-12-30
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#安装"><span class="post-toc-number">1.</span> <span class="post-toc-text">安装</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#常用工具"><span class="post-toc-number">2.</span> <span class="post-toc-text">常用工具</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#修改终端字体"><span class="post-toc-number">3.</span> <span class="post-toc-text">修改终端字体</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#更改-locale"><span class="post-toc-number">4.</span> <span class="post-toc-text">更改 locale</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#安装轻量级的-XFCE"><span class="post-toc-number">5.</span> <span class="post-toc-text">安装轻量级的 XFCE</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#网络基本设置"><span class="post-toc-number">6.</span> <span class="post-toc-text">网络基本设置</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#设置-ip-等信息"><span class="post-toc-number">6.1.</span> <span class="post-toc-text">设置 ip 等信息</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#设置-DNS-域名服务器"><span class="post-toc-number">6.2.</span> <span class="post-toc-text">设置 DNS 域名服务器</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#设置机器名"><span class="post-toc-number">6.3.</span> <span class="post-toc-text">设置机器名</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#设置-hosts"><span class="post-toc-number">6.4.</span> <span class="post-toc-text">设置 hosts</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#设置时间自动同步"><span class="post-toc-number">7.</span> <span class="post-toc-text">设置时间自动同步</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#配置透明网关-软路由"><span class="post-toc-number">8.</span> <span class="post-toc-text">配置透明网关(软路由)</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#配置-DNS"><span class="post-toc-number">9.</span> <span class="post-toc-text">配置 DNS</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#配置时间服务器"><span class="post-toc-number">10.</span> <span class="post-toc-text">配置时间服务器</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#配置-Samba"><span class="post-toc-number">11.</span> <span class="post-toc-text">配置 Samba</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#配置-FTP"><span class="post-toc-number">12.</span> <span class="post-toc-text">配置 FTP</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#配置-LNMP"><span class="post-toc-number">13.</span> <span class="post-toc-text">配置 LNMP</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#配置-MYSQL"><span class="post-toc-number">14.</span> <span class="post-toc-text">配置 MYSQL</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-debian-config"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Debian 的常见配置汇总</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2012-12-30 09:39:58" datetime="2012-12-30T01:39:58.000Z"  itemprop="datePublished">2012-12-30</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>虽然各种LINUX发行版都用过，不过感觉最方便易用的还是 debian ，稳定（版本更新周期长）、轻便（不加乱七八糟的东西）、高效（好用的包管理机制），不过自己懒，加之配置完就扔一边用去，不是天天接触，所以每次配置都习惯去 Internet 上搜，效率低，想想还是自己把过程记录下来比较好。</p>
 <a id="more"></a>
 
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>教育网内比较快的两个安装源是 debian.ustc.edu.cn （mirrors.ustc.edu.cn）和 mirrors.163.com，一种方式是下载 mini.iso （在 <a target="_blank" rel="noopener" href="http://mirrors.ustc.edu.cn/debian/dists/squeeze/main/installer-amd64/current/images/netboot/">http://mirrors.ustc.edu.cn/debian/dists/squeeze/main/installer-amd64/current/images/netboot/</a> ）利用光盘或者刻录到U盘启动系统， 还有另外一种安装方式是利用 GRUB4DOS ，从 <a target="_blank" rel="noopener" href="http://mirrors.ustc.edu.cn/debian/dists/squeeze/main/installer-amd64/current/images/netboot/debian-installer/amd64/">http://mirrors.ustc.edu.cn/debian/dists/squeeze/main/installer-amd64/current/images/netboot/debian-installer/amd64/</a> 下载 linux和initrd.gz 到 c:\debian 目录，然后在 menu.lst 里添加</p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>教育网内比较快的两个安装源是 debian.ustc.edu.cn （mirrors.ustc.edu.cn）和 mirrors.163.com，一种方式是下载 mini.iso （在 <a href="http://mirrors.ustc.edu.cn/debian/dists/squeeze/main/installer-amd64/current/images/netboot/" target="_blank" rel="noopener">http://mirrors.ustc.edu.cn/debian/dists/squeeze/main/installer-amd64/current/images/netboot/</a> ）利用光盘或者刻录到U盘启动系统， 还有另外一种安装方式是利用 GRUB4DOS ，从 <a href="http://mirrors.ustc.edu.cn/debian/dists/squeeze/main/installer-amd64/current/images/netboot/debian-installer/amd64/" target="_blank" rel="noopener">http://mirrors.ustc.edu.cn/debian/dists/squeeze/main/installer-amd64/current/images/netboot/debian-installer/amd64/</a> 下载 linux和initrd.gz 到 c:\debian 目录，然后在 menu.lst 里添加</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">title debian install</span><br><span class="line">kernel (hd0,0)&#x2F;debian&#x2F;linux root&#x3D;&#x2F;dev&#x2F;ram ramdisk_size&#x3D;8192 devfs&#x3D;mount,dall</span><br><span class="line">initrd (hd0,0)&#x2F;debian&#x2F;initrd.gz</span><br></pre></td></tr></table></figure>
-<p>启动即可进入 debian 安装界面，从<a target="_blank" rel="noopener" href="http://mirrors.ustc.edu.cn/debian">http://mirrors.ustc.edu.cn/debian</a> 进行网络安装即可，基本系统大约 300M。</p>
+<p>启动即可进入 debian 安装界面，从<a href="http://mirrors.ustc.edu.cn/debian" target="_blank" rel="noopener">http://mirrors.ustc.edu.cn/debian</a> 进行网络安装即可，基本系统大约 300M。</p>
 <h2 id="常用工具"><a href="#常用工具" class="headerlink" title="常用工具"></a>常用工具</h2><p>apt-get install vim screen ssh wget</p>
 <h2 id="修改终端字体"><a href="#修改终端字体" class="headerlink" title="修改终端字体"></a>修改终端字体</h2><p>个人比较喜欢把大小改为 12</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim &#x2F;etc&#x2F;default&#x2F;console-setup</span><br></pre></td></tr></table></figure>
@@ -452,10 +204,10 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ntpdate time.edu.cn</span><br></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim &#x2F;etc&#x2F;rc.local</span><br></pre></td></tr></table></figure>
 <p>将上述最后一条指令加入 exit 0 前面以便每次启动自动对时</p>
-<h2 id="配置透明网关-软路由"><a href="#配置透明网关-软路由" class="headerlink" title="配置透明网关(软路由)"></a>配置透明网关(软路由)</h2><p>参见：<a target="_blank" rel="noopener" href="http://www.littlepig.cn/software/debian-router-gateway/">Debian 下配置软路由（透明网关）</a></p>
-<h2 id="配置-DNS"><a href="#配置-DNS" class="headerlink" title="配置 DNS"></a>配置 DNS</h2><p>参见：<a target="_blank" rel="noopener" href="http://www.littlepig.cn/software/debian-bind9/">Debian 下 Bind9 的基本配置</a></p>
-<h2 id="配置时间服务器"><a href="#配置时间服务器" class="headerlink" title="配置时间服务器"></a>配置时间服务器</h2><h2 id="配置-Samba"><a href="#配置-Samba" class="headerlink" title="配置 Samba"></a>配置 Samba</h2><h2 id="配置-FTP"><a href="#配置-FTP" class="headerlink" title="配置 FTP"></a>配置 FTP</h2><p>参见：<a target="_blank" rel="noopener" href="http://www.littlepig.cn/code/install-vsftpd-in-debian/">Debian 下 vsftpd 的安装配置</a></p>
-<h2 id="配置-LNMP"><a href="#配置-LNMP" class="headerlink" title="配置 LNMP"></a>配置 LNMP</h2><p>参见：<a target="_blank" rel="noopener" href="http://www.littlepig.cn/software/debian-nginx-php-fpm/">Debian 下 nginx + php-fpm 的安装配置</a></p>
+<h2 id="配置透明网关-软路由"><a href="#配置透明网关-软路由" class="headerlink" title="配置透明网关(软路由)"></a>配置透明网关(软路由)</h2><p>参见：<a href="http://www.littlepig.cn/software/debian-router-gateway/" target="_blank" rel="noopener">Debian 下配置软路由（透明网关）</a></p>
+<h2 id="配置-DNS"><a href="#配置-DNS" class="headerlink" title="配置 DNS"></a>配置 DNS</h2><p>参见：<a href="http://www.littlepig.cn/software/debian-bind9/" target="_blank" rel="noopener">Debian 下 Bind9 的基本配置</a></p>
+<h2 id="配置时间服务器"><a href="#配置时间服务器" class="headerlink" title="配置时间服务器"></a>配置时间服务器</h2><h2 id="配置-Samba"><a href="#配置-Samba" class="headerlink" title="配置 Samba"></a>配置 Samba</h2><h2 id="配置-FTP"><a href="#配置-FTP" class="headerlink" title="配置 FTP"></a>配置 FTP</h2><p>参见：<a href="http://www.littlepig.cn/code/install-vsftpd-in-debian/" target="_blank" rel="noopener">Debian 下 vsftpd 的安装配置</a></p>
+<h2 id="配置-LNMP"><a href="#配置-LNMP" class="headerlink" title="配置 LNMP"></a>配置 LNMP</h2><p>参见：<a href="http://www.littlepig.cn/software/debian-nginx-php-fpm/" target="_blank" rel="noopener">Debian 下 nginx + php-fpm 的安装配置</a></p>
 <h2 id="配置-MYSQL"><a href="#配置-MYSQL" class="headerlink" title="配置 MYSQL"></a>配置 MYSQL</h2><p>apt-get install mysql-server mysql-client</p>
 <p>vim /etc/mysql/my.cnf</p>
 <p>如果需要外部访问，则注释掉 bind = 127.0.0.1</p>
@@ -463,144 +215,312 @@
 <p>启动停止：/etc/init.d/mysql start|stop|restart</p>
 <p>如果需要配置主从同步参见：MYSQL的主从同步</p>
 
-                    </article>
-                    
+        </div>
 
-
-    <blockquote id="date-expire-notification" class="post-expired-notify">本文最后更新于 <span id="date-expire-num"></span> 天前，文中所描述的信息可能已发生改变</blockquote>
-    <script>
-    (function() {
-        var dateUpdate = Date.parse("2016-10-17");
-        var nowDate = new Date();
-        var a = nowDate.getTime();
-        var b = a - dateUpdate;
-        var daysUpdateExpire = Math.floor(b/(24*3600*1000));
-        if (daysUpdateExpire >= 120) {
-            document.getElementById('date-expire-num').innerHTML = daysUpdateExpire;
-        } else {
-            document.getElementById('date-expire-notification').style.display = 'none';
-        }
-    })();
-    </script>
-
-
-<p class="post-footer-info mb-0 pt-0">本文发表于&nbsp;<time datetime="2012-12-30T01:39:58.000Z" itemprop="datePublished">2012-12-30</time>
-
-    , 最后修改于&nbsp;<time datetime="2016-10-17T07:03:33.000Z" itemprop="dateModified">2016-10-17</time>
-
-</p>
-<p class="post-footer-info mb-0 pt-2">
-
-
-
-<span class="post-tags-list mt-2">
-
-<a class="post-tags-list-item" href="../../../../../tags/debian/" rel="tag">#&nbsp;debian</a>
-
-</span>
-
-
-</p>
-
-                </div>
-                <div class="post-nav px-2 bg-gray">
-<ul class="pagination">
-    <!-- Prev Nav -->
+        <blockquote class="post-copyright">
     
-        <li class="page-item page-prev">
-            <a href="../../../../2013/01/04/bootstrap-for-ie6/" rel="prev">
-                <div class="page-item-title"><i class="icon icon-back" aria-hidden="true"></i></div>
-                <div class="page-item-subtitle">bootstrap 的 IE6 补丁</div>
-            </a>
-        </li>
-    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2016-10-17T07:03:33.000Z" itemprop="dateUpdated">2016-10-17 15:03:33</time>
+</span><br>
 
-    <!-- Next Nav -->
+
+        
+        本文地址：<a href="" target="_blank" rel="external">http://littlepig.cn/posts/2012/12/30/debian-config/</a>
+        
+    </div>
     
-        <li class="page-item page-next">
-            <a href="../tengine-install/" rel="next">
-                <div class="page-item-title"><i class="icon icon-forward" aria-hidden="true"></i></div>
-                <div class="page-item-subtitle">debian 下 tengine 的安装和使用</div>
-            </a>
-        </li>
-    
-</ul>
+    <footer>
+        <a href="http://littlepig.cn">
+            <img src="../../../../../img/avatar.jpg" alt="ZHZ">
+            ZHZ
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赞</a>
 </div>
 
-                
-                    <!-- # Comment # -->
-                    
-                
-            </div>
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../../tags/debian/" rel="tag">debian</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://littlepig.cn/posts/2012/12/30/debian-config/&title=《Debian 的常见配置汇总》 — LittlePig.CN&pic=http://littlepig.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://littlepig.cn/posts/2012/12/30/debian-config/&title=《Debian 的常见配置汇总》 — LittlePig.CN&source=虽然各种LINUX发行版都用过，不过感觉最方便易用的还是 debian ，稳定（版本更新周期长）、轻便（不加乱七八糟的东西）、高效（好用的包管理机制），不..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://littlepig.cn/posts/2012/12/30/debian-config/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Debian 的常见配置汇总》 — LittlePig.CN&url=http://littlepig.cn/posts/2012/12/30/debian-config/&via=http://littlepig.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://littlepig.cn/posts/2012/12/30/debian-config/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
         </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="../../../../2013/01/04/bootstrap-for-ie6/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">bootstrap 的 IE6 补丁</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="../tengine-install/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">debian 下 tengine 的安装和使用</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="../../../../../img/wechat.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="../../../../../img/wechat.png" data-alipay="../../../../../img/alipay.png">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
     </div>
 </div>
 
-            <!-- ### Footer ### -->
-            <footer class="text-center">
-    <!-- footer copyright -->
-    
-        <p class="footer-copyright mb-0">Copyright&nbsp;©&nbsp;<span id="copyright-year"></span>
-            <a class="footer-copyright-a" href="http://littlepig.cn">LittlePig.CN</a>
-        </p>
 
-    <!-- footer custom text -->
-    <p class="footer-text mb-0">
-    
-    </p>
-    <!-- footer develop info -->
-    <p class="footer-develop mb-0">
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
         
-    <!-- Busuanzi User Views -->
-    <span id="busuanzi_container_site_uv" hidden>
-        <span></span>
-        <span id="busuanzi_value_site_uv"></span>
-        <span>Viewers</span>
-        
-            <span>|</span>
-        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
     </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
 
 
-
-
-        
-        Powered by&nbsp;<!--
-         --><a href="https://hexo.io" target="_blank" class="footer-develop-a" rel="external nofollow noopener noreferrer">Hexo</a><span class="footer-develop-divider"></span>Theme&nbsp;-&nbsp;<!--
-         --><a href="https://github.com/SukkaW/hexo-theme-suka" target="_blank" class="footer-develop-a" rel="external noopener">Suka</a>
-    </p>
+        <p>
+            
+                <span><a href="../../../../../atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>ZHZ &copy; 2003 - 2021</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
 </footer>
 
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
 
-        <!-- ### Import File ### -->
-        <!-- ### Footer JS Import ### -->
 
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://littlepig.cn/posts/2012/12/30/debian-config/&title=《Debian 的常见配置汇总》 — LittlePig.CN&pic=http://littlepig.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://littlepig.cn/posts/2012/12/30/debian-config/&title=《Debian 的常见配置汇总》 — LittlePig.CN&source=虽然各种LINUX发行版都用过，不过感觉最方便易用的还是 debian ，稳定（版本更新周期长）、轻便（不加乱七八糟的东西）、高效（好用的包管理机制），不..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://littlepig.cn/posts/2012/12/30/debian-config/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Debian 的常见配置汇总》 — LittlePig.CN&url=http://littlepig.cn/posts/2012/12/30/debian-config/&via=http://littlepig.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://littlepig.cn/posts/2012/12/30/debian-config/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACL0lEQVR42u3azY6DMAxF4b7/S1NpVrNo4Fy7SMU5rKpRgHyMZPknrxe+jr/r/+/VtVrD38LXx5cMGTIey+DbOn/Zaj2/q/bJZMiQsQ+DB9lagCYfjty7/LsMGTJknJJIgkhWypAhQ8Z3Ay5J4DoFsAwZMmTUili+Od4T48H9a7W4DBkyHsjoFKV3/759viFDhoyfZxzhlTb907Bb3JUMGTJGM8gQ8Xy7PH1MB5b8mTJkyNiH0Qm1aZmabhp9aBkyZAxl8HDGm2tp244E+os0VIYMGaMZ/UDJG/f9IxqIKkOGjKEMfkOtvEzDLn/ast0mQ4aMQYza43iRma5ME0oZMmTswOhH6zThSwtjHsRlyJAxlZE22tIDFudlbX8KKUOGjH0Yacusdgij1u5HBztkyJAxmsFDXiekpo02fpgjjtwyZMh4LIM/tFPQ8mI1XSNDhozdGLXkrJNK8pAadAplyJAxiEEGirUkkoNrh8w+TGJlyJAxlFHbUDok4M/sDERlyJAxldHfNP8EtcFncAhMhgwZoxlkc7VmfT8pRAWzDBkyRjNI2E1XpqTaUHP5P5EhQ8Y4xhFe5DDEHYH4YlAhQ4aM0Yz0gEU6vCSvqQ1NZciQsRuj0zirfSeeXAbfXoYMGRsw0iCbPq0Y6XFoliFDhgyS/NWKUt6MQ4MBGTJkyODhr5QU8rbdxTxWhgwZQxm8Wd8fCaRjA9TIkyFDxmhGrYBMC13SRKsdFJMhQ8ZoxhvAug8sHNr+NwAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
 <script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
 
-    
-window.lazyLoadOptions = {
-    elements_selector: ".lazyload",
-    threshold: 50
-};
-document.getElementById('copyright-year').textContent = new Date().getFullYear();
-console.log('\n %c Suka Theme (hexo-theme-suka) | © SukkaW | Verision 1.3.3 %c https://github.com/SukkaW/hexo-theme-suka \n', 'color: #fff; background: #444; padding:5px 0;', 'background: #bbb; padding:5px 0;');
+
+lazyScripts.push('//s95.cnzz.com/z_stat.php?id=1235250&web_id=1235250')
 
 </script>
 
-<script src="lib/vanilla-lazyload/lazyload.min.js" async></script>
-    <script src="https://cdn.jsdelivr.net/npm/busuanzi@2.3.0/bsz.pure.mini.js" async></script>
+<script src="../../../../../js/main.min.js?v=1.7.2"></script>
 
 
-<!-- Offset -->
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="../../../../../js/search.min.js?v=1.7.2" async></script>
+
+
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
 
 
 
 
-<!-- Comment -->
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 
-<!-- ### Custom Footer ### -->
 
-    </body>
 
+
+</body>
 </html>

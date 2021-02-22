@@ -1,441 +1,191 @@
 <!DOCTYPE html>
+<html>
+<head>
+    
 
-<html lang="zh-CN">
-    <head>
+    
+
+    
+
+
+
     <meta charset="utf-8">
-    <!--
-        hexo-theme-suka © SukkaW
-        GitHub: https://github.com/SukkaW/hexo-theme-suka
-    -->
-
-    <!-- ### Resource Hint ### -->
-
-    <!-- ## DNS Prefetch ## -->
-    <meta http-equiv="x-dns-prefetch-control" content="on">
-
-<!-- busuanzi -->
-
-    <link rel="dns-prefetch" href="//busuanzi.ibruce.info">
-
-
-<!-- comment -->
-
-
-
-
-
-
-
-<!-- analytics -->
-
-
-
-
-
-
-
-    <!-- ## Preload ## -->
     
-    <!-- Busuanzi -->
     
-    <link rel="preload" href="https://cdn.jsdelivr.net/npm/busuanzi@2.3.0/bsz.pure.mini.js" as="script">
+    
+    
+    <title>Lenovo D400 (W130S) 黑群晖 4.2 升级 4.3 | LittlePig.CN | someone&#39;s Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="d400,w130s,NAS,synology">
+    <meta name="description" content="我的联想 W130S 自从上次稀里糊涂的安装好黑群晖 4.2 后，一直用的比较不爽，主要表现在没法认出插入的U盘或者移动硬盘，经常没事就硬盘损毁然后又修复（也不知道是真的还是假的，至少有这提示，原来的 windows home server 就没事），最郁闷的是没法安装 git server ，而作为半个码农表示没有代码的备份和版本管理是完全不可忍受的，SVN 使用又必须得联网不方便，于是今天把">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Lenovo D400 (W130S) 黑群晖 4.2 升级 4.3">
+<meta property="og:url" content="http://littlepig.cn/posts/2014/01/13/d400-synology-4-2-update-to-4-3/index.html">
+<meta property="og:site_name" content="LittlePig.CN">
+<meta property="og:description" content="我的联想 W130S 自从上次稀里糊涂的安装好黑群晖 4.2 后，一直用的比较不爽，主要表现在没法认出插入的U盘或者移动硬盘，经常没事就硬盘损毁然后又修复（也不知道是真的还是假的，至少有这提示，原来的 windows home server 就没事），最郁闷的是没法安装 git server ，而作为半个码农表示没有代码的备份和版本管理是完全不可忍受的，SVN 使用又必须得联网不方便，于是今天把">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2014-01-13T10:28:01.000Z">
+<meta property="article:modified_time" content="2016-10-31T08:49:52.000Z">
+<meta property="article:author" content="ZHZ">
+<meta property="article:tag" content="d400">
+<meta property="article:tag" content="w130s">
+<meta property="article:tag" content="NAS">
+<meta property="article:tag" content="synology">
+<meta name="twitter:card" content="summary">
+    
+        <link rel="alternate" type="application/atom+xml" title="LittlePig.CN" href="../../../../../atom.xml">
+    
+    <link rel="shortcut icon" href="../../../../../favicon.ico">
+    <link rel="stylesheet" href="../../../../../css/style.css?v=1.7.2">
+    <script>window.lazyScripts=[]</script>
 
-
-
-
-
-
-
-    <!-- ### Meta & Title & Info ### -->
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, maximum-scale=5, viewport-fit=cover">
-    <meta name="renderer" content="webkit">
-
-    <!-- Title -->
-    <title>Lenovo D400 (W130S) 黑群晖 4.2 升级 4.3 | LittlePig.CN</title>
-
-    <!-- Favicons -->
-    <link rel="icon" type="image&#x2F;ico" href="/img/suka-favicon.ico">
-
-    <!-- ### Import File ### -->
-    <link rel="stylesheet" href="lib/spectre/spectre.min.css"><style>
-    body {
-        background-color: #f8f9fa;
-    }
-
-    a, a:visited {
-        color: #0070ff;
-    }
-
-    a:active, a:focus, a:hover {
-        color: #0070ff;
-        opacity: .75;
-    }
-
-    #post-content a,
-    #post-content a:hover,
-    #post-content a:focus,
-    #post-content a:visited {
-        color: #005eb9;
-        opacity: 1;
-    }
-
+    <!-- custom head -->
     
 
-    .post-entry .card-body a {
-        color: #0070ff;
-    }
+<meta name="generator" content="Hexo 4.2.1"></head>
 
-    .avatar {
-        background: #444;
-    }
+<body>
+    <div id="loading" class="active"></div>
 
-    .navbar-link,
-    .navbar-link:visited,
-    .timeline .timeline-item .timeline-icon.icon-lg {
-        color: #0070ff;
-    }
-
-    .navbar-link:hover {
-        color: #0070ff;
-        opacity: .8;
-    }
-
-    #search-input .btn,
-    #disqus_click_btn,
-    #disqus-switch-to-direct,
-    #disqus-loadmore-button {
-        background: #727e96;
-        border-color: #727e96;
-        color: #fff;
-    }
-
-    #post-toc a.post-toc-link,
-    #post-toc a.post-toc-link:visited,
-    .share-menu.menu .menu-item>a {
-        color: #727e96;
-    }
-
-    .share-menu.menu .menu-item>a:hover,
-    .share-menu.menu .menu-item>a:focus,
-    .share-menu.menu .menu-item>a:visited {
-        color: #50596c;
-        background: #f8f9fa;
-        opacity: .85;
-    }
-</style><link rel="stylesheet" href="css/style.min.css">
-
-
-
-
-
-
-
-
-    <!-- Prettify Theme -->
-    
-    <link rel="preload" href="../../../../../css/highlight/github.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="../../../../../css/highlight/github.min.css"></noscript>
-
-
-
-
-
-<script>
-/*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
-!function(t){"use strict";t.loadCSS||(t.loadCSS=function(){});var e=loadCSS.relpreload={};if(e.support=function(){var e;try{e=t.document.createElement("link").relList.supports("preload")}catch(t){e=!1}return function(){return e}}(),e.bindMediaToggle=function(t){var e=t.media||"all";function a(){t.addEventListener?t.removeEventListener("load",a):t.attachEvent&&t.detachEvent("onload",a),t.setAttribute("onload",null),t.media=e}t.addEventListener?t.addEventListener("load",a):t.attachEvent&&t.attachEvent("onload",a),setTimeout(function(){t.rel="stylesheet",t.media="only x"}),setTimeout(a,3e3)},e.poly=function(){if(!e.support())for(var a=t.document.getElementsByTagName("link"),n=0;n<a.length;n++){var o=a[n];"preload"!==o.rel||"style"!==o.getAttribute("as")||o.getAttribute("data-loadcss")||(o.setAttribute("data-loadcss",!0),e.bindMediaToggle(o))}},!e.support()){e.poly();var a=t.setInterval(e.poly,500);t.addEventListener?t.addEventListener("load",function(){e.poly(),t.clearInterval(a)}):t.attachEvent&&t.attachEvent("onload",function(){e.poly(),t.clearInterval(a)})}"undefined"!=typeof exports?exports.loadCSS=loadCSS:t.loadCSS=loadCSS}("undefined"!=typeof global?global:this);
-</script>
-
-    <!-- ### Site Verification ### -->
-    
-
-
-    <link rel="alternate" type="application/atom+xml" href="atom.xml"><meta name="mobile-web-app-capable" content="yes"><meta name="application-name" content="LittlePig.CN"><meta name="msapplication-starturl" content="http://littlepig.cn"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="LittlePig.CN"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-
-    <!-- ### The Open Graph & Twitter Card Protocol ### -->
-    <meta property="og:title" content="Lenovo D400 (W130S) 黑群晖 4.2 升级 4.3 | LittlePig.CN"><meta property="og:site_name" content="LittlePig.CN"><meta property="og:type" content="article"><meta property="og:url" content="http://littlepig.cn/posts/2014/01/13/d400-synology-4-2-update-to-4-3/"><meta property="og:locale" content="zh-CN"><meta name="description" content="我的联想 W130S 自从上次稀里糊涂的安装好黑群晖 4.2 后，一直用的比较不爽，主要表现在没法认出插入的U盘或者移动硬盘，经常没事就硬盘损毁然后又修复（也不知道是真的还是假的，至少有这提示，原来的 windows home server 就没事），最郁闷的是没法安装 git server ，而作为半个码农表示没有代码的备份和版本管理是完全不可忍受的，SVN 使用又必须得联网不方便，于是今天把  - ZHZ - LittlePig.CN"><meta name="keywords" content="d400, w130s, NAS, synology"><meta property="article:published_time" content="2014-01-13T10:28:01.000Z"><meta property="article:modified_time" content="2016-10-31T08:49:52.000Z"><meta property="og:updated_time" content="2016-10-31T08:49:52.000Z"><meta property="article:author" content="ZHZ"><meta property="article:tag" content="d400, w130s, NAS, synology"><meta name="twitter:card" content="summary">
-
-    
-
-    <!-- ### Canonical link ### -->
-    <link rel="canonical" href="http://littlepig.cn/posts/2014/01/13/d400-synology-4-2-update-to-4-3/">
-
-    <meta name="generator" content="Hexo 5.3.0">
-
-    <!-- ### Analytics ### -->
-    
-
-
-
-
-
-
-
-    <!-- ### Structured Data ### -->
-    
-
-
-
-<script type="application/ld+json">
-{
-    "@context": "http://schema.org",
-    "url": "http://littlepig.cn/posts/2014/01/13/d400-synology-4-2-update-to-4-3/",
-    "@type": "BlogPosting",
-    "logo": "http://littlepig.cn/img/suka-favicon.ico",
-    "mainEntityOfPage": {
-        "@type": "WebPage",
-        "@id": "http://littlepig.cn/posts/2014/01/13/d400-synology-4-2-update-to-4-3/"
-    },
-    "headline": "Lenovo D400 (W130S) 黑群晖 4.2 升级 4.3 | LittlePig.CN",
-    
-    "image": {
-        "@type": "ImageObject",
-        "url": "http://littlepig.cn/img/suka-favicon.ico"
-    },
-    
-    "datePublished": "2014-01-13T10:28:01.000Z",
-    "dateModified": "2016-10-31T08:49:52.000Z",
-    "author": {
-        "@type": "Person",
-        "name": "ZHZ",
-        "image": {
-            "@type": "ImageObject",
-            "url": "http://littlepig.cn/img/default_avatar.png"
-        },
-        "description": "Hi, nice to meet you."
-    },
-    "publisher": {
-        "@type": "Organization",
-        "name": "LittlePig.CN",
-        "logo": {
-            "@type": "ImageObject",
-            "url": "http://littlepig.cn/img/suka-favicon.ico"
-        }
-    },
-    
-    "potentialAction": {
-        "@type": "SearchAction",
-        "target": "http://littlepig.cn/search?s={search_term_string}",
-        "query-input": "required name=search_term_string"
-    },
-    
-    "keywords": "d400, w130s, NAS, synology",
-    "description": "我的联想 W130S 自从上次稀里糊涂的安装好黑群晖 4.2 后，一直用的比较不爽，主要表现在没法认出插入的U盘或者移动硬盘，经常没事就硬盘损毁然后又修复（也不知道是真的还是假的，至少有这提示，原来的 windows home server 就没事），最郁闷的是没法安装 git server ，而作为半个码农表示没有代码的备份和版本管理是完全不可忍受的，SVN 使用又必须得联网不方便，于是今天把  - ZHZ - LittlePig.CN"
-}
-</script>
-
-
-
-    <!-- ### Custom Head ### -->
-    
-</head>
-
-    <body>
-            
-
-            <!-- ### Main content ### -->
-            <!-- ## Header ##-->
-<header>
-    <h1 class="header-title text-center"><a href="/">LittlePig.CN</a></h1>
-
-    <p class="text-center header-slogan">
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(../../../../../img/brand.jpg)">
+      <div class="brand">
+        <a href="../../../../../index.html" class="avatar waves-effect waves-circle waves-light">
+          <img src="../../../../../img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">ZHZ</h5>
+          <a href="mailto:zhz@hebut.edu.cn" title="zhz@hebut.edu.cn" class="mail">zhz@hebut.edu.cn</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
         
-            
-                Hi, nice to meet you.
-            
+            <li class="waves-block waves-effect">
+              <a href="../../../../../index.html"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
         
-    </p>
+            <li class="waves-block waves-effect">
+              <a href="../../../../../archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="../../../../../tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="../../../../../categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="../../../../../about"  >
+                <i class="icon icon-lg icon-link"></i>
+                关于
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
 
-    <nav class="navbar-section text-center">
-    
-        <a href="../../../../../index.html" class="navbar-link">首页</a>
-    
-    
-        <a href="../../../../../archives/" class="navbar-link">归档</a>
-    
-    
-        <a href="/search" class="navbar-link">搜索</a>
-    
-    
-    
-        <div class="dropdown dropdown-right">
-    <a class="navbar-link dropdown-toggle" tabindex="0">分享</a>
-    <ul class="menu share-menu">
-
-        <!-- Share Weibo -->
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Lenovo D400 (W130S) 黑群晖 4.2 升级 4.3</div>
         
-        <li class="menu-item">
-            <a href="http://service.weibo.com/share/share.php?appkey=&title=LittlePig.CN&url=http://littlepig.cn&pic=http://littlepig.cn/img/suka-favicon.ico&searchPic=false&style=simple" target="_blank" rel="external noopener noreferrer nofollow">分享到微博</a>
-        </li>
-        
-
-        <!-- Share Twitter -->
-        
-        <li class="menu-item">
-            <a href="https://twitter.com/intent/tweet?text=LittlePig.CN&url=http://littlepig.cn&via=ZHZ" target="_blank" rel="external noopener noreferrer nofollow">分享到 Twitter</a>
-        </li>
-        
-
-        <!-- Share Facebook -->
-        
-        <li class="menu-item">
-            <a href="https://www.facebook.com/sharer/sharer.php?u=http://littlepig.cn" target="_blank" rel="external noopener noreferrer nofollow">分享到 Facebook</a>
-        </li>
-        
-
-        <!-- Share Google+ -->
-        
-        <li class="menu-item">
-            <a href="https://plus.google.com/share?url=http://littlepig.cn" target="_blank" rel="external noopener noreferrer nofollow">分享到 Google+</a>
-        </li>
-        
-
-        <!-- Share LinkedIn -->
-        
-        <li class="menu-item">
-            <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://littlepig.cn&title=Lenovo D400 (W130S) 黑群晖 4.2 升级 4.3" target="_blank" rel="external noopener noreferrer nofollow">分享到 LinkedIn</a>
-        </li>
-        
-
-        <!-- Share QQ -->
-        
-        <li class="menu-item">
-            <a href="http://connect.qq.com/widget/shareqq/index.html?site=LittlePig.CN&title=Lenovo D400 (W130S) 黑群晖 4.2 升级 4.3&summary=记录 / 回忆 / 分享&pics=http://littlepig.cn/img/suka-favicon.ico&url=http://littlepig.cn" target="_blank" rel="external noopener noreferrer nofollow"> 分享到 QQ</a>
-        </li>
-        
-
-        <!-- Share Telegram -->
-        
-        <li class="menu-item">
-            <a href="https://t.me/share/url?url=http://littlepig.cn&text=Lenovo D400 (W130S) 黑群晖 4.2 升级 4.3" target="_blank" rel="external noopener noreferrer nofollow">分享到 Telegram</a>
-        </li>
-        
-
-        <!-- QRCode -->
-        
-        <li class="menu-item">
-            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKQAAACkCAAAAAA83tqdAAACMElEQVR42u3a224DIQyE4bz/S7e3UQSeGbRSU+bfm6o58RHFrLF5/fyD6wUSJEiQX4B8Ddfn8+n/74+/j+eMC7IbufzRbhC79zkTnN6/ehxkN3I1gBNcn6+f8M6XABKkevFugN0kdpDVxEGCfDJwnOeSLwEkyOhGPyQXE3ga49EsCOR1yCRxePLvo7tFkNcgZdFos9DukhBnE/Z4VQ3kVcjdQFOymy7mTgKzTKZBViKdYtUuiFRgTEWsKUBBdiOdwrwqBiRBMuGtZhPI65G7AHE+cBdUTnFLFbtA9iIn3JRUTIv8tKhPNwWrAQqyAulstlx4UixVyQfITqSb7KaJrRs0cWYO8nqku6FXhdW0wG/dJEBWIqdie5oUn0DGcUFWIlURYPrgaUFONm5RFgSyDukkBu4hERWYMshAViLVwaL0gIgs1ptBCLIXmRT03cNMzuZMgUF2I9MEVx0ocQv9MlBBViKT5pIzEafgoCYMshvpLNxqQ5XeFOxmAchK5DRY1KwUlzr8tPwCQNYiVdLgFKHcpnwUYCCrkaq47yQSbkJrb8pAViKjJFQMKAtQZlEWZDcyKVypQZMGgNrsgQSpDiedNpmcG4IdOCArkO4P2m22O8UDuykKshaZJBMqEE6bn7KICrIOmTYsT4r9btELJEinqHlSoJ8+2yoigAQ5bKxUwKhDou4EjhZzkFcipwNK7sE6NQmneQASZNK0VE0k1dhPGgMge5HffIEECRLkH16/mt5X5ssDrBMAAAAASUVORK5CYII=" alr="QRCode">
-        </li>
-        
-
-    </ul>
-</div>
-    
-    
-</nav>
-</header>
-
-            
-    <!-- ## Post ## -->
-    <div class="post-container">
-    <div id="post-card" class="card">
-        
-        <div class="card-item-container">
-            <div class="card-inner-cell">
-                <!-- # Post Header Info # -->
-                <div class="card-header">
-                    
-    <h1 class="card-title h3 mb-2">Lenovo D400 (W130S) 黑群晖 4.2 升级 4.3</h1>
-
-
-
-
-<div class="post-header-info">
-    <p class="post-header-info-left text-gray">
-        <img class="author-thumb lazyload" data-src="../../../../../img/default_avatar.png" src="../../../../../img/suka-lazyload.gif" alt="ZHZ's Avatar">
-        <span>2014-01-13</span>
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
         
         
-            <!-- Busuanzi Post Views -->
-<span id="busuanzi_container_page_pv" hidden>
-    <span class="suka-devide-dot"></span>
-    <span></span>
-    <span id="busuanzi_value_page_pv"></span>
-    <span>Views</span>
-</span>
-        
-        
-    </p>
-    <div class="post-header-info-right">
-        
-            <div class="dropdown dropdown-right">
-<a class="dropdown-toggle" tabindex="0">分享本文</a>
-<ul class="menu share-menu">
-    <!-- Share Weibo -->
-    
-    <li class="menu-item">
-        <a href="http://service.weibo.com/share/share.php?appkey=&title=Lenovo D400 (W130S) 黑群晖 4.2 升级 4.3&url=http://littlepig.cn/posts/2014/01/13/d400-synology-4-2-update-to-4-3/&pic=http://littlepig.cn/img/suka-favicon.ico&searchPic=false&style=simple" target="_blank" rel="external noopener noreferrer nofollow">分享到微博</a>
-    </li>
-    
-
-    <!-- Share Twitter -->
-    
-    <li class="menu-item">
-        <a href="https://twitter.com/intent/tweet?text=Lenovo D400 (W130S) 黑群晖 4.2 升级 4.3&url=http://littlepig.cn/posts/2014/01/13/d400-synology-4-2-update-to-4-3/&via=ZHZ" target="_blank" rel="external noopener noreferrer nofollow">分享到 Twitter</a>
-    </li>
-    
-
-    <!-- Share Facebook -->
-    
-    <li class="menu-item">
-        <a href="https://www.facebook.com/sharer/sharer.php?u=http://littlepig.cn/posts/2014/01/13/d400-synology-4-2-update-to-4-3/" target="_blank" rel="external noopener noreferrer nofollow">分享到 Facebook</a>
-    </li>
-    
-
-    <!-- Share Google+ -->
-    
-    <li class="menu-item">
-        <a href="https://plus.google.com/share?url=http://littlepig.cn/posts/2014/01/13/d400-synology-4-2-update-to-4-3/" target="_blank" rel="external noopener noreferrer nofollow">分享到 Google+</a>
-    </li>
-    
-
-    <!-- Share LinkedIn -->
-    
-    <li class="menu-item">
-        <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://littlepig.cn/posts/2014/01/13/d400-synology-4-2-update-to-4-3/&title=LittlePig.CN" target="_blank" rel="external noopener noreferrer nofollow">分享到 LinkedIn</a>
-    </li>
-    
-
-    <!-- Share QQ -->
-    
-    <li class="menu-item">
-        <a href="http://connect.qq.com/widget/shareqq/index.html?site=LittlePig.CN&title=LittlePig.CN&summary=记录 / 回忆 / 分享&pics=http://littlepig.cn/img/suka-favicon.ico&url=http://littlepig.cn/posts/2014/01/13/d400-synology-4-2-update-to-4-3/" target="_blank" rel="external noopener noreferrer nofollow"> 分享到 QQ</a>
-    </li>
-    
-
-    <!-- Share Telegram -->
-    
-    <li class="menu-item">
-        <a href="https://t.me/share/url?url=http://littlepig.cn/posts/2014/01/13/d400-synology-4-2-update-to-4-3/&text=LittlePig.CN" target="_blank" rel="external noopener noreferrer nofollow">分享到 Telegram</a>
-    </li>
-    
-
-    <!-- QRCode -->
-    
-    <li class="menu-item">
-        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKQAAACkCAAAAAA83tqdAAACMElEQVR42u3a224DIQyE4bz/S7e3UQSeGbRSU+bfm6o58RHFrLF5/fyD6wUSJEiQX4B8Ddfn8+n/74+/j+eMC7IbufzRbhC79zkTnN6/ehxkN3I1gBNcn6+f8M6XABKkevFugN0kdpDVxEGCfDJwnOeSLwEkyOhGPyQXE3ga49EsCOR1yCRxePLvo7tFkNcgZdFos9DukhBnE/Z4VQ3kVcjdQFOymy7mTgKzTKZBViKdYtUuiFRgTEWsKUBBdiOdwrwqBiRBMuGtZhPI65G7AHE+cBdUTnFLFbtA9iIn3JRUTIv8tKhPNwWrAQqyAulstlx4UixVyQfITqSb7KaJrRs0cWYO8nqku6FXhdW0wG/dJEBWIqdie5oUn0DGcUFWIlURYPrgaUFONm5RFgSyDukkBu4hERWYMshAViLVwaL0gIgs1ptBCLIXmRT03cNMzuZMgUF2I9MEVx0ocQv9MlBBViKT5pIzEafgoCYMshvpLNxqQ5XeFOxmAchK5DRY1KwUlzr8tPwCQNYiVdLgFKHcpnwUYCCrkaq47yQSbkJrb8pAViKjJFQMKAtQZlEWZDcyKVypQZMGgNrsgQSpDiedNpmcG4IdOCArkO4P2m22O8UDuykKshaZJBMqEE6bn7KICrIOmTYsT4r9btELJEinqHlSoJ8+2yoigAQ5bKxUwKhDou4EjhZzkFcipwNK7sE6NQmneQASZNK0VE0k1dhPGgMge5HffIEECRLkH16/mt5X5ssDrBMAAAAASUVORK5CYII=" alt="QRCode">
-    </li>
-    
-
-</ul>
-</div>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
         
     </div>
-</div>
-                </div>
-                <div class="card-body">
-                    
-                        
-                        
-                    
-                    <article id="post-content">
-                        <p>我的联想 W130S 自从<a href="http://littlepig.cn/software/synology-on-d400/">上次稀里糊涂的安装好黑群晖 4.2 </a>后，一直用的比较不爽，主要表现在没法认出插入的U盘或者移动硬盘，经常没事就硬盘损毁然后又修复（也不知道是真的还是假的，至少有这提示，原来的 windows home server 就没事），最郁闷的是没法安装 git server ，而作为半个码农表示没有代码的备份和版本管理是完全不可忍受的，SVN 使用又必须得联网不方便，于是今天把 DSM 4.2 升级为了 4.3 ，不仅 Git Server 可以安装了，U盘的问题也解决了，本篇日志小记过程。</p>
-<p>大部分的步骤是按照黑群晖“官方”说明的中文翻译做的，参见　<a target="_blank" rel="noopener" href="http://xpenology.com/forum/viewtopic.php?f=11&amp;t=1705">http://xpenology.com/forum/viewtopic.php?f=11&amp;t=1705</a></p>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Lenovo D400 (W130S) 黑群晖 4.2 升级 4.3</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2014-01-13T10:28:01.000Z" itemprop="datePublished" class="page-time">
+  2014-01-13
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+
+<article id="post-d400-synology-4-2-update-to-4-3"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Lenovo D400 (W130S) 黑群晖 4.2 升级 4.3</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2014-01-13 18:28:01" datetime="2014-01-13T10:28:01.000Z"  itemprop="datePublished">2014-01-13</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>我的联想 W130S 自从<a href="http://littlepig.cn/software/synology-on-d400/">上次稀里糊涂的安装好黑群晖 4.2 </a>后，一直用的比较不爽，主要表现在没法认出插入的U盘或者移动硬盘，经常没事就硬盘损毁然后又修复（也不知道是真的还是假的，至少有这提示，原来的 windows home server 就没事），最郁闷的是没法安装 git server ，而作为半个码农表示没有代码的备份和版本管理是完全不可忍受的，SVN 使用又必须得联网不方便，于是今天把 DSM 4.2 升级为了 4.3 ，不仅 Git Server 可以安装了，U盘的问题也解决了，本篇日志小记过程。</p>
+<p>大部分的步骤是按照黑群晖“官方”说明的中文翻译做的，参见　<a href="http://xpenology.com/forum/viewtopic.php?f=11&amp;t=1705" target="_blank" rel="noopener">http://xpenology.com/forum/viewtopic.php?f=11&amp;t=1705</a></p>
 <ol>
 <li> 准备工作1，得想法儿知道 W130 的 MAC 地址，翻遍了随机手册、机箱上的标签也没找到，如果安装有 WHS 进去用 ipconfig -all 看下即可，可是我的是没有修改过MAC的 DSM 4.2 ，即便显示出来  MAC地址 也是假的，没办法找了个启动 U 盘进 WINPE 加载网卡驱动才找到，记录下来。</li>
 <li> 准备工作2，备份DSM4.2的配置，在DSM的 “系统备份和还原” 里 “系统设置备份” 中备份下系统配置信息。如果觉得不放心，再把NAS的重要数据拷贝出来备份下。</li>
 <li> 按照提供的地址下载固件，只是下载太慢经常断掉，于是从某网盘里找到了下载链接（鉴于可能的版权问题，这里就不公开了，实在找不到可以通过邮件联系我）。</li>
 <li> 按照步骤用 HXD 修改序列号和MAC地址，很简单的，二者类似，前边是MAC地址或者序列号，紧接着后边一位是所谓的校验码，前边改了，算一下校验码，替换掉后边的一个字节即可，然后保存 img 文件。</li>
-<li> 下载个 win32 disk imager 地址在：<a target="_blank" rel="noopener" href="http://sourceforge.net/projects/win32diskimager/">http://sourceforge.net/projects/win32diskimager/</a> 将这个工具和修改好的 img 放入随便一个带 pe 的可启动 u 盘。</li>
+<li> 下载个 win32 disk imager 地址在：<a href="http://sourceforge.net/projects/win32diskimager/" target="_blank" rel="noopener">http://sourceforge.net/projects/win32diskimager/</a> 将这个工具和修改好的 img 放入随便一个带 pe 的可启动 u 盘。</li>
 <li> 将启动u盘插入 w130s 的 usb 口，找个 usb 键盘，启动机器，按 F2 进入 CMOS ，修改为外部 USB 设备优先启动，内部 USB Flash Disk 其次，然后保存启动机器。</li>
 <li> 进入 pe 后启动 u 盘上的 disk imager 然后写改好的 img 到 w130s 自带的 256M Flash Disk 上，如果该闪存盘以前写过 4.2 ，则必须用分区工具比如 diskgenius 把原来分区依次删除，然后创建一个新分区并分配盘符，disk imager 才可以列出来该盘并写入，然后拔出可启动 u 盘，重启 NAS。</li>
 <li> 在笔记本上安装个群晖助手（可从群晖官网下载区随便选个型号找到），搜索下就可以找到启动的系统了，右键安装 XPEnology_trantor_v1.0_DSM_DS3612xs_3810.pat ，完成后会自动重启然后配置账号、ip等信息。</li>
@@ -443,150 +193,312 @@
 <li> 然后安装套件等一系列工作。</li>
 </ol>
 
-                    </article>
-                    
+        </div>
 
-
-    <blockquote id="date-expire-notification" class="post-expired-notify">本文最后更新于 <span id="date-expire-num"></span> 天前，文中所描述的信息可能已发生改变</blockquote>
-    <script>
-    (function() {
-        var dateUpdate = Date.parse("2016-10-31");
-        var nowDate = new Date();
-        var a = nowDate.getTime();
-        var b = a - dateUpdate;
-        var daysUpdateExpire = Math.floor(b/(24*3600*1000));
-        if (daysUpdateExpire >= 120) {
-            document.getElementById('date-expire-num').innerHTML = daysUpdateExpire;
-        } else {
-            document.getElementById('date-expire-notification').style.display = 'none';
-        }
-    })();
-    </script>
-
-
-<p class="post-footer-info mb-0 pt-0">本文发表于&nbsp;<time datetime="2014-01-13T10:28:01.000Z" itemprop="datePublished">2014-01-13</time>
-
-    , 最后修改于&nbsp;<time datetime="2016-10-31T08:49:52.000Z" itemprop="dateModified">2016-10-31</time>
-
-</p>
-<p class="post-footer-info mb-0 pt-2">
-
-
-
-<span class="post-tags-list mt-2">
-
-<a class="post-tags-list-item" href="../../../../../tags/d400/" rel="tag">#&nbsp;d400</a>
-
-<a class="post-tags-list-item" href="../../../../../tags/w130s/" rel="tag">#&nbsp;w130s</a>
-
-<a class="post-tags-list-item" href="../../../../../tags/NAS/" rel="tag">#&nbsp;NAS</a>
-
-<a class="post-tags-list-item" href="../../../../../tags/synology/" rel="tag">#&nbsp;synology</a>
-
-</span>
-
-
-</p>
-
-                </div>
-                <div class="post-nav px-2 bg-gray">
-<ul class="pagination">
-    <!-- Prev Nav -->
+        <blockquote class="post-copyright">
     
-        <li class="page-item page-prev">
-            <a href="../synology-dsm-gitserver-configuration/" rel="prev">
-                <div class="page-item-title"><i class="icon icon-back" aria-hidden="true"></i></div>
-                <div class="page-item-subtitle">群晖 DSM 中 GitServer 的配置</div>
-            </a>
-        </li>
-    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2016-10-31T08:49:52.000Z" itemprop="dateUpdated">2016-10-31 16:49:52</time>
+</span><br>
 
-    <!-- Next Nav -->
+
+        
+        本文地址：<a href="" target="_blank" rel="external">http://littlepig.cn/posts/2014/01/13/d400-synology-4-2-update-to-4-3/</a>
+        
+    </div>
     
-        <li class="page-item page-next">
-            <a href="../../../../2013/10/07/debian-pv4-ipv6/" rel="next">
-                <div class="page-item-title"><i class="icon icon-forward" aria-hidden="true"></i></div>
-                <div class="page-item-subtitle">Debian 下 IPV4 优先于 IPV6 的设定</div>
-            </a>
-        </li>
-    
-</ul>
+    <footer>
+        <a href="http://littlepig.cn">
+            <img src="../../../../../img/avatar.jpg" alt="ZHZ">
+            ZHZ
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赞</a>
 </div>
 
-                
-                    <!-- # Comment # -->
-                    
-                
-            </div>
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../../tags/NAS/" rel="tag">NAS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../../tags/d400/" rel="tag">d400</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../../tags/synology/" rel="tag">synology</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../../tags/w130s/" rel="tag">w130s</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://littlepig.cn/posts/2014/01/13/d400-synology-4-2-update-to-4-3/&title=《Lenovo D400 (W130S) 黑群晖 4.2 升级 4.3》 — LittlePig.CN&pic=http://littlepig.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://littlepig.cn/posts/2014/01/13/d400-synology-4-2-update-to-4-3/&title=《Lenovo D400 (W130S) 黑群晖 4.2 升级 4.3》 — LittlePig.CN&source=记录 / 回忆 / 分享" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://littlepig.cn/posts/2014/01/13/d400-synology-4-2-update-to-4-3/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Lenovo D400 (W130S) 黑群晖 4.2 升级 4.3》 — LittlePig.CN&url=http://littlepig.cn/posts/2014/01/13/d400-synology-4-2-update-to-4-3/&via=http://littlepig.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://littlepig.cn/posts/2014/01/13/d400-synology-4-2-update-to-4-3/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
         </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="../synology-dsm-gitserver-configuration/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">群晖 DSM 中 GitServer 的配置</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="../../../../2013/10/07/debian-pv4-ipv6/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Debian 下 IPV4 优先于 IPV6 的设定</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="../../../../../img/wechat.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="../../../../../img/wechat.png" data-alipay="../../../../../img/alipay.png">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
     </div>
 </div>
 
-            <!-- ### Footer ### -->
-            <footer class="text-center">
-    <!-- footer copyright -->
-    
-        <p class="footer-copyright mb-0">Copyright&nbsp;©&nbsp;<span id="copyright-year"></span>
-            <a class="footer-copyright-a" href="http://littlepig.cn">LittlePig.CN</a>
-        </p>
 
-    <!-- footer custom text -->
-    <p class="footer-text mb-0">
-    
-    </p>
-    <!-- footer develop info -->
-    <p class="footer-develop mb-0">
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
         
-    <!-- Busuanzi User Views -->
-    <span id="busuanzi_container_site_uv" hidden>
-        <span></span>
-        <span id="busuanzi_value_site_uv"></span>
-        <span>Viewers</span>
-        
-            <span>|</span>
-        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
     </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
 
 
-
-
-        
-        Powered by&nbsp;<!--
-         --><a href="https://hexo.io" target="_blank" class="footer-develop-a" rel="external nofollow noopener noreferrer">Hexo</a><span class="footer-develop-divider"></span>Theme&nbsp;-&nbsp;<!--
-         --><a href="https://github.com/SukkaW/hexo-theme-suka" target="_blank" class="footer-develop-a" rel="external noopener">Suka</a>
-    </p>
+        <p>
+            
+                <span><a href="../../../../../atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>ZHZ &copy; 2003 - 2021</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
 </footer>
 
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
 
-        <!-- ### Import File ### -->
-        <!-- ### Footer JS Import ### -->
 
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://littlepig.cn/posts/2014/01/13/d400-synology-4-2-update-to-4-3/&title=《Lenovo D400 (W130S) 黑群晖 4.2 升级 4.3》 — LittlePig.CN&pic=http://littlepig.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://littlepig.cn/posts/2014/01/13/d400-synology-4-2-update-to-4-3/&title=《Lenovo D400 (W130S) 黑群晖 4.2 升级 4.3》 — LittlePig.CN&source=记录 / 回忆 / 分享" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://littlepig.cn/posts/2014/01/13/d400-synology-4-2-update-to-4-3/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Lenovo D400 (W130S) 黑群晖 4.2 升级 4.3》 — LittlePig.CN&url=http://littlepig.cn/posts/2014/01/13/d400-synology-4-2-update-to-4-3/&via=http://littlepig.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://littlepig.cn/posts/2014/01/13/d400-synology-4-2-update-to-4-3/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACv0lEQVR42u3awWrkMBAE0Pn/n96FPSWEmVR1S9kJPJ+C8dh6Cljtaj0e8fHn33Hv/NdrPh75b4cHHh4e3mjoz45kuM+u/3q+nYj8/k+fhYeHh3eN9/rByUATQDsFs+nGw8PDex9e8uBkOpJBv55cPDw8vN/Ca6OEs6EDHh4e3rvx8o//PIbIwXnccDFrwcPDw4t5+0Dh5/++2N/Dw8PDW3TVk7ihLY5nTbXZgYeHh3eDlwwij25PldSzcOTp/fHw8PCO8mbbrZKlon3RJ6V8ElJ8+hUeHh7eBV7UQFq0u2ZbrPLr60YdHh4e3pqXvPRnD0iWkNm2raKgx8PDw7vAy0nF7eKyOy+vi6J5lo7g4eHhLbYRbLZVtQX3rDGWxxZ4eHh4N3ib6PZUOLtZEuqUGg8PD2/N2zTy8zCiXSraQCQfJx4eHt6eF+3JKkOHzcap9onRAoCHh4d3lDeLd9vv/bzw3dyhpuLh4eEd5c0CgrYEb7fJHvhWwMPDw1vz8sJ31hJLyuV2svKlCA8PD+8Gb1ZrJy/02bbXpJiulyU8PDy8C7xTQW2+jaC9Q9ts+2YDFh4eHt6C1764kwUgmZS82dYuCZ9+hYeHh3eBNyua22bVpguXBx/DlBoPDw+v5OVDSRr/x/pv5RO/CXDx8PDwLvBm5ek+BWlL4eH6hoeHh3eNl9yibXq1k5sX6NGihYeHh3eBN4tHk0I8XwDaaHi4aQAPDw/vEO9A4lsOa/gfGH0Y4OHh4d3m5cvAbFj7OyfnH7P1DQ8PDy/mbV6+szC3DRdObUHAw8PDO8vbxw3tC3222LT3x8PDw7vNKz7y4yUhGWgy9NXWLjw8PLz/ykuubyelHUk9Njw8PLw34M0Wg3w69hMxLKnx8PDwSl4SRmxi2fz8rG2Gh4eH95O8tgE2e3A+9HZT1+H+Hh4eHt6r4y8IVs8UFnDgjQAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
 <script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
 
-    
-window.lazyLoadOptions = {
-    elements_selector: ".lazyload",
-    threshold: 50
-};
-document.getElementById('copyright-year').textContent = new Date().getFullYear();
-console.log('\n %c Suka Theme (hexo-theme-suka) | © SukkaW | Verision 1.3.3 %c https://github.com/SukkaW/hexo-theme-suka \n', 'color: #fff; background: #444; padding:5px 0;', 'background: #bbb; padding:5px 0;');
+
+lazyScripts.push('//s95.cnzz.com/z_stat.php?id=1235250&web_id=1235250')
 
 </script>
 
-<script src="lib/vanilla-lazyload/lazyload.min.js" async></script>
-    <script src="https://cdn.jsdelivr.net/npm/busuanzi@2.3.0/bsz.pure.mini.js" async></script>
+<script src="../../../../../js/main.min.js?v=1.7.2"></script>
 
 
-<!-- Offset -->
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="../../../../../js/search.min.js?v=1.7.2" async></script>
+
+
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
 
 
 
 
-<!-- Comment -->
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 
-<!-- ### Custom Footer ### -->
 
-    </body>
 
+
+</body>
 </html>

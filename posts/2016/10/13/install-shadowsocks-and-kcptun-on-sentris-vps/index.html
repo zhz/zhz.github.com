@@ -1,439 +1,194 @@
 <!DOCTYPE html>
+<html>
+<head>
+    
 
-<html lang="zh-CN">
-    <head>
+    
+
+    
+
+
+
     <meta charset="utf-8">
-    <!--
-        hexo-theme-suka © SukkaW
-        GitHub: https://github.com/SukkaW/hexo-theme-suka
-    -->
-
-    <!-- ### Resource Hint ### -->
-
-    <!-- ## DNS Prefetch ## -->
-    <meta http-equiv="x-dns-prefetch-control" content="on">
-
-<!-- busuanzi -->
-
-    <link rel="dns-prefetch" href="//busuanzi.ibruce.info">
-
-
-<!-- comment -->
-
-
-
-
-
-
-
-<!-- analytics -->
-
-
-
-
-
-
-
-    <!-- ## Preload ## -->
     
-    <!-- Busuanzi -->
     
-    <link rel="preload" href="https://cdn.jsdelivr.net/npm/busuanzi@2.3.0/bsz.pure.mini.js" as="script">
+    
+    
+    <title>sentris VPS 搭建记录 | LittlePig.CN | someone&#39;s Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="VPS,sentris,kcptun,shadowsocks">
+    <meta name="description" content="前言有些场景需要临时且换下搜索引擎，以前一直使用 githubstudent developer pack 提供的优惠在 digitalocean 上搭建 shadowsocks，不过还没到期，digitalocean 提前把优惠结束了，可能受不了来自伟大祖国的压力了吧。修改 hosts 可行但又担心安全性，于是想找个便宜的 VPS，看到有人推荐 sentris，几美元就可以用三年，褒贬不一，由于">
+<meta property="og:type" content="article">
+<meta property="og:title" content="sentris VPS 搭建记录">
+<meta property="og:url" content="http://littlepig.cn/posts/2016/10/13/install-shadowsocks-and-kcptun-on-sentris-vps/index.html">
+<meta property="og:site_name" content="LittlePig.CN">
+<meta property="og:description" content="前言有些场景需要临时且换下搜索引擎，以前一直使用 githubstudent developer pack 提供的优惠在 digitalocean 上搭建 shadowsocks，不过还没到期，digitalocean 提前把优惠结束了，可能受不了来自伟大祖国的压力了吧。修改 hosts 可行但又担心安全性，于是想找个便宜的 VPS，看到有人推荐 sentris，几美元就可以用三年，褒贬不一，由于">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2016-10-13T08:29:50.000Z">
+<meta property="article:modified_time" content="2017-05-10T05:28:01.000Z">
+<meta property="article:author" content="ZHZ">
+<meta property="article:tag" content="VPS">
+<meta property="article:tag" content="sentris">
+<meta property="article:tag" content="kcptun">
+<meta property="article:tag" content="shadowsocks">
+<meta name="twitter:card" content="summary">
+    
+        <link rel="alternate" type="application/atom+xml" title="LittlePig.CN" href="../../../../../atom.xml">
+    
+    <link rel="shortcut icon" href="../../../../../favicon.ico">
+    <link rel="stylesheet" href="../../../../../css/style.css?v=1.7.2">
+    <script>window.lazyScripts=[]</script>
 
-
-
-
-
-
-
-    <!-- ### Meta & Title & Info ### -->
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, maximum-scale=5, viewport-fit=cover">
-    <meta name="renderer" content="webkit">
-
-    <!-- Title -->
-    <title>sentris VPS 搭建记录 | LittlePig.CN</title>
-
-    <!-- Favicons -->
-    <link rel="icon" type="image&#x2F;ico" href="/img/suka-favicon.ico">
-
-    <!-- ### Import File ### -->
-    <link rel="stylesheet" href="lib/spectre/spectre.min.css"><style>
-    body {
-        background-color: #f8f9fa;
-    }
-
-    a, a:visited {
-        color: #0070ff;
-    }
-
-    a:active, a:focus, a:hover {
-        color: #0070ff;
-        opacity: .75;
-    }
-
-    #post-content a,
-    #post-content a:hover,
-    #post-content a:focus,
-    #post-content a:visited {
-        color: #005eb9;
-        opacity: 1;
-    }
-
+    <!-- custom head -->
     
 
-    .post-entry .card-body a {
-        color: #0070ff;
-    }
+<meta name="generator" content="Hexo 4.2.1"></head>
 
-    .avatar {
-        background: #444;
-    }
+<body>
+    <div id="loading" class="active"></div>
 
-    .navbar-link,
-    .navbar-link:visited,
-    .timeline .timeline-item .timeline-icon.icon-lg {
-        color: #0070ff;
-    }
-
-    .navbar-link:hover {
-        color: #0070ff;
-        opacity: .8;
-    }
-
-    #search-input .btn,
-    #disqus_click_btn,
-    #disqus-switch-to-direct,
-    #disqus-loadmore-button {
-        background: #727e96;
-        border-color: #727e96;
-        color: #fff;
-    }
-
-    #post-toc a.post-toc-link,
-    #post-toc a.post-toc-link:visited,
-    .share-menu.menu .menu-item>a {
-        color: #727e96;
-    }
-
-    .share-menu.menu .menu-item>a:hover,
-    .share-menu.menu .menu-item>a:focus,
-    .share-menu.menu .menu-item>a:visited {
-        color: #50596c;
-        background: #f8f9fa;
-        opacity: .85;
-    }
-</style><link rel="stylesheet" href="css/style.min.css">
-
-
-
-
-
-
-
-
-    <!-- Prettify Theme -->
-    
-    <link rel="preload" href="../../../../../css/highlight/github.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="../../../../../css/highlight/github.min.css"></noscript>
-
-
-
-
-
-<script>
-/*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
-!function(t){"use strict";t.loadCSS||(t.loadCSS=function(){});var e=loadCSS.relpreload={};if(e.support=function(){var e;try{e=t.document.createElement("link").relList.supports("preload")}catch(t){e=!1}return function(){return e}}(),e.bindMediaToggle=function(t){var e=t.media||"all";function a(){t.addEventListener?t.removeEventListener("load",a):t.attachEvent&&t.detachEvent("onload",a),t.setAttribute("onload",null),t.media=e}t.addEventListener?t.addEventListener("load",a):t.attachEvent&&t.attachEvent("onload",a),setTimeout(function(){t.rel="stylesheet",t.media="only x"}),setTimeout(a,3e3)},e.poly=function(){if(!e.support())for(var a=t.document.getElementsByTagName("link"),n=0;n<a.length;n++){var o=a[n];"preload"!==o.rel||"style"!==o.getAttribute("as")||o.getAttribute("data-loadcss")||(o.setAttribute("data-loadcss",!0),e.bindMediaToggle(o))}},!e.support()){e.poly();var a=t.setInterval(e.poly,500);t.addEventListener?t.addEventListener("load",function(){e.poly(),t.clearInterval(a)}):t.attachEvent&&t.attachEvent("onload",function(){e.poly(),t.clearInterval(a)})}"undefined"!=typeof exports?exports.loadCSS=loadCSS:t.loadCSS=loadCSS}("undefined"!=typeof global?global:this);
-</script>
-
-    <!-- ### Site Verification ### -->
-    
-
-
-    <link rel="alternate" type="application/atom+xml" href="atom.xml"><meta name="mobile-web-app-capable" content="yes"><meta name="application-name" content="LittlePig.CN"><meta name="msapplication-starturl" content="http://littlepig.cn"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="LittlePig.CN"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-
-    <!-- ### The Open Graph & Twitter Card Protocol ### -->
-    <meta property="og:title" content="sentris VPS 搭建记录 | LittlePig.CN"><meta property="og:site_name" content="LittlePig.CN"><meta property="og:type" content="article"><meta property="og:url" content="http://littlepig.cn/posts/2016/10/13/install-shadowsocks-and-kcptun-on-sentris-vps/"><meta property="og:locale" content="zh-CN"><meta name="description" content="前言有些场景需要临时且换下搜索引擎，以前一直使用 githubstudent developer pack 提供的优惠在 digitalocean 上搭建 shadowsocks，不过还没到期，digitalocean 提前把优惠结束了，可能受不了来自伟大祖国的压力了吧。修改 hosts 可行但又担心安全性，于是想找个便宜的 VPS，看到有人推荐 sentris，几美元就可以用三年，褒贬不一，由于 - ZHZ - LittlePig.CN"><meta name="keywords" content="VPS, sentris, kcptun, shadowsocks"><meta property="article:published_time" content="2016-10-13T08:29:50.000Z"><meta property="article:modified_time" content="2017-05-10T05:28:01.000Z"><meta property="og:updated_time" content="2017-05-10T05:28:01.000Z"><meta property="article:author" content="ZHZ"><meta property="article:tag" content="VPS, sentris, kcptun, shadowsocks"><meta name="twitter:card" content="summary">
-
-    
-
-    <!-- ### Canonical link ### -->
-    <link rel="canonical" href="http://littlepig.cn/posts/2016/10/13/install-shadowsocks-and-kcptun-on-sentris-vps/">
-
-    <meta name="generator" content="Hexo 5.3.0">
-
-    <!-- ### Analytics ### -->
-    
-
-
-
-
-
-
-
-    <!-- ### Structured Data ### -->
-    
-
-
-
-<script type="application/ld+json">
-{
-    "@context": "http://schema.org",
-    "url": "http://littlepig.cn/posts/2016/10/13/install-shadowsocks-and-kcptun-on-sentris-vps/",
-    "@type": "BlogPosting",
-    "logo": "http://littlepig.cn/img/suka-favicon.ico",
-    "mainEntityOfPage": {
-        "@type": "WebPage",
-        "@id": "http://littlepig.cn/posts/2016/10/13/install-shadowsocks-and-kcptun-on-sentris-vps/"
-    },
-    "headline": "sentris VPS 搭建记录 | LittlePig.CN",
-    
-    "image": {
-        "@type": "ImageObject",
-        "url": "http://littlepig.cn/img/suka-favicon.ico"
-    },
-    
-    "datePublished": "2016-10-13T08:29:50.000Z",
-    "dateModified": "2017-05-10T05:28:01.000Z",
-    "author": {
-        "@type": "Person",
-        "name": "ZHZ",
-        "image": {
-            "@type": "ImageObject",
-            "url": "http://littlepig.cn/img/default_avatar.png"
-        },
-        "description": "Hi, nice to meet you."
-    },
-    "publisher": {
-        "@type": "Organization",
-        "name": "LittlePig.CN",
-        "logo": {
-            "@type": "ImageObject",
-            "url": "http://littlepig.cn/img/suka-favicon.ico"
-        }
-    },
-    
-    "potentialAction": {
-        "@type": "SearchAction",
-        "target": "http://littlepig.cn/search?s={search_term_string}",
-        "query-input": "required name=search_term_string"
-    },
-    
-    "keywords": "VPS, sentris, kcptun, shadowsocks",
-    "description": "前言有些场景需要临时且换下搜索引擎，以前一直使用 githubstudent developer pack 提供的优惠在 digitalocean 上搭建 shadowsocks，不过还没到期，digitalocean 提前把优惠结束了，可能受不了来自伟大祖国的压力了吧。修改 hosts 可行但又担心安全性，于是想找个便宜的 VPS，看到有人推荐 sentris，几美元就可以用三年，褒贬不一，由于 - ZHZ - LittlePig.CN"
-}
-</script>
-
-
-
-    <!-- ### Custom Head ### -->
-    
-</head>
-
-    <body>
-            
-
-            <!-- ### Main content ### -->
-            <!-- ## Header ##-->
-<header>
-    <h1 class="header-title text-center"><a href="/">LittlePig.CN</a></h1>
-
-    <p class="text-center header-slogan">
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(../../../../../img/brand.jpg)">
+      <div class="brand">
+        <a href="../../../../../index.html" class="avatar waves-effect waves-circle waves-light">
+          <img src="../../../../../img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">ZHZ</h5>
+          <a href="mailto:zhz@hebut.edu.cn" title="zhz@hebut.edu.cn" class="mail">zhz@hebut.edu.cn</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
         
-            
-                Hi, nice to meet you.
-            
+            <li class="waves-block waves-effect">
+              <a href="../../../../../index.html"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
         
-    </p>
+            <li class="waves-block waves-effect">
+              <a href="../../../../../archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="../../../../../tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="../../../../../categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="../../../../../about"  >
+                <i class="icon icon-lg icon-link"></i>
+                关于
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
 
-    <nav class="navbar-section text-center">
-    
-        <a href="../../../../../index.html" class="navbar-link">首页</a>
-    
-    
-        <a href="../../../../../archives/" class="navbar-link">归档</a>
-    
-    
-        <a href="/search" class="navbar-link">搜索</a>
-    
-    
-    
-        <div class="dropdown dropdown-right">
-    <a class="navbar-link dropdown-toggle" tabindex="0">分享</a>
-    <ul class="menu share-menu">
-
-        <!-- Share Weibo -->
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">sentris VPS 搭建记录</div>
         
-        <li class="menu-item">
-            <a href="http://service.weibo.com/share/share.php?appkey=&title=LittlePig.CN&url=http://littlepig.cn&pic=http://littlepig.cn/img/suka-favicon.ico&searchPic=false&style=simple" target="_blank" rel="external noopener noreferrer nofollow">分享到微博</a>
-        </li>
-        
-
-        <!-- Share Twitter -->
-        
-        <li class="menu-item">
-            <a href="https://twitter.com/intent/tweet?text=LittlePig.CN&url=http://littlepig.cn&via=ZHZ" target="_blank" rel="external noopener noreferrer nofollow">分享到 Twitter</a>
-        </li>
-        
-
-        <!-- Share Facebook -->
-        
-        <li class="menu-item">
-            <a href="https://www.facebook.com/sharer/sharer.php?u=http://littlepig.cn" target="_blank" rel="external noopener noreferrer nofollow">分享到 Facebook</a>
-        </li>
-        
-
-        <!-- Share Google+ -->
-        
-        <li class="menu-item">
-            <a href="https://plus.google.com/share?url=http://littlepig.cn" target="_blank" rel="external noopener noreferrer nofollow">分享到 Google+</a>
-        </li>
-        
-
-        <!-- Share LinkedIn -->
-        
-        <li class="menu-item">
-            <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://littlepig.cn&title=sentris VPS 搭建记录" target="_blank" rel="external noopener noreferrer nofollow">分享到 LinkedIn</a>
-        </li>
-        
-
-        <!-- Share QQ -->
-        
-        <li class="menu-item">
-            <a href="http://connect.qq.com/widget/shareqq/index.html?site=LittlePig.CN&title=sentris VPS 搭建记录&summary=记录 / 回忆 / 分享&pics=http://littlepig.cn/img/suka-favicon.ico&url=http://littlepig.cn" target="_blank" rel="external noopener noreferrer nofollow"> 分享到 QQ</a>
-        </li>
-        
-
-        <!-- Share Telegram -->
-        
-        <li class="menu-item">
-            <a href="https://t.me/share/url?url=http://littlepig.cn&text=sentris VPS 搭建记录" target="_blank" rel="external noopener noreferrer nofollow">分享到 Telegram</a>
-        </li>
-        
-
-        <!-- QRCode -->
-        
-        <li class="menu-item">
-            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKQAAACkCAAAAAA83tqdAAACM0lEQVR42u2by44CMQwE5/9/mr2yUuIuB9Cy48qFhyCpoHim3TbX4x+MS0ghhRTyCyCvYvz6wtPrC4znz63mIesKORdyeWiL91cw28NfbCCtK+RsyN0ku4NeLbAMgsXral0hhUyQu4Uq8DSXkEKeQm4FQAFB4IQU8kRgVKJgO/lC+H5UBQl5O8iUTH3q8W3ZopC3goymUTALdsKiEhxvd9WEvBUkERJVctUVEMk0EFLInSCoDnv1WbIJkuQJORfyJHmqvkcKAclsEFJImuAT0ZAMLGpyCSlkKmKmC35HBCdjTMjZkLRohA56EAxkQzhbFPK2kOnGvwuiZLRWhmvanJBCJkGbDHvSTFIZB20VJOQISGL0p4A6MbFKYCHHQ6bDTppIWgIi3QCEHA2JEqPQfNy5AVQJn5BCkgJlx5x/xdgSUsiOQfCKgdAJGCFnQ54W2TuFJGKgokYRIUdApgsyFbipqYkETWnsCzkGshKslSBIF22aqJXCWsiRkNTcPLko0wQMd1gJOQKSBMOpQE5Fg/ijCDkWsjr0ZHLSJFf+EYMIDCFHQtLiPBEinWLq9ocRcjQkXawqYtJ5iOAQci4kFQ+0OJVEcatRWciRkEQAdIrz6SaQAjB2/Qk5ApI0cZAmj5T8tzck5GhIOnlKvGhTyZEKElLIB2u4Owme9FxIIYnhnhrskrAlDVJCCpkERAoOUlyqCvDtrj8hR0CShjdSAE3F+k5hVMi5kN88hBRSSCH/cPwAKJE2JCty8AsAAAAASUVORK5CYII=" alr="QRCode">
-        </li>
-        
-
-    </ul>
-</div>
-    
-    
-</nav>
-</header>
-
-            
-    <!-- ## Post ## -->
-    <div class="post-container">
-    <div id="post-card" class="card">
-        
-        <div class="card-item-container">
-            <div class="card-inner-cell">
-                <!-- # Post Header Info # -->
-                <div class="card-header">
-                    
-    <h1 class="card-title h3 mb-2">sentris VPS 搭建记录</h1>
-
-
-
-
-<div class="post-header-info">
-    <p class="post-header-info-left text-gray">
-        <img class="author-thumb lazyload" data-src="../../../../../img/default_avatar.png" src="../../../../../img/suka-lazyload.gif" alt="ZHZ's Avatar">
-        <span>2016-10-13</span>
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
         
         
-            <!-- Busuanzi Post Views -->
-<span id="busuanzi_container_page_pv" hidden>
-    <span class="suka-devide-dot"></span>
-    <span></span>
-    <span id="busuanzi_value_page_pv"></span>
-    <span>Views</span>
-</span>
-        
-        
-    </p>
-    <div class="post-header-info-right">
-        
-            <div class="dropdown dropdown-right">
-<a class="dropdown-toggle" tabindex="0">分享本文</a>
-<ul class="menu share-menu">
-    <!-- Share Weibo -->
-    
-    <li class="menu-item">
-        <a href="http://service.weibo.com/share/share.php?appkey=&title=sentris VPS 搭建记录&url=http://littlepig.cn/posts/2016/10/13/install-shadowsocks-and-kcptun-on-sentris-vps/&pic=http://littlepig.cn/img/suka-favicon.ico&searchPic=false&style=simple" target="_blank" rel="external noopener noreferrer nofollow">分享到微博</a>
-    </li>
-    
-
-    <!-- Share Twitter -->
-    
-    <li class="menu-item">
-        <a href="https://twitter.com/intent/tweet?text=sentris VPS 搭建记录&url=http://littlepig.cn/posts/2016/10/13/install-shadowsocks-and-kcptun-on-sentris-vps/&via=ZHZ" target="_blank" rel="external noopener noreferrer nofollow">分享到 Twitter</a>
-    </li>
-    
-
-    <!-- Share Facebook -->
-    
-    <li class="menu-item">
-        <a href="https://www.facebook.com/sharer/sharer.php?u=http://littlepig.cn/posts/2016/10/13/install-shadowsocks-and-kcptun-on-sentris-vps/" target="_blank" rel="external noopener noreferrer nofollow">分享到 Facebook</a>
-    </li>
-    
-
-    <!-- Share Google+ -->
-    
-    <li class="menu-item">
-        <a href="https://plus.google.com/share?url=http://littlepig.cn/posts/2016/10/13/install-shadowsocks-and-kcptun-on-sentris-vps/" target="_blank" rel="external noopener noreferrer nofollow">分享到 Google+</a>
-    </li>
-    
-
-    <!-- Share LinkedIn -->
-    
-    <li class="menu-item">
-        <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://littlepig.cn/posts/2016/10/13/install-shadowsocks-and-kcptun-on-sentris-vps/&title=LittlePig.CN" target="_blank" rel="external noopener noreferrer nofollow">分享到 LinkedIn</a>
-    </li>
-    
-
-    <!-- Share QQ -->
-    
-    <li class="menu-item">
-        <a href="http://connect.qq.com/widget/shareqq/index.html?site=LittlePig.CN&title=LittlePig.CN&summary=记录 / 回忆 / 分享&pics=http://littlepig.cn/img/suka-favicon.ico&url=http://littlepig.cn/posts/2016/10/13/install-shadowsocks-and-kcptun-on-sentris-vps/" target="_blank" rel="external noopener noreferrer nofollow"> 分享到 QQ</a>
-    </li>
-    
-
-    <!-- Share Telegram -->
-    
-    <li class="menu-item">
-        <a href="https://t.me/share/url?url=http://littlepig.cn/posts/2016/10/13/install-shadowsocks-and-kcptun-on-sentris-vps/&text=LittlePig.CN" target="_blank" rel="external noopener noreferrer nofollow">分享到 Telegram</a>
-    </li>
-    
-
-    <!-- QRCode -->
-    
-    <li class="menu-item">
-        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKQAAACkCAAAAAA83tqdAAACM0lEQVR42u2by44CMQwE5/9/mr2yUuIuB9Cy48qFhyCpoHim3TbX4x+MS0ghhRTyCyCvYvz6wtPrC4znz63mIesKORdyeWiL91cw28NfbCCtK+RsyN0ku4NeLbAMgsXral0hhUyQu4Uq8DSXkEKeQm4FQAFB4IQU8kRgVKJgO/lC+H5UBQl5O8iUTH3q8W3ZopC3goymUTALdsKiEhxvd9WEvBUkERJVctUVEMk0EFLInSCoDnv1WbIJkuQJORfyJHmqvkcKAclsEFJImuAT0ZAMLGpyCSlkKmKmC35HBCdjTMjZkLRohA56EAxkQzhbFPK2kOnGvwuiZLRWhmvanJBCJkGbDHvSTFIZB20VJOQISGL0p4A6MbFKYCHHQ6bDTppIWgIi3QCEHA2JEqPQfNy5AVQJn5BCkgJlx5x/xdgSUsiOQfCKgdAJGCFnQ54W2TuFJGKgokYRIUdApgsyFbipqYkETWnsCzkGshKslSBIF22aqJXCWsiRkNTcPLko0wQMd1gJOQKSBMOpQE5Fg/ijCDkWsjr0ZHLSJFf+EYMIDCFHQtLiPBEinWLq9ocRcjQkXawqYtJ5iOAQci4kFQ+0OJVEcatRWciRkEQAdIrz6SaQAjB2/Qk5ApI0cZAmj5T8tzck5GhIOnlKvGhTyZEKElLIB2u4Owme9FxIIYnhnhrskrAlDVJCCpkERAoOUlyqCvDtrj8hR0CShjdSAE3F+k5hVMi5kN88hBRSSCH/cPwAKJE2JCty8AsAAAAASUVORK5CYII=" alt="QRCode">
-    </li>
-    
-
-</ul>
-</div>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
         
     </div>
-</div>
-                </div>
-                <div class="card-body">
-                    
-                        
-                        
-                            <div id="post-toc"><ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#%E5%89%8D%E8%A8%80"><span class="post-toc-number">1.</span> <span class="post-toc-text">前言</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#%E6%AD%A3%E6%96%87"><span class="post-toc-number">2.</span> <span class="post-toc-text">正文</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E5%B8%A6%E6%9C%89%E6%8E%A8%E8%8D%90%E7%9A%84%E8%B4%AD%E4%B9%B0%E9%93%BE%E6%8E%A5"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">带有推荐的购买链接</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E7%99%BB%E5%BD%95%E7%B3%BB%E7%BB%9F"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">登录系统</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E5%AE%89%E8%A3%85-shadowsocks"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">安装 shadowsocks</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#shadowsocks-%E7%9A%84%E6%8E%A7%E5%88%B6"><span class="post-toc-number">2.4.</span> <span class="post-toc-text">shadowsocks 的控制</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#iptables-%E8%AE%BE%E5%AE%9A"><span class="post-toc-number">2.5.</span> <span class="post-toc-text">iptables 设定</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E9%99%84-shadowsocks-%E5%AE%A2%E6%88%B7%E7%AB%AF%E4%B8%8B%E8%BD%BD%E9%93%BE%E6%8E%A5"><span class="post-toc-number">2.6.</span> <span class="post-toc-text">附 shadowsocks 客户端下载链接</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E5%AE%9E%E9%99%85%E4%BD%BF%E7%94%A8%E6%95%88%E6%9E%9C"><span class="post-toc-number">2.7.</span> <span class="post-toc-text">实际使用效果</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E4%BD%BF%E7%94%A8-Kcptun-%E5%8A%A0%E9%80%9F%E8%AE%BF%E9%97%AE"><span class="post-toc-number">2.8.</span> <span class="post-toc-text">使用 Kcptun 加速访问</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Kcptun-%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF%E5%AE%89%E8%A3%85"><span class="post-toc-number">2.8.1.</span> <span class="post-toc-text">Kcptun 服务器端安装</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#%E5%88%B0%E7%BD%91%E7%AB%99%E6%9F%A5%E7%9C%8B%E6%9C%80%E6%96%B0%E7%89%88%E6%9C%AC"><span class="post-toc-number">2.8.1.1.</span> <span class="post-toc-text">到网站查看最新版本</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#%E4%B8%8B%E8%BD%BD%E5%B9%B6%E8%A7%A3%E5%8E%8B"><span class="post-toc-number">2.8.1.2.</span> <span class="post-toc-text">下载并解压</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Kcptun-%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%AE%89%E8%A3%85"><span class="post-toc-number">2.8.2.</span> <span class="post-toc-text">Kcptun 客户端安装</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#%E5%AE%89%E8%A3%85-homebrew"><span class="post-toc-number">2.8.2.1.</span> <span class="post-toc-text">安装 homebrew</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#%E5%AE%89%E8%A3%85-wget"><span class="post-toc-number">2.8.2.2.</span> <span class="post-toc-text">安装 wget</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#%E4%B8%8B%E8%BD%BD%E8%A7%A3%E5%8E%8B%E4%B8%BA-macOS-%E5%87%86%E5%A4%87%E7%9A%84%E5%8C%85"><span class="post-toc-number">2.8.2.3.</span> <span class="post-toc-text">下载解压为 macOS 准备的包</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#%E5%88%9B%E5%BB%BA%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="post-toc-number">2.8.2.4.</span> <span class="post-toc-text">创建配置文件</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#%E5%88%9B%E5%BB%BA%E5%90%AF%E5%8A%A8%E5%92%8C%E5%85%B3%E9%97%AD%E8%84%9A%E6%9C%AC"><span class="post-toc-number">2.8.2.5.</span> <span class="post-toc-text">创建启动和关闭脚本</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#%E6%B7%BB%E5%8A%A0-shadowsocks-%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="post-toc-number">2.8.2.6.</span> <span class="post-toc-text">添加 shadowsocks 服务器</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E6%8F%90%E7%A4%BA"><span class="post-toc-number">2.9.</span> <span class="post-toc-text">提示</span></a></li></ol></li></ol></div>
-                        
-                    
-                    <article id="post-content">
-                        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>有些场景需要临时且换下搜索引擎，以前一直使用 githubstudent developer pack 提供的优惠在 digitalocean 上搭建 shadowsocks，不过还没到期，digitalocean 提前把优惠结束了，可能受不了来自伟大祖国的压力了吧。修改 hosts 可行但又担心安全性，于是想找个便宜的 VPS，看到有人推荐 sentris，几美元就可以用三年，褒贬不一，由于本身需求不大，仅仅用下搜索引擎而已，且又如此便宜，便尝试了下，结果完全满足需求。</p>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">sentris VPS 搭建记录</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2016-10-13T08:29:50.000Z" itemprop="datePublished" class="page-time">
+  2016-10-13
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#前言"><span class="post-toc-number">1.</span> <span class="post-toc-text">前言</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#正文"><span class="post-toc-number">2.</span> <span class="post-toc-text">正文</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#带有推荐的购买链接"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">带有推荐的购买链接</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#登录系统"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">登录系统</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#安装-shadowsocks"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">安装 shadowsocks</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#shadowsocks-的控制"><span class="post-toc-number">2.4.</span> <span class="post-toc-text">shadowsocks 的控制</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#iptables-设定"><span class="post-toc-number">2.5.</span> <span class="post-toc-text">iptables 设定</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#附-shadowsocks-客户端下载链接"><span class="post-toc-number">2.6.</span> <span class="post-toc-text">附 shadowsocks 客户端下载链接</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#实际使用效果"><span class="post-toc-number">2.7.</span> <span class="post-toc-text">实际使用效果</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#使用-Kcptun-加速访问"><span class="post-toc-number">2.8.</span> <span class="post-toc-text">使用 Kcptun 加速访问</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Kcptun-服务器端安装"><span class="post-toc-number">2.8.1.</span> <span class="post-toc-text">Kcptun 服务器端安装</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#到网站查看最新版本"><span class="post-toc-number">2.8.1.1.</span> <span class="post-toc-text">到网站查看最新版本</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#下载并解压"><span class="post-toc-number">2.8.1.2.</span> <span class="post-toc-text">下载并解压</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Kcptun-客户端安装"><span class="post-toc-number">2.8.2.</span> <span class="post-toc-text">Kcptun 客户端安装</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#安装-homebrew"><span class="post-toc-number">2.8.2.1.</span> <span class="post-toc-text">安装 homebrew</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#安装-wget"><span class="post-toc-number">2.8.2.2.</span> <span class="post-toc-text">安装 wget</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#下载解压为-macOS-准备的包"><span class="post-toc-number">2.8.2.3.</span> <span class="post-toc-text">下载解压为 macOS 准备的包</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#创建配置文件"><span class="post-toc-number">2.8.2.4.</span> <span class="post-toc-text">创建配置文件</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#创建启动和关闭脚本"><span class="post-toc-number">2.8.2.5.</span> <span class="post-toc-text">创建启动和关闭脚本</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#添加-shadowsocks-服务器"><span class="post-toc-number">2.8.2.6.</span> <span class="post-toc-text">添加 shadowsocks 服务器</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#提示"><span class="post-toc-number">2.9.</span> <span class="post-toc-text">提示</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-install-shadowsocks-and-kcptun-on-sentris-vps"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">sentris VPS 搭建记录</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2016-10-13 16:29:50" datetime="2016-10-13T08:29:50.000Z"  itemprop="datePublished">2016-10-13</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>有些场景需要临时且换下搜索引擎，以前一直使用 githubstudent developer pack 提供的优惠在 digitalocean 上搭建 shadowsocks，不过还没到期，digitalocean 提前把优惠结束了，可能受不了来自伟大祖国的压力了吧。修改 hosts 可行但又担心安全性，于是想找个便宜的 VPS，看到有人推荐 sentris，几美元就可以用三年，褒贬不一，由于本身需求不大，仅仅用下搜索引擎而已，且又如此便宜，便尝试了下，结果完全满足需求。</p>
 <a id="more"></a>
 
-<h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><h2 id="带有推荐的购买链接"><a href="#带有推荐的购买链接" class="headerlink" title="带有推荐的购买链接"></a>带有推荐的购买链接</h2><p><a target="_blank" rel="noopener" href="http://www.sentris.net/billing/aff.php?aff=396&pid=815">http://www.sentris.net/billing/aff.php?aff=396&amp;pid=815</a></p>
+<h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><h2 id="带有推荐的购买链接"><a href="#带有推荐的购买链接" class="headerlink" title="带有推荐的购买链接"></a>带有推荐的购买链接</h2><p><a href="http://www.sentris.net/billing/aff.php?aff=396&pid=815" target="_blank" rel="noopener">http://www.sentris.net/billing/aff.php?aff=396&amp;pid=815</a></p>
 <p>经过我的实验，如下参数搭建 shadowsocks 没有问题，没找到可用的优惠吗，总计 5.49 美元</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">CPUs: 1</span><br><span class="line">Disk Size: 5</span><br><span class="line">Swap Size: 0</span><br><span class="line">Memory Size: 64 (need 128 or more for yum or apt-get)</span><br><span class="line">OS Template: Debian 7.0 32-bit Minimal</span><br><span class="line">Bandwidth in MB: 250000</span><br><span class="line">No Refund&#x2F;Changes: Agree</span><br><span class="line">No Spamming&#x2F;Abuse: Agree</span><br><span class="line">Login Info: After payment I will find my IP and Password in welcome email or by login to our Client Area-Services-View Details on the product I ordered</span><br><span class="line">Upgrades: I selected correct options and I understand of the different pricing for upgrades via Addons and no changes can be made after order</span><br><span class="line">No Free Reinstall: I agree to pay $2 one time fee per reinstall via Addons</span><br><span class="line">No Backups: I know there is no backup options on this plan</span><br><span class="line">No IP Changes: I will never ask to change IP assigned to me and I will not ask for refund $5.49 USD</span><br><span class="line">------------------------------------------------------</span><br><span class="line">Sub Total: $5.49 USD</span><br><span class="line">Credit: $0.00 USD</span><br><span class="line">Total: $5.49 USD</span><br></pre></td></tr></table></figure>
 <p>在 add to cart 后的结算页面可以直接输入账户参数，点击 proceed 直接建立账户并启动付款，当然，也可以提前 sign up 一个新账户。<br>为了安全性，建议使用 paypal 绑定一个限额的信用卡来付款。</p>
@@ -461,7 +216,7 @@
 <p>赋予可执行权限，这样 iptables 开机就会应用设定的规则了。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod +x &#x2F;etc&#x2F;network&#x2F;if-pre-up.d&#x2F;iptables</span><br></pre></td></tr></table></figure>
 <h2 id="附-shadowsocks-客户端下载链接"><a href="#附-shadowsocks-客户端下载链接" class="headerlink" title="附 shadowsocks 客户端下载链接"></a>附 shadowsocks 客户端下载链接</h2><p>安装后按照上边记录的参数添加服务器，更新 PAC 规则，然后使用该服务器即可。</p>
-<p>MAC: <a target="_blank" rel="noopener" href="https://github.com/shadowsocks/shadowsocks-iOS/releases">https://github.com/shadowsocks/shadowsocks-iOS/releases</a><br>WIN: <a target="_blank" rel="noopener" href="https://github.com/shadowsocks/shadowsocks-windows/releases">https://github.com/shadowsocks/shadowsocks-windows/releases</a></p>
+<p>MAC: <a href="https://github.com/shadowsocks/shadowsocks-iOS/releases" target="_blank" rel="noopener">https://github.com/shadowsocks/shadowsocks-iOS/releases</a><br>WIN: <a href="https://github.com/shadowsocks/shadowsocks-windows/releases" target="_blank" rel="noopener">https://github.com/shadowsocks/shadowsocks-windows/releases</a></p>
 <h2 id="实际使用效果"><a href="#实际使用效果" class="headerlink" title="实际使用效果"></a>实际使用效果</h2><p>北方联通，搜索点东西完全没有问题，youtube 看个视频缓冲会儿也没啥问题，不像有些人说的完全不可用，不过还得看用一段时间看看稳定性如何。</p>
 <h2 id="使用-Kcptun-加速访问"><a href="#使用-Kcptun-加速访问" class="headerlink" title="使用 Kcptun 加速访问"></a>使用 Kcptun 加速访问</h2><p>如果觉得网速较慢，则可以尝试安装加速软件提速，只在服务器端安装的加速软件例如锐速等并不适用于基于 openvz 架构的 vps ，双侧的即服务器端客户端都需要安装软件的，可以试试 kcptun，经过我在 64M 的 VPS 测试安装之后的结果来看，看 720p 是妥妥的，出乎意料。</p>
 <h3 id="Kcptun-服务器端安装"><a href="#Kcptun-服务器端安装" class="headerlink" title="Kcptun 服务器端安装"></a>Kcptun 服务器端安装</h3><h4 id="到网站查看最新版本"><a href="#到网站查看最新版本" class="headerlink" title="到网站查看最新版本"></a>到网站查看最新版本</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https:&#x2F;&#x2F;github.com&#x2F;xtaci&#x2F;kcptun&#x2F;releases</span><br></pre></td></tr></table></figure>
@@ -491,7 +246,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sh &#x2F;root&#x2F;kcptun&#x2F;start.sh</span><br></pre></td></tr></table></figure>
 <p>好了，到此为止，服务器端搞定，执行 <code>./start.sh</code> 启动吧。</p>
 <h3 id="Kcptun-客户端安装"><a href="#Kcptun-客户端安装" class="headerlink" title="Kcptun 客户端安装"></a>Kcptun 客户端安装</h3><p>客户端其实刚才下载解压的文件中，以 client 开始的就是，不过我们大部分是在 Windows 或者 macOS 里安装，所以还得下载一下相应的版本</p>
-<p>Windows 下有直接的图形化客户端可用，参见 <a target="_blank" rel="noopener" href="https://git.oschina.net/ragnaroks/KcptunGUI/releases">https://git.oschina.net/ragnaroks/KcptunGUI/releases</a> 这里重点说下 macOS 下的安装。</p>
+<p>Windows 下有直接的图形化客户端可用，参见 <a href="https://git.oschina.net/ragnaroks/KcptunGUI/releases" target="_blank" rel="noopener">https://git.oschina.net/ragnaroks/KcptunGUI/releases</a> 这里重点说下 macOS 下的安装。</p>
 <h4 id="安装-homebrew"><a href="#安装-homebrew" class="headerlink" title="安装 homebrew"></a>安装 homebrew</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;usr&#x2F;bin&#x2F;ruby -e &quot;$(curl -fsSL https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;Homebrew&#x2F;install&#x2F;master&#x2F;install)&quot;</span><br></pre></td></tr></table></figure>
 <h4 id="安装-wget"><a href="#安装-wget" class="headerlink" title="安装 wget"></a>安装 wget</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install wget</span><br></pre></td></tr></table></figure>
 <h4 id="下载解压为-macOS-准备的包"><a href="#下载解压为-macOS-准备的包" class="headerlink" title="下载解压为 macOS 准备的包"></a>下载解压为 macOS 准备的包</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wget https:&#x2F;&#x2F;github.com&#x2F;xtaci&#x2F;kcptun&#x2F;releases&#x2F;download&#x2F;v20161009&#x2F;kcptun-darwin-amd64-20161009.tar.gz</span><br><span class="line">tar zxvf kcptun-darwin-amd64-20161009.tar.gz</span><br></pre></td></tr></table></figure>
@@ -505,150 +260,312 @@
 <h4 id="添加-shadowsocks-服务器"><a href="#添加-shadowsocks-服务器" class="headerlink" title="添加 shadowsocks 服务器"></a>添加 shadowsocks 服务器</h4><p>新创建一个 shadowsocks server ，然后<strong>除去端口填写本地 kcptun 的服务端口之外，其他信息诸如密码、加密方式等，都填写 shadowsock server 的</strong>。然后切换到该服务器尝试下是否成功。</p>
 <h2 id="提示"><a href="#提示" class="headerlink" title="提示"></a>提示</h2><p>请遵守国家法规</p>
 
-                    </article>
-                    
+        </div>
 
-
-    <blockquote id="date-expire-notification" class="post-expired-notify">本文最后更新于 <span id="date-expire-num"></span> 天前，文中所描述的信息可能已发生改变</blockquote>
-    <script>
-    (function() {
-        var dateUpdate = Date.parse("2017-05-10");
-        var nowDate = new Date();
-        var a = nowDate.getTime();
-        var b = a - dateUpdate;
-        var daysUpdateExpire = Math.floor(b/(24*3600*1000));
-        if (daysUpdateExpire >= 120) {
-            document.getElementById('date-expire-num').innerHTML = daysUpdateExpire;
-        } else {
-            document.getElementById('date-expire-notification').style.display = 'none';
-        }
-    })();
-    </script>
-
-
-<p class="post-footer-info mb-0 pt-0">本文发表于&nbsp;<time datetime="2016-10-13T08:29:50.000Z" itemprop="datePublished">2016-10-13</time>
-
-    , 最后修改于&nbsp;<time datetime="2017-05-10T05:28:01.000Z" itemprop="dateModified">2017-05-10</time>
-
-</p>
-<p class="post-footer-info mb-0 pt-2">
-
-
-
-<span class="post-tags-list mt-2">
-
-<a class="post-tags-list-item" href="../../../../../tags/VPS/" rel="tag">#&nbsp;VPS</a>
-
-<a class="post-tags-list-item" href="../../../../../tags/sentris/" rel="tag">#&nbsp;sentris</a>
-
-<a class="post-tags-list-item" href="../../../../../tags/kcptun/" rel="tag">#&nbsp;kcptun</a>
-
-<a class="post-tags-list-item" href="../../../../../tags/shadowsocks/" rel="tag">#&nbsp;shadowsocks</a>
-
-</span>
-
-
-</p>
-
-                </div>
-                <div class="post-nav px-2 bg-gray">
-<ul class="pagination">
-    <!-- Prev Nav -->
+        <blockquote class="post-copyright">
     
-        <li class="page-item page-prev">
-            <a href="../../../11/04/update-macos-with-data/" rel="prev">
-                <div class="page-item-title"><i class="icon icon-back" aria-hidden="true"></i></div>
-                <div class="page-item-subtitle">利用重新安装或者升级 macOS 解决系统无法启动问题</div>
-            </a>
-        </li>
-    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-05-10T05:28:01.000Z" itemprop="dateUpdated">2017-05-10 13:28:01</time>
+</span><br>
 
-    <!-- Next Nav -->
+
+        
+        本文地址：<a href="" target="_blank" rel="external">http://littlepig.cn/posts/2016/10/13/install-shadowsocks-and-kcptun-on-sentris-vps/</a>
+        
+    </div>
     
-        <li class="page-item page-next">
-            <a href="../../../09/29/it-s-a-game/" rel="next">
-                <div class="page-item-title"><i class="icon icon-forward" aria-hidden="true"></i></div>
-                <div class="page-item-subtitle">Hexo 搭建完毕</div>
-            </a>
-        </li>
-    
-</ul>
+    <footer>
+        <a href="http://littlepig.cn">
+            <img src="../../../../../img/avatar.jpg" alt="ZHZ">
+            ZHZ
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赞</a>
 </div>
 
-                
-                    <!-- # Comment # -->
-                    
-                
-            </div>
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../../tags/VPS/" rel="tag">VPS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../../tags/kcptun/" rel="tag">kcptun</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../../tags/sentris/" rel="tag">sentris</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../../tags/shadowsocks/" rel="tag">shadowsocks</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://littlepig.cn/posts/2016/10/13/install-shadowsocks-and-kcptun-on-sentris-vps/&title=《sentris VPS 搭建记录》 — LittlePig.CN&pic=http://littlepig.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://littlepig.cn/posts/2016/10/13/install-shadowsocks-and-kcptun-on-sentris-vps/&title=《sentris VPS 搭建记录》 — LittlePig.CN&source=前言有些场景需要临时且换下搜索引擎，以前一直使用 githubstudent developer pack 提供的优惠在 digitalocean 上搭建..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://littlepig.cn/posts/2016/10/13/install-shadowsocks-and-kcptun-on-sentris-vps/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《sentris VPS 搭建记录》 — LittlePig.CN&url=http://littlepig.cn/posts/2016/10/13/install-shadowsocks-and-kcptun-on-sentris-vps/&via=http://littlepig.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://littlepig.cn/posts/2016/10/13/install-shadowsocks-and-kcptun-on-sentris-vps/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
         </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="../../../11/04/update-macos-with-data/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">利用重新安装或者升级 macOS 解决系统无法启动问题</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="../../../09/29/it-s-a-game/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Hexo 搭建完毕</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="../../../../../img/wechat.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="../../../../../img/wechat.png" data-alipay="../../../../../img/alipay.png">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
     </div>
 </div>
 
-            <!-- ### Footer ### -->
-            <footer class="text-center">
-    <!-- footer copyright -->
-    
-        <p class="footer-copyright mb-0">Copyright&nbsp;©&nbsp;<span id="copyright-year"></span>
-            <a class="footer-copyright-a" href="http://littlepig.cn">LittlePig.CN</a>
-        </p>
 
-    <!-- footer custom text -->
-    <p class="footer-text mb-0">
-    
-    </p>
-    <!-- footer develop info -->
-    <p class="footer-develop mb-0">
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
         
-    <!-- Busuanzi User Views -->
-    <span id="busuanzi_container_site_uv" hidden>
-        <span></span>
-        <span id="busuanzi_value_site_uv"></span>
-        <span>Viewers</span>
-        
-            <span>|</span>
-        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
     </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
 
 
-
-
-        
-        Powered by&nbsp;<!--
-         --><a href="https://hexo.io" target="_blank" class="footer-develop-a" rel="external nofollow noopener noreferrer">Hexo</a><span class="footer-develop-divider"></span>Theme&nbsp;-&nbsp;<!--
-         --><a href="https://github.com/SukkaW/hexo-theme-suka" target="_blank" class="footer-develop-a" rel="external noopener">Suka</a>
-    </p>
+        <p>
+            
+                <span><a href="../../../../../atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>ZHZ &copy; 2003 - 2021</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
 </footer>
 
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
 
-        <!-- ### Import File ### -->
-        <!-- ### Footer JS Import ### -->
 
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://littlepig.cn/posts/2016/10/13/install-shadowsocks-and-kcptun-on-sentris-vps/&title=《sentris VPS 搭建记录》 — LittlePig.CN&pic=http://littlepig.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://littlepig.cn/posts/2016/10/13/install-shadowsocks-and-kcptun-on-sentris-vps/&title=《sentris VPS 搭建记录》 — LittlePig.CN&source=前言有些场景需要临时且换下搜索引擎，以前一直使用 githubstudent developer pack 提供的优惠在 digitalocean 上搭建..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://littlepig.cn/posts/2016/10/13/install-shadowsocks-and-kcptun-on-sentris-vps/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《sentris VPS 搭建记录》 — LittlePig.CN&url=http://littlepig.cn/posts/2016/10/13/install-shadowsocks-and-kcptun-on-sentris-vps/&via=http://littlepig.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://littlepig.cn/posts/2016/10/13/install-shadowsocks-and-kcptun-on-sentris-vps/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACrElEQVR42u3aS27DMAwFQN//0u0BgrjvkVabAqNV4fqj0UJiSF5XPL5exuv1azRen73/1nVi4OHh4a2nfs94d8/91L+CkS9E8R48PDy8Y7zkdckGnS/W/bP315M54+Hh4X0aL5lEjm+/iIeHh/e/eMnU8+nOSHh4eHifwGuD4GS67aHyx7kWPDw8vHm+9MoPib/6+0h9Dw8PD29dVU823DY4ThIZbfnt7bN4eHh4B3izRENevnoqudC2F+Dh4eGd4yVJgXybzt8wW476Hjw8PLwDvGfLUXmJ6/56caYlz+Lh4eEd480K/LNUQtuMNWvhwsPDw/sdXlIAS/7bBsTtpl8UxvDw8PAe5SUFpP0GnQfQOTiaPx4eHt4BXvuDPzkqkuA7D9/zBYoCcTw8PLyHeG1CNl+CWaKhbTKocy14eHh4D/Hy5GmbkmgPhjabMmwdwMPDw3uI127T7aSTEDwZyXfx8PDwTvPy7XiY53goQK8LeHh4eHjHeO0GPWsR2BTP8jfg4eHhnePNgtfk1fuGg9lhUHRG4OHh4Y14eQp1Vo7aNCjk9xTHAx4eHt6a1wa+m0RtvohtuevtdTw8PLwDvDzBmicF2nB5UzArDiQ8PDy8h3izQHmTzN2nMPLZ4uHh4Z3gzbb12RGyD9bz9i88PDy807x8y559Mjk88iOh/S4eHh7eaV5bptonMtqDp25cwMPDwzvG20wlSSXs2cNmLDw8PLxHeZu0Qk7Np96mkn84zPDw8PAO8GY//vPiU7Io+RLMSmV4eHh4J3ht+Wp2/6wVYLNAeHh4eKd5m0+2ha6kkLY5wPDw8PA+k7cvm80WNL+Ch4eH9zm8Nn2wSc7moTweHh7e7/NmIW/bLpA/1V5/i8TDw8M7wJv9yG/xSQtCWwZ7uL6Hh4eH9/P4Bg7UAyfanB/wAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
 <script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
 
-    
-window.lazyLoadOptions = {
-    elements_selector: ".lazyload",
-    threshold: 50
-};
-document.getElementById('copyright-year').textContent = new Date().getFullYear();
-console.log('\n %c Suka Theme (hexo-theme-suka) | © SukkaW | Verision 1.3.3 %c https://github.com/SukkaW/hexo-theme-suka \n', 'color: #fff; background: #444; padding:5px 0;', 'background: #bbb; padding:5px 0;');
+
+lazyScripts.push('//s95.cnzz.com/z_stat.php?id=1235250&web_id=1235250')
 
 </script>
 
-<script src="lib/vanilla-lazyload/lazyload.min.js" async></script>
-    <script src="https://cdn.jsdelivr.net/npm/busuanzi@2.3.0/bsz.pure.mini.js" async></script>
+<script src="../../../../../js/main.min.js?v=1.7.2"></script>
 
 
-<!-- Offset -->
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="../../../../../js/search.min.js?v=1.7.2" async></script>
+
+
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
 
 
 
 
-<!-- Comment -->
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 
-<!-- ### Custom Footer ### -->
 
-    </body>
 
+
+</body>
 </html>

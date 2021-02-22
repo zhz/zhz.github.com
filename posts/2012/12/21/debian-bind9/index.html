@@ -1,436 +1,191 @@
 <!DOCTYPE html>
+<html>
+<head>
+    
 
-<html lang="zh-CN">
-    <head>
+    
+
+    
+
+
+
     <meta charset="utf-8">
-    <!--
-        hexo-theme-suka © SukkaW
-        GitHub: https://github.com/SukkaW/hexo-theme-suka
-    -->
-
-    <!-- ### Resource Hint ### -->
-
-    <!-- ## DNS Prefetch ## -->
-    <meta http-equiv="x-dns-prefetch-control" content="on">
-
-<!-- busuanzi -->
-
-    <link rel="dns-prefetch" href="//busuanzi.ibruce.info">
-
-
-<!-- comment -->
-
-
-
-
-
-
-
-<!-- analytics -->
-
-
-
-
-
-
-
-    <!-- ## Preload ## -->
     
-    <!-- Busuanzi -->
     
-    <link rel="preload" href="https://cdn.jsdelivr.net/npm/busuanzi@2.3.0/bsz.pure.mini.js" as="script">
+    
+    
+    <title>Debian 下 Bind9 的基本配置 | LittlePig.CN | someone&#39;s Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="debian,bind9,DNS,domain">
+    <meta name="description" content="有时候给内网配置个DNS很方便，至少做起实验来可以随便搞域名不用担心冲突。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Debian 下 Bind9 的基本配置">
+<meta property="og:url" content="http://littlepig.cn/posts/2012/12/21/debian-bind9/index.html">
+<meta property="og:site_name" content="LittlePig.CN">
+<meta property="og:description" content="有时候给内网配置个DNS很方便，至少做起实验来可以随便搞域名不用担心冲突。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2012-12-21T01:52:28.000Z">
+<meta property="article:modified_time" content="2019-08-07T09:51:01.000Z">
+<meta property="article:author" content="ZHZ">
+<meta property="article:tag" content="debian">
+<meta property="article:tag" content="bind9">
+<meta property="article:tag" content="DNS">
+<meta property="article:tag" content="domain">
+<meta name="twitter:card" content="summary">
+    
+        <link rel="alternate" type="application/atom+xml" title="LittlePig.CN" href="../../../../../atom.xml">
+    
+    <link rel="shortcut icon" href="../../../../../favicon.ico">
+    <link rel="stylesheet" href="../../../../../css/style.css?v=1.7.2">
+    <script>window.lazyScripts=[]</script>
 
-
-
-
-
-
-
-    <!-- ### Meta & Title & Info ### -->
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, maximum-scale=5, viewport-fit=cover">
-    <meta name="renderer" content="webkit">
-
-    <!-- Title -->
-    <title>Debian 下 Bind9 的基本配置 | LittlePig.CN</title>
-
-    <!-- Favicons -->
-    <link rel="icon" type="image&#x2F;ico" href="/img/suka-favicon.ico">
-
-    <!-- ### Import File ### -->
-    <link rel="stylesheet" href="lib/spectre/spectre.min.css"><style>
-    body {
-        background-color: #f8f9fa;
-    }
-
-    a, a:visited {
-        color: #0070ff;
-    }
-
-    a:active, a:focus, a:hover {
-        color: #0070ff;
-        opacity: .75;
-    }
-
-    #post-content a,
-    #post-content a:hover,
-    #post-content a:focus,
-    #post-content a:visited {
-        color: #005eb9;
-        opacity: 1;
-    }
-
+    <!-- custom head -->
     
 
-    .post-entry .card-body a {
-        color: #0070ff;
-    }
+<meta name="generator" content="Hexo 4.2.1"></head>
 
-    .avatar {
-        background: #444;
-    }
+<body>
+    <div id="loading" class="active"></div>
 
-    .navbar-link,
-    .navbar-link:visited,
-    .timeline .timeline-item .timeline-icon.icon-lg {
-        color: #0070ff;
-    }
-
-    .navbar-link:hover {
-        color: #0070ff;
-        opacity: .8;
-    }
-
-    #search-input .btn,
-    #disqus_click_btn,
-    #disqus-switch-to-direct,
-    #disqus-loadmore-button {
-        background: #727e96;
-        border-color: #727e96;
-        color: #fff;
-    }
-
-    #post-toc a.post-toc-link,
-    #post-toc a.post-toc-link:visited,
-    .share-menu.menu .menu-item>a {
-        color: #727e96;
-    }
-
-    .share-menu.menu .menu-item>a:hover,
-    .share-menu.menu .menu-item>a:focus,
-    .share-menu.menu .menu-item>a:visited {
-        color: #50596c;
-        background: #f8f9fa;
-        opacity: .85;
-    }
-</style><link rel="stylesheet" href="css/style.min.css">
-
-
-
-
-
-
-
-
-    <!-- Prettify Theme -->
-    
-    <link rel="preload" href="../../../../../css/highlight/github.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="../../../../../css/highlight/github.min.css"></noscript>
-
-
-
-
-
-<script>
-/*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
-!function(t){"use strict";t.loadCSS||(t.loadCSS=function(){});var e=loadCSS.relpreload={};if(e.support=function(){var e;try{e=t.document.createElement("link").relList.supports("preload")}catch(t){e=!1}return function(){return e}}(),e.bindMediaToggle=function(t){var e=t.media||"all";function a(){t.addEventListener?t.removeEventListener("load",a):t.attachEvent&&t.detachEvent("onload",a),t.setAttribute("onload",null),t.media=e}t.addEventListener?t.addEventListener("load",a):t.attachEvent&&t.attachEvent("onload",a),setTimeout(function(){t.rel="stylesheet",t.media="only x"}),setTimeout(a,3e3)},e.poly=function(){if(!e.support())for(var a=t.document.getElementsByTagName("link"),n=0;n<a.length;n++){var o=a[n];"preload"!==o.rel||"style"!==o.getAttribute("as")||o.getAttribute("data-loadcss")||(o.setAttribute("data-loadcss",!0),e.bindMediaToggle(o))}},!e.support()){e.poly();var a=t.setInterval(e.poly,500);t.addEventListener?t.addEventListener("load",function(){e.poly(),t.clearInterval(a)}):t.attachEvent&&t.attachEvent("onload",function(){e.poly(),t.clearInterval(a)})}"undefined"!=typeof exports?exports.loadCSS=loadCSS:t.loadCSS=loadCSS}("undefined"!=typeof global?global:this);
-</script>
-
-    <!-- ### Site Verification ### -->
-    
-
-
-    <link rel="alternate" type="application/atom+xml" href="atom.xml"><meta name="mobile-web-app-capable" content="yes"><meta name="application-name" content="LittlePig.CN"><meta name="msapplication-starturl" content="http://littlepig.cn"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="LittlePig.CN"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-
-    <!-- ### The Open Graph & Twitter Card Protocol ### -->
-    <meta property="og:title" content="Debian 下 Bind9 的基本配置 | LittlePig.CN"><meta property="og:site_name" content="LittlePig.CN"><meta property="og:type" content="article"><meta property="og:url" content="http://littlepig.cn/posts/2012/12/21/debian-bind9/"><meta property="og:locale" content="zh-CN"><meta name="description" content="有时候给内网配置个DNS很方便，至少做起实验来可以随便搞域名不用担心冲突。 - ZHZ - LittlePig.CN"><meta name="keywords" content="debian, bind9, DNS, domain"><meta property="article:published_time" content="2012-12-21T01:52:28.000Z"><meta property="article:modified_time" content="2019-08-07T09:51:01.000Z"><meta property="og:updated_time" content="2019-08-07T09:51:01.000Z"><meta property="article:author" content="ZHZ"><meta property="article:tag" content="debian, bind9, DNS, domain"><meta name="twitter:card" content="summary">
-
-    
-
-    <!-- ### Canonical link ### -->
-    <link rel="canonical" href="http://littlepig.cn/posts/2012/12/21/debian-bind9/">
-
-    <meta name="generator" content="Hexo 5.3.0">
-
-    <!-- ### Analytics ### -->
-    
-
-
-
-
-
-
-
-    <!-- ### Structured Data ### -->
-    
-
-
-
-<script type="application/ld+json">
-{
-    "@context": "http://schema.org",
-    "url": "http://littlepig.cn/posts/2012/12/21/debian-bind9/",
-    "@type": "BlogPosting",
-    "logo": "http://littlepig.cn/img/suka-favicon.ico",
-    "mainEntityOfPage": {
-        "@type": "WebPage",
-        "@id": "http://littlepig.cn/posts/2012/12/21/debian-bind9/"
-    },
-    "headline": "Debian 下 Bind9 的基本配置 | LittlePig.CN",
-    
-    "image": {
-        "@type": "ImageObject",
-        "url": "http://littlepig.cn/img/suka-favicon.ico"
-    },
-    
-    "datePublished": "2012-12-21T01:52:28.000Z",
-    "dateModified": "2019-08-07T09:51:01.000Z",
-    "author": {
-        "@type": "Person",
-        "name": "ZHZ",
-        "image": {
-            "@type": "ImageObject",
-            "url": "http://littlepig.cn/img/default_avatar.png"
-        },
-        "description": "Hi, nice to meet you."
-    },
-    "publisher": {
-        "@type": "Organization",
-        "name": "LittlePig.CN",
-        "logo": {
-            "@type": "ImageObject",
-            "url": "http://littlepig.cn/img/suka-favicon.ico"
-        }
-    },
-    
-    "potentialAction": {
-        "@type": "SearchAction",
-        "target": "http://littlepig.cn/search?s={search_term_string}",
-        "query-input": "required name=search_term_string"
-    },
-    
-    "keywords": "debian, bind9, DNS, domain",
-    "description": "有时候给内网配置个DNS很方便，至少做起实验来可以随便搞域名不用担心冲突。 - ZHZ - LittlePig.CN"
-}
-</script>
-
-
-
-    <!-- ### Custom Head ### -->
-    
-</head>
-
-    <body>
-            
-
-            <!-- ### Main content ### -->
-            <!-- ## Header ##-->
-<header>
-    <h1 class="header-title text-center"><a href="/">LittlePig.CN</a></h1>
-
-    <p class="text-center header-slogan">
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(../../../../../img/brand.jpg)">
+      <div class="brand">
+        <a href="../../../../../index.html" class="avatar waves-effect waves-circle waves-light">
+          <img src="../../../../../img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">ZHZ</h5>
+          <a href="mailto:zhz@hebut.edu.cn" title="zhz@hebut.edu.cn" class="mail">zhz@hebut.edu.cn</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
         
-            
-                Hi, nice to meet you.
-            
+            <li class="waves-block waves-effect">
+              <a href="../../../../../index.html"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
         
-    </p>
+            <li class="waves-block waves-effect">
+              <a href="../../../../../archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="../../../../../tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="../../../../../categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="../../../../../about"  >
+                <i class="icon icon-lg icon-link"></i>
+                关于
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
 
-    <nav class="navbar-section text-center">
-    
-        <a href="../../../../../index.html" class="navbar-link">首页</a>
-    
-    
-        <a href="../../../../../archives/" class="navbar-link">归档</a>
-    
-    
-        <a href="/search" class="navbar-link">搜索</a>
-    
-    
-    
-        <div class="dropdown dropdown-right">
-    <a class="navbar-link dropdown-toggle" tabindex="0">分享</a>
-    <ul class="menu share-menu">
-
-        <!-- Share Weibo -->
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Debian 下 Bind9 的基本配置</div>
         
-        <li class="menu-item">
-            <a href="http://service.weibo.com/share/share.php?appkey=&title=LittlePig.CN&url=http://littlepig.cn&pic=http://littlepig.cn/img/suka-favicon.ico&searchPic=false&style=simple" target="_blank" rel="external noopener noreferrer nofollow">分享到微博</a>
-        </li>
-        
-
-        <!-- Share Twitter -->
-        
-        <li class="menu-item">
-            <a href="https://twitter.com/intent/tweet?text=LittlePig.CN&url=http://littlepig.cn&via=ZHZ" target="_blank" rel="external noopener noreferrer nofollow">分享到 Twitter</a>
-        </li>
-        
-
-        <!-- Share Facebook -->
-        
-        <li class="menu-item">
-            <a href="https://www.facebook.com/sharer/sharer.php?u=http://littlepig.cn" target="_blank" rel="external noopener noreferrer nofollow">分享到 Facebook</a>
-        </li>
-        
-
-        <!-- Share Google+ -->
-        
-        <li class="menu-item">
-            <a href="https://plus.google.com/share?url=http://littlepig.cn" target="_blank" rel="external noopener noreferrer nofollow">分享到 Google+</a>
-        </li>
-        
-
-        <!-- Share LinkedIn -->
-        
-        <li class="menu-item">
-            <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://littlepig.cn&title=Debian 下 Bind9 的基本配置" target="_blank" rel="external noopener noreferrer nofollow">分享到 LinkedIn</a>
-        </li>
-        
-
-        <!-- Share QQ -->
-        
-        <li class="menu-item">
-            <a href="http://connect.qq.com/widget/shareqq/index.html?site=LittlePig.CN&title=Debian 下 Bind9 的基本配置&summary=记录 / 回忆 / 分享&pics=http://littlepig.cn/img/suka-favicon.ico&url=http://littlepig.cn" target="_blank" rel="external noopener noreferrer nofollow"> 分享到 QQ</a>
-        </li>
-        
-
-        <!-- Share Telegram -->
-        
-        <li class="menu-item">
-            <a href="https://t.me/share/url?url=http://littlepig.cn&text=Debian 下 Bind9 的基本配置" target="_blank" rel="external noopener noreferrer nofollow">分享到 Telegram</a>
-        </li>
-        
-
-        <!-- QRCode -->
-        
-        <li class="menu-item">
-            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJQAAACUCAAAAABQV18IAAAB3ElEQVR42u3bQa7DMAhF0ex/0/9PKxUeDyuVArmZVJXS+qRCtgH3+nvgdYECBQpUgLrEFd3z+f70O9J7QK1BhUEXfKEaoAxiZxxQq1BRMEe47DW6Lxo8GwfUu1BRUGdBruCgQEUoFbwZDNQ7UdVk5wRtBPzJLgHU41FqQ3/n623ZDKhHo5wNfzrZGcH7k6oLqEejqs1clpyqyVMVRVQCC2ofyoGqIFZJabZolztPUCNRVbLpbNyqIq36EUDtQ6lgVUWw7LNVwLeTUVCjUO5C2pkQM2A1AYPagVIJqJrs3M2gs+CD2odqFyKMxrfz0F8PBGoVymlKq+Jst+Hd2uSBGoXqFPBVQ8kNcLnAg1qDUoOcNLOdxdkq7oMaiXIHOL239RlQK1DOwlw1rjsFNtlAALUG5R6MqJLRKuFsVV1AjUU5mza3iO80oeQ9oFahnADtFM0shFvgADUa5U6Q7p8xqiZk6/QiqFEopxDbOfCusMcLMqgRKLcIW236nQameiBQe1Bug8g99NA9GG2fCgI1ClU1iVQAV4vtcaCDGo/qBK578KtakEG9G1VNnp2i2W2BDmosKpsIq8a4G+CgdqI6CYOTgDpJBai9qO6g7kTaORwNag/qSRcoUKBAfVz/UDQwj42YA4MAAAAASUVORK5CYII=" alr="QRCode">
-        </li>
-        
-
-    </ul>
-</div>
-    
-    
-</nav>
-</header>
-
-            
-    <!-- ## Post ## -->
-    <div class="post-container">
-    <div id="post-card" class="card">
-        
-        <div class="card-item-container">
-            <div class="card-inner-cell">
-                <!-- # Post Header Info # -->
-                <div class="card-header">
-                    
-    <h1 class="card-title h3 mb-2">Debian 下 Bind9 的基本配置</h1>
-
-
-
-
-<div class="post-header-info">
-    <p class="post-header-info-left text-gray">
-        <img class="author-thumb lazyload" data-src="../../../../../img/default_avatar.png" src="../../../../../img/suka-lazyload.gif" alt="ZHZ's Avatar">
-        <span>2012-12-21</span>
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
         
         
-            <!-- Busuanzi Post Views -->
-<span id="busuanzi_container_page_pv" hidden>
-    <span class="suka-devide-dot"></span>
-    <span></span>
-    <span id="busuanzi_value_page_pv"></span>
-    <span>Views</span>
-</span>
-        
-        
-    </p>
-    <div class="post-header-info-right">
-        
-            <div class="dropdown dropdown-right">
-<a class="dropdown-toggle" tabindex="0">分享本文</a>
-<ul class="menu share-menu">
-    <!-- Share Weibo -->
-    
-    <li class="menu-item">
-        <a href="http://service.weibo.com/share/share.php?appkey=&title=Debian 下 Bind9 的基本配置&url=http://littlepig.cn/posts/2012/12/21/debian-bind9/&pic=http://littlepig.cn/img/suka-favicon.ico&searchPic=false&style=simple" target="_blank" rel="external noopener noreferrer nofollow">分享到微博</a>
-    </li>
-    
-
-    <!-- Share Twitter -->
-    
-    <li class="menu-item">
-        <a href="https://twitter.com/intent/tweet?text=Debian 下 Bind9 的基本配置&url=http://littlepig.cn/posts/2012/12/21/debian-bind9/&via=ZHZ" target="_blank" rel="external noopener noreferrer nofollow">分享到 Twitter</a>
-    </li>
-    
-
-    <!-- Share Facebook -->
-    
-    <li class="menu-item">
-        <a href="https://www.facebook.com/sharer/sharer.php?u=http://littlepig.cn/posts/2012/12/21/debian-bind9/" target="_blank" rel="external noopener noreferrer nofollow">分享到 Facebook</a>
-    </li>
-    
-
-    <!-- Share Google+ -->
-    
-    <li class="menu-item">
-        <a href="https://plus.google.com/share?url=http://littlepig.cn/posts/2012/12/21/debian-bind9/" target="_blank" rel="external noopener noreferrer nofollow">分享到 Google+</a>
-    </li>
-    
-
-    <!-- Share LinkedIn -->
-    
-    <li class="menu-item">
-        <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://littlepig.cn/posts/2012/12/21/debian-bind9/&title=LittlePig.CN" target="_blank" rel="external noopener noreferrer nofollow">分享到 LinkedIn</a>
-    </li>
-    
-
-    <!-- Share QQ -->
-    
-    <li class="menu-item">
-        <a href="http://connect.qq.com/widget/shareqq/index.html?site=LittlePig.CN&title=LittlePig.CN&summary=记录 / 回忆 / 分享&pics=http://littlepig.cn/img/suka-favicon.ico&url=http://littlepig.cn/posts/2012/12/21/debian-bind9/" target="_blank" rel="external noopener noreferrer nofollow"> 分享到 QQ</a>
-    </li>
-    
-
-    <!-- Share Telegram -->
-    
-    <li class="menu-item">
-        <a href="https://t.me/share/url?url=http://littlepig.cn/posts/2012/12/21/debian-bind9/&text=LittlePig.CN" target="_blank" rel="external noopener noreferrer nofollow">分享到 Telegram</a>
-    </li>
-    
-
-    <!-- QRCode -->
-    
-    <li class="menu-item">
-        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJQAAACUCAAAAABQV18IAAAB3ElEQVR42u3bQa7DMAhF0ex/0/9PKxUeDyuVArmZVJXS+qRCtgH3+nvgdYECBQpUgLrEFd3z+f70O9J7QK1BhUEXfKEaoAxiZxxQq1BRMEe47DW6Lxo8GwfUu1BRUGdBruCgQEUoFbwZDNQ7UdVk5wRtBPzJLgHU41FqQ3/n623ZDKhHo5wNfzrZGcH7k6oLqEejqs1clpyqyVMVRVQCC2ofyoGqIFZJabZolztPUCNRVbLpbNyqIq36EUDtQ6lgVUWw7LNVwLeTUVCjUO5C2pkQM2A1AYPagVIJqJrs3M2gs+CD2odqFyKMxrfz0F8PBGoVymlKq+Jst+Hd2uSBGoXqFPBVQ8kNcLnAg1qDUoOcNLOdxdkq7oMaiXIHOL239RlQK1DOwlw1rjsFNtlAALUG5R6MqJLRKuFsVV1AjUU5mza3iO80oeQ9oFahnADtFM0shFvgADUa5U6Q7p8xqiZk6/QiqFEopxDbOfCusMcLMqgRKLcIW236nQameiBQe1Bug8g99NA9GG2fCgI1ClU1iVQAV4vtcaCDGo/qBK578KtakEG9G1VNnp2i2W2BDmosKpsIq8a4G+CgdqI6CYOTgDpJBai9qO6g7kTaORwNag/qSRcoUKBAfVz/UDQwj42YA4MAAAAASUVORK5CYII=" alt="QRCode">
-    </li>
-    
-
-</ul>
-</div>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
         
     </div>
-</div>
-                </div>
-                <div class="card-body">
-                    
-                        
-                        
-                            <div id="post-toc"><ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E5%AE%89%E8%A3%85"><span class="post-toc-number">1.</span> <span class="post-toc-text">安装</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E6%B7%BB%E5%8A%A0%E8%BD%AC%E5%8F%91DNS%E4%B8%BA%E4%BD%A0%E7%9A%84%E5%AE%9E%E9%99%85DNS"><span class="post-toc-number">2.</span> <span class="post-toc-text">添加转发DNS为你的实际DNS</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E6%B7%BB%E5%8A%A0%E9%85%8D%E7%BD%AE%E5%9F%9F"><span class="post-toc-number">3.</span> <span class="post-toc-text">添加配置域</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E6%9C%8D%E5%8A%A1%E7%9A%84%E5%90%AF%E5%8A%A8%E5%81%9C%E6%AD%A2%EF%BC%9A"><span class="post-toc-number">4.</span> <span class="post-toc-text">服务的启动停止：</span></a></li></ol></div>
-                        
-                    
-                    <article id="post-content">
-                        <p>有时候给内网配置个DNS很方便，至少做起实验来可以随便搞域名不用担心冲突。</p>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Debian 下 Bind9 的基本配置</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2012-12-21T01:52:28.000Z" itemprop="datePublished" class="page-time">
+  2012-12-21
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#安装"><span class="post-toc-number">1.</span> <span class="post-toc-text">安装</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#添加转发DNS为你的实际DNS"><span class="post-toc-number">2.</span> <span class="post-toc-text">添加转发DNS为你的实际DNS</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#添加配置域"><span class="post-toc-number">3.</span> <span class="post-toc-text">添加配置域</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#服务的启动停止："><span class="post-toc-number">4.</span> <span class="post-toc-text">服务的启动停止：</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-debian-bind9"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Debian 下 Bind9 的基本配置</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2012-12-21 09:52:28" datetime="2012-12-21T01:52:28.000Z"  itemprop="datePublished">2012-12-21</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>有时候给内网配置个DNS很方便，至少做起实验来可以随便搞域名不用担心冲突。</p>
 <a id="more"></a>
 
 <h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get install bind9</span><br></pre></td></tr></table></figure>
@@ -450,150 +205,312 @@
 <h2 id="服务的启动停止："><a href="#服务的启动停止：" class="headerlink" title="服务的启动停止："></a>服务的启动停止：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;etc&#x2F;init.d&#x2F;bind9 start|stop|restart</span><br></pre></td></tr></table></figure>
 
 
-                    </article>
-                    
+        </div>
 
-
-    <blockquote id="date-expire-notification" class="post-expired-notify">本文最后更新于 <span id="date-expire-num"></span> 天前，文中所描述的信息可能已发生改变</blockquote>
-    <script>
-    (function() {
-        var dateUpdate = Date.parse("2019-08-07");
-        var nowDate = new Date();
-        var a = nowDate.getTime();
-        var b = a - dateUpdate;
-        var daysUpdateExpire = Math.floor(b/(24*3600*1000));
-        if (daysUpdateExpire >= 120) {
-            document.getElementById('date-expire-num').innerHTML = daysUpdateExpire;
-        } else {
-            document.getElementById('date-expire-notification').style.display = 'none';
-        }
-    })();
-    </script>
-
-
-<p class="post-footer-info mb-0 pt-0">本文发表于&nbsp;<time datetime="2012-12-21T01:52:28.000Z" itemprop="datePublished">2012-12-21</time>
-
-    , 最后修改于&nbsp;<time datetime="2019-08-07T09:51:01.000Z" itemprop="dateModified">2019-08-07</time>
-
-</p>
-<p class="post-footer-info mb-0 pt-2">
-
-
-
-<span class="post-tags-list mt-2">
-
-<a class="post-tags-list-item" href="../../../../../tags/debian/" rel="tag">#&nbsp;debian</a>
-
-<a class="post-tags-list-item" href="../../../../../tags/bind9/" rel="tag">#&nbsp;bind9</a>
-
-<a class="post-tags-list-item" href="../../../../../tags/DNS/" rel="tag">#&nbsp;DNS</a>
-
-<a class="post-tags-list-item" href="../../../../../tags/domain/" rel="tag">#&nbsp;domain</a>
-
-</span>
-
-
-</p>
-
-                </div>
-                <div class="post-nav px-2 bg-gray">
-<ul class="pagination">
-    <!-- Prev Nav -->
+        <blockquote class="post-copyright">
     
-        <li class="page-item page-prev">
-            <a href="../debian-nginx-php-fpm/" rel="prev">
-                <div class="page-item-title"><i class="icon icon-back" aria-hidden="true"></i></div>
-                <div class="page-item-subtitle">Debian 下 nginx + php-fpm 的安装配置</div>
-            </a>
-        </li>
-    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2019-08-07T09:51:01.000Z" itemprop="dateUpdated">2019-08-07 17:51:01</time>
+</span><br>
 
-    <!-- Next Nav -->
+
+        
+        本文地址：<a href="" target="_blank" rel="external">http://littlepig.cn/posts/2012/12/21/debian-bind9/</a>
+        
+    </div>
     
-        <li class="page-item page-next">
-            <a href="../../19/htpasswd/" rel="next">
-                <div class="page-item-title"><i class="icon icon-forward" aria-hidden="true"></i></div>
-                <div class="page-item-subtitle">htpasswd 脚本</div>
-            </a>
-        </li>
-    
-</ul>
+    <footer>
+        <a href="http://littlepig.cn">
+            <img src="../../../../../img/avatar.jpg" alt="ZHZ">
+            ZHZ
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赞</a>
 </div>
 
-                
-                    <!-- # Comment # -->
-                    
-                
-            </div>
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../../tags/DNS/" rel="tag">DNS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../../tags/bind9/" rel="tag">bind9</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../../tags/debian/" rel="tag">debian</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../../tags/domain/" rel="tag">domain</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://littlepig.cn/posts/2012/12/21/debian-bind9/&title=《Debian 下 Bind9 的基本配置》 — LittlePig.CN&pic=http://littlepig.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://littlepig.cn/posts/2012/12/21/debian-bind9/&title=《Debian 下 Bind9 的基本配置》 — LittlePig.CN&source=有时候给内网配置个DNS很方便，至少做起实验来可以随便搞域名不用担心冲突。" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://littlepig.cn/posts/2012/12/21/debian-bind9/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Debian 下 Bind9 的基本配置》 — LittlePig.CN&url=http://littlepig.cn/posts/2012/12/21/debian-bind9/&via=http://littlepig.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://littlepig.cn/posts/2012/12/21/debian-bind9/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
         </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="../debian-nginx-php-fpm/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Debian 下 nginx + php-fpm 的安装配置</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="../../19/htpasswd/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">htpasswd 脚本</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="../../../../../img/wechat.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="../../../../../img/wechat.png" data-alipay="../../../../../img/alipay.png">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
     </div>
 </div>
 
-            <!-- ### Footer ### -->
-            <footer class="text-center">
-    <!-- footer copyright -->
-    
-        <p class="footer-copyright mb-0">Copyright&nbsp;©&nbsp;<span id="copyright-year"></span>
-            <a class="footer-copyright-a" href="http://littlepig.cn">LittlePig.CN</a>
-        </p>
 
-    <!-- footer custom text -->
-    <p class="footer-text mb-0">
-    
-    </p>
-    <!-- footer develop info -->
-    <p class="footer-develop mb-0">
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
         
-    <!-- Busuanzi User Views -->
-    <span id="busuanzi_container_site_uv" hidden>
-        <span></span>
-        <span id="busuanzi_value_site_uv"></span>
-        <span>Viewers</span>
-        
-            <span>|</span>
-        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
     </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
 
 
-
-
-        
-        Powered by&nbsp;<!--
-         --><a href="https://hexo.io" target="_blank" class="footer-develop-a" rel="external nofollow noopener noreferrer">Hexo</a><span class="footer-develop-divider"></span>Theme&nbsp;-&nbsp;<!--
-         --><a href="https://github.com/SukkaW/hexo-theme-suka" target="_blank" class="footer-develop-a" rel="external noopener">Suka</a>
-    </p>
+        <p>
+            
+                <span><a href="../../../../../atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>ZHZ &copy; 2003 - 2021</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
 </footer>
 
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
 
-        <!-- ### Import File ### -->
-        <!-- ### Footer JS Import ### -->
 
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://littlepig.cn/posts/2012/12/21/debian-bind9/&title=《Debian 下 Bind9 的基本配置》 — LittlePig.CN&pic=http://littlepig.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://littlepig.cn/posts/2012/12/21/debian-bind9/&title=《Debian 下 Bind9 的基本配置》 — LittlePig.CN&source=有时候给内网配置个DNS很方便，至少做起实验来可以随便搞域名不用担心冲突。" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://littlepig.cn/posts/2012/12/21/debian-bind9/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Debian 下 Bind9 的基本配置》 — LittlePig.CN&url=http://littlepig.cn/posts/2012/12/21/debian-bind9/&via=http://littlepig.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://littlepig.cn/posts/2012/12/21/debian-bind9/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACH0lEQVR42u3aO3LDMAwFQN//0krrxsoDQCcjcll5Jo6oTYHg93rF53o7n36af793y4KDgYHxWMZ1e+4vyC++iid/NwwMjHMY92H0npR8vv/de0YS4jEwMDDykJqE2hyPgYGBsYqRh8sEg4GBgTEpYvPEMW+l/UMtjoGB8UBG3nX/+89fmW9gYGA8itFr1t/zquHyGh8MDIy9GdVWWjLazFPDQoGaJJoYGBjHMPLLehlaPs5MSt9y7MfAwHgsozqS7DXL8lFBb4SAgYGxNyMPi/k6V/LkavAtjzAxMDC2YEwKy3lil8CichoDA2NrRj6wTFK06sVJgTopqjEwMHZiTBYdeiG1WlVHaxkYGBgHMKrLDUkTrdrhq96OgYFxAiO5vjokWAXLlzYwMDBOYOTXT9phSenbXK3AwMDYmjG5OH+t/Am9p2FgYOzNyFcoeuPJVYtlv6SPGBgYBzAmBW11hLkqJf3YbsPAwNiO0WuTVV+lt7qRp4kYGBjnMHpBsBpw19bf5VocAwNjI8Yk4cuXw/I/UDRSxcDAOIBRGBYW1yyqQ4LepBIDA2NXxlU81aWuPHD3qtHCfwwMDIzHMqohtbDBMcjZqgMJDAyMExh5kK2WoL1ytBlwMTAwDmDMA2X+KvMiFgMDA6O3hPHttbCvBFwMDIxNGUky9wnWC+LRcBQDA+MAxnwY0BtY9kYIGBgYpzFWvdYkWewFWQwMjAMYP5jaslCaiFDjAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
 <script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
 
-    
-window.lazyLoadOptions = {
-    elements_selector: ".lazyload",
-    threshold: 50
-};
-document.getElementById('copyright-year').textContent = new Date().getFullYear();
-console.log('\n %c Suka Theme (hexo-theme-suka) | © SukkaW | Verision 1.3.3 %c https://github.com/SukkaW/hexo-theme-suka \n', 'color: #fff; background: #444; padding:5px 0;', 'background: #bbb; padding:5px 0;');
+
+lazyScripts.push('//s95.cnzz.com/z_stat.php?id=1235250&web_id=1235250')
 
 </script>
 
-<script src="lib/vanilla-lazyload/lazyload.min.js" async></script>
-    <script src="https://cdn.jsdelivr.net/npm/busuanzi@2.3.0/bsz.pure.mini.js" async></script>
+<script src="../../../../../js/main.min.js?v=1.7.2"></script>
 
 
-<!-- Offset -->
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="../../../../../js/search.min.js?v=1.7.2" async></script>
+
+
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
 
 
 
 
-<!-- Comment -->
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 
-<!-- ### Custom Footer ### -->
 
-    </body>
 
+
+</body>
 </html>

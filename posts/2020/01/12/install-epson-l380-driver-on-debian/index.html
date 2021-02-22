@@ -1,442 +1,194 @@
 <!DOCTYPE html>
+<html>
+<head>
+    
 
-<html lang="zh-CN">
-    <head>
+    
+
+    
+
+
+
     <meta charset="utf-8">
-    <!--
-        hexo-theme-suka © SukkaW
-        GitHub: https://github.com/SukkaW/hexo-theme-suka
-    -->
-
-    <!-- ### Resource Hint ### -->
-
-    <!-- ## DNS Prefetch ## -->
-    <meta http-equiv="x-dns-prefetch-control" content="on">
-
-<!-- busuanzi -->
-
-    <link rel="dns-prefetch" href="//busuanzi.ibruce.info">
-
-
-<!-- comment -->
-
-
-
-
-
-
-
-<!-- analytics -->
-
-
-
-
-
-
-
-    <!-- ## Preload ## -->
     
-    <!-- Busuanzi -->
     
-    <link rel="preload" href="https://cdn.jsdelivr.net/npm/busuanzi@2.3.0/bsz.pure.mini.js" as="script">
+    
+    
+    <title>Epson L380 在 Debian 下的安装 | LittlePig.CN | someone&#39;s Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="Epson 的官方英文网站提供了 L380 在 Linux 下的驱动，安装完毕后依旧不能使用，想尽了各种方式，最后成功了，然而也不知道到底是哪个步骤生效的，暂且做一记录吧 表现打印机无响应，关机开机后会打印英文乱码，但是能看到是 Espon L380 Series 的打印机名称。 安装打印管理器12sudo apt-get install cups cups-client ghostscripts">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Epson L380 在 Debian 下的安装">
+<meta property="og:url" content="http://littlepig.cn/posts/2020/01/12/install-epson-l380-driver-on-debian/index.html">
+<meta property="og:site_name" content="LittlePig.CN">
+<meta property="og:description" content="Epson 的官方英文网站提供了 L380 在 Linux 下的驱动，安装完毕后依旧不能使用，想尽了各种方式，最后成功了，然而也不知道到底是哪个步骤生效的，暂且做一记录吧 表现打印机无响应，关机开机后会打印英文乱码，但是能看到是 Espon L380 Series 的打印机名称。 安装打印管理器12sudo apt-get install cups cups-client ghostscripts">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-01-12T02:30:50.000Z">
+<meta property="article:modified_time" content="2020-01-14T08:15:24.000Z">
+<meta property="article:author" content="ZHZ">
+<meta name="twitter:card" content="summary">
+    
+        <link rel="alternate" type="application/atom+xml" title="LittlePig.CN" href="../../../../../atom.xml">
+    
+    <link rel="shortcut icon" href="../../../../../favicon.ico">
+    <link rel="stylesheet" href="../../../../../css/style.css?v=1.7.2">
+    <script>window.lazyScripts=[]</script>
 
-
-
-
-
-
-
-    <!-- ### Meta & Title & Info ### -->
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, maximum-scale=5, viewport-fit=cover">
-    <meta name="renderer" content="webkit">
-
-    <!-- Title -->
-    <title>Epson L380 在 Debian 下的安装 | LittlePig.CN</title>
-
-    <!-- Favicons -->
-    <link rel="icon" type="image&#x2F;ico" href="/img/suka-favicon.ico">
-
-    <!-- ### Import File ### -->
-    <link rel="stylesheet" href="lib/spectre/spectre.min.css"><style>
-    body {
-        background-color: #f8f9fa;
-    }
-
-    a, a:visited {
-        color: #0070ff;
-    }
-
-    a:active, a:focus, a:hover {
-        color: #0070ff;
-        opacity: .75;
-    }
-
-    #post-content a,
-    #post-content a:hover,
-    #post-content a:focus,
-    #post-content a:visited {
-        color: #005eb9;
-        opacity: 1;
-    }
-
+    <!-- custom head -->
     
 
-    .post-entry .card-body a {
-        color: #0070ff;
-    }
+<meta name="generator" content="Hexo 4.2.1"></head>
 
-    .avatar {
-        background: #444;
-    }
+<body>
+    <div id="loading" class="active"></div>
 
-    .navbar-link,
-    .navbar-link:visited,
-    .timeline .timeline-item .timeline-icon.icon-lg {
-        color: #0070ff;
-    }
-
-    .navbar-link:hover {
-        color: #0070ff;
-        opacity: .8;
-    }
-
-    #search-input .btn,
-    #disqus_click_btn,
-    #disqus-switch-to-direct,
-    #disqus-loadmore-button {
-        background: #727e96;
-        border-color: #727e96;
-        color: #fff;
-    }
-
-    #post-toc a.post-toc-link,
-    #post-toc a.post-toc-link:visited,
-    .share-menu.menu .menu-item>a {
-        color: #727e96;
-    }
-
-    .share-menu.menu .menu-item>a:hover,
-    .share-menu.menu .menu-item>a:focus,
-    .share-menu.menu .menu-item>a:visited {
-        color: #50596c;
-        background: #f8f9fa;
-        opacity: .85;
-    }
-</style><link rel="stylesheet" href="css/style.min.css">
-
-
-
-
-
-
-
-
-    <!-- Prettify Theme -->
-    
-    <link rel="preload" href="../../../../../css/highlight/github.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="../../../../../css/highlight/github.min.css"></noscript>
-
-
-
-
-
-<script>
-/*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
-!function(t){"use strict";t.loadCSS||(t.loadCSS=function(){});var e=loadCSS.relpreload={};if(e.support=function(){var e;try{e=t.document.createElement("link").relList.supports("preload")}catch(t){e=!1}return function(){return e}}(),e.bindMediaToggle=function(t){var e=t.media||"all";function a(){t.addEventListener?t.removeEventListener("load",a):t.attachEvent&&t.detachEvent("onload",a),t.setAttribute("onload",null),t.media=e}t.addEventListener?t.addEventListener("load",a):t.attachEvent&&t.attachEvent("onload",a),setTimeout(function(){t.rel="stylesheet",t.media="only x"}),setTimeout(a,3e3)},e.poly=function(){if(!e.support())for(var a=t.document.getElementsByTagName("link"),n=0;n<a.length;n++){var o=a[n];"preload"!==o.rel||"style"!==o.getAttribute("as")||o.getAttribute("data-loadcss")||(o.setAttribute("data-loadcss",!0),e.bindMediaToggle(o))}},!e.support()){e.poly();var a=t.setInterval(e.poly,500);t.addEventListener?t.addEventListener("load",function(){e.poly(),t.clearInterval(a)}):t.attachEvent&&t.attachEvent("onload",function(){e.poly(),t.clearInterval(a)})}"undefined"!=typeof exports?exports.loadCSS=loadCSS:t.loadCSS=loadCSS}("undefined"!=typeof global?global:this);
-</script>
-
-    <!-- ### Site Verification ### -->
-    
-
-
-    <link rel="alternate" type="application/atom+xml" href="atom.xml"><meta name="mobile-web-app-capable" content="yes"><meta name="application-name" content="LittlePig.CN"><meta name="msapplication-starturl" content="http://littlepig.cn"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="LittlePig.CN"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-
-    <!-- ### The Open Graph & Twitter Card Protocol ### -->
-    <meta property="og:title" content="Epson L380 在 Debian 下的安装 | LittlePig.CN"><meta property="og:site_name" content="LittlePig.CN"><meta property="og:type" content="article"><meta property="og:url" content="http://littlepig.cn/posts/2020/01/12/install-epson-l380-driver-on-debian/"><meta property="og:locale" content="zh-CN"><meta name="description" content="Epson 的官方英文网站提供了 L380 在 Linux 下的驱动，安装完毕后依旧不能使用，想尽了各种方式，最后成功了，然而也不知道到底是哪个步骤生效的，暂且做一记录吧 表现打印机无响应，关机开机后会打印英文乱码，但是能看到是 Espon L380 Series 的打印机名称。 安装打印管理器12sudo apt-get install cups cups-client ghostscripts - ZHZ - LittlePig.CN"><meta property="article:published_time" content="2020-01-12T02:30:50.000Z"><meta property="article:modified_time" content="2020-01-14T08:15:24.000Z"><meta property="og:updated_time" content="2020-01-14T08:15:24.000Z"><meta property="article:author" content="ZHZ"><meta name="twitter:card" content="summary">
-
-    
-
-    <!-- ### Canonical link ### -->
-    <link rel="canonical" href="http://littlepig.cn/posts/2020/01/12/install-epson-l380-driver-on-debian/">
-
-    <meta name="generator" content="Hexo 5.3.0">
-
-    <!-- ### Analytics ### -->
-    
-
-
-
-
-
-
-
-    <!-- ### Structured Data ### -->
-    
-
-
-
-<script type="application/ld+json">
-{
-    "@context": "http://schema.org",
-    "url": "http://littlepig.cn/posts/2020/01/12/install-epson-l380-driver-on-debian/",
-    "@type": "BlogPosting",
-    "logo": "http://littlepig.cn/img/suka-favicon.ico",
-    "mainEntityOfPage": {
-        "@type": "WebPage",
-        "@id": "http://littlepig.cn/posts/2020/01/12/install-epson-l380-driver-on-debian/"
-    },
-    "headline": "Epson L380 在 Debian 下的安装 | LittlePig.CN",
-    
-    "image": {
-        "@type": "ImageObject",
-        "url": "http://littlepig.cn/img/suka-favicon.ico"
-    },
-    
-    "datePublished": "2020-01-12T02:30:50.000Z",
-    "dateModified": "2020-01-14T08:15:24.000Z",
-    "author": {
-        "@type": "Person",
-        "name": "ZHZ",
-        "image": {
-            "@type": "ImageObject",
-            "url": "http://littlepig.cn/img/default_avatar.png"
-        },
-        "description": "Hi, nice to meet you."
-    },
-    "publisher": {
-        "@type": "Organization",
-        "name": "LittlePig.CN",
-        "logo": {
-            "@type": "ImageObject",
-            "url": "http://littlepig.cn/img/suka-favicon.ico"
-        }
-    },
-    
-    "potentialAction": {
-        "@type": "SearchAction",
-        "target": "http://littlepig.cn/search?s={search_term_string}",
-        "query-input": "required name=search_term_string"
-    },
-    
-    "keywords": "",
-    "description": "Epson 的官方英文网站提供了 L380 在 Linux 下的驱动，安装完毕后依旧不能使用，想尽了各种方式，最后成功了，然而也不知道到底是哪个步骤生效的，暂且做一记录吧 表现打印机无响应，关机开机后会打印英文乱码，但是能看到是 Espon L380 Series 的打印机名称。 安装打印管理器12sudo apt-get install cups cups-client ghostscripts - ZHZ - LittlePig.CN"
-}
-</script>
-
-
-
-    <!-- ### Custom Head ### -->
-    
-</head>
-
-    <body>
-            
-
-            <!-- ### Main content ### -->
-            <!-- ## Header ##-->
-<header>
-    <h1 class="header-title text-center"><a href="/">LittlePig.CN</a></h1>
-
-    <p class="text-center header-slogan">
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(../../../../../img/brand.jpg)">
+      <div class="brand">
+        <a href="../../../../../index.html" class="avatar waves-effect waves-circle waves-light">
+          <img src="../../../../../img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">ZHZ</h5>
+          <a href="mailto:zhz@hebut.edu.cn" title="zhz@hebut.edu.cn" class="mail">zhz@hebut.edu.cn</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
         
-            
-                Hi, nice to meet you.
-            
+            <li class="waves-block waves-effect">
+              <a href="../../../../../index.html"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
         
-    </p>
+            <li class="waves-block waves-effect">
+              <a href="../../../../../archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="../../../../../tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="../../../../../categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="../../../../../about"  >
+                <i class="icon icon-lg icon-link"></i>
+                关于
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
 
-    <nav class="navbar-section text-center">
-    
-        <a href="../../../../../index.html" class="navbar-link">首页</a>
-    
-    
-        <a href="../../../../../archives/" class="navbar-link">归档</a>
-    
-    
-        <a href="/search" class="navbar-link">搜索</a>
-    
-    
-    
-        <div class="dropdown dropdown-right">
-    <a class="navbar-link dropdown-toggle" tabindex="0">分享</a>
-    <ul class="menu share-menu">
-
-        <!-- Share Weibo -->
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Epson L380 在 Debian 下的安装</div>
         
-        <li class="menu-item">
-            <a href="http://service.weibo.com/share/share.php?appkey=&title=LittlePig.CN&url=http://littlepig.cn&pic=http://littlepig.cn/img/suka-favicon.ico&searchPic=false&style=simple" target="_blank" rel="external noopener noreferrer nofollow">分享到微博</a>
-        </li>
-        
-
-        <!-- Share Twitter -->
-        
-        <li class="menu-item">
-            <a href="https://twitter.com/intent/tweet?text=LittlePig.CN&url=http://littlepig.cn&via=ZHZ" target="_blank" rel="external noopener noreferrer nofollow">分享到 Twitter</a>
-        </li>
-        
-
-        <!-- Share Facebook -->
-        
-        <li class="menu-item">
-            <a href="https://www.facebook.com/sharer/sharer.php?u=http://littlepig.cn" target="_blank" rel="external noopener noreferrer nofollow">分享到 Facebook</a>
-        </li>
-        
-
-        <!-- Share Google+ -->
-        
-        <li class="menu-item">
-            <a href="https://plus.google.com/share?url=http://littlepig.cn" target="_blank" rel="external noopener noreferrer nofollow">分享到 Google+</a>
-        </li>
-        
-
-        <!-- Share LinkedIn -->
-        
-        <li class="menu-item">
-            <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://littlepig.cn&title=Epson L380 在 Debian 下的安装" target="_blank" rel="external noopener noreferrer nofollow">分享到 LinkedIn</a>
-        </li>
-        
-
-        <!-- Share QQ -->
-        
-        <li class="menu-item">
-            <a href="http://connect.qq.com/widget/shareqq/index.html?site=LittlePig.CN&title=Epson L380 在 Debian 下的安装&summary=记录 / 回忆 / 分享&pics=http://littlepig.cn/img/suka-favicon.ico&url=http://littlepig.cn" target="_blank" rel="external noopener noreferrer nofollow"> 分享到 QQ</a>
-        </li>
-        
-
-        <!-- Share Telegram -->
-        
-        <li class="menu-item">
-            <a href="https://t.me/share/url?url=http://littlepig.cn&text=Epson L380 在 Debian 下的安装" target="_blank" rel="external noopener noreferrer nofollow">分享到 Telegram</a>
-        </li>
-        
-
-        <!-- QRCode -->
-        
-        <li class="menu-item">
-            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKQAAACkCAAAAAA83tqdAAACJklEQVR42u3a227jMAxFUf//T7evQWKei9Mgabj9MgPUlpaBUKYoHj//4DpAggQJ8gOQh7hu73kY4OYe9f+z5+J5Qa5Fnv5o75Bng6So9MUf5gW5Gnk/0DTxFZAbZ3pRkCATpAssde9Z4IAE+QzSJRHTs+4ekCCbBMMt5tWkJhkBCTLZEL3y3z/bLYL8KqQtGg3w6Yc//d0981RVDeRXIdUPWRWnmkV+CkS1cQO5F9kkvlcCKEmSx2ADuRbZJAZJASotHrgFHyTIKVCmhCM5iFLJioOD3I1UA7qFNylguQPTSxsxkF+JVItuWnhyiUhzYCozc5ArkMki+/Rk5gMwJsIgVyJTUFIAVRuwK4kwSJDTw82G3hXC3IuPXxyQa5DNZE3jx5UCP0iQ7SZKBVma5FYbPJArkW6xjpOBEFCNCXIlUh26t43uSfLbNJOC3ItMNk9Jg12SEFfNzSBXIq8U9JMCajKuO+QHuRvpNkhNgpskyFEhAuRKpJrQBVNyKPqSqhrINci2Obhp+GySFpAgXQLrXsY2a5rkwiYYIFciVRCoQEgW/fQAFCTI5sCoeYkmYKqCFcgVyCSJcElCU7R3LwIS5CGuFJ0s2k0jFEiQSYOIK+CrxmTZDNJm5iDXIFVRyhVOmwBzgQoSZHNY7jb1KtjSpjuQINuJ0iQj3azJjwLI1Uh32JQ2jbhFPym4ggTpPvhp0CQFhGYDCHIn8pMvkCBBgnzj9Qvr7zYkRNfmvAAAAABJRU5ErkJggg==" alr="QRCode">
-        </li>
-        
-
-    </ul>
-</div>
-    
-    
-</nav>
-</header>
-
-            
-    <!-- ## Post ## -->
-    <div class="post-container">
-    <div id="post-card" class="card">
-        
-        <div class="card-item-container">
-            <div class="card-inner-cell">
-                <!-- # Post Header Info # -->
-                <div class="card-header">
-                    
-    <h1 class="card-title h3 mb-2">Epson L380 在 Debian 下的安装</h1>
-
-
-
-
-<div class="post-header-info">
-    <p class="post-header-info-left text-gray">
-        <img class="author-thumb lazyload" data-src="../../../../../img/default_avatar.png" src="../../../../../img/suka-lazyload.gif" alt="ZHZ's Avatar">
-        <span>2020-01-12</span>
-        
-            <span class="suka-devide-dot"></span>
-            <a class="category-link" href="../../../../../categories/%E9%85%8D%E7%BD%AE/">配置</a>
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
         
         
-            <!-- Busuanzi Post Views -->
-<span id="busuanzi_container_page_pv" hidden>
-    <span class="suka-devide-dot"></span>
-    <span></span>
-    <span id="busuanzi_value_page_pv"></span>
-    <span>Views</span>
-</span>
-        
-        
-    </p>
-    <div class="post-header-info-right">
-        
-            <div class="dropdown dropdown-right">
-<a class="dropdown-toggle" tabindex="0">分享本文</a>
-<ul class="menu share-menu">
-    <!-- Share Weibo -->
-    
-    <li class="menu-item">
-        <a href="http://service.weibo.com/share/share.php?appkey=&title=Epson L380 在 Debian 下的安装&url=http://littlepig.cn/posts/2020/01/12/install-epson-l380-driver-on-debian/&pic=http://littlepig.cn/img/suka-favicon.ico&searchPic=false&style=simple" target="_blank" rel="external noopener noreferrer nofollow">分享到微博</a>
-    </li>
-    
-
-    <!-- Share Twitter -->
-    
-    <li class="menu-item">
-        <a href="https://twitter.com/intent/tweet?text=Epson L380 在 Debian 下的安装&url=http://littlepig.cn/posts/2020/01/12/install-epson-l380-driver-on-debian/&via=ZHZ" target="_blank" rel="external noopener noreferrer nofollow">分享到 Twitter</a>
-    </li>
-    
-
-    <!-- Share Facebook -->
-    
-    <li class="menu-item">
-        <a href="https://www.facebook.com/sharer/sharer.php?u=http://littlepig.cn/posts/2020/01/12/install-epson-l380-driver-on-debian/" target="_blank" rel="external noopener noreferrer nofollow">分享到 Facebook</a>
-    </li>
-    
-
-    <!-- Share Google+ -->
-    
-    <li class="menu-item">
-        <a href="https://plus.google.com/share?url=http://littlepig.cn/posts/2020/01/12/install-epson-l380-driver-on-debian/" target="_blank" rel="external noopener noreferrer nofollow">分享到 Google+</a>
-    </li>
-    
-
-    <!-- Share LinkedIn -->
-    
-    <li class="menu-item">
-        <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://littlepig.cn/posts/2020/01/12/install-epson-l380-driver-on-debian/&title=LittlePig.CN" target="_blank" rel="external noopener noreferrer nofollow">分享到 LinkedIn</a>
-    </li>
-    
-
-    <!-- Share QQ -->
-    
-    <li class="menu-item">
-        <a href="http://connect.qq.com/widget/shareqq/index.html?site=LittlePig.CN&title=LittlePig.CN&summary=记录 / 回忆 / 分享&pics=http://littlepig.cn/img/suka-favicon.ico&url=http://littlepig.cn/posts/2020/01/12/install-epson-l380-driver-on-debian/" target="_blank" rel="external noopener noreferrer nofollow"> 分享到 QQ</a>
-    </li>
-    
-
-    <!-- Share Telegram -->
-    
-    <li class="menu-item">
-        <a href="https://t.me/share/url?url=http://littlepig.cn/posts/2020/01/12/install-epson-l380-driver-on-debian/&text=LittlePig.CN" target="_blank" rel="external noopener noreferrer nofollow">分享到 Telegram</a>
-    </li>
-    
-
-    <!-- QRCode -->
-    
-    <li class="menu-item">
-        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKQAAACkCAAAAAA83tqdAAACJklEQVR42u3a227jMAxFUf//T7evQWKei9Mgabj9MgPUlpaBUKYoHj//4DpAggQJ8gOQh7hu73kY4OYe9f+z5+J5Qa5Fnv5o75Bng6So9MUf5gW5Gnk/0DTxFZAbZ3pRkCATpAssde9Z4IAE+QzSJRHTs+4ekCCbBMMt5tWkJhkBCTLZEL3y3z/bLYL8KqQtGg3w6Yc//d0981RVDeRXIdUPWRWnmkV+CkS1cQO5F9kkvlcCKEmSx2ADuRbZJAZJASotHrgFHyTIKVCmhCM5iFLJioOD3I1UA7qFNylguQPTSxsxkF+JVItuWnhyiUhzYCozc5ArkMki+/Rk5gMwJsIgVyJTUFIAVRuwK4kwSJDTw82G3hXC3IuPXxyQa5DNZE3jx5UCP0iQ7SZKBVma5FYbPJArkW6xjpOBEFCNCXIlUh26t43uSfLbNJOC3ItMNk9Jg12SEFfNzSBXIq8U9JMCajKuO+QHuRvpNkhNgpskyFEhAuRKpJrQBVNyKPqSqhrINci2Obhp+GySFpAgXQLrXsY2a5rkwiYYIFciVRCoQEgW/fQAFCTI5sCoeYkmYKqCFcgVyCSJcElCU7R3LwIS5CGuFJ0s2k0jFEiQSYOIK+CrxmTZDNJm5iDXIFVRyhVOmwBzgQoSZHNY7jb1KtjSpjuQINuJ0iQj3azJjwLI1Uh32JQ2jbhFPym4ggTpPvhp0CQFhGYDCHIn8pMvkCBBgnzj9Qvr7zYkRNfmvAAAAABJRU5ErkJggg==" alt="QRCode">
-    </li>
-    
-
-</ul>
-</div>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
         
     </div>
-</div>
-                </div>
-                <div class="card-body">
-                    
-                        
-                        
-                            <div id="post-toc"><ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E8%A1%A8%E7%8E%B0"><span class="post-toc-number">1.</span> <span class="post-toc-text">表现</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E5%AE%89%E8%A3%85%E6%89%93%E5%8D%B0%E7%AE%A1%E7%90%86%E5%99%A8"><span class="post-toc-number">2.</span> <span class="post-toc-text">安装打印管理器</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E5%AE%89%E8%A3%85%E9%A9%B1%E5%8A%A8"><span class="post-toc-number">3.</span> <span class="post-toc-text">安装驱动</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E5%90%AF%E7%94%A8%E6%89%93%E5%8D%B0%E6%9C%BA"><span class="post-toc-number">4.</span> <span class="post-toc-text">启用打印机</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E6%89%8B%E5%B7%A5%E8%A7%A3%E5%8E%8B%E5%AE%89%E8%A3%85-ppd"><span class="post-toc-number">5.</span> <span class="post-toc-text">手工解压安装 ppd</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E6%9B%B4%E6%94%B9%E6%89%93%E5%8D%B0%E6%9C%BA%E9%A9%B1%E5%8A%A8"><span class="post-toc-number">6.</span> <span class="post-toc-text">更改打印机驱动</span></a></li></ol></div>
-                        
-                    
-                    <article id="post-content">
-                        <p>Epson 的官方英文网站提供了 L380 在 Linux 下的驱动，安装完毕后依旧不能使用，想尽了各种方式，最后成功了，然而也不知道到底是哪个步骤生效的，暂且做一记录吧</p>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Epson L380 在 Debian 下的安装</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2020-01-12T02:30:50.000Z" itemprop="datePublished" class="page-time">
+  2020-01-12
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="../../../../../categories/%E9%85%8D%E7%BD%AE/">配置</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#表现"><span class="post-toc-number">1.</span> <span class="post-toc-text">表现</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#安装打印管理器"><span class="post-toc-number">2.</span> <span class="post-toc-text">安装打印管理器</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#安装驱动"><span class="post-toc-number">3.</span> <span class="post-toc-text">安装驱动</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#启用打印机"><span class="post-toc-number">4.</span> <span class="post-toc-text">启用打印机</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#手工解压安装-ppd"><span class="post-toc-number">5.</span> <span class="post-toc-text">手工解压安装 ppd</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#更改打印机驱动"><span class="post-toc-number">6.</span> <span class="post-toc-text">更改打印机驱动</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-install-epson-l380-driver-on-debian"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Epson L380 在 Debian 下的安装</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2020-01-12 10:30:50" datetime="2020-01-12T02:30:50.000Z"  itemprop="datePublished">2020-01-12</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="../../../../../categories/%E9%85%8D%E7%BD%AE/">配置</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>Epson 的官方英文网站提供了 L380 在 Linux 下的驱动，安装完毕后依旧不能使用，想尽了各种方式，最后成功了，然而也不知道到底是哪个步骤生效的，暂且做一记录吧</p>
 <h2 id="表现"><a href="#表现" class="headerlink" title="表现"></a>表现</h2><p>打印机无响应，关机开机后会打印英文乱码，但是能看到是 Espon L380 Series 的打印机名称。</p>
 <h2 id="安装打印管理器"><a href="#安装打印管理器" class="headerlink" title="安装打印管理器"></a>安装打印管理器</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install cups cups-client ghostscript</span><br><span class="line">sudo apt-get install system-config-printer </span><br></pre></td></tr></table></figure>
-<h2 id="安装驱动"><a href="#安装驱动" class="headerlink" title="安装驱动"></a>安装驱动</h2><p>到 <a target="_blank" rel="noopener" href="http://download.ebz.epson.net/dsc/search/01/search/">http://download.ebz.epson.net/dsc/search/01/search/</a> 根据打印机型号搜索 Linux 下的驱动，使用 <code>sudo dpkg -i xxxx.deb</code> 安装。</p>
+<h2 id="安装驱动"><a href="#安装驱动" class="headerlink" title="安装驱动"></a>安装驱动</h2><p>到 <a href="http://download.ebz.epson.net/dsc/search/01/search/" target="_blank" rel="noopener">http://download.ebz.epson.net/dsc/search/01/search/</a> 根据打印机型号搜索 Linux 下的驱动，使用 <code>sudo dpkg -i xxxx.deb</code> 安装。</p>
 <h2 id="启用打印机"><a href="#启用打印机" class="headerlink" title="启用打印机"></a>启用打印机</h2><p>默认打印机状态是 disabled 状态，lpq 结果如下</p>
 <blockquote>
 <p>L380 Series is not ready<br>no entries</p>
@@ -455,146 +207,312 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo cp Epson-L380_Series-epson-driver.ppd &#x2F;usr&#x2F;share&#x2F;cups&#x2F;model&#x2F;</span><br></pre></td></tr></table></figure>
 <p>再次重启 cups 服务。</p>
 <p>如果仍然无效，继续进行下一步</p>
-<h2 id="更改打印机驱动"><a href="#更改打印机驱动" class="headerlink" title="更改打印机驱动"></a>更改打印机驱动</h2><p>登录 <a target="_blank" rel="noopener" href="http://localhost:361/">http://localhost:361</a> ,这是 cups 的管理界面，选择顶部的 Administrator(不是中间的 Administrtor 帮助) 进入打印机管理界面，然后 manage printers ，修改其中的 L380 Series 打印机中的驱动，依次尝试给出的列表中的 L380 Series 驱动，我貌似选择的最后一个，然后突然就可以正确打印了。</p>
+<h2 id="更改打印机驱动"><a href="#更改打印机驱动" class="headerlink" title="更改打印机驱动"></a>更改打印机驱动</h2><p>登录 <a href="http://localhost:361/" target="_blank" rel="noopener">http://localhost:361</a> ,这是 cups 的管理界面，选择顶部的 Administrator(不是中间的 Administrtor 帮助) 进入打印机管理界面，然后 manage printers ，修改其中的 L380 Series 打印机中的驱动，依次尝试给出的列表中的 L380 Series 驱动，我貌似选择的最后一个，然后突然就可以正确打印了。</p>
 
-                    </article>
-                    
+        </div>
 
-
-    <blockquote id="date-expire-notification" class="post-expired-notify">本文最后更新于 <span id="date-expire-num"></span> 天前，文中所描述的信息可能已发生改变</blockquote>
-    <script>
-    (function() {
-        var dateUpdate = Date.parse("2020-01-14");
-        var nowDate = new Date();
-        var a = nowDate.getTime();
-        var b = a - dateUpdate;
-        var daysUpdateExpire = Math.floor(b/(24*3600*1000));
-        if (daysUpdateExpire >= 120) {
-            document.getElementById('date-expire-num').innerHTML = daysUpdateExpire;
-        } else {
-            document.getElementById('date-expire-notification').style.display = 'none';
-        }
-    })();
-    </script>
-
-
-<p class="post-footer-info mb-0 pt-0">本文发表于&nbsp;<time datetime="2020-01-12T02:30:50.000Z" itemprop="datePublished">2020-01-12</time>
-
-    , 最后修改于&nbsp;<time datetime="2020-01-14T08:15:24.000Z" itemprop="dateModified">2020-01-14</time>
-
-</p>
-<p class="post-footer-info mb-0 pt-2">
-
-<span class="post-categories-list mt-2">
-
-<a class="post-categories-list-item" href='../../../../../categories/%E9%85%8D%E7%BD%AE/'>配置</a>
-
-</span>
-
-
-
-
-</p>
-
-                </div>
-                <div class="post-nav px-2 bg-gray">
-<ul class="pagination">
-    <!-- Prev Nav -->
+        <blockquote class="post-copyright">
     
-        <li class="page-item page-prev">
-            <a href="../../30/virtualenv-pkg-resources-not-found/" rel="prev">
-                <div class="page-item-title"><i class="icon icon-back" aria-hidden="true"></i></div>
-                <div class="page-item-subtitle">virtualenv 提示无法找到 pkg_resources</div>
-            </a>
-        </li>
-    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2020-01-14T08:15:24.000Z" itemprop="dateUpdated">2020-01-14 16:15:24</time>
+</span><br>
 
-    <!-- Next Nav -->
+
+        
+        本文地址：<a href="" target="_blank" rel="external">http://littlepig.cn/posts/2020/01/12/install-epson-l380-driver-on-debian/</a>
+        
+    </div>
     
-        <li class="page-item page-next">
-            <a href="../../11/change-run-level-on-debian/" rel="next">
-                <div class="page-item-title"><i class="icon icon-forward" aria-hidden="true"></i></div>
-                <div class="page-item-subtitle">更改 Debian 的启动级别</div>
-            </a>
-        </li>
-    
-</ul>
+    <footer>
+        <a href="http://littlepig.cn">
+            <img src="../../../../../img/avatar.jpg" alt="ZHZ">
+            ZHZ
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赞</a>
 </div>
 
-                
-                    <!-- # Comment # -->
-                    
-                
-            </div>
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://littlepig.cn/posts/2020/01/12/install-epson-l380-driver-on-debian/&title=《Epson L380 在 Debian 下的安装》 — LittlePig.CN&pic=http://littlepig.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://littlepig.cn/posts/2020/01/12/install-epson-l380-driver-on-debian/&title=《Epson L380 在 Debian 下的安装》 — LittlePig.CN&source=记录 / 回忆 / 分享" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://littlepig.cn/posts/2020/01/12/install-epson-l380-driver-on-debian/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Epson L380 在 Debian 下的安装》 — LittlePig.CN&url=http://littlepig.cn/posts/2020/01/12/install-epson-l380-driver-on-debian/&via=http://littlepig.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://littlepig.cn/posts/2020/01/12/install-epson-l380-driver-on-debian/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
         </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="../../30/virtualenv-pkg-resources-not-found/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">virtualenv 提示无法找到 pkg_resources</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="../../11/change-run-level-on-debian/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">更改 Debian 的启动级别</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="../../../../../img/wechat.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="../../../../../img/wechat.png" data-alipay="../../../../../img/alipay.png">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
     </div>
 </div>
 
-            <!-- ### Footer ### -->
-            <footer class="text-center">
-    <!-- footer copyright -->
-    
-        <p class="footer-copyright mb-0">Copyright&nbsp;©&nbsp;<span id="copyright-year"></span>
-            <a class="footer-copyright-a" href="http://littlepig.cn">LittlePig.CN</a>
-        </p>
 
-    <!-- footer custom text -->
-    <p class="footer-text mb-0">
-    
-    </p>
-    <!-- footer develop info -->
-    <p class="footer-develop mb-0">
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
         
-    <!-- Busuanzi User Views -->
-    <span id="busuanzi_container_site_uv" hidden>
-        <span></span>
-        <span id="busuanzi_value_site_uv"></span>
-        <span>Viewers</span>
-        
-            <span>|</span>
-        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
     </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
 
 
-
-
-        
-        Powered by&nbsp;<!--
-         --><a href="https://hexo.io" target="_blank" class="footer-develop-a" rel="external nofollow noopener noreferrer">Hexo</a><span class="footer-develop-divider"></span>Theme&nbsp;-&nbsp;<!--
-         --><a href="https://github.com/SukkaW/hexo-theme-suka" target="_blank" class="footer-develop-a" rel="external noopener">Suka</a>
-    </p>
+        <p>
+            
+                <span><a href="../../../../../atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>ZHZ &copy; 2003 - 2021</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
 </footer>
 
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
 
-        <!-- ### Import File ### -->
-        <!-- ### Footer JS Import ### -->
 
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://littlepig.cn/posts/2020/01/12/install-epson-l380-driver-on-debian/&title=《Epson L380 在 Debian 下的安装》 — LittlePig.CN&pic=http://littlepig.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://littlepig.cn/posts/2020/01/12/install-epson-l380-driver-on-debian/&title=《Epson L380 在 Debian 下的安装》 — LittlePig.CN&source=记录 / 回忆 / 分享" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://littlepig.cn/posts/2020/01/12/install-epson-l380-driver-on-debian/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Epson L380 在 Debian 下的安装》 — LittlePig.CN&url=http://littlepig.cn/posts/2020/01/12/install-epson-l380-driver-on-debian/&via=http://littlepig.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://littlepig.cn/posts/2020/01/12/install-epson-l380-driver-on-debian/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACqUlEQVR42u3aS25jMQwEwNz/0jPbAJ7Y3aTkeIB6K8MfSaWFSJP6+oqfP9+ex3ceP/3+nfyd52M+/vbYg4eHh7dY+vOhn0+QU5OtmW3uP8bBw8PDu8b7adBkcWcB7VwvLHh4eHgfyWsDST7C88CAh4eH9z/y2hJDMnL7Kzw8PLzf4s2O6dmik62clTPw8PDw3sPLu0if8/pKfw8PDw9v3VVvi7DtyG3zrF4tHh4e3gVefuAmaW7e0Nqk2vU68fDw8I7yNhPkhdT8EJ+Vg3/8FR4eHt413r5AMLsstblqkCTieHh4eO/hJQEgKVIkzaokeMyqtXh4eHjv4eUT5EntLEXO0/QDDTA8PDy8kpens5sLUm0hIwkhxdUrPDw8vKO8Wdp6YymbBH3V2cPDw8MreRtA29TP0+h26VEJAw8PD+8tvHbKtkSbb1C7uUUzDA8PD6/k7Zey+XTWYCtWiIeHh3eBt29N5aFlU66dNeHw8PDwbvDaFLktByTgtuhQX7rCw8PDO8pLpmzbUTdKuskahjEQDw8Pb8SbtaPapn6SfM+uI9TRDw8PD2/B2197SoJKTp2l1FFPDw8PD+8Cr20y7Qu1s0JwfrkBDw8P7wYvX1AbNvLt25ct6jtleHh4eEd5eXhog0d+hetsKQQPDw/vBq8tvCYHcR5a9mWIF9/Bw8PDu8bLj/I2qZ0ViNsR8PDw8N7Pm11+2mzHPhhEW4mHh4d3lDcrMbQlg7OhqAgSeHh4eBd4+bNhz9LltuC7evDw8PBKXrv0Nkgkn7YbUST9eHh4eNd4yZ/89uw9FVTaAIaHh4f3abz8D/9s5LbB9mJVeHh4eB/DmzXP2quubYC5ssd4eHh4i2LE7EDPyxPJLHVjDA8PD+8Cb/YnfxYSZhcOVkvHw8PDO8n7CzBPAycUZTu2AAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
 <script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
 
-    
-window.lazyLoadOptions = {
-    elements_selector: ".lazyload",
-    threshold: 50
-};
-document.getElementById('copyright-year').textContent = new Date().getFullYear();
-console.log('\n %c Suka Theme (hexo-theme-suka) | © SukkaW | Verision 1.3.3 %c https://github.com/SukkaW/hexo-theme-suka \n', 'color: #fff; background: #444; padding:5px 0;', 'background: #bbb; padding:5px 0;');
+
+lazyScripts.push('//s95.cnzz.com/z_stat.php?id=1235250&web_id=1235250')
 
 </script>
 
-<script src="lib/vanilla-lazyload/lazyload.min.js" async></script>
-    <script src="https://cdn.jsdelivr.net/npm/busuanzi@2.3.0/bsz.pure.mini.js" async></script>
+<script src="../../../../../js/main.min.js?v=1.7.2"></script>
 
 
-<!-- Offset -->
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="../../../../../js/search.min.js?v=1.7.2" async></script>
+
+
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
 
 
 
 
-<!-- Comment -->
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 
-<!-- ### Custom Footer ### -->
 
-    </body>
 
+
+</body>
 </html>
