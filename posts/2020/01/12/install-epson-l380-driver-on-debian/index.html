@@ -187,7 +187,8 @@
         <div class="post-content" id="post-content" itemprop="postContent">
             <p>Epson 的官方英文网站提供了 L380 在 Linux 下的驱动，安装完毕后依旧不能使用，想尽了各种方式，最后成功了，然而也不知道到底是哪个步骤生效的，暂且做一记录吧</p>
 <h2 id="表现"><a href="#表现" class="headerlink" title="表现"></a>表现</h2><p>打印机无响应，关机开机后会打印英文乱码，但是能看到是 Espon L380 Series 的打印机名称。</p>
-<h2 id="安装打印管理器"><a href="#安装打印管理器" class="headerlink" title="安装打印管理器"></a>安装打印管理器</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install cups cups-client ghostscript</span><br><span class="line">sudo apt-get install system-config-printer </span><br></pre></td></tr></table></figure>
+<h2 id="安装打印管理器"><a href="#安装打印管理器" class="headerlink" title="安装打印管理器"></a>安装打印管理器</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install cups cups-client ghostscript</span><br><span class="line">sudo apt-get install system-config-printer</span><br></pre></td></tr></table></figure>
+
 <h2 id="安装驱动"><a href="#安装驱动" class="headerlink" title="安装驱动"></a>安装驱动</h2><p>到 <a href="http://download.ebz.epson.net/dsc/search/01/search/" target="_blank" rel="noopener">http://download.ebz.epson.net/dsc/search/01/search/</a> 根据打印机型号搜索 Linux 下的驱动，使用 <code>sudo dpkg -i xxxx.deb</code> 安装。</p>
 <h2 id="启用打印机"><a href="#启用打印机" class="headerlink" title="启用打印机"></a>启用打印机</h2><p>默认打印机状态是 disabled 状态，lpq 结果如下</p>
 <blockquote>
@@ -201,8 +202,10 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd &#x2F;usr&#x2F;share&#x2F;pdd</span><br></pre></td></tr></table></figure>
 <p>看到 <code>epson-inkjet-printer-201601w/Epson</code> 文件夹，里边应该是驱动文件，但是是 .gz 格式的，与网上说的 ppd 格式不一致，于是手工解压下</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gunzip Epson-L380_Series-epson-driver.ppd.gz</span><br></pre></td></tr></table></figure>
+
 <p>重新启动 cups 服务</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl restart cups.service</span><br></pre></td></tr></table></figure>
+
 <p>无效，尝试将 ppd 拷贝到 /usr/share/cups/model</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo cp Epson-L380_Series-epson-driver.ppd &#x2F;usr&#x2F;share&#x2F;cups&#x2F;model&#x2F;</span><br></pre></td></tr></table></figure>
 <p>再次重启 cups 服务。</p>

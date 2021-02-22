@@ -181,6 +181,7 @@
             <p>系统启动慢，提示 A start job is running for raise network interface … 原因在于系统启动时在不断尝试连接网络，如果网络无法连接，则直到 5 分钟后才会继续</p>
 <p>解决办法，修改配置文件减少超时时间</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim &#x2F;etc&#x2F;systemd&#x2F;system&#x2F;network-online.target.wants&#x2F;networking.service</span><br></pre></td></tr></table></figure>
+
 <p>调整如下参数的设置</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">TimeoutStartSec&#x3D;10sec</span><br></pre></td></tr></table></figure>
         </div>
@@ -272,18 +273,18 @@
 <nav class="post-nav flex-row flex-justify-between">
   
     <div class="waves-block waves-effect prev">
-      <a href="../x200-flower-screen/" id="post-prev" class="post-nav-link">
+      <a href="../a-start-stop-job-is-running-for/" id="post-prev" class="post-nav-link">
         <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
-        <h4 class="title">X200 高版本 Windows 花屏</h4>
+        <h4 class="title">A start/stop job is running for ....</h4>
       </a>
     </div>
   
 
   
     <div class="waves-block waves-effect next">
-      <a href="../a-start-stop-job-is-running-for/" id="post-next" class="post-nav-link">
+      <a href="../../10/disable-ipv6-on-debian/" id="post-next" class="post-nav-link">
         <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
-        <h4 class="title">A start/stop job is running for ....</h4>
+        <h4 class="title">Debian 禁用 IPV6</h4>
       </a>
     </div>
   

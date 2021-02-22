@@ -21,12 +21,12 @@
     
     
     <meta name="keywords" content="">
-    <meta name="description" content="昨天升级了下 debian testing ，发现启动时的控制台字体越发小了，而且锯齿严重，看起来很不爽，于是自定义了下字体，注意这里的控制台指的是启动时图形界面显示之前的文字界面而不是启动后的终端，即 console 而不是 terminal 。 使用向导1sudo dpkg-reconfigure console-setup 在 console 的 encoding 选项中使用 UTF-8 ，">
+    <meta name="description" content="昨天升级了下 debian testing ，发现启动时的控制台字体越发小了，而且锯齿严重，看起来很不爽，于是自定义了下字体，注意这里的控制台指的是启动时图形界面显示之前的文字界面而不是启动后的终端，即 console 而不是 terminal 。 使用向导1sudo dpkg-reconfigure console-setup  在 console 的 encoding 选项中使用 UTF-8">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Debian 下控制台字体的设置">
 <meta property="og:url" content="http://littlepig.cn/posts/2020/07/30/change-linux-console-font/index.html">
 <meta property="og:site_name" content="LittlePig.CN">
-<meta property="og:description" content="昨天升级了下 debian testing ，发现启动时的控制台字体越发小了，而且锯齿严重，看起来很不爽，于是自定义了下字体，注意这里的控制台指的是启动时图形界面显示之前的文字界面而不是启动后的终端，即 console 而不是 terminal 。 使用向导1sudo dpkg-reconfigure console-setup 在 console 的 encoding 选项中使用 UTF-8 ，">
+<meta property="og:description" content="昨天升级了下 debian testing ，发现启动时的控制台字体越发小了，而且锯齿严重，看起来很不爽，于是自定义了下字体，注意这里的控制台指的是启动时图形界面显示之前的文字界面而不是启动后的终端，即 console 而不是 terminal 。 使用向导1sudo dpkg-reconfigure console-setup  在 console 的 encoding 选项中使用 UTF-8">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-07-30T02:30:50.000Z">
 <meta property="article:modified_time" content="2020-08-26T13:39:58.000Z">
@@ -183,10 +183,13 @@
         <div class="post-content" id="post-content" itemprop="postContent">
             <p>昨天升级了下 debian testing ，发现启动时的控制台字体越发小了，而且锯齿严重，看起来很不爽，于是自定义了下字体，注意这里的控制台指的是启动时图形界面显示之前的文字界面而不是启动后的终端，即 console 而不是 terminal 。</p>
 <h3 id="使用向导"><a href="#使用向导" class="headerlink" title="使用向导"></a>使用向导</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo dpkg-reconfigure console-setup</span><br></pre></td></tr></table></figure>
+
 <p>在 console 的 encoding 选项中使用 UTF-8 ，在 character set 中选择 Guess optimal character set ，在 sonsole font 的选项中选择 TerminusBold 或者 TerminusBoldVGA ，在 font size 的选项中选择 8x16 ，然后重新登入即可。</p>
-<h3 id="直接修改配置文件"><a href="#直接修改配置文件" class="headerlink" title="直接修改配置文件"></a>直接修改配置文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim &#x2F;etc&#x2F;default&#x2F;console-setup </span><br></pre></td></tr></table></figure>
+<h3 id="直接修改配置文件"><a href="#直接修改配置文件" class="headerlink" title="直接修改配置文件"></a>直接修改配置文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim &#x2F;etc&#x2F;default&#x2F;console-setup</span><br></pre></td></tr></table></figure>
+
 <p>我的如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"># CONFIGURATION FILE FOR SETUPCON</span><br><span class="line"></span><br><span class="line"># Consult the console-setup(5) manual page.</span><br><span class="line">ACTIVE_CONSOLES&#x3D;&quot;&#x2F;dev&#x2F;tty[1-6]&quot;</span><br><span class="line">CHARMAP&#x3D;&quot;UTF-8&quot;</span><br><span class="line">CODESET&#x3D;&quot;guess&quot;</span><br><span class="line">FONTFACE&#x3D;&quot;TerminusBoldVGA&quot;</span><br><span class="line">FONTSIZE&#x3D;&quot;8x16&quot;</span><br><span class="line">VIDEOMODE&#x3D;</span><br><span class="line"></span><br><span class="line"># The following is an example how to use a braille font</span><br><span class="line"># FONT&#x3D;&#39;lat9w-08.psf.gz brl-8x8.psf&#39;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"># CONFIGURATION FILE FOR SETUPCON</span><br><span class="line"></span><br><span class="line"># Consult the console-setup(5) manual page.</span><br><span class="line">ACTIVE_CONSOLES&#x3D;&quot;&#x2F;dev&#x2F;tty[1-6]&quot;</span><br><span class="line">CHARMAP&#x3D;&quot;UTF-8&quot;</span><br><span class="line">CODESET&#x3D;&quot;guess&quot;</span><br><span class="line">FONTFACE&#x3D;&quot;TerminusBoldVGA&quot;</span><br><span class="line">FONTSIZE&#x3D;&quot;8x16&quot;</span><br><span class="line">VIDEOMODE&#x3D;</span><br><span class="line"></span><br><span class="line"># The following is an example how to use a braille font</span><br><span class="line"># FONT&#x3D;&#39;lat9w-08.psf.gz brl-8x8.psf&#39;</span><br></pre></td></tr></table></figure>
+
 <p>可以使用 <code> showconsolefont</code> 命令来查看当前控制台字体样式</p>
 
         </div>

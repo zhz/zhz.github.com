@@ -182,6 +182,7 @@
 <p>下面是 nginx 中上传部分的配置，因为 wordpress 上传都是在后台 wp-admin 目录中的页面上进行的，所以只需要把 wp-admin 在 nginx 做负载均衡时解析到静态服务器即可，当然，这是一个懒办法，适合 wordpress 后台不需要大量访问的时候。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">location ~* ^&#x2F;wp-admin&#x2F;.*$ &#123;</span><br><span class="line"></span><br><span class="line">proxy_next_upstream error timeout invalid_header http_500 http_502 http_503 http_504 http_404;</span><br><span class="line">proxy_redirect off;</span><br><span class="line">proxy_set_header Host $host;</span><br><span class="line">proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line">proxy_pass http:&#x2F;&#x2F;upload.cluster;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+
         </div>
 
         <blockquote class="post-copyright">

@@ -577,8 +577,10 @@ htt...
     
         同时支持 IPV4 和 IPV6，但 IPV6 的解析非常慢，经常等半天没反应才切换到IPV4，debian 下如果需要IPV4优先的话，方法很简单
 1vim &#x2F;etc&#x2F;gai.conf
+
 去掉下面这句话的#即可。
 1#precedence ::ffff:0:0&#x2F;96  100
+
 
     
 

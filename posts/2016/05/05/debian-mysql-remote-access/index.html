@@ -189,17 +189,24 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-A INPUT -p tcp --dport 3306 -j ACCEPT</span><br></pre></td></tr></table></figure>
 <p>重启服务</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iptables-restore &lt; &#x2F;etc&#x2F;iptables.conf</span><br></pre></td></tr></table></figure>
+
 <h2 id="修改-mysql-的默认监听地址"><a href="#修改-mysql-的默认监听地址" class="headerlink" title="修改 mysql 的默认监听地址"></a>修改 mysql 的默认监听地址</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim &#x2F;etc&#x2F;mysql&#x2F;my.cnf</span><br></pre></td></tr></table></figure>
+
 <p>注释掉</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bind-address &#x3D; 127.0.0.1</span><br></pre></td></tr></table></figure>
 <p>或者改为</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bind-address &#x3D; 0.0.0.0</span><br></pre></td></tr></table></figure>
+
 <h2 id="修改root权限"><a href="#修改root权限" class="headerlink" title="修改root权限"></a>修改root权限</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -u root -p &#39;yourpassword&#39;</span><br></pre></td></tr></table></figure>
+
 <p>进入终端后输入</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">GRANT ALL ON *.* TO &#39;root&#39;@&#39;%&#39; IDENTIFIED BY &#39;yourpassword&#39;; </span><br><span class="line">exit;</span><br></pre></td></tr></table></figure>
+
 <h2 id="重启服务"><a href="#重启服务" class="headerlink" title="重启服务"></a>重启服务</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;etc&#x2F;init.d&#x2F;mysql restart</span><br></pre></td></tr></table></figure>
+
 <p>一般情形经过上述四步就可以了，但偏偏我的仍然不行，在第三步中设置权限时总是提示：“Access denied for user ‘root’@’localhost’ (using password: YES)”，原因在于 debian 系统下 mysql 安装时设置的密码和我当前的root密码不一致导致的，安装时的密码被配置在了 /etc/mysql/debian.cnf 中，应该使用这个配置来登录 mysql 终端，然后再改掉 root 密码。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -u debian-sys-maint -p &#39;password in debian.cnf&#39;</span><br></pre></td></tr></table></figure>
+
 <p>进入后：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">use mysql; </span><br><span class="line">update user set password&#x3D;PASSWORD(&#39;your new root password&#39;) where user&#x3D;&#39;root&#39;; </span><br><span class="line">FLUSH PRIVILEGES;</span><br></pre></td></tr></table></figure>
 <p>这时重复第三步应该就没有问题了。远程使用 navicat 连接也正常了。</p>

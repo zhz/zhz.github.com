@@ -222,9 +222,10 @@
     
         创建数据库
 1create schema [数据库名称] default character set utf8 collate utf8_general_ci;
+
 采用 create schema 和 create database 创建数据库的效果一样。
 创建用户
-1create user &#39;[用户名称]&#39;@&#39;%&#39; identified by &#39;[用户...
+1create user &#39;[用户名称]&#39;@&#39;%&#39; identified by &#39;[用...
     
 
         <a href="../../posts/2020/01/11/mysql-create-database-user-privileges/" class="post-more waves-effect waves-button">
@@ -311,8 +312,9 @@
     
         Remmina 是 Linux 下较为常用的服务器管理工具，支持 RDP / VNC / SSH / SFTP 等常用协议
 安装1sudo apt-get install remmina remmina-plugins
+
 配置文件Remmina 提供了简单的单服务器导出功能，但如果服务器数量较多，则必须使用直接拷贝配置文件的方式来进行备份，实在是不方便，配置文件所在路径可以尝试如下两个
-12~...
+12...
     
 
         <a href="../../posts/2020/01/11/where-is-the-remmina-connections-file/" class="post-more waves-effect waves-button">
@@ -369,6 +371,54 @@
         </li>
     
         <li class="post-list-item fade">
+            <article id="post-a-start-stop-job-is-running-for"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2020-01-11 00:00:00" datetime="2020-01-10T16:00:00.000Z"  itemprop="datePublished">2020-01-11</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="../../categories/%E7%B3%BB%E7%BB%9F/">系统</a></li></ul>
+
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="../../posts/2020/01/11/a-start-stop-job-is-running-for/">A start/stop job is running for ....</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        开关机都变慢了，表现为卡在 A start/stop job is running … 上，此时可以首先尝试如下解决办法
+1sudo vim &#x2F;etc&#x2F;systemd&#x2F;system.conf
+
+修改如下两个超时参数
+12DefaultTimeoutStartSec&#x3D;10sDefaultTimeoutStopSec&#x3D;10s
+
+重新加载
+1sys...
+    
+
+        <a href="../../posts/2020/01/11/a-start-stop-job-is-running-for/" class="post-more waves-effect waves-button">
+            阅读全文…
+        </a>
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
             <article id="post-a-start-job-is-running-for-raise-network-interface"
   class="article-card article-type-post" itemprop="blogPost">
 
@@ -403,52 +453,6 @@
     
 
         <a href="../../posts/2020/01/11/a-start-job-is-running-for-raise-network-interface/" class="post-more waves-effect waves-button">
-            阅读全文…
-        </a>
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-a-start-stop-job-is-running-for"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2020-01-11 00:00:00" datetime="2020-01-10T16:00:00.000Z"  itemprop="datePublished">2020-01-11</time>
-
-        
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="../../categories/%E7%B3%BB%E7%BB%9F/">系统</a></li></ul>
-
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="../../posts/2020/01/11/a-start-stop-job-is-running-for/">A start/stop job is running for ....</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        开关机都变慢了，表现为卡在 A start/stop job is running … 上，此时可以首先尝试如下解决办法
-1sudo vim &#x2F;etc&#x2F;systemd&#x2F;system.conf
-修改如下两个超时参数
-12DefaultTimeoutStartSec&#x3D;10sDefaultTimeoutStopSec&#x3D;10s
-重新加载
-1syste...
-    
-
-        <a href="../../posts/2020/01/11/a-start-stop-job-is-running-for/" class="post-more waves-effect waves-button">
             阅读全文…
         </a>
     </div>

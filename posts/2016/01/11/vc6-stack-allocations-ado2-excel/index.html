@@ -177,7 +177,15 @@
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
             <p>在 VC6 下使用 ADO2 连接  Excel ，一直操作的很顺利，直到我把代码移植到一个早期的 MFC 程序上时，说什么也打不开 Excel 了，但是 Access 就没有问题，在排除了各种可能性之后，一筹莫展，于是只得用笨办法，看能运行的程序和该程序在设置上有什么不同，无意间发现不能运行的程序在 Project Settings 设置像中 Stack Allocations 处指定了 Reserve 为 0x5000000 ，而正常运行的程序则没有指定，想了想当初是因为栈空间不够大才手动设置的此项，于是去掉，竟然能顺利打开了，真是百思不得其解二者之间的联系，聊以记之，已示有同样问题之人。</p>
-<p><img src="/media/vc6stack.png"></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/media/vc6stack.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+
 <p>附：栈空间不够大，所以当定义大数组的时候就会出现问题，比如类似 char a[1024000] 等用法都是不可取的，解决方案要么就是像图中增大栈空间，要么就是改为 char* a = new char[1024000] 的用法，后者更合适些，不会引发ADO的问题。</p>
 
         </div>

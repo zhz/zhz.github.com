@@ -178,9 +178,11 @@
     
         debian 下安装了 wordpress ，发现用户注册收不到邮件，原来 debian 使用 exim4 代替了 sendmail ，而 exim4 默认是只能系统内部发送而不能对外发送的。
 1vim &#x2F;etc&#x2F;exim4&#x2F;update-exim4.conf.conf
+
 将其中的
 1“dc_eximconfig_configtype&#x3D;local”
-改为...
+
+...
     
 
         <a href="../../posts/2013/10/07/debian-exim4-mail-for-internet/" class="post-more waves-effect waves-button">
@@ -268,6 +270,7 @@
     
         timthumb.php 经常被用来生成缩略图，不过在某些系统上发现会出现如下错误
 123# A TimThumb error has occuredThe following error(s) occured:*   Could not find the internal image you specified.
+
 尝试了很多办法无效，最后不得已用增加配置文件指定绝对路径的办法解决的。
     
 

@@ -187,19 +187,28 @@
 
 <h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>教育网内比较快的两个安装源是 debian.ustc.edu.cn （mirrors.ustc.edu.cn）和 mirrors.163.com，一种方式是下载 mini.iso （在 <a href="http://mirrors.ustc.edu.cn/debian/dists/squeeze/main/installer-amd64/current/images/netboot/" target="_blank" rel="noopener">http://mirrors.ustc.edu.cn/debian/dists/squeeze/main/installer-amd64/current/images/netboot/</a> ）利用光盘或者刻录到U盘启动系统， 还有另外一种安装方式是利用 GRUB4DOS ，从 <a href="http://mirrors.ustc.edu.cn/debian/dists/squeeze/main/installer-amd64/current/images/netboot/debian-installer/amd64/" target="_blank" rel="noopener">http://mirrors.ustc.edu.cn/debian/dists/squeeze/main/installer-amd64/current/images/netboot/debian-installer/amd64/</a> 下载 linux和initrd.gz 到 c:\debian 目录，然后在 menu.lst 里添加</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">title debian install</span><br><span class="line">kernel (hd0,0)&#x2F;debian&#x2F;linux root&#x3D;&#x2F;dev&#x2F;ram ramdisk_size&#x3D;8192 devfs&#x3D;mount,dall</span><br><span class="line">initrd (hd0,0)&#x2F;debian&#x2F;initrd.gz</span><br></pre></td></tr></table></figure>
+
 <p>启动即可进入 debian 安装界面，从<a href="http://mirrors.ustc.edu.cn/debian" target="_blank" rel="noopener">http://mirrors.ustc.edu.cn/debian</a> 进行网络安装即可，基本系统大约 300M。</p>
 <h2 id="常用工具"><a href="#常用工具" class="headerlink" title="常用工具"></a>常用工具</h2><p>apt-get install vim screen ssh wget</p>
 <h2 id="修改终端字体"><a href="#修改终端字体" class="headerlink" title="修改终端字体"></a>修改终端字体</h2><p>个人比较喜欢把大小改为 12</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim &#x2F;etc&#x2F;default&#x2F;console-setup</span><br></pre></td></tr></table></figure>
+
 <h2 id="更改-locale"><a href="#更改-locale" class="headerlink" title="更改 locale"></a>更改 locale</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dpkg-reconfigure locales</span><br></pre></td></tr></table></figure>
+
 <h2 id="安装轻量级的-XFCE"><a href="#安装轻量级的-XFCE" class="headerlink" title="安装轻量级的 XFCE"></a>安装轻量级的 XFCE</h2><p>apt-get install xfce4<br>apt-get install gdm</p>
 <h2 id="网络基本设置"><a href="#网络基本设置" class="headerlink" title="网络基本设置"></a>网络基本设置</h2><h3 id="设置-ip-等信息"><a href="#设置-ip-等信息" class="headerlink" title="设置 ip 等信息"></a>设置 ip 等信息</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim &#x2F;etc&#x2F;network&#x2F;interfaces</span><br></pre></td></tr></table></figure>
+
 <h3 id="设置-DNS-域名服务器"><a href="#设置-DNS-域名服务器" class="headerlink" title="设置 DNS 域名服务器"></a>设置 DNS 域名服务器</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim &#x2F;etc&#x2F;resolve.conf</span><br></pre></td></tr></table></figure>
+
 <h3 id="设置机器名"><a href="#设置机器名" class="headerlink" title="设置机器名"></a>设置机器名</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim &#x2F;etc&#x2F;hostname</span><br></pre></td></tr></table></figure>
+
 <h3 id="设置-hosts"><a href="#设置-hosts" class="headerlink" title="设置 hosts"></a>设置 hosts</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim &#x2F;etc&#x2F;hosts</span><br></pre></td></tr></table></figure>
+
 <h2 id="设置时间自动同步"><a href="#设置时间自动同步" class="headerlink" title="设置时间自动同步"></a>设置时间自动同步</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim &#x2F;etc&#x2F;default&#x2F;rcS</span><br></pre></td></tr></table></figure>
+
 <p>将 UTC 改为 no</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">apt-get install ntpdate</span><br><span class="line">ntpdate pool.ntp.org</span><br></pre></td></tr></table></figure>
+
 <p>或者</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ntpdate time.edu.cn</span><br></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim &#x2F;etc&#x2F;rc.local</span><br></pre></td></tr></table></figure>

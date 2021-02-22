@@ -220,7 +220,13 @@
     <div class="post-content" id="post-content" itemprop="postContent">
 
     
-        最近发现 MacOS Catalina 的 Visual Studio Code 不能调试 C++ 了，翻遍了国内各种资料各种方法无效，不得已准备去啃官方网站的说明，发现这个 ，原来 xcode 更新之后已经不提供 lldb-mi 了，所以 externalConsole 那个配置项即便为 True 也是无效的，仅仅能打开个 Terminal 但是无法执行程序，解决方法如下：安装 CodeL...
+        最近发现 MacOS Catalina 的 Visual Studio Code 不能调试 C++ 了，翻遍了国内各种资料各种方法无效，不得已准备去啃官方网站的说明，发现这个 
+
+                
+                    
+                    
+                
+                https://code.vi...
     
 
         <a href="../../posts/2020/04/01/macos-vs-code-cannot-debug/" class="post-more waves-effect waves-button">
@@ -440,8 +446,9 @@ no matching key exchange method found. Their offer: diffie-hellman-group1-sha1
 
 此时需要在服务器上进行设定才可以登入
 当前用户生效1vim  ~&#x2F;.ssh&#x2F;config
+
 添加如下参数
-12Host *KexAlgorithms +dif...
+12Host *KexAlgorithms +di...
     
 
         <a href="../../posts/2020/01/11/error-diffie-hellman-group1-sha1/" class="post-more waves-effect waves-button">
@@ -482,7 +489,9 @@ no matching key exchange method found. Their offer: diffie-hellman-group1-sha1
     
         有时候需要获取机器序列号，即 BIOS 中的 Serial Number，既可以通过开机时进入 BIOS 中查看，也可以在操作系统中通过指令来查看
 Windows1wmic bios get serialnumber
+
 Linux1dmidecode |grep Serial
+
 EXSI1esxcli hardware platform get
     
 

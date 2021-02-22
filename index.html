@@ -232,8 +232,11 @@
 
     
         
-安装 pylint1pip3 install pylint
-在 .vscode 的 settings.json 中启用1234&quot;python.pythonPath&quot;: &quot;&#x2F;Library&#x2F;Frameworks&#x2F;Python.framework&#x2F;Versions&#x2F;3.8&#x2F;bin&#x2F;python3...
+安装 pylint
+1pip3 install pylint
+
+在 .vscode 的 settings.json 中启用
+1234&quot;python.pythonPath&quot;: &quot;&#x2F;Library&#x2F;Frameworks&#x2F;Python.framework&#x2F;Versions&#x2F;3.8&#x2F;bin&#x2F;pyth...
     
 
         <a href="posts/2021/02/13/enable-pylint-on-vscode/" class="post-more waves-effect waves-button">
@@ -280,11 +283,13 @@
     
         日志清理ssh 到 VCSA 上，输入 shell 进入控制台
 1df -lh
+
 查看空间大小，发现 /storage/archive 占据空间比较大，这里应该是备份日志的地方，里边文件不大但很多，查找并删除 30 天以前的日志
 12cd /storage/archive/vpostgresfind * -mtime +30 -exec rm &#123;&#125; \;
 
 
-磁盘扩容首先对...
+
+磁盘扩容首...
     
 
         <a href="posts/2020/09/07/remove-logs-or-extend-disks-in-vcsa/" class="post-more waves-effect waves-button">
@@ -417,8 +422,9 @@ Typora 配置自动上传图片在 Typora 的 preferences 中，选择使用 Pic
     
         Jupyter notebook 默认页面宽度过窄，浪费了左右两侧的宽屏空间，自定义宽度其实只需要放置一个 custom.css 即可。
 1vim ~&#x2F;.jupyter&#x2F;custom&#x2F;custom.css
+
 添加如下内容，其中宽度根据自己喜好修改即可，然后重新启动 notebook
-1.container &#123; width:98% !important; ...
+1.container &#123; width:98% !important;...
     
 
         <a href="posts/2020/08/07/jupyter-notebook-full-width/" class="post-more waves-effect waves-button">
@@ -459,7 +465,8 @@ Typora 配置自动上传图片在 Typora 的 preferences 中，选择使用 Pic
     
         昨天升级了下 debian testing ，发现启动时的控制台字体越发小了，而且锯齿严重，看起来很不爽，于是自定义了下字体，注意这里的控制台指的是启动时图形界面显示之前的文字界面而不是启动后的终端，即 console 而不是 terminal 。
 使用向导1sudo dpkg-reconfigure console-setup
-在 console 的 encoding 选项中使用 UTF-...
+
+在 console 的 encoding 选项中使用 UTF...
     
 
         <a href="posts/2020/07/30/change-linux-console-font/" class="post-more waves-effect waves-button">

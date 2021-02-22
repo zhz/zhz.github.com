@@ -21,12 +21,12 @@
     
     
     <meta name="keywords" content="timthumb">
-    <meta name="description" content="timthumb.php 经常被用来生成缩略图，不过在某些系统上发现会出现如下错误 123# A TimThumb error has occuredThe following error(s) occured:*   Could not find the internal image you specified. 尝试了很多办法无效，最后不得已用增加配置文件指定绝对路径的办法解决的。">
+    <meta name="description" content="timthumb.php 经常被用来生成缩略图，不过在某些系统上发现会出现如下错误 123# A TimThumb error has occuredThe following error(s) occured:*   Could not find the internal image you specified.  尝试了很多办法无效，最后不得已用增加配置文件指定绝对路径的办法解决的。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="解决 timthumb.php 不能找到图像错误">
 <meta property="og:url" content="http://littlepig.cn/posts/2013/09/10/fix-error-on-timthumb/index.html">
 <meta property="og:site_name" content="LittlePig.CN">
-<meta property="og:description" content="timthumb.php 经常被用来生成缩略图，不过在某些系统上发现会出现如下错误 123# A TimThumb error has occuredThe following error(s) occured:*   Could not find the internal image you specified. 尝试了很多办法无效，最后不得已用增加配置文件指定绝对路径的办法解决的。">
+<meta property="og:description" content="timthumb.php 经常被用来生成缩略图，不过在某些系统上发现会出现如下错误 123# A TimThumb error has occuredThe following error(s) occured:*   Could not find the internal image you specified.  尝试了很多办法无效，最后不得已用增加配置文件指定绝对路径的办法解决的。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2013-09-10T00:44:58.000Z">
 <meta property="article:modified_time" content="2016-10-31T11:31:17.000Z">
@@ -177,11 +177,13 @@
         <div class="post-content" id="post-content" itemprop="postContent">
             <p>timthumb.php 经常被用来生成缩略图，不过在某些系统上发现会出现如下错误</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># A TimThumb error has occured</span><br><span class="line">The following error(s) occured:</span><br><span class="line">*   Could not find the internal image you specified.</span><br></pre></td></tr></table></figure>
+
 <p>尝试了很多办法无效，最后不得已用增加配置文件指定绝对路径的办法解决的。</p>
 <a id="more"></a>
 
 <p>在 timthumb.php 同目录下增加 timthumb-config.php 内容如下</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$_SERVER[&#39;DOCUMENT_ROOT&#39;] &#x3D; &#39;&#x2F;path&#x2F;to&#x2F;ur&#x2F;root&#x2F;path&#x2F;&#39;;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;If you get this error at only localhost you can use like that also.</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;if($_SERVER[&quot;HTTP_HOST&quot;] &#x3D;&#x3D; &#39;localhost&#39;)&#123;</span><br><span class="line">&#x2F;&#x2F;$_SERVER[&#39;DOCUMENT_ROOT&#39;] &#x3D; dirname( __FILE__ );</span><br><span class="line">&#x2F;&#x2F;&#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
 
 
         </div>

@@ -186,13 +186,18 @@
 
 <h3 id="添加源"><a href="#添加源" class="headerlink" title="添加源"></a>添加源</h3><p>编辑 /etc/apt/sources.list 添加 dotdeb 的源，也可以使用 ustc 的镜像。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">deb http:&#x2F;&#x2F;packages.dotdeb.org jessie all </span><br><span class="line">deb-src http:&#x2F;&#x2F;packages.dotdeb.org jessie all</span><br></pre></td></tr></table></figure>
+
 <h3 id="安装-GNUPG-KEY"><a href="#安装-GNUPG-KEY" class="headerlink" title="安装 GNUPG KEY"></a>安装 GNUPG KEY</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wget https:&#x2F;&#x2F;www.dotdeb.org&#x2F;dotdeb.gpg </span><br><span class="line">sudo apt-key add dotdeb.gpgsudo apt-get update</span><br></pre></td></tr></table></figure>
+
 <h3 id="安装-php7"><a href="#安装-php7" class="headerlink" title="安装 php7"></a>安装 php7</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install php7.0-fpm php7.0-mysql php7.0-common php7.0-gd php7.0-json php7.0-cli php7.0-curl</span><br></pre></td></tr></table></figure>
+
 <p>到此 php7 就已经安装完毕并启动了，由于我以前的 php5 使用的是 ip:port 的方式，而默认安装的 php7 使用的是 socket 的方式，所以二者并不冲突，php7 的安装目录是 /etc/php/7.0 ，启动脚本是 /etc/init.d/php7.0-fpm 。</p>
 <h3 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h3><p>找了个网站的 nginx.conf 修改了下把原来的</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fastcgi_pass 127.0.0.1:9000;</span><br></pre></td></tr></table></figure>
+
 <p>替换为了</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fastcgi_pass unix:&#x2F;run&#x2F;php&#x2F;php7.0-fpm.sock;</span><br></pre></td></tr></table></figure>
+
 <p>经过 phpinfo() 测试，一切正常。</p>
 
         </div>

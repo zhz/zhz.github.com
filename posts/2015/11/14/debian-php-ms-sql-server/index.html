@@ -21,12 +21,12 @@
     
     
     <meta name="keywords" content="">
-    <meta name="description" content="什么编译 unixODBC，编译 freeTDS，什么 sql.h 找不到 。。。折腾了一天之后，一条指令搞定了所有 1apt-get install libsybdb5 freetds-common php5-sybase 然后 adodb5 就可以使用了，Driver 使用 mssql 即可，注意 Server 要带端口，字段要使用名字的话必须 1$connuser-&gt;SetFetchM">
+    <meta name="description" content="什么编译 unixODBC，编译 freeTDS，什么 sql.h 找不到 。。。折腾了一天之后，一条指令搞定了所有 1apt-get install libsybdb5 freetds-common php5-sybase  然后 adodb5 就可以使用了，Driver 使用 mssql 即可，注意 Server 要带端口，字段要使用名字的话必须 1$connuser-&gt;SetFetch">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Debian 下 PHP 连接 MS SQL Server">
 <meta property="og:url" content="http://littlepig.cn/posts/2015/11/14/debian-php-ms-sql-server/index.html">
 <meta property="og:site_name" content="LittlePig.CN">
-<meta property="og:description" content="什么编译 unixODBC，编译 freeTDS，什么 sql.h 找不到 。。。折腾了一天之后，一条指令搞定了所有 1apt-get install libsybdb5 freetds-common php5-sybase 然后 adodb5 就可以使用了，Driver 使用 mssql 即可，注意 Server 要带端口，字段要使用名字的话必须 1$connuser-&gt;SetFetchM">
+<meta property="og:description" content="什么编译 unixODBC，编译 freeTDS，什么 sql.h 找不到 。。。折腾了一天之后，一条指令搞定了所有 1apt-get install libsybdb5 freetds-common php5-sybase  然后 adodb5 就可以使用了，Driver 使用 mssql 即可，注意 Server 要带端口，字段要使用名字的话必须 1$connuser-&gt;SetFetch">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2015-11-14T13:37:18.000Z">
 <meta property="article:modified_time" content="2016-10-17T07:39:46.000Z">
@@ -176,10 +176,13 @@
         <div class="post-content" id="post-content" itemprop="postContent">
             <p>什么编译 unixODBC，编译 freeTDS，什么 sql.h 找不到 。。。折腾了一天之后，一条指令搞定了所有</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get install libsybdb5 freetds-common php5-sybase</span><br></pre></td></tr></table></figure>
+
 <p>然后 adodb5 就可以使用了，Driver 使用 mssql 即可，注意 Server 要带端口，字段要使用名字的话必须</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$connuser-&gt;SetFetchMode(ADODB_FETCH_ASSOC);</span><br></pre></td></tr></table></figure>
+
 <p>示例</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$conn &#x3D; ADONewConnection(&quot;mssql&quot;);</span><br><span class="line"></span><br><span class="line">$conn-&gt;Connect($server, $user, $password, $database);</span><br><span class="line">$conn-&gt;SetFetchMode(ADODB_FETCH_ASSOC);</span><br></pre></td></tr></table></figure>
+
 
         </div>
 

@@ -176,6 +176,7 @@
         <div class="post-content" id="post-content" itemprop="postContent">
             <p>我的一个MFC单文档程序，启动时需要给定一个字符串参数来作为工作路径，从而连接相应路径下的数据库，在 App 类的 InitInstance 中通过 <code>this-&gt;m_lpCmdLine</code> 即可得到这个参数加以使用，但是 MFC 程序的 ProcessShellCommand(cmdInfo) 这个过程会返回 False，导致程序启动失败，弹出 “XXX不是一个合法路径” 的对话框，原因貌似也挺好理解，单文档程序往往将参数认为是该程序打开的文档名称，所以一旦你这个参数不是一个文件路径或者不是符合类型的文档，则 Doc 类处理不了，自然也就返回 False 了，想了想也没得到其他的好办法，只好暂时重载 Doc 类的 OnOpenDocument 方法，取消对文件的任何操作即可。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">BOOL CIEDoc::OnOpenDocument(LPCTSTR lpszPathName)</span><br><span class="line">&#123;</span><br><span class="line">&#x2F;&#x2F;注意：取消此处</span><br><span class="line">&#x2F;&#x2F;if (!CDocument::OnOpenDocument(lpszPathName))</span><br><span class="line">&#x2F;&#x2F; return FALSE;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; TODO: Add your specialized creation code here</span><br><span class="line"></span><br><span class="line">return TRUE;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>可能我这种应用比较奇葩吧。</p>
 
         </div>

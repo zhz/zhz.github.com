@@ -192,10 +192,13 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># IPv6 disabled</span><br><span class="line">net.ipv6.conf.all.disable_ipv6 &#x3D; 1</span><br><span class="line">net.ipv6.conf.default.disable_ipv6 &#x3D; 1</span><br><span class="line">net.ipv6.conf.lo.disable_ipv6 &#x3D; 1</span><br></pre></td></tr></table></figure>
 <p>重载内核参数</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo sysctl -p</span><br></pre></td></tr></table></figure>
+
 <p>即可通过 ifconfig 看到 IPV6 地址已经不在</p>
 <h2 id="通过-GRUB-禁用-IPV6"><a href="#通过-GRUB-禁用-IPV6" class="headerlink" title="通过 GRUB 禁用 IPV6"></a>通过 GRUB 禁用 IPV6</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim &#x2F;etc&#x2F;default&#x2F;grub</span><br></pre></td></tr></table></figure>
+
 <p>寻找 <code>GRUB_CMDLINE_LINUX</code> 或者 <code>GRUB_CMDLINE_LINUX_DEFAULT</code> 字样的设置项，在其后添加 ipv6.disable=1 字样。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GRUB_CMDLINE_LINUX&#x3D;&quot;ipv6.disable&#x3D;1&quot;</span><br></pre></td></tr></table></figure>
+
 <p>保存之后更新 GRUB 即可</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo update-grub2</span><br></pre></td></tr></table></figure>
         </div>
@@ -289,9 +292,9 @@
 <nav class="post-nav flex-row flex-justify-between">
   
     <div class="waves-block waves-effect prev">
-      <a href="../../11/a-start-stop-job-is-running-for/" id="post-prev" class="post-nav-link">
+      <a href="../../11/a-start-job-is-running-for-raise-network-interface/" id="post-prev" class="post-nav-link">
         <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
-        <h4 class="title">A start/stop job is running for ....</h4>
+        <h4 class="title">A start job is running for raise network interface</h4>
       </a>
     </div>
   

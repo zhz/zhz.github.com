@@ -189,8 +189,10 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim &#x2F;etc&#x2F;mysql&#x2F;my.cnf</span><br></pre></td></tr></table></figure>
 <p>修改</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[mysqld]</span><br><span class="line">log-bin&#x3D;mysql-bin &#x2F;&#x2F;启用二进制日志</span><br><span class="line">server-id&#x3D;125120 &#x2F;&#x2F;服务器唯一ID，默认是1，可以取ip地址后两段</span><br></pre></td></tr></table></figure>
+
 <p>修改后重启</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;etc&#x2F;init.d&#x2F;mysql restart</span><br></pre></td></tr></table></figure>
+
 <ol start="3">
 <li><p>mysql -p 登录 master，然后输入 <code>show master status;</code> 查看log文件名称及Position</p>
 </li>
@@ -198,10 +200,12 @@
 </li>
 </ol>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">cd &#x2F;var&#x2F;lib&#x2F;mysql</span><br><span class="line"></span><br><span class="line">scp -rp root@host1:&#x2F;var&#x2F;lib&#x2F;mysql&#x2F;db1 .&#x2F;</span><br><span class="line"></span><br><span class="line">....</span><br><span class="line"></span><br><span class="line">chown -R mysql.mysql *</span><br></pre></td></tr></table></figure>
+
 <ol start="5">
 <li>mysql -p 登录 salve ，设置同步参数</li>
 </ol>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">stop slave;</span><br><span class="line"></span><br><span class="line">change master to master_host&#x3D;&#39;masterip&#39;,master_user&#x3D;&#39;root&#39;,master_password&#x3D;&#39;rootpwd&#39;,master_log_file&#x3D;&#39;mysql-bin.000001&#39;,master_log_pos&#x3D;36622;</span><br><span class="line"></span><br><span class="line">start slave;</span><br><span class="line"></span><br><span class="line">show slave status;</span><br></pre></td></tr></table></figure>
+
 
 <ol start="6">
 <li>测试是否生效</li>

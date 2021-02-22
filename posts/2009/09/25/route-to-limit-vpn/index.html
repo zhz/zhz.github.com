@@ -180,13 +180,16 @@
 <p>　　解决办法很简单，就是自己设置一下路由表而已，我是网通，使用的无线路由。</p>
 <p>　　首先在　VPN　未连接状态下在命令行窗口打入　route print 指令，查看当前的默认路由，及默认网关 Default GateWay ，记下来，比如我的是 192.168.1.1<br>　　然后连接　VPN ，再使用 route print 指令将 VPN 的默认路由记下来，比如 10.6.0.13<br>　　接下来，使用 route add 指令设置默认路由为原来的 192.168.1.1</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">　　　　route add 0.0.0.0 mask 0.0.0.0 192.168.1.1</span><br></pre></td></tr></table></figure>
+
 <p>　　然后确定一下学校里网站的大体 IP 范围，将其路由指向 VPN 的 10.6.0.13 即可，比如我的</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">　　　　route add 202.113.0.0 mask 255.255.0.0 10.6.0.13</span><br><span class="line">　　　　route add 219.243.0.0 mask 255.255.0.0 10.6.0.13</span><br><span class="line">　　　　route add 10.0.0.0 mask 255.255.255.0 10.6.0.13</span><br></pre></td></tr></table></figure>
+
 <p>　　这样的话，访问学校内部的 202.113.* 219.243.* 10.* 等都会走 VPN ，而访问公网等都会走网通，实现了两种区域的快速访问。</p>
 <p>　　上述指令可以做成一个批处理文件，在连接 VPN  之后点击一下即可，注意不要把批处理名字也写成 route ，那样就死循环了。</p>
 <p>　　10月10日补：</p>
 <p>　　经过几次试验之后发现每次登陆学校的 VPN 获取的缺省网关是变化的，这就导致批处理的效率大打折扣，不过 bat 指令可不是想象的那么简单，强大的很，下面的批处理从 route print 的输出里获取 Default Gateway 并传递给下面的 route add 指令。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">echo off</span><br><span class="line">for &#x2F;f &quot;delims&#x3D;: tokens&#x3D;2&quot; %%i in (&#39;route print^|findstr &#x2F;i &#x2F;c:Default&#39;) do set gw&#x3D;%%i</span><br><span class="line">echo &quot;VPN Gateway Found:&quot; %gw%</span><br><span class="line">route add 0.0.0.0 mask 0.0.0.0 192.168.1.1</span><br><span class="line">route add 202.113.0.0 mask 255.255.0.0 %gw%</span><br><span class="line">route add 219.243.0.0 mask 255.255.0.0 %gw%</span><br><span class="line">route add 10.0.0.0 mask 255.255.255.0 %gw%</span><br><span class="line">echo &quot;Done&quot;</span><br></pre></td></tr></table></figure>
+
 
         </div>
 

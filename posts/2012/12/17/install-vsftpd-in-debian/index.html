@@ -184,33 +184,45 @@
 <p>用一个叫做 web 的用户登录 ftp 服务器，使其可以修改 web 根目录 /www 中的内容。</p>
 <p>直接安装二进制包</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get install vsftpd</span><br></pre></td></tr></table></figure>
+
 <p>修改配置文件</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim &#x2F;etc&#x2F;vsftpd.conf</span><br></pre></td></tr></table></figure>
+
 <p>保证下边几个参数</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">anonymous_enable&#x3D;NO</span><br><span class="line">local_enable&#x3D;YES</span><br><span class="line">guest_enable&#x3D;YES</span><br><span class="line">guest_username&#x3D;www-data</span><br><span class="line">user_config_dir&#x3D;&#x2F;etc&#x2F;vsftpd&#x2F;user_conf</span><br><span class="line">local_umask&#x3D;022</span><br><span class="line"></span><br><span class="line">pam_service_name&#x3D;vsftpd #这个参数在最后</span><br></pre></td></tr></table></figure>
+
 <p>上边参数开启了虚拟账户访问，并将该虚拟账户映射为实际账户 www-data ，www-data 一般只要安装了 web server 就存在，这样就可以避免再单独建立新账户了。</p>
 <p>如果你的 web 根目录不是 /www ，那根据自己需要修改 /etc/passwd 中 www-data 的 home 目录，并利用 chown 设置属主为 www-data。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chown -R www-data.www-data &#x2F;www</span><br></pre></td></tr></table></figure>
+
 <p>在你的 mysql 服务器上的某个库里建立一个 nsftpdvu 的表，里边字段为 name和 passwd，插入一行记录，用户名为 web，密码自己设置好</p>
 <p>安装认证模块</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get install libpam-mysql</span><br></pre></td></tr></table></figure>
+
 <p>修改认证配置</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim &#x2F;etc&#x2F;pam.d&#x2F;vsftpd</span><br></pre></td></tr></table></figure>
+
 <p>把原有内容全部注释或者删掉，添加如下两行，其中的参数，比如mysql账户名密码及主机库名等根据自己 mysql 参数修改，crypt = 0 代表存储的是明文密码。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">auth required pam_mysql.so user&#x3D;root passwd&#x3D;urdbrootpwd host&#x3D;urdbserver db&#x3D;urdb table&#x3D;vsftpdvu usercolumn&#x3D;name passwdcolumn&#x3D;passwd crypt&#x3D;0</span><br><span class="line">account  required pam_mysql.so user&#x3D;root passwd&#x3D;urdbrootpwd host&#x3D;urdbserver db&#x3D;urdb table&#x3D;vsftpdvu usercolumn&#x3D;name passwdcolumn&#x3D;passwd crypt&#x3D;0</span><br></pre></td></tr></table></figure>
+
 <p>接下来添加账户 web 的配置文件</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkdir &#x2F;etc&#x2F;vsftpd</span><br><span class="line">mkdir &#x2F;etc&#x2F;vsftpd&#x2F;user_conf</span><br></pre></td></tr></table></figure>
+
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim &#x2F;etc&#x2F;vsftpd&#x2F;user_conf&#x2F;web</span><br></pre></td></tr></table></figure>
+
 <p>内容如下</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">local_root&#x3D;&#x2F;www</span><br><span class="line">anon_world_readable_only&#x3D;NO</span><br><span class="line">anon_umask&#x3D;022</span><br><span class="line">write_enable&#x3D;YES</span><br><span class="line">download_enable&#x3D;YES</span><br><span class="line">anon_mkdir_write_enable&#x3D;YES</span><br><span class="line">anon_upload_enable&#x3D;YES</span><br><span class="line">anon_other_write_enable&#x3D;YES</span><br></pre></td></tr></table></figure>
+
 <p>如果你需要添加其他账户，只需要在 vsftpdvu 表里添加账户名和密码，然后照葫芦画瓢在 /etc/vsftpd/user_conf 目录中再建立一个以账户名命名的配置文件即可。</p>
 <p>重启vsftpd</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;etc&#x2F;init.d&#x2F;vsftpd restart</span><br></pre></td></tr></table></figure>
+
 <p>测试用 web 登录，一切正常</p>
 <p>另：vsftpd.conf 中的 listen ipv6 选项我开启后，说什么也连不上 ftp ，注释掉就好了，难道不能两套同时监听？</p>
 <p>另：如果提示 vsftpd: refusing to run with writable root inside chroot()</p>
 <p>则需要使用如下命令将用户主目录的属性去掉可写</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod a-w &#x2F;www</span><br></pre></td></tr></table></figure>
+
 
         </div>
 

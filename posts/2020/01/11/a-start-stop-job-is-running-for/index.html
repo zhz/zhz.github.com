@@ -21,12 +21,12 @@
     
     
     <meta name="keywords" content="">
-    <meta name="description" content="开关机都变慢了，表现为卡在 A start&#x2F;stop job is running … 上，此时可以首先尝试如下解决办法 1sudo vim &#x2F;etc&#x2F;systemd&#x2F;system.conf 修改如下两个超时参数 12DefaultTimeoutStartSec&#x3D;10sDefaultTimeoutStopSec&#x3D;10s 重新加载 1systemct">
+    <meta name="description" content="开关机都变慢了，表现为卡在 A start&#x2F;stop job is running … 上，此时可以首先尝试如下解决办法 1sudo vim &#x2F;etc&#x2F;systemd&#x2F;system.conf  修改如下两个超时参数 12DefaultTimeoutStartSec&#x3D;10sDefaultTimeoutStopSec&#x3D;10s  重新加载 1system">
 <meta property="og:type" content="article">
 <meta property="og:title" content="A start&#x2F;stop job is running for ....">
 <meta property="og:url" content="http://littlepig.cn/posts/2020/01/11/a-start-stop-job-is-running-for/index.html">
 <meta property="og:site_name" content="LittlePig.CN">
-<meta property="og:description" content="开关机都变慢了，表现为卡在 A start&#x2F;stop job is running … 上，此时可以首先尝试如下解决办法 1sudo vim &#x2F;etc&#x2F;systemd&#x2F;system.conf 修改如下两个超时参数 12DefaultTimeoutStartSec&#x3D;10sDefaultTimeoutStopSec&#x3D;10s 重新加载 1systemct">
+<meta property="og:description" content="开关机都变慢了，表现为卡在 A start&#x2F;stop job is running … 上，此时可以首先尝试如下解决办法 1sudo vim &#x2F;etc&#x2F;systemd&#x2F;system.conf  修改如下两个超时参数 12DefaultTimeoutStartSec&#x3D;10sDefaultTimeoutStopSec&#x3D;10s  重新加载 1system">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-01-10T16:00:00.000Z">
 <meta property="article:modified_time" content="2020-01-11T04:02:05.000Z">
@@ -180,8 +180,10 @@
         <div class="post-content" id="post-content" itemprop="postContent">
             <p>开关机都变慢了，表现为卡在 A start/stop job is running … 上，此时可以首先尝试如下解决办法</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim &#x2F;etc&#x2F;systemd&#x2F;system.conf</span><br></pre></td></tr></table></figure>
+
 <p>修改如下两个超时参数</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">DefaultTimeoutStartSec&#x3D;10s</span><br><span class="line">DefaultTimeoutStopSec&#x3D;10s</span><br></pre></td></tr></table></figure>
+
 <p>重新加载</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl daemon-reload</span><br></pre></td></tr></table></figure>
         </div>
@@ -273,18 +275,18 @@
 <nav class="post-nav flex-row flex-justify-between">
   
     <div class="waves-block waves-effect prev">
-      <a href="../a-start-job-is-running-for-raise-network-interface/" id="post-prev" class="post-nav-link">
+      <a href="../x200-flower-screen/" id="post-prev" class="post-nav-link">
         <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
-        <h4 class="title">A start job is running for raise network interface</h4>
+        <h4 class="title">X200 高版本 Windows 花屏</h4>
       </a>
     </div>
   
 
   
     <div class="waves-block waves-effect next">
-      <a href="../../10/disable-ipv6-on-debian/" id="post-next" class="post-nav-link">
+      <a href="../a-start-job-is-running-for-raise-network-interface/" id="post-next" class="post-nav-link">
         <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
-        <h4 class="title">Debian 禁用 IPV6</h4>
+        <h4 class="title">A start job is running for raise network interface</h4>
       </a>
     </div>
   
