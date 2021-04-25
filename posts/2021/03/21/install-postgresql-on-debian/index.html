@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>Debian 下安装 Postgresql | LittlePig.CN | someone&#39;s Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Linux Debian Postgresql">
+    <meta name="description" content="配置安装源并安装1234sudo sh -c &#39;echo &quot;deb http:&#x2F;&#x2F;apt.postgresql.org&#x2F;pub&#x2F;repos&#x2F;apt $(lsb_release -cs)-pgdg main&quot; &gt; &#x2F;etc&#x2F;apt&#x2F;sources.list.d&#x2F;pgdg.lis">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Debian 下安装 Postgresql">
+<meta property="og:url" content="http://littlepig.cn/posts/2021/03/21/install-postgresql-on-debian/index.html">
+<meta property="og:site_name" content="LittlePig.CN">
+<meta property="og:description" content="配置安装源并安装1234sudo sh -c &#39;echo &quot;deb http:&#x2F;&#x2F;apt.postgresql.org&#x2F;pub&#x2F;repos&#x2F;apt $(lsb_release -cs)-pgdg main&quot; &gt; &#x2F;etc&#x2F;apt&#x2F;sources.list.d&#x2F;pgdg.lis">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-03-20T16:00:00.000Z">
+<meta property="article:modified_time" content="2021-03-21T03:39:30.699Z">
+<meta property="article:author" content="ZHZ">
+<meta property="article:tag" content="Linux Debian Postgresql">
+<meta name="twitter:card" content="summary">
+    
+        <link rel="alternate" type="application/atom+xml" title="LittlePig.CN" href="../../../../../atom.xml">
+    
+    <link rel="shortcut icon" href="../../../../../favicon.ico">
+    <link rel="stylesheet" href="../../../../../css/style.css?v=1.7.2">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(../../../../../img/brand.jpg)">
+      <div class="brand">
+        <a href="../../../../../index.html" class="avatar waves-effect waves-circle waves-light">
+          <img src="../../../../../img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">ZHZ</h5>
+          <a href="mailto:zhz@hebut.edu.cn" title="zhz@hebut.edu.cn" class="mail">zhz@hebut.edu.cn</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="../../../../../index.html"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="../../../../../archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="../../../../../tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="../../../../../categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="../../../../../about"  >
+                <i class="icon icon-lg icon-link"></i>
+                关于
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Debian 下安装 Postgresql</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Debian 下安装 Postgresql</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2021-03-20T16:00:00.000Z" itemprop="datePublished" class="page-time">
+  2021-03-21
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="../../../../../categories/%E8%BD%AF%E4%BB%B6/">软件</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#配置安装源并安装"><span class="post-toc-number">1.</span> <span class="post-toc-text">配置安装源并安装</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#修改配置文件"><span class="post-toc-number">2.</span> <span class="post-toc-text">修改配置文件</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#创建数据文件夹并设置属性"><span class="post-toc-number">3.</span> <span class="post-toc-text">创建数据文件夹并设置属性</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#启动"><span class="post-toc-number">4.</span> <span class="post-toc-text">启动</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#创建用户和数据库"><span class="post-toc-number">5.</span> <span class="post-toc-text">创建用户和数据库</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#配置账户远程访问"><span class="post-toc-number">6.</span> <span class="post-toc-text">配置账户远程访问</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-install-postgresql-on-debian"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Debian 下安装 Postgresql</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2021-03-21 00:00:00" datetime="2021-03-20T16:00:00.000Z"  itemprop="datePublished">2021-03-21</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="../../../../../categories/%E8%BD%AF%E4%BB%B6/">软件</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="配置安装源并安装"><a href="#配置安装源并安装" class="headerlink" title="配置安装源并安装"></a>配置安装源并安装</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo sh -c &#39;echo &quot;deb http:&#x2F;&#x2F;apt.postgresql.org&#x2F;pub&#x2F;repos&#x2F;apt $(lsb_release -cs)-pgdg main&quot; &gt; &#x2F;etc&#x2F;apt&#x2F;sources.list.d&#x2F;pgdg.list&#39;</span><br><span class="line">wget --quiet -O - https:&#x2F;&#x2F;www.postgresql.org&#x2F;media&#x2F;keys&#x2F;ACCC4CF8.asc | sudo apt-key add -</span><br><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get -y install postgresql postgresql-contrib</span><br></pre></td></tr></table></figure>
+
+<h1 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim &#x2F;etc&#x2F;postgresql&#x2F;11&#x2F;main&#x2F;postgresql.conf</span><br></pre></td></tr></table></figure>
+<p>添加</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">listen_addresses &#x3D; &#39;*&#39;</span><br></pre></td></tr></table></figure>
+<p>修改 data_directory</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">data_directory &#x3D; &#39;&#x2F;data&#x2F;postgresql&#39;</span><br></pre></td></tr></table></figure>
+
+<h1 id="创建数据文件夹并设置属性"><a href="#创建数据文件夹并设置属性" class="headerlink" title="创建数据文件夹并设置属性"></a>创建数据文件夹并设置属性</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mkdir &#x2F;data&#x2F;postgresql</span><br><span class="line">chown postgres:postgres &#x2F;data&#x2F;postgresql</span><br><span class="line">chmod 0750 &#x2F;data&#x2F;postgresql</span><br><span class="line">mv &#x2F;var&#x2F;lib&#x2F;postgresql&#x2F;13&#x2F;main&#x2F;* &#x2F;data&#x2F;postgresql&#x2F;</span><br></pre></td></tr></table></figure>
+
+<h1 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pg_ctlcluster 13 main start</span><br></pre></td></tr></table></figure>
+<p>或者</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;etc&#x2F;init.d&#x2F;postgresql restart</span><br></pre></td></tr></table></figure>
+
+<h1 id="创建用户和数据库"><a href="#创建用户和数据库" class="headerlink" title="创建用户和数据库"></a>创建用户和数据库</h1><p>例如用户 zhz 和数据库 158.247</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo su - postgres -c &quot;createuser zhz&quot;</span><br><span class="line">sudo su - postgres -c &quot;createdb 158.247&quot;</span><br></pre></td></tr></table></figure>
+<p>进入 postgresql 控制台</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo -u postgres psql</span><br></pre></td></tr></table></figure>
+<p>输入如下指令对数据库授权</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grant all privileges on database 158.247 to zhz;</span><br></pre></td></tr></table></figure>
+<p>修改账户密码，默认 postgres 账户是无密码的，但是只允许本地访问，这里修改 zhz 的密码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter user zhz with password &#39;new-password&#39;;</span><br></pre></td></tr></table></figure>
+
+<h1 id="配置账户远程访问"><a href="#配置账户远程访问" class="headerlink" title="配置账户远程访问"></a>配置账户远程访问</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim &#x2F;etc&#x2F;postgresql&#x2F;13&#x2F;main&#x2F;pg_hba.conf</span><br></pre></td></tr></table></figure>
+<p>添加</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">host 158.247 zhz 0.0.0.0&#x2F;0 password</span><br></pre></td></tr></table></figure>
+<p>放开防火墙</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iptables -A INPUT -p tcp --dport 5432 -j ACCEPT</span><br></pre></td></tr></table></figure>
+<p>重启</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo service postgresql restart</span><br></pre></td></tr></table></figure>
+
+<p>之后即可使用数据库客户端工具访问该数据库。</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2021-03-21T03:39:30.699Z" itemprop="dateUpdated">2021-03-21 11:39:30</time>
+</span><br>
+
+
+        
+        本文地址：<a href="" target="_blank" rel="external">http://littlepig.cn/posts/2021/03/21/install-postgresql-on-debian/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="http://littlepig.cn">
+            <img src="../../../../../img/avatar.jpg" alt="ZHZ">
+            ZHZ
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赞</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../../tags/Linux-Debian-Postgresql/" rel="tag">Linux Debian Postgresql</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://littlepig.cn/posts/2021/03/21/install-postgresql-on-debian/&title=《Debian 下安装 Postgresql》 — LittlePig.CN&pic=http://littlepig.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://littlepig.cn/posts/2021/03/21/install-postgresql-on-debian/&title=《Debian 下安装 Postgresql》 — LittlePig.CN&source=记录 / 回忆 / 分享" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://littlepig.cn/posts/2021/03/21/install-postgresql-on-debian/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Debian 下安装 Postgresql》 — LittlePig.CN&url=http://littlepig.cn/posts/2021/03/21/install-postgresql-on-debian/&via=http://littlepig.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://littlepig.cn/posts/2021/03/21/install-postgresql-on-debian/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="../../23/disable-csm-while-installing-debian-in-uefi-mode/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">X230 UEFI 模式下安装 Debian 需要将 BIOS 中 CSM 关闭</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="../../../02/15/git-passwd-manage-on-macos/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">MacOS 下 git 账户信息的保存和修改</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="../../../../../img/wechat.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="../../../../../img/wechat.png" data-alipay="../../../../../img/alipay.png">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="../../../../../atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>ZHZ &copy; 2003 - 2021</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://littlepig.cn/posts/2021/03/21/install-postgresql-on-debian/&title=《Debian 下安装 Postgresql》 — LittlePig.CN&pic=http://littlepig.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://littlepig.cn/posts/2021/03/21/install-postgresql-on-debian/&title=《Debian 下安装 Postgresql》 — LittlePig.CN&source=记录 / 回忆 / 分享" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://littlepig.cn/posts/2021/03/21/install-postgresql-on-debian/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Debian 下安装 Postgresql》 — LittlePig.CN&url=http://littlepig.cn/posts/2021/03/21/install-postgresql-on-debian/&via=http://littlepig.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://littlepig.cn/posts/2021/03/21/install-postgresql-on-debian/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACs0lEQVR42u3aUW4qMRAEQO5/6bzfJ0VA94yNiFT7hYB4XRvJHnr8eMTXz6/r//d/f+f1X72+y7N3khGGFx4eHt566q8ZzzCvp/vs+8kIyYN7Oh88PDy8a7xkcvkKXE/i5Qj5fPDw8PC+k5cv5dHtR5/i4eHh/RXe67J4tqy30QYeHh7e9/CSMGIWxbYhb4s/lrXg4eHhdTnAI5/0N7y+0t/Dw8PDW3fV200ib261m8TswsPDw7vBmx0dmMW+s2I9iT/elPV4eHh4H+EldWmyxOfh7OzoVdQew8PDwzvKa49DbaaYl9Qtss6n8fDw8Ba8/Af/7IBUO0LeyjrwP8TDw8M7xJvFr3mYO4tr88eBh4eHd5t37zb7x7cPi/Hw8PBu8M6Wv23IG00uuHv9iwEPDw9vwUuGyzePFt8ejc0fOh4eHt49Xn6bpJydhRczxgEkHh4e3po32wDag1btppIfYnjzEPHw8PAO8drgtW3t543/U8lK8YsBDw8Pb8Fr44BkG5gd6pqN/CbGxcPDwzvKm7XB6gW6DIjbcaItBw8PD+8QbxYfbIrj/cMqtgc8PDy8j/Datn17ICAvuA80yfDw8PAu8PL44FRTfxbXrmaLh4eHd5SXNLryhn0bPbTfrA/F4uHh4V3gnWp35fg2VshfR10+PDw8vAu8/SLeHkeYxRBFFIKHh4f3EV5SXu+PUuVL/yosxsPDw7vGK1ryZYsrP5qQj5aX6Xh4eHhneT/lNTtGkLyTsNuIGQ8PD+8GL7/y5bstfPdh7gqGh4eHN+LNAoXNoag2qsjDkUe+2+Dh4eGtebNGVx7y5vfaXE83Bjw8PLwv4LUleELdxBZ4eHh4f5GXl+ZtGywf/1hJjYeHhxfwZmFEu0nMHkFSdl+JcfHw8PDWDbC89dUGtac2FTw8PLzLvH/u4ycDeZUO1QAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+lazyScripts.push('//s95.cnzz.com/z_stat.php?id=1235250&web_id=1235250')
+
+</script>
+
+<script src="../../../../../js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="../../../../../js/search.min.js?v=1.7.2" async></script>
+
+
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

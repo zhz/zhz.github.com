@@ -6,7 +6,7 @@
   <link href="http://littlepig.cn/atom.xml" rel="self"/>
   
   <link href="http://littlepig.cn/"/>
-  <updated>2021-02-19T04:45:12.341Z</updated>
+  <updated>2021-02-23T11:07:04.924Z</updated>
   <id>http://littlepig.cn/</id>
   
   <author>
@@ -15,6 +15,55 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>X230 UEFI 模式下安装 Debian 需要将 BIOS 中 CSM 关闭</title>
+    <link href="http://littlepig.cn/posts/2021/03/23/disable-csm-while-installing-debian-in-uefi-mode/"/>
+    <id>http://littlepig.cn/posts/2021/03/23/disable-csm-while-installing-debian-in-uefi-mode/</id>
+    <published>2021-03-22T16:00:00.000Z</published>
+    <updated>2021-02-23T11:07:04.924Z</updated>
+    
+    <content type="html"><![CDATA[<p>简而言之，需要在 BIOS 中将启动模式设置为 UEFI Only 的同时关闭 CSM ，否则安装优盘在启动菜单选择安装模式后就无响应了，安装完毕后再将 CSM 打开，否则如果有其它系统比如 Windows 就无法进入了。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;简而言之，需要在 BIOS 中将启动模式设置为 UEFI Only 的同时关闭 CSM ，否则安装优盘在启动菜单选择安装模式后就无响应了，安装完毕后再将 CSM 打开，否则如果有其它系统比如 Windows 就无法进入了。&lt;/p&gt;
+</summary>
+      
+    
+    
+    
+    <category term="系统" scheme="http://littlepig.cn/categories/%E7%B3%BB%E7%BB%9F/"/>
+    
+    
+    <category term="Linux Debian X230" scheme="http://littlepig.cn/tags/Linux-Debian-X230/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Debian 下安装 Postgresql</title>
+    <link href="http://littlepig.cn/posts/2021/03/21/install-postgresql-on-debian/"/>
+    <id>http://littlepig.cn/posts/2021/03/21/install-postgresql-on-debian/</id>
+    <published>2021-03-20T16:00:00.000Z</published>
+    <updated>2021-03-21T03:39:30.699Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="配置安装源并安装"><a href="#配置安装源并安装" class="headerlink" title="配置安装源并安装"></a>配置安装源并安装</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo sh -c &#39;echo &quot;deb http:&#x2F;&#x2F;apt.postgresql.org&#x2F;pub&#x2F;repos&#x2F;apt $(lsb_release -cs)-pgdg main&quot; &gt; &#x2F;etc&#x2F;apt&#x2F;sources.list.d&#x2F;pgdg.list&#39;</span><br><span class="line">wget --quiet -O - https:&#x2F;&#x2F;www.postgresql.org&#x2F;media&#x2F;keys&#x2F;ACCC4CF8.asc | sudo apt-key add -</span><br><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get -y install postgresql postgresql-contrib</span><br></pre></td></tr></table></figure><h1 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim &#x2F;etc&#x2F;postgresql&#x2F;11&#x2F;main&#x2F;postgresql.conf</span><br></pre></td></tr></table></figure><p>添加</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">listen_addresses &#x3D; &#39;*&#39;</span><br></pre></td></tr></table></figure><p>修改 data_directory</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">data_directory &#x3D; &#39;&#x2F;data&#x2F;postgresql&#39;</span><br></pre></td></tr></table></figure><h1 id="创建数据文件夹并设置属性"><a href="#创建数据文件夹并设置属性" class="headerlink" title="创建数据文件夹并设置属性"></a>创建数据文件夹并设置属性</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mkdir &#x2F;data&#x2F;postgresql</span><br><span class="line">chown postgres:postgres &#x2F;data&#x2F;postgresql</span><br><span class="line">chmod 0750 &#x2F;data&#x2F;postgresql</span><br><span class="line">mv &#x2F;var&#x2F;lib&#x2F;postgresql&#x2F;13&#x2F;main&#x2F;* &#x2F;data&#x2F;postgresql&#x2F;</span><br></pre></td></tr></table></figure><h1 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pg_ctlcluster 13 main start</span><br></pre></td></tr></table></figure><p>或者</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;etc&#x2F;init.d&#x2F;postgresql restart</span><br></pre></td></tr></table></figure><h1 id="创建用户和数据库"><a href="#创建用户和数据库" class="headerlink" title="创建用户和数据库"></a>创建用户和数据库</h1><p>例如用户 zhz 和数据库 158.247</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo su - postgres -c &quot;createuser zhz&quot;</span><br><span class="line">sudo su - postgres -c &quot;createdb 158.247&quot;</span><br></pre></td></tr></table></figure><p>进入 postgresql 控制台</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo -u postgres psql</span><br></pre></td></tr></table></figure><p>输入如下指令对数据库授权</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grant all privileges on database 158.247 to zhz;</span><br></pre></td></tr></table></figure><p>修改账户密码，默认 postgres 账户是无密码的，但是只允许本地访问，这里修改 zhz 的密码</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter user zhz with password &#39;new-password&#39;;</span><br></pre></td></tr></table></figure><h1 id="配置账户远程访问"><a href="#配置账户远程访问" class="headerlink" title="配置账户远程访问"></a>配置账户远程访问</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim &#x2F;etc&#x2F;postgresql&#x2F;13&#x2F;main&#x2F;pg_hba.conf</span><br></pre></td></tr></table></figure><p>添加</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">host 158.247 zhz 0.0.0.0&#x2F;0 password</span><br></pre></td></tr></table></figure><p>放开防火墙</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iptables -A INPUT -p tcp --dport 5432 -j ACCEPT</span><br></pre></td></tr></table></figure><p>重启</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo service postgresql restart</span><br></pre></td></tr></table></figure><p>之后即可使用数据库客户端工具访问该数据库。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;配置安装源并安装&quot;&gt;&lt;a href=&quot;#配置安装源并安装&quot; class=&quot;headerlink&quot; title=&quot;配置安装源并安装&quot;&gt;&lt;/a&gt;配置安装源并安装&lt;/h1&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td cl</summary>
+      
+    
+    
+    
+    <category term="软件" scheme="http://littlepig.cn/categories/%E8%BD%AF%E4%BB%B6/"/>
+    
+    
+    <category term="Linux Debian Postgresql" scheme="http://littlepig.cn/tags/Linux-Debian-Postgresql/"/>
+    
+  </entry>
   
   <entry>
     <title>MacOS 下 git 账户信息的保存和修改</title>
@@ -423,51 +472,6 @@
       
     
     
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Debian 英文界面下使用中文输入法</title>
-    <link href="http://littlepig.cn/posts/2020/01/11/input-chinese-while-using-english-gui/"/>
-    <id>http://littlepig.cn/posts/2020/01/11/input-chinese-while-using-english-gui/</id>
-    <published>2020-01-11T02:30:50.000Z</published>
-    <updated>2020-01-11T15:35:47.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>Linux 使用中文环境多了有时候会发现部分不完整的翻译或者不准确的翻译实在是很让人不爽，于是便想切换到英文环境下去，但又需要保留中文输入法，毕竟很多地方还是需要录入中文的，Debian 下设置很简单。</p><h2 id="重新配置-locales"><a href="#重新配置-locales" class="headerlink" title="重新配置 locales"></a>重新配置 locales</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo dpkg-reconfigure locales</span><br></pre></td></tr></table></figure><p>选中 zh_CN.* 以及 en_US.UTF-8 选项，然后将 en_US.UTF-8 设置为缺省 locale </p><h2 id="修改配置将-LC-CTYPE-参数设置为-zh-CN-UTF-8"><a href="#修改配置将-LC-CTYPE-参数设置为-zh-CN-UTF-8" class="headerlink" title="修改配置将 LC_CTYPE 参数设置为 zh_CN.UTF-8"></a>修改配置将 LC_CTYPE 参数设置为 zh_CN.UTF-8</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim &#x2F;etc&#x2F;default&#x2F;locale</span><br></pre></td></tr></table></figure><p>按照如下格式修改</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">LANG&#x3D;en_US.UTF-8</span><br><span class="line">LC_CTYPE&#x3D;zh_CN.UTF-8</span><br></pre></td></tr></table></figure><p>退出重新登录</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;Linux 使用中文环境多了有时候会发现部分不完整的翻译或者不准确的翻译实在是很让人不爽，于是便想切换到英文环境下去，但又需要保留中文输入法，毕竟很多地方还是需要录入中文的，Debian 下设置很简单。&lt;/p&gt;
-&lt;h2 id=&quot;重新配置-locales&quot;&gt;&lt;a href=&quot;</summary>
-      
-    
-    
-    
-    <category term="配置" scheme="http://littlepig.cn/categories/%E9%85%8D%E7%BD%AE/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Debian 下安装屏幕保护</title>
-    <link href="http://littlepig.cn/posts/2020/01/11/install-screen-saver-on-debian/"/>
-    <id>http://littlepig.cn/posts/2020/01/11/install-screen-saver-on-debian/</id>
-    <published>2020-01-11T02:30:50.000Z</published>
-    <updated>2020-01-12T01:54:20.000Z</updated>
-    
-    <content type="html"><![CDATA[<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install xscreensaver</span><br><span class="line">sudo apt-get install xscreensaver-data</span><br><span class="line">sudo apt-get install xscreensaver-data-extra </span><br><span class="line">sudo apt-get install xscreensaver-gl</span><br><span class="line">sudo apt-get install xscreensaver xscreensaver-data-extra xscreensaver-gl-extra</span><br></pre></td></tr></table></figure>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class</summary>
-      
-    
-    
-    
-    <category term="配置" scheme="http://littlepig.cn/categories/%E9%85%8D%E7%BD%AE/"/>
     
     
   </entry>
